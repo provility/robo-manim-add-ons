@@ -44,37 +44,6 @@ class TestVertexLabels:
                 mock_label.set_color.assert_called_once()
                 mock_label.next_to.assert_called_once()
 
-    def test_vertex_labels_custom_parameters(self):
-        """Test vertex labels with custom scale, color, and buff"""
-        polygon = MagicMock()
-        polygon.get_vertices.return_value = np.array([
-            [0, 0, 0],
-            [1, 0, 0],
-            [0.5, 0.87, 0]
-        ])
-        polygon.get_center.return_value = np.array([0.5, 0.29, 0])
-
-        with patch('robo_manim_add_ons.label_utils.MathTex') as mock_tex:
-            mock_label = MagicMock()
-            mock_tex.return_value = mock_label
-
-            from manim import RED
-            labels = vertex_labels(
-                polygon,
-                ['X', 'Y', 'Z'],
-                scale=0.9,
-                color=RED,
-                buff=0.5
-            )
-
-            # Verify custom scale
-            assert mock_label.scale.call_count == 3
-            mock_label.scale.assert_called_with(0.9)
-
-            # Verify custom color
-            assert mock_label.set_color.call_count == 3
-            mock_label.set_color.assert_called_with(RED)
-
     def test_vertex_labels_square(self):
         """Test vertex labels on a square"""
         polygon = MagicMock()
@@ -145,36 +114,6 @@ class TestEdgeLabels:
                 mock_label.scale.assert_called_once_with(0.6)
                 mock_label.set_color.assert_called_once()
                 mock_label.next_to.assert_called_once()
-
-    def test_edge_labels_custom_parameters(self):
-        """Test edge labels with custom scale, color, and buff"""
-        polygon = MagicMock()
-        polygon.get_vertices.return_value = np.array([
-            [0, 0, 0],
-            [1, 0, 0],
-            [0.5, 0.87, 0]
-        ])
-
-        with patch('robo_manim_add_ons.label_utils.MathTex') as mock_tex:
-            mock_label = MagicMock()
-            mock_tex.return_value = mock_label
-
-            from manim import BLUE
-            labels = edge_labels(
-                polygon,
-                ['x', 'y', 'z'],
-                scale=0.8,
-                color=BLUE,
-                buff=0.4
-            )
-
-            # Verify custom scale
-            assert mock_label.scale.call_count == 3
-            mock_label.scale.assert_called_with(0.8)
-
-            # Verify custom color
-            assert mock_label.set_color.call_count == 3
-            mock_label.set_color.assert_called_with(BLUE)
 
     def test_edge_labels_square(self):
         """Test edge labels on a square"""

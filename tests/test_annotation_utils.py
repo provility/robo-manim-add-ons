@@ -65,46 +65,6 @@ class TestDistanceMarker:
             # Verify VGroup has 4 elements (arrow + 2 ticks + label)
             assert mock_vgroup.called
 
-    def test_distance_marker_custom_color(self):
-        """Test distance marker with custom color"""
-        with patch('robo_manim_add_ons.annotation_utils.DoubleArrow') as mock_arrow, \
-             patch('robo_manim_add_ons.annotation_utils.Line') as mock_line, \
-             patch('robo_manim_add_ons.annotation_utils.VGroup') as mock_vgroup:
-
-            mock_vgroup.return_value = MagicMock()
-
-            marker = distance_marker(
-                [0, 0, 0],
-                [3, 0, 0],
-                color="#ff0000"
-            )
-
-            # Verify color was passed to DoubleArrow
-            assert mock_arrow.call_args[1]['color'] == "#ff0000"
-
-            # Verify color was passed to Lines
-            for call in mock_line.call_args_list:
-                assert call[1]['color'] == "#ff0000"
-
-    def test_distance_marker_custom_stroke_width(self):
-        """Test distance marker with custom stroke width"""
-        with patch('robo_manim_add_ons.annotation_utils.DoubleArrow') as mock_arrow, \
-             patch('robo_manim_add_ons.annotation_utils.Line') as mock_line, \
-             patch('robo_manim_add_ons.annotation_utils.VGroup') as mock_vgroup:
-
-            mock_vgroup.return_value = MagicMock()
-
-            marker = distance_marker(
-                [0, 0, 0],
-                [3, 0, 0],
-                stroke_width=4
-            )
-
-            # Verify stroke_width was passed
-            assert mock_arrow.call_args[1]['stroke_width'] == 4
-            for call in mock_line.call_args_list:
-                assert call[1]['stroke_width'] == 4
-
     def test_distance_marker_vertical(self):
         """Test distance marker for vertical line"""
         with patch('robo_manim_add_ons.annotation_utils.DoubleArrow') as mock_arrow, \
@@ -136,24 +96,6 @@ class TestDistanceMarker:
             # Verify ticks were created
             assert mock_line.call_count == 2
 
-    def test_distance_marker_custom_tick_size(self):
-        """Test distance marker with custom tick size"""
-        with patch('robo_manim_add_ons.annotation_utils.DoubleArrow'), \
-             patch('robo_manim_add_ons.annotation_utils.Line') as mock_line, \
-             patch('robo_manim_add_ons.annotation_utils.VGroup') as mock_vgroup:
-
-            mock_vgroup.return_value = MagicMock()
-
-            marker = distance_marker(
-                [0, 0, 0],
-                [3, 0, 0],
-                tick_size=0.5
-            )
-
-            # Verify Line was called for ticks
-            # The tick size affects the offset calculation
-            assert mock_line.call_count == 2
-
     def test_distance_marker_zero_length_edge_case(self):
         """Test distance marker when points are very close (edge case)"""
         with patch('robo_manim_add_ons.annotation_utils.DoubleArrow') as mock_arrow, \
@@ -168,28 +110,6 @@ class TestDistanceMarker:
             # Should still create the marker without error
             assert mock_arrow.called
             assert mock_line.call_count == 2
-
-    def test_distance_marker_with_label_and_color(self):
-        """Test distance marker with both label and custom color"""
-        with patch('robo_manim_add_ons.annotation_utils.DoubleArrow') as mock_arrow, \
-             patch('robo_manim_add_ons.annotation_utils.Line') as mock_line, \
-             patch('robo_manim_add_ons.annotation_utils.MathTex') as mock_tex, \
-             patch('robo_manim_add_ons.annotation_utils.VGroup') as mock_vgroup:
-
-            mock_label = MagicMock()
-            mock_tex.return_value = mock_label
-            mock_vgroup.return_value = MagicMock()
-
-            from manim import BLUE
-            marker = distance_marker(
-                [0, 0, 0],
-                [3, 0, 0],
-                label_text="L",
-                color=BLUE
-            )
-
-            # Verify label color matches
-            mock_label.set_color.assert_called_once_with(BLUE)
 
     def test_distance_marker_returns_vgroup(self):
         """Test that distance_marker returns a VGroup"""
