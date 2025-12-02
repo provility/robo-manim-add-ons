@@ -7,8 +7,6 @@ Demonstrations of `perp()` and `parallel()` functions.
 ## PerpDemo
 **Basic perpendicular line construction**
 
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/PerpDemo.mp4" controls width="100%"></video>
-
 ```python
 from robo_manim_add_ons import perp
 
@@ -20,12 +18,14 @@ perp_line = perp(ref_line, dot, length=4.0, placement="mid")
 perp_line.set_color(GREEN)
 ```
 
+![PerpDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/PerpDemo_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/PerpDemo.mp4" controls width="100%"></video>
+
 ---
 
 ## ParallelDemo
 **Basic parallel line construction**
-
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/ParallelDemo.mp4" controls width="100%"></video>
 
 ```python
 from robo_manim_add_ons import parallel
@@ -38,12 +38,14 @@ parallel_line = parallel(ref_line, dot, length=3.0, placement="mid")
 parallel_line.set_color(YELLOW)
 ```
 
+![ParallelDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/ParallelDemo_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/ParallelDemo.mp4" controls width="100%"></video>
+
 ---
 
 ## PlacementDemo
 **Placement options: start, mid, end**
-
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/PlacementDemo.mp4" controls width="100%"></video>
 
 ```python
 ref_line = Line(LEFT * 4, RIGHT * 4, color=BLUE)
@@ -58,12 +60,14 @@ perp_start = perp(ref_line, dot_start, 2.0, placement="start")  # starts at dot
 perp_end = perp(ref_line, dot_end, 2.0, placement="end")       # ends at dot
 ```
 
+![PlacementDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/PlacementDemo_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/PlacementDemo.mp4" controls width="100%"></video>
+
 ---
 
 ## GeometryComboDemo
 **Combining perpendicular and parallel**
-
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/GeometryComboDemo.mp4" controls width="100%"></video>
 
 ```python
 ref_line = Line(LEFT * 2 + DOWN, RIGHT * 2 + UP, color=BLUE)
@@ -77,12 +81,14 @@ dot2 = Dot(UP * 2 + LEFT, color=ORANGE)
 parallel_line = parallel(ref_line, dot2, 2.5, placement="mid").set_color(YELLOW)
 ```
 
+![GeometryComboDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/GeometryComboDemo_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/GeometryComboDemo.mp4" controls width="100%"></video>
+
 ---
 
 ## DynamicPerpExample
 **Dynamic perpendicular with always_redraw()**
-
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/DynamicPerpExample.mp4" controls width="100%"></video>
 
 ```python
 base_line = Line(LEFT * 2, RIGHT * 2, color=BLUE)
@@ -97,12 +103,14 @@ perp_line = always_redraw(
 self.play(Rotate(base_line, angle=PI/3, about_point=ORIGIN))
 ```
 
+![DynamicPerpExample](https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/DynamicPerpExample_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/DynamicPerpExample.mp4" controls width="100%"></video>
+
 ---
 
 ## ParallelogramUpdater
 **Dynamic parallelogram construction**
-
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/ParallelogramUpdater.mp4" controls width="100%"></video>
 
 ```python
 base = Line(LEFT * 2 + DOWN, RIGHT * 2 + DOWN, color=BLUE)
@@ -126,3 +134,7 @@ right_side = always_redraw(
         .set_color(GREEN)
 )
 ```
+
+![ParallelogramUpdater](https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/ParallelogramUpdater_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/ParallelogramUpdater.mp4" controls width="100%"></video>

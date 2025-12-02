@@ -7,8 +7,6 @@ Demonstrations of `vertex_labels()` and `edge_labels()` functions.
 ## DynamicVertexLabelsExample
 **Vertex labels following transforming triangle**
 
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/DynamicVertexLabelsExample.mp4" controls width="100%"></video>
-
 ```python
 from robo_manim_add_ons import vertex_labels
 
@@ -29,12 +27,14 @@ self.play(triangle.animate.scale(1.5))  # Labels follow!
 self.play(Rotate(triangle, angle=PI/3))  # Labels follow!
 ```
 
+![DynamicVertexLabelsExample](https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/DynamicVertexLabelsExample_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/DynamicVertexLabelsExample.mp4" controls width="100%"></video>
+
 ---
 
 ## DynamicEdgeLabelsExample
 **Edge labels on transforming square**
-
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/DynamicEdgeLabelsExample.mp4" controls width="100%"></video>
 
 ```python
 from robo_manim_add_ons import edge_labels
@@ -56,12 +56,14 @@ self.play(Rotate(square, angle=PI/4))      # Labels rotate!
 self.play(square.animate.stretch(1.5, dim=0))  # Labels adapt!
 ```
 
+![DynamicEdgeLabelsExample](https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/DynamicEdgeLabelsExample_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/DynamicEdgeLabelsExample.mp4" controls width="100%"></video>
+
 ---
 
 ## DynamicVertexAndEdgeLabels
 **Both vertex and edge labels together**
-
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/DynamicVertexAndEdgeLabels.mp4" controls width="100%"></video>
 
 ```python
 pentagon = RegularPolygon(n=5, color=PURPLE).scale(2)
@@ -88,12 +90,14 @@ edge_label_objects = always_redraw(
 )
 ```
 
+![DynamicVertexAndEdgeLabels](https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/DynamicVertexAndEdgeLabels_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/DynamicVertexAndEdgeLabels.mp4" controls width="100%"></video>
+
 ---
 
 ## MorphingPolygonLabels
 **Labels adapt to morphing polygons**
-
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/MorphingPolygonLabels.mp4" controls width="100%"></video>
 
 ```python
 triangle = Polygon([-2, -1.5, 0], [2, -1.5, 0], [0, 2, 0], color=BLUE)
@@ -113,12 +117,14 @@ vertex_labels_obj = always_redraw(
 self.play(Transform(triangle, square))
 ```
 
+![MorphingPolygonLabels](https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/MorphingPolygonLabels_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/MorphingPolygonLabels.mp4" controls width="100%"></video>
+
 ---
 
 ## InteractivePolygonWithUpdater
 **Real-time edge length calculation**
-
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/InteractivePolygonWithUpdater.mp4" controls width="100%"></video>
 
 ```python
 hexagon = RegularPolygon(n=6, color=RED).scale(2)
@@ -145,3 +151,7 @@ edge_label_group.add_updater(update_edge_labels)
 self.play(hexagon.animate.scale(0.5))
 self.play(hexagon.animate.stretch(1.8, dim=1))
 ```
+
+![InteractivePolygonWithUpdater](https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/InteractivePolygonWithUpdater_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/InteractivePolygonWithUpdater.mp4" controls width="100%"></video>

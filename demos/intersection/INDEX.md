@@ -7,8 +7,6 @@ Demonstrations of `intersect_lines()` and `intersect_line_circle()` functions.
 ## BasicIntersectionDemo
 **Basic line-line intersection**
 
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/BasicIntersectionDemo.mp4" controls width="100%"></video>
-
 ```python
 from robo_manim_add_ons import intersect_lines
 
@@ -20,12 +18,14 @@ intersection_dot = intersect_lines(line1, line2)
 intersection_dot.set_color(RED).scale(1.5)
 ```
 
+![BasicIntersectionDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/BasicIntersectionDemo_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/BasicIntersectionDemo.mp4" controls width="100%"></video>
+
 ---
 
 ## ParallelLinesDemo
 **Parallel lines return empty VGroup**
-
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/ParallelLinesDemo.mp4" controls width="100%"></video>
 
 ```python
 line1 = Line(LEFT * 3, RIGHT * 3).shift(UP)
@@ -39,12 +39,14 @@ if len(result) == 0:
     pass
 ```
 
+![ParallelLinesDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/ParallelLinesDemo_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/ParallelLinesDemo.mp4" controls width="100%"></video>
+
 ---
 
 ## DynamicIntersectionDemo
 **Intersection follows rotating line using always_redraw()**
-
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/DynamicIntersectionDemo.mp4" controls width="100%"></video>
 
 ```python
 fixed_line = Line(LEFT * 3, RIGHT * 3, color=BLUE)
@@ -59,12 +61,14 @@ intersection_dot = always_redraw(
 self.play(Rotate(rotating_line, angle=PI/3, about_point=ORIGIN))
 ```
 
+![DynamicIntersectionDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/DynamicIntersectionDemo_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/DynamicIntersectionDemo.mp4" controls width="100%"></video>
+
 ---
 
 ## BasicLineCircleIntersection
 **Line through circle (2 intersection points)**
-
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/BasicLineCircleIntersection.mp4" controls width="100%"></video>
 
 ```python
 from robo_manim_add_ons import intersect_line_circle
@@ -79,12 +83,14 @@ for dot in intersections:
     dot.set_color(RED).scale(1.5)
 ```
 
+![BasicLineCircleIntersection](https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/BasicLineCircleIntersection_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/BasicLineCircleIntersection.mp4" controls width="100%"></video>
+
 ---
 
 ## TangentLineDemo
 **Tangent line (1 intersection point)**
-
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/TangentLineDemo.mp4" controls width="100%"></video>
 
 ```python
 circle = Circle(radius=2, color=BLUE)
@@ -96,12 +102,14 @@ intersections = intersect_line_circle(line, circle)
 print(f"Found {len(intersections)} intersection(s)")
 ```
 
+![TangentLineDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/TangentLineDemo_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/TangentLineDemo.mp4" controls width="100%"></video>
+
 ---
 
 ## DynamicLineCircleIntersection
 **Dynamic intersection with rotating line**
-
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/DynamicLineCircleIntersection.mp4" controls width="100%"></video>
 
 ```python
 circle = Circle(radius=2, color=BLUE)
@@ -117,3 +125,7 @@ intersections = always_redraw(
 
 self.play(Rotate(line, angle=PI/4, about_point=ORIGIN))
 ```
+
+![DynamicLineCircleIntersection](https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/DynamicLineCircleIntersection_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/DynamicLineCircleIntersection.mp4" controls width="100%"></video>
