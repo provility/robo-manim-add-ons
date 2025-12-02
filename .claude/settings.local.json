@@ -1,18 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(tree:*)",
-      "Bash(source .env)",
-      "Bash(twine upload:*)",
-      "Bash(pip install:*)",
-      "Bash(chmod:*)",
-      "Bash(python:*)",
-      "Bash(unzip:*)",
-      "Bash(pytest:*)",
-      "Bash(python3:*)",
-      "Bash(source:*)",
-      "Bash(manim:*)",
-      "Bash(git add:*)"
+      "Bash(git push:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

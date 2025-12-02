@@ -1,144 +1,119 @@
-# Intersection Demos
+# Intersection Utilities
 
 Demonstrations of `intersect_lines()` and `intersect_line_circle()` functions.
 
-> 💡 **Note**: Click on video links below to download and watch. Screenshots are displayed inline.
+---
+
+## BasicIntersectionDemo
+**Basic line-line intersection**
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/BasicIntersectionDemo.mp4" controls width="100%"></video>
+
+```python
+from robo_manim_add_ons import intersect_lines
+
+line1 = Line(LEFT * 3, RIGHT * 3, color=BLUE)
+line2 = Line(DOWN * 2, UP * 2, color=GREEN)
+
+# Returns a Dot at intersection point
+intersection_dot = intersect_lines(line1, line2)
+intersection_dot.set_color(RED).scale(1.5)
+```
 
 ---
 
-## Line-Line Intersections
+## ParallelLinesDemo
+**Parallel lines return empty VGroup**
 
-### BasicIntersectionDemo
-**Simple perpendicular line intersection**
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/ParallelLinesDemo.mp4" controls width="100%"></video>
 
-![BasicIntersectionDemo](BasicIntersectionDemo_ManimCE_v0.19.0.png)
+```python
+line1 = Line(LEFT * 3, RIGHT * 3).shift(UP)
+line2 = Line(LEFT * 3, RIGHT * 3).shift(DOWN)
 
-📹 [Download Video (MP4)](BasicIntersectionDemo.mp4)
+result = intersect_lines(line1, line2)
 
----
-
-### DiagonalIntersectionDemo
-**Diagonal lines forming an X**
-
-![DiagonalIntersectionDemo](DiagonalIntersectionDemo_ManimCE_v0.19.0.png)
-
-📹 [Download Video (MP4)](DiagonalIntersectionDemo.mp4)
-
----
-
-### ParallelLinesDemo
-**Parallel lines (no intersection)**
-
-![ParallelLinesDemo](ParallelLinesDemo_ManimCE_v0.19.0.png)
-
-📹 [Download Video (MP4)](ParallelLinesDemo.mp4)
+# Check if parallel (no intersection)
+if len(result) == 0:
+    # Lines are parallel
+    pass
+```
 
 ---
 
-### ExtendedIntersectionDemo
-**Lines extended infinitely to intersect**
+## DynamicIntersectionDemo
+**Intersection follows rotating line using always_redraw()**
 
-![ExtendedIntersectionDemo](ExtendedIntersectionDemo_ManimCE_v0.19.0.png)
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/DynamicIntersectionDemo.mp4" controls width="100%"></video>
 
-📹 [Download Video (MP4)](ExtendedIntersectionDemo.mp4)
+```python
+fixed_line = Line(LEFT * 3, RIGHT * 3, color=BLUE)
+rotating_line = Line(DOWN * 2, UP * 2, color=GREEN)
 
----
+# Intersection updates automatically as line rotates
+intersection_dot = always_redraw(
+    lambda: intersect_lines(fixed_line, rotating_line)
+        .set_color(RED).scale(1.5)
+)
 
-### DynamicIntersectionDemo
-**Intersection following a rotating line**
-
-![DynamicIntersectionDemo](DynamicIntersectionDemo_ManimCE_v0.19.0.png)
-
-📹 [Download Video (MP4)](DynamicIntersectionDemo.mp4)
-
----
-
-### MultipleIntersectionsDemo
-**Multiple lines intersecting one line**
-
-![MultipleIntersectionsDemo](MultipleIntersectionsDemo_ManimCE_v0.19.0.png)
-
-📹 [Download Video (MP4)](MultipleIntersectionsDemo.mp4)
+self.play(Rotate(rotating_line, angle=PI/3, about_point=ORIGIN))
+```
 
 ---
 
-### TriangleIntersectionDemo
-**Finding triangle orthocenter**
+## BasicLineCircleIntersection
+**Line through circle (2 intersection points)**
 
-![TriangleIntersectionDemo](TriangleIntersectionDemo_ManimCE_v0.19.0.png)
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/BasicLineCircleIntersection.mp4" controls width="100%"></video>
 
-📹 [Download Video (MP4)](TriangleIntersectionDemo.mp4)
+```python
+from robo_manim_add_ons import intersect_line_circle
 
----
+circle = Circle(radius=2, color=BLUE)
+line = Line(LEFT * 3, RIGHT * 3, color=GREEN)
 
-### ConditionalIntersectionDemo
-**Checking if intersection exists**
+# Returns VGroup containing 0, 1, or 2 Dots
+intersections = intersect_line_circle(line, circle)
 
-![ConditionalIntersectionDemo](ConditionalIntersectionDemo_ManimCE_v0.19.0.png)
-
-📹 [Download Video (MP4)](ConditionalIntersectionDemo.mp4)
-
----
-
-## Line-Circle Intersections
-
-### BasicLineCircleIntersection
-**Line through circle center (2 intersection points)**
-
-![BasicLineCircleIntersection](BasicLineCircleIntersection_ManimCE_v0.19.0.png)
-
-📹 [Download Video (MP4)](BasicLineCircleIntersection.mp4)
+for dot in intersections:
+    dot.set_color(RED).scale(1.5)
+```
 
 ---
 
-### TangentLineDemo
-**Tangent line to circle (1 intersection point)**
+## TangentLineDemo
+**Tangent line (1 intersection point)**
 
-![TangentLineDemo](TangentLineDemo_ManimCE_v0.19.0.png)
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/TangentLineDemo.mp4" controls width="100%"></video>
 
-📹 [Download Video (MP4)](TangentLineDemo.mp4)
+```python
+circle = Circle(radius=2, color=BLUE)
+line = Line(LEFT * 3 + UP * 2, RIGHT * 3 + UP * 2, color=GREEN)
 
----
+intersections = intersect_line_circle(line, circle)
 
-### NoIntersectionDemo
-**Line missing circle (0 intersection points)**
-
-![NoIntersectionDemo](NoIntersectionDemo_ManimCE_v0.19.0.png)
-
-📹 [Download Video (MP4)](NoIntersectionDemo.mp4)
-
----
-
-### DynamicLineCircleIntersection
-**Intersections following a rotating line**
-
-![DynamicLineCircleIntersection](DynamicLineCircleIntersection_ManimCE_v0.19.0.png)
-
-📹 [Download Video (MP4)](DynamicLineCircleIntersection.mp4)
+# Tangent line produces 1 intersection point
+print(f"Found {len(intersections)} intersection(s)")
+```
 
 ---
 
-### MultipleCirclesIntersection
-**Line through multiple circles**
+## DynamicLineCircleIntersection
+**Dynamic intersection with rotating line**
 
-![MultipleCirclesIntersection](MultipleCirclesIntersection_ManimCE_v0.19.0.png)
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/DynamicLineCircleIntersection.mp4" controls width="100%"></video>
 
-📹 [Download Video (MP4)](MultipleCirclesIntersection.mp4)
+```python
+circle = Circle(radius=2, color=BLUE)
+line = Line(LEFT * 3, RIGHT * 3, color=GREEN)
 
----
+# Intersections update automatically with always_redraw
+intersections = always_redraw(
+    lambda: VGroup(*[
+        dot.set_color(RED).scale(1.5)
+        for dot in intersect_line_circle(line, circle)
+    ])
+)
 
-### ChordLengthDemo
-**Measuring chord length from intersections**
-
-![ChordLengthDemo](ChordLengthDemo_ManimCE_v0.19.0.png)
-
-📹 [Download Video (MP4)](ChordLengthDemo.mp4)
-
----
-
-### DiameterDemo
-**Comparing diameter vs chord lengths**
-
-![DiameterDemo](DiameterDemo_ManimCE_v0.19.0.png)
-
-📹 [Download Video (MP4)](DiameterDemo.mp4)
+self.play(Rotate(line, angle=PI/4, about_point=ORIGIN))
+```
