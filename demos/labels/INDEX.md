@@ -145,36 +145,3 @@ edge_label_group.add_updater(update_edge_labels)
 self.play(hexagon.animate.scale(0.5))
 self.play(hexagon.animate.stretch(1.8, dim=1))
 ```
-
----
-
-## AnimatedLabelColors
-**Color animation with ValueTracker**
-
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/AnimatedLabelColors.mp4" controls width="100%"></video>
-
-```python
-triangle = Polygon([-2, -1.5, 0], [2, -1.5, 0], [0, 2, 0], color=BLUE)
-vertex_label_objects = VGroup()
-color_tracker = ValueTracker(0)
-
-def update_labels_with_color(mob):
-    t = color_tracker.get_value()
-    label_color = interpolate_color(WHITE, RED, t)
-
-    mob.become(VGroup(*vertex_labels(
-        triangle,
-        labels=["A", "B", "C"],
-        color=label_color,
-        scale=0.8
-    )))
-
-vertex_label_objects.add_updater(update_labels_with_color)
-
-# Animate color while rotating
-self.play(
-    Rotate(triangle, angle=PI),
-    color_tracker.animate.set_value(1),
-    run_time=4
-)
-```

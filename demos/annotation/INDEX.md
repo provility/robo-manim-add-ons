@@ -5,7 +5,7 @@ Demonstrations of `distance_marker()` function for geometric annotations.
 ---
 
 ## BasicDistanceMarker
-**Simple distance markers on triangle**
+**Triangle with distance markers**
 
 <video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/BasicDistanceMarker.mp4" controls width="100%"></video>
 
@@ -20,39 +20,6 @@ marker_a = distance_marker(
     label_text="a",
     color=BLUE,
     label_offset=0.4  # Distance from line to label
-)
-```
-
----
-
-## DistanceMarkerCustomization
-**Customizing stroke width and tick size**
-
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/DistanceMarkerCustomization.mp4" controls width="100%"></video>
-
-```python
-# Thin marker
-thin = distance_marker(
-    [-3, 2, 0], [3, 2, 0],
-    label_text="thin",
-    stroke_width=1,
-    tick_size=0.15
-)
-
-# Normal marker (defaults)
-normal = distance_marker(
-    [-3, 0, 0], [3, 0, 0],
-    label_text="normal",
-    stroke_width=2,     # default
-    tick_size=0.25      # default
-)
-
-# Thick marker
-thick = distance_marker(
-    [-3, -2, 0], [3, -2, 0],
-    label_text="thick",
-    stroke_width=4,
-    tick_size=0.4
 )
 ```
 
@@ -99,7 +66,8 @@ dot_c = Dot([0, 2, 0], color=GREEN)
 marker_ab = distance_marker(
     dot_a, dot_b,  # Pass Dots directly
     label_text="d_{AB}",
-    label_offset=-0.5
+    label_offset=-0.5,
+    marker_offset=0  # Optional: offset entire marker perpendicular to line
 )
 
 marker_bc = distance_marker(dot_b, dot_c, label_text="d_{BC}")
@@ -108,32 +76,8 @@ marker_ca = distance_marker(dot_c, dot_a, label_text="d_{CA}")
 
 ---
 
-## MarkerOffsetComparison
-**Using marker_offset to avoid overlapping geometry**
-
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/MarkerOffsetComparison.mp4" controls width="100%"></video>
-
-```python
-line = Line([-3, 0, 0], [3, 0, 0], stroke_width=4)
-
-# Without offset - marker overlaps line
-marker_on = distance_marker(
-    [-3, 0, 0], [3, 0, 0],
-    marker_offset=0   # On the line (overlaps!)
-)
-
-# With offset - marker positioned away from line
-marker_above = distance_marker(
-    [-3, 0, 0], [3, 0, 0],
-    marker_offset=0.6,    # Shifts entire marker perpendicular to line
-    label_offset=0.3      # Additional label offset
-)
-```
-
----
-
 ## PythagoreanTheorem
-**Complete example: annotated right triangle**
+**Right triangle with Pythagorean theorem**
 
 <video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/PythagoreanTheorem.mp4" controls width="100%"></video>
 
