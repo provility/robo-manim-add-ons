@@ -103,3 +103,78 @@ def distance_marker(point1, point2, color="#1e40af", stroke_width=2, tick_size=0
         marker_obj = VGroup(arrow, tick_start, tick_end)
 
     return marker_obj
+
+
+def label(latex_text, point1, point2, buff=0.5, alpha=0.5, auto_rotate=True):
+    """
+    Create and position a MathTex label between two points with perpendicular offset.
+
+    Args:
+        latex_text: LaTeX string for the label (e.g., "AB", r"\\theta", "x^2")
+        point1: Starting point - can be:
+                - List/tuple: [x, y, z]
+                - numpy array
+                - Manim Dot or any Mobject with get_center() method
+        point2: Ending point - can be:
+                - List/tuple: [x, y, z]
+                - numpy array
+                - Manim Dot or any Mobject with get_center() method
+        buff: Perpendicular offset distance from the line (default 0.5)
+              Positive values offset in one direction, negative in the other
+        alpha: Position along the line from point1 to point2 (default 0.5)
+               0.0 = at point1, 0.5 = midpoint, 1.0 = at point2
+        auto_rotate: If True, rotate label to align with the line direction (default True)
+
+    Returns:
+        MathTex: The positioned label object
+
+    Example:
+        >>> from manim import *
+        >>> from robo_manim_add_ons import label
+        >>>
+        >>> # Create label at midpoint with offset
+        >>> ab_label = label("AB", [0, 0, 0], [3, 0, 0], buff=0.5)
+        >>>
+        >>> # Create label 1/4 along the line with Dot objects
+        >>> dot_a = Dot([0, 0, 0])
+        >>> dot_b = Dot([3, 0, 0])
+        >>> theta_label = label(r"\\theta", dot_a, dot_b, alpha=0.25, buff=0.3)
+    """
+    # Create MathTex label
+    label_obj = MathTex(latex_text)
+
+    # Extract coordinates from point1
+    if hasattr(point1, 'get_center'):
+        start_pt = point1.get_center()
+    else:
+        start_pt = np.array(point1)
+
+    # Extract coordinates from point2
+    if hasattr(point2, 'get_center'):
+        end_pt = point2.get_center()
+    else:
+        end_pt = np.array(point2)
+
+    # Position along the line (alpha=0.5 is midpoint)
+    position = start_pt + alpha * (end_pt - start_pt)
+
+    # Calculate perpendicular direction
+    direction = end_pt - start_pt
+    perpendicular = np.array([-direction[1], direction[0], 0])
+
+    # Normalize perpendicular (with safety check)
+    if np.linalg.norm(perpendicular) > 0.001:
+        perpendicular_normalized = perpendicular / np.linalg.norm(perpendicular)
+    else:
+        perpendicular_normalized = np.array([0, 1, 0])
+
+    # Final position with perpendicular offset
+    final_position = position + buff * perpendicular_normalized
+    label_obj.move_to(final_position)
+
+    # Auto-rotate to align with line direction
+    if auto_rotate:
+        angle = np.arctan2(direction[1], direction[0])
+        label_obj.rotate(angle)
+
+    return label_obj

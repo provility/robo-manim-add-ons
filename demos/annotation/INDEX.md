@@ -1,6 +1,24 @@
 # Annotation Utilities
 
-Demonstrations of `distance_marker()` function for geometric annotations.
+Demonstrations of `label()` and `distance_marker()` functions for geometric annotations.
+
+---
+
+## BasicLabelDemo
+**Simple label between two points**
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/BasicLabelDemo.mp4" controls width="100%"></video>
+
+```python
+from robo_manim_add_ons import label
+
+# Two dots
+dot_a = Dot([-2, 0, 0], color=BLUE)
+dot_b = Dot([2, 0, 0], color=RED)
+
+# Create label positioned above the line
+ab_label = label("AB", dot_a, dot_b, buff=0.5)
+```
 
 ---
 
