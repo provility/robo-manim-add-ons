@@ -6,10 +6,10 @@ __version__ = "0.1.0"
 
 from .geometry_utils import perp, parallel, project, reflect
 from .label_utils import vertex_labels, edge_labels
-from .annotation_utils import distance_marker, label
+from .annotation_utils import distance_marker, label, hatched_region
 from .intersection_utils import intersect_lines, intersect_line_circle
 
-__all__ = ["perp", "parallel", "project", "reflect", "vertex_labels", "edge_labels", "distance_marker", "label", "intersect_lines", "intersect_line_circle", "show_usage"]
+__all__ = ["perp", "parallel", "project", "reflect", "vertex_labels", "edge_labels", "distance_marker", "label", "hatched_region", "intersect_lines", "intersect_line_circle", "show_usage"]
 
 
 def show_usage():

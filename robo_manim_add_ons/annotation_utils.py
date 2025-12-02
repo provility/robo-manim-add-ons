@@ -5,7 +5,7 @@ This module provides utilities to create annotations like distance markers.
 """
 
 import numpy as np
-from manim import DoubleArrow, Line, MathTex, VGroup
+from manim import DoubleArrow, Line, MathTex, VGroup, Polygon, Intersection
 
 
 def distance_marker(point1, point2, color="#1e40af", stroke_width=2, tick_size=0.25, label_text="", label_offset=0.3, marker_offset=0):
@@ -178,3 +178,96 @@ def label(latex_text, point1, point2, buff=0.5, alpha=0.5, auto_rotate=True):
         label_obj.rotate(angle)
 
     return label_obj
+
+
+def hatched_region(axes, vertices, spacing=0.2, direction="/", color="#808080", stroke_width=2):
+    """
+    Creates a textbook-style shaded (hatched) region inside a polygon.
+
+    Args:
+        axes: Manim Axes object for coordinate transformation
+        vertices: List of (x, y) tuples defining polygon vertices in axes coordinates
+        spacing: Distance between hatch lines (default 0.2)
+        direction: Direction of hatching - "/" (default), "\\", "|" (vertical), "-" (horizontal)
+        color: Color of hatch lines (default GRAY)
+        stroke_width: Width of hatch lines (default 2)
+
+    Returns:
+        tuple: (hatched_lines VGroup, boundary_polygon Polygon)
+
+    Example:
+        >>> from manim import *
+        >>> from robo_manim_add_ons import hatched_region
+        >>>
+        >>> axes = Axes(x_range=[0, 10], y_range=[0, 10])
+        >>> vertices = [(2, 2), (8, 2), (8, 6), (2, 6)]
+        >>> hatched, boundary = hatched_region(axes, vertices, spacing=0.3, direction="/")
+        >>>
+        >>> self.add(axes, boundary, hatched)
+    """
+    from shapely.geometry import Polygon as ShapelyPolygon, LineString
+    from shapely.ops import unary_union
+
+    boundary_polygon = Polygon(*[axes.c2p(x, y) for x, y in vertices], fill_opacity=0)
+
+    # Create shapely polygon for clipping
+    shapely_poly = ShapelyPolygon([(x, y) for x, y in vertices])
+
+    # Create a large group of parallel lines covering the plotting area
+    x_min, x_max = axes.x_range[0], axes.x_range[1]
+    y_min, y_max = axes.y_range[0], axes.y_range[1]
+
+    hatched = VGroup()
+
+    # Generate hatch lines depending on the direction
+    if direction == "/":
+        # slope = +1
+        for b in np.arange(y_min - (x_max - x_min), y_max, spacing):
+            line_shapely = LineString([(x_min, b + x_min), (x_max, b + x_max)])
+            intersection = shapely_poly.intersection(line_shapely)
+            if not intersection.is_empty:
+                if hasattr(intersection, 'coords'):
+                    coords = list(intersection.coords)
+                    if len(coords) >= 2:
+                        start = axes.c2p(coords[0][0], coords[0][1])
+                        end = axes.c2p(coords[-1][0], coords[-1][1])
+                        hatched.add(Line(start, end, color=color, stroke_width=stroke_width))
+
+    elif direction == "\\":
+        # slope = -1
+        for b in np.arange(y_min, y_max + (x_max - x_min), spacing):
+            line_shapely = LineString([(x_min, b - x_min), (x_max, b - x_max)])
+            intersection = shapely_poly.intersection(line_shapely)
+            if not intersection.is_empty:
+                if hasattr(intersection, 'coords'):
+                    coords = list(intersection.coords)
+                    if len(coords) >= 2:
+                        start = axes.c2p(coords[0][0], coords[0][1])
+                        end = axes.c2p(coords[-1][0], coords[-1][1])
+                        hatched.add(Line(start, end, color=color, stroke_width=stroke_width))
+
+    elif direction == "|":   # vertical stripes
+        for x in np.arange(x_min, x_max, spacing):
+            line_shapely = LineString([(x, y_min), (x, y_max)])
+            intersection = shapely_poly.intersection(line_shapely)
+            if not intersection.is_empty:
+                if hasattr(intersection, 'coords'):
+                    coords = list(intersection.coords)
+                    if len(coords) >= 2:
+                        start = axes.c2p(coords[0][0], coords[0][1])
+                        end = axes.c2p(coords[-1][0], coords[-1][1])
+                        hatched.add(Line(start, end, color=color, stroke_width=stroke_width))
+
+    elif direction == "-":   # horizontal stripes
+        for y in np.arange(y_min, y_max, spacing):
+            line_shapely = LineString([(x_min, y), (x_max, y)])
+            intersection = shapely_poly.intersection(line_shapely)
+            if not intersection.is_empty:
+                if hasattr(intersection, 'coords'):
+                    coords = list(intersection.coords)
+                    if len(coords) >= 2:
+                        start = axes.c2p(coords[0][0], coords[0][1])
+                        end = axes.c2p(coords[-1][0], coords[-1][1])
+                        hatched.add(Line(start, end, color=color, stroke_width=stroke_width))
+
+    return hatched, boundary_polygon

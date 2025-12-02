@@ -1,6 +1,6 @@
 # Annotation Utilities
 
-Demonstrations of `label()` and `distance_marker()` functions for geometric annotations.
+Demonstrations of `label()`, `hatched_region()`, and `distance_marker()` functions for geometric annotations.
 
 ---
 
@@ -18,6 +18,60 @@ dot_b = Dot([2, 0, 0], color=RED)
 
 # Create label positioned above the line
 ab_label = label("AB", dot_a, dot_b, buff=0.5)
+```
+
+---
+
+## DiagonalHatchDemo
+**Diagonal hatching pattern on a rectangle**
+
+![DiagonalHatchDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/DiagonalHatchDemo_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/DiagonalHatchDemo.mp4" controls width="100%"></video>
+
+```python
+from robo_manim_add_ons import hatched_region
+
+axes = Axes(x_range=[0, 10, 1], y_range=[0, 8, 1])
+vertices = [(2, 2), (8, 2), (8, 6), (2, 6)]
+
+# Create hatched region with diagonal lines
+hatched, boundary = hatched_region(
+    axes, vertices,
+    spacing=0.2,
+    direction="/",    # Diagonal hatching
+    color=BLUE,
+    stroke_width=1.5
+)
+
+self.add(axes, boundary, hatched)
+```
+
+---
+
+## TriangleHatchDemo
+**Backslash hatching pattern on a triangle**
+
+![TriangleHatchDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/TriangleHatchDemo_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/TriangleHatchDemo.mp4" controls width="100%"></video>
+
+```python
+from robo_manim_add_ons import hatched_region
+
+axes = Axes(x_range=[0, 10, 1], y_range=[0, 8, 1])
+vertices = [(2, 2), (8, 2), (5, 6)]  # Triangle
+
+# Create hatched region with backslash pattern
+hatched, boundary = hatched_region(
+    axes, vertices,
+    spacing=0.25,
+    direction="\\",   # Backslash hatching
+    color=RED,
+    stroke_width=1.5
+)
+
+self.add(axes, boundary, hatched)
 ```
 
 ---
