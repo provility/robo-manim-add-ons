@@ -43,14 +43,9 @@ class PerpExample(Scene):
         self.wait()
 ```
 
-**Demo:**
-
-![Perpendicular Demo](../images/perp_demo.png)
-
-<video width="640" height="480" controls>
-  <source src="../videos/perp_demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+**See Also:**
+- [Full examples in examples/geometry/](../../examples/geometry/)
+- [Dynamic geometry demos](../../examples/geometry/dynamic_geometry_demo.py)
 
 ---
 
@@ -93,14 +88,9 @@ class ParallelExample(Scene):
         self.wait()
 ```
 
-**Demo:**
-
-![Parallel Demo](../images/parallel_demo.png)
-
-<video width="640" height="480" controls>
-  <source src="../videos/parallel_demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+**See Also:**
+- [Full examples in examples/geometry/](../../examples/geometry/)
+- [Dynamic geometry demos](../../examples/geometry/dynamic_geometry_demo.py)
 
 ---
 
@@ -135,13 +125,6 @@ class PlacementExample(Scene):
         self.add(perp_mid, perp_start, perp_end)
         self.wait()
 ```
-
-![Placement Demo](../images/placement_demo.png)
-
-<video width="640" height="480" controls>
-  <source src="../videos/placement_demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
 
 ---
 
@@ -187,14 +170,8 @@ class ProjectExample(Scene):
         self.wait()
 ```
 
-**Demo:**
-
-![Project Demo](../images/project_demo.png)
-
-<video width="640" height="480" controls>
-  <source src="../videos/project_demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+**See Also:**
+- [Geometry examples](../../examples/geometry/)
 
 ---
 
@@ -240,14 +217,8 @@ class ReflectExample(Scene):
         self.wait()
 ```
 
-**Demo:**
-
-![Reflect Demo](../images/reflect_demo.png)
-
-<video width="640" height="480" controls>
-  <source src="../videos/reflect_demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+**See Also:**
+- [Geometry examples](../../examples/geometry/)
 
 ---
 
@@ -287,14 +258,9 @@ class GeometryUtilsDemo(Scene):
         self.wait()
 ```
 
-**Demo:**
-
-![Complete Demo](../images/geometry_complete_demo.png)
-
-<video width="640" height="480" controls>
-  <source src="../videos/geometry_complete_demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+**See Also:**
+- [View all geometry examples](../../examples/geometry/)
+- [Dynamic geometry demonstrations](../../examples/geometry/dynamic_geometry_demo.py)
 
 ---
 
