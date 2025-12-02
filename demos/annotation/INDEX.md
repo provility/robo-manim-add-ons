@@ -25,10 +25,6 @@ ab_label = label("AB", dot_a, dot_b, buff=0.5)
 ## DiagonalHatchDemo
 **Diagonal hatching pattern on a rectangle**
 
-![DiagonalHatchDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/DiagonalHatchDemo_ManimCE_v0.19.0.png)
-
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/DiagonalHatchDemo.mp4" controls width="100%"></video>
-
 ```python
 from robo_manim_add_ons import hatched_region
 
@@ -47,14 +43,14 @@ hatched, boundary = hatched_region(
 self.add(axes, boundary, hatched)
 ```
 
+![DiagonalHatchDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/DiagonalHatchDemo_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/DiagonalHatchDemo.mp4" controls width="100%"></video>
+
 ---
 
 ## TriangleHatchDemo
 **Backslash hatching pattern on a triangle**
-
-![TriangleHatchDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/TriangleHatchDemo_ManimCE_v0.19.0.png)
-
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/TriangleHatchDemo.mp4" controls width="100%"></video>
 
 ```python
 from robo_manim_add_ons import hatched_region
@@ -73,6 +69,10 @@ hatched, boundary = hatched_region(
 
 self.add(axes, boundary, hatched)
 ```
+
+![TriangleHatchDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/TriangleHatchDemo_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/TriangleHatchDemo.mp4" controls width="100%"></video>
 
 ---
 
