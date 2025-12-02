@@ -1,23 +1,44 @@
 # Demo Outputs
 
-This folder contains rendered screenshots (PNG) from all example demonstrations.
+This folder contains rendered videos (MP4) and screenshots (PNG) from all example demonstrations.
 
-## Structure
+## Browse Demos
 
-- **geometry/** - Geometry utility demos (perp, parallel, project, reflect)
-- **annotation/** - Distance marker annotation demos
-- **labels/** - Vertex and edge label demos
-- **intersection/** - Line and circle intersection demos
+### 🔷 [Geometry Demos](geometry/INDEX.md)
+Perpendicular, parallel, projection, and reflection utilities.
+- 10 demonstrations with videos and screenshots
 
-## Viewing
+### 📏 [Annotation Demos](annotation/INDEX.md)
+Distance marker and geometric annotation utilities.
+- 10 demonstrations with videos and screenshots
 
-All images are last-frame screenshots generated with `manim -s` command.
+### 🏷️ [Label Demos](labels/INDEX.md)
+Vertex and edge labeling for polygons.
+- 7 demonstrations with videos and screenshots
 
-To regenerate these demos:
+### ⚡ [Intersection Demos](intersection/INDEX.md)
+Line-line and line-circle intersection utilities.
+- 15 demonstrations with videos and screenshots
+
+---
+
+## Summary
+
+**Total: 42 demonstrations**
+- 42 MP4 videos
+- 42 PNG screenshots
+- Organized by utility category
+
+## Regenerating Demos
+
 ```bash
+# Screenshots only
 manim -s -ql examples/geometry/geometry_demo.py -a
-manim -s -ql examples/geometry/dynamic_geometry_demo.py -a
-manim -s -ql examples/annotation/annotation_demo.py -a
-manim -s -ql examples/labels/dynamic_labels_demo.py -a
-manim -s -ql examples/intersection/intersection_demo.py -a
+
+# Videos + screenshots
+manim -ql examples/geometry/geometry_demo.py -a
+manim -ql examples/geometry/dynamic_geometry_demo.py -a
+manim -ql examples/annotation/annotation_demo.py -a
+manim -ql examples/labels/dynamic_labels_demo.py -a
+manim -ql examples/intersection/intersection_demo.py -a
 ```
