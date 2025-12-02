@@ -32,7 +32,13 @@ htmlcov/
 .DS_Store
 
 # Manim
-media/
+media/*
+!media/images/
+!media/videos/
+media/images/**/*
+media/videos/**/*
+!media/images/**/*.png
+!media/videos/**/*.mp4
 videos/
 images/
 texts/

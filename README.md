@@ -1,6 +1,6 @@
 # Robo Manim Add-ons
 
-A collection of add-ons and utilities for [Manim Community Edition](https://www.manim.community/).
+A collection of geometry utilities for [Manim Community Edition](https://www.manim.community/).
 
 ## Installation
 
@@ -44,18 +44,38 @@ pip install -r requirements.txt
 pip install -r requirements-dev.txt
 ```
 
+## Documentation
+
+Full documentation with examples, images, and demo videos:
+- **[https://provility.github.io/robo-manim-add-ons/](https://provility.github.io/robo-manim-add-ons/)**
+
 ## Quick Start
 
 ```python
 from manim import *
-from robo_manim_add_ons import CustomMobject
+from robo_manim_add_ons import perp, parallel
 
-class MyScene(Scene):
+class GeometryDemo(Scene):
     def construct(self):
-        # Use your custom add-ons here
-        obj = CustomMobject()
-        self.play(Create(obj))
+        # Create reference line
+        line = Line(LEFT * 2, RIGHT * 2)
+        dot = Dot(ORIGIN)
+
+        # Create perpendicular line
+        perp_line = perp(line, dot, length=3.0)
+
+        # Create parallel line at different position
+        dot2 = Dot(UP)
+        parallel_line = parallel(line, dot2, length=2.0)
+
+        self.add(line, dot, dot2, perp_line, parallel_line)
         self.wait()
+```
+
+Get help in Python:
+```python
+import robo_manim_add_ons
+robo_manim_add_ons.show_usage()
 ```
 
 ## Running Examples
@@ -64,8 +84,10 @@ class MyScene(Scene):
 # Make sure your venv is activated
 source venv/bin/activate
 
-# Run the demo
-python examples/demo.py
+# Run geometry demos
+manim -pql examples/geometry_demo.py PerpDemo
+manim -pql examples/geometry_demo.py ParallelDemo
+manim -pql examples/geometry_demo.py PlacementDemo
 ```
 
 ## Running Tests

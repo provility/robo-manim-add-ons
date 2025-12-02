@@ -51,6 +51,9 @@ Issues = "https://github.com/yourusername/robo-manim-add-ons/issues"
 [tool.setuptools]
 packages = ["robo_manim_add_ons"]
 
+[tool.setuptools.package-data]
+robo_manim_add_ons = ["USAGE.md"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]

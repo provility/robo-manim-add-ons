@@ -1,0 +1,31 @@
+# GitHub Pages Configuration
+title: Robo Manim Add-ons Documentation
+description: A collection of add-ons and utilities for Manim Community Edition
+theme: jekyll-theme-cayman
+show_downloads: true
+
+# GitHub repository
+repository: provility/robo-manim-add-ons
+
+# Navigation
+navigation:
+  - title: Home
+    url: /
+  - title: API Reference
+    url: /api/
+  - title: Examples
+    url: /examples/
+
+# Enable plugins
+plugins:
+  - jekyll-relative-links
+
+relative_links:
+  enabled: true
+  collections: true
+
+# Markdown settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
