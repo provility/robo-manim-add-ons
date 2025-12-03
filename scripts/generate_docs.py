@@ -315,32 +315,58 @@ def get_demos_from_directory(category):
 
 
 def extract_demo_info(category, demo_name):
-    """Extract description and code snippet from INDEX.md for a demo."""
-    index_file = Path(__file__).parent.parent / "demos" / category / "INDEX.md"
-
-    if not index_file.exists():
-        return {
-            "description": f"Demo: {demo_name}",
-            "code": f"# See examples/{category}/ for source code"
-        }
-
-    content = index_file.read_text()
-
-    # Find the demo section
+    """Extract description from INDEX.md and code from source .py file."""
     import re
-    # Match: ## DemoName
-    pattern = rf"##\s+{re.escape(demo_name)}\s*\n\*\*(.+?)\*\*\s*\n.*?```python\n(.*?)```"
-    match = re.search(pattern, content, re.DOTALL)
+    import ast
 
-    if match:
-        description = match.group(1)
-        code = match.group(2).strip()
-        return {"description": description, "code": code}
+    # Get description from INDEX.md
+    index_file = Path(__file__).parent.parent / "demos" / category / "INDEX.md"
+    description = f"Demo: {demo_name}"
 
-    return {
-        "description": f"Demo: {demo_name}",
-        "code": f"# See examples/{category}/ for source code"
-    }
+    if index_file.exists():
+        content = index_file.read_text()
+        pattern = rf"##\s+{re.escape(demo_name)}\s*\n\*\*(.+?)\*\*"
+        match = re.search(pattern, content)
+        if match:
+            description = match.group(1)
+
+    # Extract code from source Python file
+    examples_dir = Path(__file__).parent.parent / "examples" / category
+    code = f"# Source code in examples/{category}/"
+
+    if examples_dir.exists():
+        for py_file in examples_dir.glob("*.py"):
+            try:
+                source = py_file.read_text()
+
+                # Check if this file contains the scene class
+                if f"class {demo_name}" in source:
+                    # Extract the class definition using AST
+                    tree = ast.parse(source)
+
+                    for node in ast.walk(tree):
+                        if isinstance(node, ast.ClassDef) and node.name == demo_name:
+                            # Find the construct method
+                            for item in node.body:
+                                if isinstance(item, ast.FunctionDef) and item.name == "construct":
+                                    # Get the source code of construct method body
+                                    start_line = item.body[0].lineno - 1  # -1 for 0-indexing
+                                    end_line = item.body[-1].end_lineno
+
+                                    lines = source.split('\n')
+                                    method_lines = lines[start_line:end_line]
+
+                                    # Remove common indentation
+                                    if method_lines:
+                                        indent = len(method_lines[0]) - len(method_lines[0].lstrip())
+                                        code = '\n'.join(line[indent:] if len(line) > indent else line
+                                                        for line in method_lines)
+                                    break
+                            break
+            except Exception:
+                continue
+
+    return {"description": description, "code": code}
 
 
 def generate_category_page(category, config):

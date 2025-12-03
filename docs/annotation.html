@@ -214,17 +214,50 @@
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">from robo_manim_add_ons import distance_marker
+                        <pre><code class="language-python">triangle = Polygon(
+    [-2, -1, 0],
+    [2, -1, 0],
+    [0, 2, 0],
+    color=WHITE
+)
 
-triangle = Polygon([-2, -1, 0], [2, -1, 0], [0, 2, 0], color=WHITE)
-
-# Add distance marker on each side
+# Add distance markers on each side
 marker_a = distance_marker(
-    [-2, -1, 0], [2, -1, 0],
+    [-2, -1, 0],
+    [2, -1, 0],
     label_text="a",
     color=BLUE,
-    label_offset=0.4  # Distance from line to label
-)</code></pre>
+    label_offset=0.4
+)
+
+marker_b = distance_marker(
+    [2, -1, 0],
+    [0, 2, 0],
+    label_text="b",
+    color=RED,
+    label_offset=0.4
+)
+
+marker_c = distance_marker(
+    [0, 2, 0],
+    [-2, -1, 0],
+    label_text="c",
+    color=GREEN,
+    label_offset=0.4
+)
+
+title = Text("Triangle with Distance Markers", font_size=32).to_edge(UP)
+
+# Animate
+self.add(title)
+self.play(Create(triangle))
+self.wait(0.5)
+self.play(Create(marker_a))
+self.wait(0.3)
+self.play(Create(marker_b))
+self.wait(0.3)
+self.play(Create(marker_c))
+self.wait(2)</code></pre>
                     </div>
                 </div>
             </div>
@@ -257,14 +290,19 @@ marker_a = distance_marker(
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">from robo_manim_add_ons import label
-
-# Two dots
-dot_a = Dot([-2, 0, 0], color=BLUE)
+                        <pre><code class="language-python">dot_a = Dot([-2, 0, 0], color=BLUE)
 dot_b = Dot([2, 0, 0], color=RED)
 
-# Create label positioned above the line
-ab_label = label("AB", dot_a, dot_b, buff=0.5)</code></pre>
+# Line connecting them
+line = Line(dot_a, dot_b, color=WHITE)
+
+# Label positioned above the line
+ab_label = label("AB", dot_a, dot_b, buff=0.5)
+
+self.play(FadeIn(dot_a), FadeIn(dot_b))
+self.play(Create(line))
+self.play(FadeIn(ab_label))
+self.wait(2)</code></pre>
                     </div>
                 </div>
             </div>
@@ -297,21 +335,34 @@ ab_label = label("AB", dot_a, dot_b, buff=0.5)</code></pre>
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">from robo_manim_add_ons import hatched_region
+                        <pre><code class="language-python">axes = Axes(
+    x_range=[0, 10, 1],
+    y_range=[0, 8, 1],
+    x_length=6,
+    y_length=5,
+    axis_config={"include_tip": False}
+)
 
-axes = Axes(x_range=[0, 10, 1], y_range=[0, 8, 1])
+# Define rectangle vertices
 vertices = [(2, 2), (8, 2), (8, 6), (2, 6)]
 
 # Create hatched region with diagonal lines
 hatched, boundary = hatched_region(
     axes, vertices,
     spacing=0.2,
-    direction="/",    # Diagonal hatching
+    direction="/",
     color=BLUE,
     stroke_width=1.5
 )
 
-self.add(axes, boundary, hatched)</code></pre>
+title = Text("Diagonal Hatching (/)", font_size=32).to_edge(UP)
+
+# Animate
+self.add(axes, title)
+self.play(Create(boundary))
+self.wait(0.5)
+self.play(Create(hatched))
+self.wait(2)</code></pre>
                     </div>
                 </div>
             </div>
@@ -345,21 +396,53 @@ self.add(axes, boundary, hatched)</code></pre>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
                         <pre><code class="language-python">rect = Rectangle(width=4, height=2.5, color=WHITE)
-corners = rect.get_vertices()  # [top_right, top_left, bottom_left, bottom_right]
 
-# Width marker
+# Get corners
+corners = rect.get_vertices()
+# corners: [top_right, top_left, bottom_left, bottom_right]
+
+top_right = corners[0]
+top_left = corners[1]
+bottom_left = corners[2]
+bottom_right = corners[3]
+
+# Width marker (bottom)
 width_marker = distance_marker(
-    corners[2], corners[3],  # bottom_left to bottom_right
+    bottom_left,
+    bottom_right,
     label_text="4",
-    label_offset=-0.5  # Place below
+    color=BLUE,
+    label_offset=-0.5
 )
 
-# Height marker
+# Height marker (right)
 height_marker = distance_marker(
-    corners[3], corners[0],  # bottom_right to top_right
+    bottom_right,
+    top_right,
     label_text="2.5",
-    label_offset=0.5   # Place to the right
-)</code></pre>
+    color=RED,
+    label_offset=0.5
+)
+
+# Title and labels
+title = Text("Rectangle with Dimensions", font_size=32).to_edge(UP)
+width_label = Text("Width", font_size=24, color=BLUE).next_to(width_marker, DOWN, buff=0.3)
+height_label = Text("Height", font_size=24, color=RED).next_to(height_marker, RIGHT, buff=0.3)
+
+# Animate
+self.add(title)
+self.play(Create(rect))
+self.wait(0.5)
+self.play(
+    Create(width_marker),
+    Write(width_label)
+)
+self.wait(0.5)
+self.play(
+    Create(height_marker),
+    Write(height_label)
+)
+self.wait(2)</code></pre>
                     </div>
                 </div>
             </div>
@@ -392,21 +475,81 @@ height_marker = distance_marker(
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python"># Create Dot objects
-dot_a = Dot([-2, -1, 0], color=BLUE)
-dot_b = Dot([2, -1, 0], color=RED)
-dot_c = Dot([0, 2, 0], color=GREEN)
+                        <pre><code class="language-python">title = Text("Distance Markers with Dot Objects", font_size=32).to_edge(UP)
+subtitle = Text("Markers automatically extract positions from Dots", font_size=20).next_to(title, DOWN)
 
-# Markers automatically extract positions from Dots
-marker_ab = distance_marker(
-    dot_a, dot_b,  # Pass Dots directly
-    label_text="d_{AB}",
-    label_offset=-0.5,
-    marker_offset=0  # Optional: offset entire marker perpendicular to line
+# Create Dot objects at different positions
+dot_a = Dot([- 2, -1, 0], color=BLUE, radius=0.08)
+dot_b = Dot([2, -1, 0], color=RED, radius=0.08)
+dot_c = Dot([0, 2, 0], color=GREEN, radius=0.08)
+
+# Labels for dots
+label_a = Text("A", font_size=24, color=BLUE).next_to(dot_a, DOWN)
+label_b = Text("B", font_size=24, color=RED).next_to(dot_b, DOWN)
+label_c = Text("C", font_size=24, color=GREEN).next_to(dot_c, UP)
+
+# Create triangle connecting dots
+triangle = Polygon(
+    dot_a.get_center(),
+    dot_b.get_center(),
+    dot_c.get_center(),
+    color=WHITE,
+    stroke_width=2
 )
 
-marker_bc = distance_marker(dot_b, dot_c, label_text="d_{BC}")
-marker_ca = distance_marker(dot_c, dot_a, label_text="d_{CA}")</code></pre>
+# Create distance markers using Dot objects directly
+marker_ab = distance_marker(
+    dot_a, dot_b,
+    label_text="d_{AB}",
+    color=PURPLE,
+    label_offset=-0.5
+)
+
+marker_bc = distance_marker(
+    dot_b, dot_c,
+    label_text="d_{BC}",
+    color=ORANGE,
+    label_offset=0.4
+)
+
+marker_ca = distance_marker(
+    dot_c, dot_a,
+    label_text="d_{CA}",
+    color=TEAL,
+    label_offset=0.4
+)
+
+# Animate
+self.add(title, subtitle)
+self.wait(0.5)
+
+# Show dots
+self.play(
+    LaggedStart(
+        FadeIn(dot_a),
+        FadeIn(dot_b),
+        FadeIn(dot_c),
+        lag_ratio=0.2
+    )
+)
+self.play(
+    Write(label_a),
+    Write(label_b),
+    Write(label_c)
+)
+self.wait(0.5)
+
+# Draw triangle
+self.play(Create(triangle))
+self.wait(0.5)
+
+# Add distance markers
+self.play(Create(marker_ab))
+self.wait(0.3)
+self.play(Create(marker_bc))
+self.wait(0.3)
+self.play(Create(marker_ca))
+self.wait(2)</code></pre>
                     </div>
                 </div>
             </div>
@@ -440,32 +583,60 @@ marker_ca = distance_marker(dot_c, dot_a, label_text="d_{CA}")</code></pre>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
                         <pre><code class="language-python">triangle = Polygon(
-    [-2, -1.5, 0], [2, -1.5, 0], [2, 1.5, 0],
+    [-2, -1.5, 0],  # bottom left
+    [2, -1.5, 0],   # bottom right
+    [2, 1.5, 0],    # top right
     color=WHITE
 )
 
+# Add distance markers
 a_marker = distance_marker(
-    [-2, -1.5, 0], [2, -1.5, 0],
+    [-2, -1.5, 0],
+    [2, -1.5, 0],
     label_text="a = 4",
     color=BLUE,
     label_offset=-0.4
 )
 
 b_marker = distance_marker(
-    [2, -1.5, 0], [2, 1.5, 0],
+    [2, -1.5, 0],
+    [2, 1.5, 0],
     label_text="b = 3",
     color=RED,
     label_offset=0.4
 )
 
 c_marker = distance_marker(
-    [2, 1.5, 0], [-2, -1.5, 0],
+    [2, 1.5, 0],
+    [-2, -1.5, 0],
     label_text="c = 5",
     color=GREEN,
     label_offset=0.4
 )
 
-formula = MathTex(r"a^2 + b^2 = c^2")</code></pre>
+# Right angle indicator
+right_angle = Square(side_length=0.3, color=YELLOW).move_to([2, -1.5, 0]).align_to([2, -1.5, 0], DL)
+
+# Title and formula
+title = Text("Pythagorean Theorem", font_size=36).to_edge(UP)
+formula = MathTex(r"a^2 + b^2 = c^2", font_size=40).to_edge(DOWN)
+values = MathTex(r"4^2 + 3^2 = 5^2", font_size=36).next_to(formula, DOWN)
+
+# Animate
+self.add(title)
+self.play(Create(triangle))
+self.play(Create(right_angle))
+self.wait(0.5)
+self.play(Create(a_marker))
+self.wait(0.3)
+self.play(Create(b_marker))
+self.wait(0.3)
+self.play(Create(c_marker))
+self.wait(1)
+self.play(Write(formula))
+self.wait(0.5)
+self.play(Write(values))
+self.wait(2)</code></pre>
                     </div>
                 </div>
             </div>
@@ -498,21 +669,34 @@ formula = MathTex(r"a^2 + b^2 = c^2")</code></pre>
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">from robo_manim_add_ons import hatched_region
+                        <pre><code class="language-python">axes = Axes(
+    x_range=[0, 10, 1],
+    y_range=[0, 8, 1],
+    x_length=6,
+    y_length=5,
+    axis_config={"include_tip": False}
+)
 
-axes = Axes(x_range=[0, 10, 1], y_range=[0, 8, 1])
-vertices = [(2, 2), (8, 2), (5, 6)]  # Triangle
+# Define triangle vertices
+vertices = [(2, 2), (8, 2), (5, 6)]
 
 # Create hatched region with backslash pattern
 hatched, boundary = hatched_region(
     axes, vertices,
     spacing=0.25,
-    direction="\\",   # Backslash hatching
+    direction="\\",
     color=RED,
     stroke_width=1.5
 )
 
-self.add(axes, boundary, hatched)</code></pre>
+title = Text("Backslash Hatching (\\)", font_size=32).to_edge(UP)
+
+# Animate
+self.add(axes, title)
+self.play(Create(boundary))
+self.wait(0.5)
+self.play(Create(hatched))
+self.wait(2)</code></pre>
                     </div>
                 </div>
             </div>

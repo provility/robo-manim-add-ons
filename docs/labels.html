@@ -214,11 +214,9 @@
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">from robo_manim_add_ons import edge_labels
+                        <pre><code class="language-python">square = Square(side_length=3, color=GREEN)
 
-square = Square(side_length=3, color=GREEN)
-
-# Labels update automatically and stay perpendicular to edges
+# Create edge labels using always_redraw
 labels = always_redraw(
     lambda: VGroup(*edge_labels(
         square,
@@ -229,8 +227,34 @@ labels = always_redraw(
     ))
 )
 
-self.play(Rotate(square, angle=PI/4))      # Labels rotate!
-self.play(square.animate.stretch(1.5, dim=0))  # Labels adapt!</code></pre>
+title = Text("Dynamic Edge Labels", font_size=28).to_edge(UP)
+
+# Show initial setup
+self.add(title)
+self.play(Create(square))
+self.play(FadeIn(labels))
+self.wait()
+
+# Rotate the square - labels stay perpendicular to edges!
+self.play(
+    Rotate(square, angle=PI/4, about_point=ORIGIN),
+    run_time=3
+)
+self.wait()
+
+# Scale the square
+self.play(
+    square.animate.scale(0.6),
+    run_time=2
+)
+self.wait()
+
+# Stretch horizontally
+self.play(
+    square.animate.stretch(1.5, dim=0),
+    run_time=2
+)
+self.wait()</code></pre>
                     </div>
                 </div>
             </div>
@@ -265,17 +289,17 @@ self.play(square.animate.stretch(1.5, dim=0))  # Labels adapt!</code></pre>
                         </div>
                         <pre><code class="language-python">pentagon = RegularPolygon(n=5, color=PURPLE).scale(2)
 
-# Vertex labels
+# Create both vertex and edge labels with always_redraw
 vertex_label_objects = always_redraw(
     lambda: VGroup(*vertex_labels(
         pentagon,
         labels=["V_1", "V_2", "V_3", "V_4", "V_5"],
         scale=0.6,
+        color=WHITE,
         buff=0.35
     ))
 )
 
-# Edge labels
 edge_label_objects = always_redraw(
     lambda: VGroup(*edge_labels(
         pentagon,
@@ -284,7 +308,30 @@ edge_label_objects = always_redraw(
         color=YELLOW,
         buff=0.2
     ))
-)</code></pre>
+)
+
+title = Text("Vertex & Edge Labels", font_size=28).to_edge(UP)
+
+# Show construction
+self.add(title)
+self.play(Create(pentagon))
+self.play(FadeIn(vertex_label_objects))
+self.play(FadeIn(edge_label_objects))
+self.wait()
+
+# Rotate continuously
+self.play(
+    Rotate(pentagon, angle=2*PI/5, about_point=ORIGIN),
+    run_time=3
+)
+self.wait()
+
+# Scale down
+self.play(
+    pentagon.animate.scale(0.7),
+    run_time=2
+)
+self.wait()</code></pre>
                     </div>
                 </div>
             </div>
@@ -317,23 +364,53 @@ edge_label_objects = always_redraw(
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">from robo_manim_add_ons import vertex_labels
+                        <pre><code class="language-python">triangle = Polygon(
+    [-2, -1, 0],
+    [2, -1, 0],
+    [0, 2, 0],
+    color=BLUE
+)
 
-triangle = Polygon([-2, -1, 0], [2, -1, 0], [0, 2, 0], color=BLUE)
-
-# Labels update automatically as polygon transforms
+# Create vertex labels using always_redraw
+# This automatically recreates labels whenever the polygon changes
 labels = always_redraw(
     lambda: VGroup(*vertex_labels(
         triangle,
         labels=["A", "B", "C"],
         scale=0.8,
         color=WHITE,
-        buff=0.3  # Distance from vertex to label
+        buff=0.3
     ))
 )
 
-self.play(triangle.animate.scale(1.5))  # Labels follow!
-self.play(Rotate(triangle, angle=PI/3))  # Labels follow!</code></pre>
+title = Text("Dynamic Vertex Labels", font_size=28).to_edge(UP)
+
+# Show initial setup
+self.add(title)
+self.play(Create(triangle))
+self.play(FadeIn(labels))
+self.wait()
+
+# Scale the triangle - labels follow the vertices!
+self.play(
+    triangle.animate.scale(1.5),
+    run_time=2
+)
+self.wait()
+
+# Rotate the triangle
+self.play(
+    Rotate(triangle, angle=PI/3, about_point=ORIGIN),
+    run_time=2
+)
+self.wait()
+
+# Shift the triangle
+self.play(
+    triangle.animate.shift(LEFT),
+    run_time=2
+)
+self.wait()</code></pre>
                     </div>
                 </div>
             </div>
@@ -367,28 +444,79 @@ self.play(Rotate(triangle, angle=PI/3))  # Labels follow!</code></pre>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
                         <pre><code class="language-python">hexagon = RegularPolygon(n=6, color=RED).scale(2)
+
+# Create vertex labels with custom updater
+vertex_label_group = VGroup()
+
+def update_vertex_labels(mob):
+    # Clear existing labels
+    mob.become(VGroup(*vertex_labels(
+        hexagon,
+        labels=[f"V_{i+1}" for i in range(len(hexagon.get_vertices()))],
+        scale=0.6,
+        color=WHITE,
+        buff=0.3
+    )))
+
+vertex_label_group.add_updater(update_vertex_labels)
+
+# Create edge labels with custom updater
 edge_label_group = VGroup()
 
 def update_edge_labels(mob):
+    # Calculate edge lengths and display them
     vertices = hexagon.get_vertices()
     n = len(vertices)
-
-    # Calculate actual edge lengths
     edge_lengths = []
+
     for i in range(n):
         p1 = vertices[i]
         p2 = vertices[(i + 1) % n]
         length = np.linalg.norm(p2 - p1)
         edge_lengths.append(f"{length:.1f}")
 
-    # Update labels with calculated lengths
-    mob.become(VGroup(*edge_labels(hexagon, labels=edge_lengths, scale=0.5)))
+    mob.become(VGroup(*edge_labels(
+        hexagon,
+        labels=edge_lengths,
+        scale=0.5,
+        color=YELLOW,
+        buff=0.25
+    )))
 
 edge_label_group.add_updater(update_edge_labels)
 
-# Edge lengths update as hexagon transforms!
-self.play(hexagon.animate.scale(0.5))
-self.play(hexagon.animate.stretch(1.8, dim=1))</code></pre>
+title = Text("Interactive Labels with Edge Lengths", font_size=24).to_edge(UP)
+
+# Show scene
+self.add(title)
+self.play(Create(hexagon))
+self.add(vertex_label_group, edge_label_group)
+self.wait()
+
+# Scale - watch edge lengths update!
+self.play(
+    hexagon.animate.scale(0.5),
+    run_time=2
+)
+self.wait()
+
+# Stretch vertically
+self.play(
+    hexagon.animate.stretch(1.8, dim=1),
+    run_time=2
+)
+self.wait()
+
+# Rotate
+self.play(
+    Rotate(hexagon, angle=PI/3),
+    run_time=2
+)
+self.wait()
+
+# Clean up updaters
+vertex_label_group.clear_updaters()
+edge_label_group.clear_updaters()</code></pre>
                     </div>
                 </div>
             </div>
@@ -421,21 +549,58 @@ self.play(hexagon.animate.stretch(1.8, dim=1))</code></pre>
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">triangle = Polygon([-2, -1.5, 0], [2, -1.5, 0], [0, 2, 0], color=BLUE)
+                        <pre><code class="language-python">triangle = Polygon(
+    [-2, -1.5, 0],
+    [2, -1.5, 0],
+    [0, 2, 0],
+    color=BLUE
+)
+
+# Target square
 square = Square(side_length=3, color=GREEN)
 
-# Labels adapt as number of vertices changes
-vertex_labels_obj = always_redraw(
+# Labels for triangle (3 vertices and edges)
+vertex_label_objects = always_redraw(
     lambda: VGroup(*vertex_labels(
         triangle,
-        # Slice labels to match current vertex count
-        labels=["A", "B", "C", "D"][:len(triangle.get_vertices())],
-        scale=0.7
+        labels=["A", "B", "C"][:len(triangle.get_vertices())],
+        scale=0.7,
+        color=WHITE,
+        buff=0.3
     ))
 )
 
-# Triangle morphs to square - labels adjust automatically!
-self.play(Transform(triangle, square))</code></pre>
+edge_label_objects = always_redraw(
+    lambda: VGroup(*edge_labels(
+        triangle,
+        labels=["a", "b", "c"][:len(triangle.get_vertices())],
+        scale=0.6,
+        color=YELLOW,
+        buff=0.2
+    ))
+)
+
+title = Text("Morphing Polygon with Labels", font_size=28).to_edge(UP)
+
+# Show triangle
+self.add(title)
+self.play(Create(triangle))
+self.add(vertex_label_objects, edge_label_objects)
+self.wait()
+
+# Rotate the triangle
+self.play(
+    Rotate(triangle, angle=PI/6),
+    run_time=2
+)
+self.wait()
+
+# Transform to square
+self.play(
+    Transform(triangle, square),
+    run_time=3
+)
+self.wait(2)</code></pre>
                     </div>
                 </div>
             </div>

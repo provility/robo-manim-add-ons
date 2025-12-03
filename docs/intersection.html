@@ -214,14 +214,25 @@
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">from robo_manim_add_ons import intersect_lines
-
-line1 = Line(LEFT * 3, RIGHT * 3, color=BLUE)
+                        <pre><code class="language-python">line1 = Line(LEFT * 3, RIGHT * 3, color=BLUE)
 line2 = Line(DOWN * 2, UP * 2, color=GREEN)
 
-# Returns a Dot at intersection point
+# Find intersection
 intersection_dot = intersect_lines(line1, line2)
-intersection_dot.set_color(RED).scale(1.5)</code></pre>
+intersection_dot.set_color(RED).scale(1.5)
+
+# Labels
+line1_label = Text("Line 1", font_size=24, color=BLUE).next_to(line1, DOWN)
+line2_label = Text("Line 2", font_size=24, color=GREEN).next_to(line2, RIGHT)
+intersection_label = Text("Intersection", font_size=20, color=RED).next_to(intersection_dot, UP * 1.5)
+
+# Animate
+self.play(Create(line1), Write(line1_label))
+self.wait(0.5)
+self.play(Create(line2), Write(line2_label))
+self.wait(0.5)
+self.play(FadeIn(intersection_dot, scale=0.5), Write(intersection_label))
+self.wait(2)</code></pre>
                     </div>
                 </div>
             </div>
@@ -254,16 +265,28 @@ intersection_dot.set_color(RED).scale(1.5)</code></pre>
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">from robo_manim_add_ons import intersect_line_circle
+                        <pre><code class="language-python">circle = Circle(radius=2, color=BLUE)
 
-circle = Circle(radius=2, color=BLUE)
+# Create line through center
 line = Line(LEFT * 3, RIGHT * 3, color=GREEN)
 
-# Returns VGroup containing 0, 1, or 2 Dots
+# Find intersections
 intersections = intersect_line_circle(line, circle)
-
 for dot in intersections:
-    dot.set_color(RED).scale(1.5)</code></pre>
+    dot.set_color(RED).scale(1.5)
+
+# Labels
+title = Text("Line-Circle Intersection", font_size=28).to_edge(UP)
+circle_label = Text("Circle", font_size=20, color=BLUE).next_to(circle, DOWN, buff=0.5)
+line_label = Text("Line", font_size=20, color=GREEN).next_to(line, UP, buff=0.3)
+
+# Animate
+self.add(title)
+self.play(Create(circle), Write(circle_label))
+self.play(Create(line), Write(line_label))
+self.wait(1)
+self.play(FadeIn(intersections, scale=0.3))
+self.wait(2)</code></pre>
                     </div>
                 </div>
             </div>
@@ -297,15 +320,40 @@ for dot in intersections:
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
                         <pre><code class="language-python">fixed_line = Line(LEFT * 3, RIGHT * 3, color=BLUE)
+
+# Rotating line
 rotating_line = Line(DOWN * 2, UP * 2, color=GREEN)
 
-# Intersection updates automatically as line rotates
+# Dynamic intersection point using always_redraw
 intersection_dot = always_redraw(
-    lambda: intersect_lines(fixed_line, rotating_line)
-        .set_color(RED).scale(1.5)
+    lambda: intersect_lines(fixed_line, rotating_line).set_color(RED).scale(1.5)
 )
 
-self.play(Rotate(rotating_line, angle=PI/3, about_point=ORIGIN))</code></pre>
+# Labels
+title = Text("Dynamic Intersection", font_size=28).to_edge(UP)
+fixed_label = Text("Fixed", font_size=20, color=BLUE).next_to(fixed_line, DOWN)
+rotating_label = Text("Rotating", font_size=20, color=GREEN).next_to(rotating_line, RIGHT, buff=0.3)
+
+# Animate
+self.add(title)
+self.play(Create(fixed_line), Write(fixed_label))
+self.play(Create(rotating_line), Write(rotating_label))
+self.add(intersection_dot)
+self.wait(1)
+
+# Rotate the line - intersection point follows!
+self.play(
+    Rotate(rotating_line, angle=PI/3, about_point=ORIGIN),
+    run_time=3
+)
+self.wait(1)
+
+# Rotate more
+self.play(
+    Rotate(rotating_line, angle=PI/3, about_point=ORIGIN),
+    run_time=3
+)
+self.wait(2)</code></pre>
                     </div>
                 </div>
             </div>
@@ -339,9 +387,11 @@ self.play(Rotate(rotating_line, angle=PI/3, about_point=ORIGIN))</code></pre>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
                         <pre><code class="language-python">circle = Circle(radius=2, color=BLUE)
+
+# Create rotating line
 line = Line(LEFT * 3, RIGHT * 3, color=GREEN)
 
-# Intersections update automatically with always_redraw
+# Dynamic intersections using always_redraw
 intersections = always_redraw(
     lambda: VGroup(*[
         dot.set_color(RED).scale(1.5)
@@ -349,7 +399,28 @@ intersections = always_redraw(
     ])
 )
 
-self.play(Rotate(line, angle=PI/4, about_point=ORIGIN))</code></pre>
+title = Text("Dynamic Line-Circle Intersection", font_size=24).to_edge(UP)
+
+# Animate
+self.add(title)
+self.play(Create(circle))
+self.play(Create(line))
+self.add(intersections)
+self.wait(1)
+
+# Rotate line - intersections follow!
+self.play(
+    Rotate(line, angle=PI/4, about_point=ORIGIN),
+    run_time=3
+)
+self.wait(1)
+
+# Continue rotating
+self.play(
+    Rotate(line, angle=PI/4, about_point=ORIGIN),
+    run_time=3
+)
+self.wait(2)</code></pre>
                     </div>
                 </div>
             </div>
@@ -382,15 +453,28 @@ self.play(Rotate(line, angle=PI/4, about_point=ORIGIN))</code></pre>
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">line1 = Line(LEFT * 3, RIGHT * 3).shift(UP)
-line2 = Line(LEFT * 3, RIGHT * 3).shift(DOWN)
+                        <pre><code class="language-python">line1 = Line(LEFT * 3, RIGHT * 3, color=BLUE).shift(UP)
+line2 = Line(LEFT * 3, RIGHT * 3, color=GREEN).shift(DOWN)
 
+# Try to find intersection
 result = intersect_lines(line1, line2)
 
-# Check if parallel (no intersection)
+# Labels
+line1_label = Text("Line 1", font_size=24, color=BLUE).next_to(line1, UP)
+line2_label = Text("Line 2", font_size=24, color=GREEN).next_to(line2, DOWN)
+
+# Check if result is empty
 if len(result) == 0:
-    # Lines are parallel
-    pass</code></pre>
+    no_intersection_text = Text("No Intersection!", font_size=30, color=RED)
+    parallel_text = Text("(Parallel lines)", font_size=20, color=ORANGE)
+    message = VGroup(no_intersection_text, parallel_text).arrange(DOWN)
+
+# Animate
+self.play(Create(line1), Write(line1_label))
+self.play(Create(line2), Write(line2_label))
+self.wait(1)
+self.play(Write(message))
+self.wait(2)</code></pre>
                     </div>
                 </div>
             </div>
@@ -424,12 +508,27 @@ if len(result) == 0:
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
                         <pre><code class="language-python">circle = Circle(radius=2, color=BLUE)
+
+# Create tangent line at top
 line = Line(LEFT * 3 + UP * 2, RIGHT * 3 + UP * 2, color=GREEN)
 
+# Find intersection (should be one point)
 intersections = intersect_line_circle(line, circle)
+for dot in intersections:
+    dot.set_color(YELLOW).scale(2)
 
-# Tangent line produces 1 intersection point
-print(f"Found {len(intersections)} intersection(s)")</code></pre>
+# Labels
+title = Text("Tangent Line", font_size=28).to_edge(UP)
+subtitle = Text(f"({len(intersections)} intersection point)", font_size=18, color=YELLOW)
+subtitle.next_to(title, DOWN)
+
+# Animate
+self.add(title, subtitle)
+self.play(Create(circle))
+self.play(Create(line))
+self.wait(1)
+self.play(FadeIn(intersections, scale=0.5))
+self.wait(2)</code></pre>
                     </div>
                 </div>
             </div>
