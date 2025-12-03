@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vector Demos - Robo Manim Add-ons</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -101,22 +104,54 @@
             border: 1px solid #d0d7de;
             border-radius: 6px;
             padding: 12px;
+            position: relative;
+        }
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
         }
         .code-title {
             font-weight: 600;
-            margin-bottom: 8px;
             color: #24292e;
             font-size: 14px;
         }
-        pre {
-            background: #f6f8fa;
+        .copy-button {
+            background: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 12px;
             color: #24292e;
+            cursor: pointer;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .copy-button:hover {
+            background: #f6f8fa;
+            border-color: #0969da;
+        }
+        .copy-button:active {
+            background: #e6e8ea;
+        }
+        .copy-button.copied {
+            color: #1a7f37;
+            border-color: #1a7f37;
+        }
+        pre {
+            margin: 0;
             padding: 12px;
             border-radius: 6px;
             overflow-x: auto;
+            background: #ffffff !important;
+            border: 1px solid #d0d7de;
+        }
+        pre code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
             font-size: 12px;
             line-height: 1.5;
-            margin: 0;
+            background: transparent !important;
+            padding: 0 !important;
         }
         code {
             font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
@@ -175,8 +210,11 @@
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons.vector_utils import VectorUtils
 
 # Reference vector (horizontal)
 vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
@@ -222,8 +260,11 @@ self.play(Create(dashed))</code></pre>
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons.vector_utils import VectorUtils
 
 vector_a = Arrow(ORIGIN, RIGHT * 3.5, buff=0, color=BLUE)
 vector_b = Arrow(ORIGIN, RIGHT * 2.5 + UP * 1.5, buff=0, color=RED)
@@ -273,8 +314,11 @@ self.play(GrowArrow(proj_vector))</code></pre>
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons.vector_utils import VectorUtils
 
 # Formula
 formula = MathTex(r"\vec{a} \cdot \vec{b} = |\vec{a}| \, |\text{proj}_{\vec{a}} \vec{b}|")
@@ -321,8 +365,11 @@ label_proj = brace_proj.get_text(r"$|\text{proj}|$")</code></pre>
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons.vector_utils import VectorUtils
 
 vector_a = Arrow(ORIGIN, RIGHT * 3.5, buff=0, color=BLUE)
 vector_b = Arrow(ORIGIN, RIGHT * 2 + UP * 1.5, buff=0, color=RED)
@@ -371,8 +418,11 @@ self.play(Rotate(vector_b, angle=PI, about_point=ORIGIN), run_time=4)</code></pr
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons.vector_utils import VectorUtils
 
 # Create inclined plane (line)
 angle = PI/6  # 30 degrees
@@ -418,8 +468,11 @@ self.play(GrowArrow(perp_force))</code></pre>
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons.vector_utils import VectorUtils
 
 # Central reference vector
 ref_vector = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
@@ -471,8 +524,11 @@ self.play(Rotate(ref_vector, angle=PI/3, about_point=ORIGIN), run_time=4)</code>
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons.vector_utils import VectorUtils
 
 # Reference vector (pointing right)
 vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
@@ -519,8 +575,11 @@ self.play(Rotate(vector_a, angle=PI, about_point=ORIGIN), run_time=4)</code></pr
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons.vector_utils import VectorUtils
 
 # Case 1: Acute angle (positive projection)
 vec_a1 = Arrow(LEFT * 5, LEFT * 5 + RIGHT * 2, buff=0, color=BLUE)
@@ -565,8 +624,11 @@ proj3 = VectorUtils.project_onto(vec_b3, vec_a3, color=GREEN)</code></pre>
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons.vector_utils import VectorUtils
 
 # Title formula
 title = MathTex(r"\vec{b} = \vec{b}_\parallel + \vec{b}_\perp")
@@ -613,8 +675,11 @@ self.play(Create(dashed))</code></pre>
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons.vector_utils import VectorUtils
 
 vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0)
 vector_b = Arrow(ORIGIN, RIGHT * 2 + UP * 1.5, buff=0)
@@ -662,8 +727,11 @@ self.play(Rotate(vector_b, angle=PI, about_point=ORIGIN))</code></pre>
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons.vector_utils import VectorUtils
 
 # Fixed target
 vector_a = Arrow(ORIGIN, RIGHT * 3.5, buff=0, color=BLUE)
@@ -713,8 +781,11 @@ self.play(vector_b.animate.put_start_and_end_on(ORIGIN, RIGHT * 0.5 + UP * 0.4),
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons.vector_utils import VectorUtils
 
 vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0)
 vector_b = Arrow(ORIGIN, RIGHT * 1 + UP * 1, buff=0)
@@ -763,8 +834,11 @@ self.play(vector_b.animate.put_start_and_end_on(ORIGIN, new_end))</code></pre>
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons.vector_utils import VectorUtils
 
 # Formula at top
 formula = MathTex(r"\text{proj}_{\vec{a}} \vec{b} = \frac{\vec{a} \cdot \vec{b}}{|\vec{a}|^2} \vec{a}")
@@ -808,8 +882,11 @@ self.play(Create(proj_line))</code></pre>
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons.vector_utils import VectorUtils
 
 vector_a = Arrow(ORIGIN, RIGHT * 3.5, buff=0, color=BLUE)
 vector_b = Arrow(ORIGIN, RIGHT * 2.5 + UP * 1.5, buff=0, color=RED)
@@ -853,8 +930,11 @@ self.play(Create(proj_line))</code></pre>
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons.vector_utils import VectorUtils
 
 origin = Dot(ORIGIN, color=YELLOW)
 vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
@@ -901,8 +981,11 @@ self.play(GrowArrow(result_vector))</code></pre>
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons.vector_utils import VectorUtils
 
 # Vector to decompose (fixed)
 vector_a = Arrow(ORIGIN, RIGHT * 2.5 + UP * 1.5, buff=0, color=RED)
@@ -949,8 +1032,11 @@ self.play(Rotate(vector_b, angle=PI/2, about_point=ORIGIN), run_time=3)</code></
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons.vector_utils import VectorUtils
 
 # Fixed reference vector
 vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
@@ -1001,8 +1087,11 @@ self.play(Rotate(vector_a, angle=PI, about_point=ORIGIN), run_time=4)</code></pr
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons.vector_utils import VectorUtils
 
 # Fixed reference vector
 vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
@@ -1029,5 +1118,27 @@ self.play(
             </div>
         </div>
     </div>
+
+    <script>
+        // Initialize syntax highlighting
+        hljs.highlightAll();
+
+        // Copy button functionality
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-section').querySelector('code');
+            const text = codeBlock.textContent;
+
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
 </body>
 </html>

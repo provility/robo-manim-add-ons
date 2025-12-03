@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Annotation Demos - Robo Manim Add-ons</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -101,22 +104,54 @@
             border: 1px solid #d0d7de;
             border-radius: 6px;
             padding: 12px;
+            position: relative;
+        }
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
         }
         .code-title {
             font-weight: 600;
-            margin-bottom: 8px;
             color: #24292e;
             font-size: 14px;
         }
-        pre {
-            background: #f6f8fa;
+        .copy-button {
+            background: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 12px;
             color: #24292e;
+            cursor: pointer;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .copy-button:hover {
+            background: #f6f8fa;
+            border-color: #0969da;
+        }
+        .copy-button:active {
+            background: #e6e8ea;
+        }
+        .copy-button.copied {
+            color: #1a7f37;
+            border-color: #1a7f37;
+        }
+        pre {
+            margin: 0;
             padding: 12px;
             border-radius: 6px;
             overflow-x: auto;
+            background: #ffffff !important;
+            border: 1px solid #d0d7de;
+        }
+        pre code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
             font-size: 12px;
             line-height: 1.5;
-            margin: 0;
+            background: transparent !important;
+            padding: 0 !important;
         }
         code {
             font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
@@ -175,8 +210,11 @@
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons import distance_marker
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons import distance_marker
 
 triangle = Polygon([-2, -1, 0], [2, -1, 0], [0, 2, 0], color=WHITE)
 
@@ -215,8 +253,11 @@ marker_a = distance_marker(
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons import label
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons import label
 
 # Two dots
 dot_a = Dot([-2, 0, 0], color=BLUE)
@@ -252,8 +293,11 @@ ab_label = label("AB", dot_a, dot_b, buff=0.5)</code></pre>
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons import hatched_region
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons import hatched_region
 
 axes = Axes(x_range=[0, 10, 1], y_range=[0, 8, 1])
 vertices = [(2, 2), (8, 2), (8, 6), (2, 6)]
@@ -296,8 +340,11 @@ self.add(axes, boundary, hatched)</code></pre>
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>rect = Rectangle(width=4, height=2.5, color=WHITE)
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">rect = Rectangle(width=4, height=2.5, color=WHITE)
 corners = rect.get_vertices()  # [top_right, top_left, bottom_left, bottom_right]
 
 # Width marker
@@ -341,8 +388,11 @@ height_marker = distance_marker(
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code># Create Dot objects
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Create Dot objects
 dot_a = Dot([-2, -1, 0], color=BLUE)
 dot_b = Dot([2, -1, 0], color=RED)
 dot_c = Dot([0, 2, 0], color=GREEN)
@@ -385,8 +435,11 @@ marker_ca = distance_marker(dot_c, dot_a, label_text="d_{CA}")</code></pre>
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>triangle = Polygon(
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">triangle = Polygon(
     [-2, -1.5, 0], [2, -1.5, 0], [2, 1.5, 0],
     color=WHITE
 )
@@ -441,8 +494,11 @@ formula = MathTex(r"a^2 + b^2 = c^2")</code></pre>
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons import hatched_region
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons import hatched_region
 
 axes = Axes(x_range=[0, 10, 1], y_range=[0, 8, 1])
 vertices = [(2, 2), (8, 2), (5, 6)]  # Triangle
@@ -462,5 +518,27 @@ self.add(axes, boundary, hatched)</code></pre>
             </div>
         </div>
     </div>
+
+    <script>
+        // Initialize syntax highlighting
+        hljs.highlightAll();
+
+        // Copy button functionality
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-section').querySelector('code');
+            const text = codeBlock.textContent;
+
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
 </body>
 </html>

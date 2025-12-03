@@ -57,6 +57,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title} - Robo Manim Add-ons</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
     <style>
         * {{
             margin: 0;
@@ -154,22 +157,54 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             border: 1px solid #d0d7de;
             border-radius: 6px;
             padding: 12px;
+            position: relative;
+        }}
+        .code-header {{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
         }}
         .code-title {{
             font-weight: 600;
-            margin-bottom: 8px;
             color: #24292e;
             font-size: 14px;
         }}
-        pre {{
-            background: #f6f8fa;
+        .copy-button {{
+            background: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 12px;
             color: #24292e;
+            cursor: pointer;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }}
+        .copy-button:hover {{
+            background: #f6f8fa;
+            border-color: #0969da;
+        }}
+        .copy-button:active {{
+            background: #e6e8ea;
+        }}
+        .copy-button.copied {{
+            color: #1a7f37;
+            border-color: #1a7f37;
+        }}
+        pre {{
+            margin: 0;
             padding: 12px;
             border-radius: 6px;
             overflow-x: auto;
+            background: #ffffff !important;
+            border: 1px solid #d0d7de;
+        }}
+        pre code {{
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
             font-size: 12px;
             line-height: 1.5;
-            margin: 0;
+            background: transparent !important;
+            padding: 0 !important;
         }}
         code {{
             font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
@@ -207,6 +242,28 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             {demos}
         </div>
     </div>
+
+    <script>
+        // Initialize syntax highlighting
+        hljs.highlightAll();
+
+        // Copy button functionality
+        function copyCode(button) {{
+            const codeBlock = button.closest('.code-section').querySelector('code');
+            const text = codeBlock.textContent;
+
+            navigator.clipboard.writeText(text).then(() => {{
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+
+                setTimeout(() => {{
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }}, 2000);
+            }});
+        }}
+    </script>
 </body>
 </html>
 """
@@ -236,8 +293,11 @@ DEMO_CARD_TEMPLATE = """            <!-- {demo_name} -->
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>{code_snippet}</code></pre>
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">{code_snippet}</code></pre>
                     </div>
                 </div>
             </div>"""

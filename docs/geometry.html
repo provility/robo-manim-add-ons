@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geometry Demos - Robo Manim Add-ons</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -101,22 +104,54 @@
             border: 1px solid #d0d7de;
             border-radius: 6px;
             padding: 12px;
+            position: relative;
+        }
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
         }
         .code-title {
             font-weight: 600;
-            margin-bottom: 8px;
             color: #24292e;
             font-size: 14px;
         }
-        pre {
-            background: #f6f8fa;
+        .copy-button {
+            background: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 12px;
             color: #24292e;
+            cursor: pointer;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .copy-button:hover {
+            background: #f6f8fa;
+            border-color: #0969da;
+        }
+        .copy-button:active {
+            background: #e6e8ea;
+        }
+        .copy-button.copied {
+            color: #1a7f37;
+            border-color: #1a7f37;
+        }
+        pre {
+            margin: 0;
             padding: 12px;
             border-radius: 6px;
             overflow-x: auto;
+            background: #ffffff !important;
+            border: 1px solid #d0d7de;
+        }
+        pre code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
             font-size: 12px;
             line-height: 1.5;
-            margin: 0;
+            background: transparent !important;
+            padding: 0 !important;
         }
         code {
             font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
@@ -175,8 +210,11 @@
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>base_line = Line(LEFT * 3, RIGHT * 3, color=BLUE)
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">base_line = Line(LEFT * 3, RIGHT * 3, color=BLUE)
 following_dot = Dot(UP * 1.5, color=YELLOW)
 
 parallel_line = always_redraw(
@@ -216,8 +254,11 @@ self.play(Rotate(base_line, angle=PI/4, about_point=ORIGIN), run_time=3)</code><
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>base_line = Line(LEFT * 2, RIGHT * 2, color=BLUE)
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">base_line = Line(LEFT * 2, RIGHT * 2, color=BLUE)
 center_dot = Dot(ORIGIN, color=YELLOW)
 
 perp_line = always_redraw(
@@ -258,8 +299,11 @@ self.play(Rotate(base_line, angle=-PI/3, about_point=ORIGIN), run_time=3)</code>
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>ref_line = Line(LEFT * 2 + DOWN, RIGHT * 2 + UP, color=BLUE)
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">ref_line = Line(LEFT * 2 + DOWN, RIGHT * 2 + UP, color=BLUE)
 dot = Dot(ORIGIN, color=RED)
 perp_line = perp(ref_line, dot, 3.0, placement="mid").set_color(GREEN)
 
@@ -293,8 +337,11 @@ parallel_line = parallel(ref_line, dot2, 2.5, placement="mid").set_color(YELLOW)
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>ref_line = Line(LEFT * 3, RIGHT * 3, color=BLUE).shift(DOWN)
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">ref_line = Line(LEFT * 3, RIGHT * 3, color=BLUE).shift(DOWN)
 moving_dot = Dot(ORIGIN, color=RED)
 
 perp_line = always_redraw(
@@ -335,8 +382,11 @@ self.play(moving_dot.animate.shift(LEFT * 4), run_time=3)</code></pre>
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>ref_line = Line(LEFT * 3, RIGHT * 3, color=BLUE)
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">ref_line = Line(LEFT * 3, RIGHT * 3, color=BLUE)
 
 # Create three dots at different positions
 dots = [
@@ -381,8 +431,11 @@ self.play(Rotate(ref_line, angle=PI/3, about_point=ORIGIN), run_time=3)</code></
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons import parallel
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons import parallel
 
 ref_line = Line(LEFT + DOWN, RIGHT + UP, color=BLUE)
 dot = Dot(UP * 2, color=RED)
@@ -419,8 +472,11 @@ self.play(Create(parallel_line))</code></pre>
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>ref_line = Line(LEFT * 3, RIGHT * 3, color=BLUE).rotate(PI/6)
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">ref_line = Line(LEFT * 3, RIGHT * 3, color=BLUE).rotate(PI/6)
 
 # Create grid of dots
 grid_dots = VGroup(*[
@@ -463,8 +519,11 @@ self.play(Rotate(ref_line, angle=PI/4, about_point=ORIGIN), run_time=4)</code></
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>base = Line(LEFT * 2 + DOWN, RIGHT * 2 + DOWN, color=BLUE)
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">base = Line(LEFT * 2 + DOWN, RIGHT * 2 + DOWN, color=BLUE)
 top_left_dot = Dot(LEFT * 1.5 + UP, color=YELLOW)
 
 side = always_redraw(
@@ -518,8 +577,11 @@ self.play(top_left_dot.animate.move_to(LEFT * 2.5 + UP * 2), run_time=3)</code><
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>from robo_manim_add_ons import perp
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from robo_manim_add_ons import perp
 
 ref_line = Line(LEFT * 3, RIGHT * 3, color=BLUE)
 dot = Dot(ORIGIN, color=RED)
@@ -556,8 +618,11 @@ self.play(Create(perp_line))</code></pre>
                     </div>
 
                     <div class="code-section">
-                        <div class="code-title">Code Example:</div>
-                        <pre><code>ref_line = Line(LEFT * 4, RIGHT * 4, color=BLUE)
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">ref_line = Line(LEFT * 4, RIGHT * 4, color=BLUE)
 
 dot_mid = Dot(ORIGIN, color=RED)
 dot_start = Dot(UP * 2, color=GREEN)
@@ -571,5 +636,27 @@ perp_end = perp(ref_line, dot_end, 2.0, placement="end").set_color(YELLOW)</code
             </div>
         </div>
     </div>
+
+    <script>
+        // Initialize syntax highlighting
+        hljs.highlightAll();
+
+        // Copy button functionality
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-section').querySelector('code');
+            const text = codeBlock.textContent;
+
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
 </body>
 </html>
