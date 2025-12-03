@@ -12,125 +12,120 @@
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
+            line-height: 1.5;
+            color: #24292e;
+            background: #ffffff;
+            font-size: 14px;
         }
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: #f6f8fa;
+            border-bottom: 1px solid #d0d7de;
+            padding: 12px 16px;
         }
         .header-content {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
         }
         .back-link {
-            color: white;
+            color: #0969da;
             text-decoration: none;
-            display: inline-block;
-            margin-bottom: 1rem;
-            opacity: 0.9;
+            font-size: 14px;
         }
         .back-link:hover {
-            opacity: 1;
+            text-decoration: underline;
         }
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 8px 0 4px 0;
         }
         .subtitle {
-            opacity: 0.9;
-            font-size: 1.1rem;
+            color: #57606a;
+            font-size: 14px;
         }
         .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 16px;
         }
         .demo-grid {
             display: grid;
-            gap: 3rem;
+            gap: 24px;
         }
         .demo-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .demo-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            background: #ffffff;
         }
         .demo-content {
-            padding: 2rem;
+            padding: 16px;
         }
         .demo-title {
-            font-size: 1.8rem;
-            color: #667eea;
-            margin-bottom: 0.5rem;
+            font-size: 16px;
+            font-weight: 600;
+            color: #24292e;
+            margin-bottom: 4px;
         }
         .demo-description {
-            color: #666;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+            color: #57606a;
+            margin-bottom: 12px;
+            font-size: 14px;
         }
         video {
             width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-bottom: 1.5rem;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            margin-bottom: 12px;
         }
         .code-section {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 1.5rem;
-            border-left: 4px solid #667eea;
+            background: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 12px;
         }
         .code-title {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #24292e;
+            font-size: 14px;
         }
         pre {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 1rem;
+            background: #f6f8fa;
+            color: #24292e;
+            padding: 12px;
             border-radius: 6px;
             overflow-x: auto;
-            font-size: 0.9rem;
+            font-size: 12px;
             line-height: 1.5;
+            margin: 0;
         }
         code {
-            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
         }
-        .github-badge {
+        .github-link {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            background: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            top: 12px;
+            right: 16px;
+            background: #24292e;
+            color: #ffffff;
+            padding: 6px 12px;
+            border-radius: 6px;
             text-decoration: none;
-            color: #667eea;
-            font-weight: bold;
-            transition: transform 0.2s;
+            font-size: 14px;
+            font-weight: 500;
         }
-        .github-badge:hover {
-            transform: scale(1.05);
+        .github-link:hover {
+            background: #57606a;
         }
     </style>
 </head>
 <body>
-    <a href="https://github.com/provility/robo-manim-add-ons" class="github-badge">⭐ GitHub</a>
+    <a href="https://github.com/provility/robo-manim-add-ons" class="github-link">GitHub →</a>
 
     <div class="header">
         <div class="header-content">
-            <a href="index.html" class="back-link">← Back to Gallery</a>
-            <h1>📏 Annotation Demos</h1>
+            <a href="index.html" class="back-link">← Back</a>
+            <h1>Annotation Demos</h1>
             <p class="subtitle">Distance markers and geometric annotation utilities</p>
         </div>
     </div>
@@ -141,17 +136,26 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">BasicDistanceMarker</h2>
-                    <p class="demo-description">Demo: BasicDistanceMarker</p>
+                    <p class="demo-description">Triangle with distance markers</p>
 
                     <video controls>
-                        <source src="../demos/annotation/BasicDistanceMarker.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/BasicDistanceMarker.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for BasicDistanceMarker
-# See examples/annotation/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons import distance_marker
+
+triangle = Polygon([-2, -1, 0], [2, -1, 0], [0, 2, 0], color=WHITE)
+
+# Add distance marker on each side
+marker_a = distance_marker(
+    [-2, -1, 0], [2, -1, 0],
+    label_text="a",
+    color=BLUE,
+    label_offset=0.4  # Distance from line to label
+)</code></pre>
                     </div>
                 </div>
             </div>
@@ -160,17 +164,23 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">BasicLabelDemo</h2>
-                    <p class="demo-description">Demo: BasicLabelDemo</p>
+                    <p class="demo-description">Simple label between two points</p>
 
                     <video controls>
-                        <source src="../demos/annotation/BasicLabelDemo.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/BasicLabelDemo.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for BasicLabelDemo
-# See examples/annotation/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons import label
+
+# Two dots
+dot_a = Dot([-2, 0, 0], color=BLUE)
+dot_b = Dot([2, 0, 0], color=RED)
+
+# Create label positioned above the line
+ab_label = label("AB", dot_a, dot_b, buff=0.5)</code></pre>
                     </div>
                 </div>
             </div>
@@ -179,17 +189,30 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">DiagonalHatchDemo</h2>
-                    <p class="demo-description">Demo: DiagonalHatchDemo</p>
+                    <p class="demo-description">Diagonal hatching pattern on a rectangle</p>
 
                     <video controls>
-                        <source src="../demos/annotation/DiagonalHatchDemo.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/DiagonalHatchDemo.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for DiagonalHatchDemo
-# See examples/annotation/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons import hatched_region
+
+axes = Axes(x_range=[0, 10, 1], y_range=[0, 8, 1])
+vertices = [(2, 2), (8, 2), (8, 6), (2, 6)]
+
+# Create hatched region with diagonal lines
+hatched, boundary = hatched_region(
+    axes, vertices,
+    spacing=0.2,
+    direction="/",    # Diagonal hatching
+    color=BLUE,
+    stroke_width=1.5
+)
+
+self.add(axes, boundary, hatched)</code></pre>
                     </div>
                 </div>
             </div>
@@ -198,17 +221,31 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">DistanceMarkerRectangle</h2>
-                    <p class="demo-description">Demo: DistanceMarkerRectangle</p>
+                    <p class="demo-description">Annotating rectangle dimensions</p>
 
                     <video controls>
-                        <source src="../demos/annotation/DistanceMarkerRectangle.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/DistanceMarkerRectangle.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for DistanceMarkerRectangle
-# See examples/annotation/ for full source</code></pre>
+                        <pre><code>rect = Rectangle(width=4, height=2.5, color=WHITE)
+corners = rect.get_vertices()  # [top_right, top_left, bottom_left, bottom_right]
+
+# Width marker
+width_marker = distance_marker(
+    corners[2], corners[3],  # bottom_left to bottom_right
+    label_text="4",
+    label_offset=-0.5  # Place below
+)
+
+# Height marker
+height_marker = distance_marker(
+    corners[3], corners[0],  # bottom_right to top_right
+    label_text="2.5",
+    label_offset=0.5   # Place to the right
+)</code></pre>
                     </div>
                 </div>
             </div>
@@ -217,17 +254,30 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">DistanceMarkerWithDots</h2>
-                    <p class="demo-description">Demo: DistanceMarkerWithDots</p>
+                    <p class="demo-description">Using Dot objects with markers</p>
 
                     <video controls>
-                        <source src="../demos/annotation/DistanceMarkerWithDots.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/DistanceMarkerWithDots.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for DistanceMarkerWithDots
-# See examples/annotation/ for full source</code></pre>
+                        <pre><code># Create Dot objects
+dot_a = Dot([-2, -1, 0], color=BLUE)
+dot_b = Dot([2, -1, 0], color=RED)
+dot_c = Dot([0, 2, 0], color=GREEN)
+
+# Markers automatically extract positions from Dots
+marker_ab = distance_marker(
+    dot_a, dot_b,  # Pass Dots directly
+    label_text="d_{AB}",
+    label_offset=-0.5,
+    marker_offset=0  # Optional: offset entire marker perpendicular to line
+)
+
+marker_bc = distance_marker(dot_b, dot_c, label_text="d_{BC}")
+marker_ca = distance_marker(dot_c, dot_a, label_text="d_{CA}")</code></pre>
                     </div>
                 </div>
             </div>
@@ -236,17 +286,42 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">PythagoreanTheorem</h2>
-                    <p class="demo-description">Demo: PythagoreanTheorem</p>
+                    <p class="demo-description">Right triangle with Pythagorean theorem</p>
 
                     <video controls>
-                        <source src="../demos/annotation/PythagoreanTheorem.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/PythagoreanTheorem.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for PythagoreanTheorem
-# See examples/annotation/ for full source</code></pre>
+                        <pre><code>triangle = Polygon(
+    [-2, -1.5, 0], [2, -1.5, 0], [2, 1.5, 0],
+    color=WHITE
+)
+
+a_marker = distance_marker(
+    [-2, -1.5, 0], [2, -1.5, 0],
+    label_text="a = 4",
+    color=BLUE,
+    label_offset=-0.4
+)
+
+b_marker = distance_marker(
+    [2, -1.5, 0], [2, 1.5, 0],
+    label_text="b = 3",
+    color=RED,
+    label_offset=0.4
+)
+
+c_marker = distance_marker(
+    [2, 1.5, 0], [-2, -1.5, 0],
+    label_text="c = 5",
+    color=GREEN,
+    label_offset=0.4
+)
+
+formula = MathTex(r"a^2 + b^2 = c^2")</code></pre>
                     </div>
                 </div>
             </div>
@@ -255,17 +330,30 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">TriangleHatchDemo</h2>
-                    <p class="demo-description">Demo: TriangleHatchDemo</p>
+                    <p class="demo-description">Backslash hatching pattern on a triangle</p>
 
                     <video controls>
-                        <source src="../demos/annotation/TriangleHatchDemo.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/TriangleHatchDemo.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for TriangleHatchDemo
-# See examples/annotation/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons import hatched_region
+
+axes = Axes(x_range=[0, 10, 1], y_range=[0, 8, 1])
+vertices = [(2, 2), (8, 2), (5, 6)]  # Triangle
+
+# Create hatched region with backslash pattern
+hatched, boundary = hatched_region(
+    axes, vertices,
+    spacing=0.25,
+    direction="\\",   # Backslash hatching
+    color=RED,
+    stroke_width=1.5
+)
+
+self.add(axes, boundary, hatched)</code></pre>
                     </div>
                 </div>
             </div>

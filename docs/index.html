@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robo Manim Add-ons - Demo Gallery</title>
+    <title>Robo Manim Add-ons - Documentation</title>
     <style>
         * {
             margin: 0;
@@ -12,185 +12,207 @@
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 2rem;
+            line-height: 1.5;
+            color: #24292e;
+            background: #ffffff;
+            font-size: 14px;
         }
-        .container {
-            max-width: 1200px;
+        .header {
+            background: #f6f8fa;
+            border-bottom: 1px solid #d0d7de;
+            padding: 16px;
+        }
+        .header-content {
+            max-width: 1280px;
             margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            padding: 3rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
         h1 {
-            color: #667eea;
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 4px;
         }
         .subtitle {
-            text-align: center;
-            color: #666;
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            color: #57606a;
+            font-size: 14px;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 24px 16px;
         }
         .intro {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border-left: 4px solid #667eea;
+            background: #f6f8fa;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 24px;
+            border: 1px solid #d0d7de;
+            font-size: 14px;
         }
         .categories {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 16px;
         }
         .category-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 2rem;
-            border-radius: 12px;
-            color: white;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 16px;
             text-decoration: none;
+            color: #24292e;
             display: block;
+            background: #ffffff;
         }
         .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            border-color: #0969da;
+            background: #f6f8fa;
         }
-        .category-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
         }
         .category-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
+            font-size: 16px;
+            font-weight: 600;
+            margin-left: 8px;
         }
         .category-desc {
-            opacity: 0.9;
-            margin-bottom: 1rem;
+            color: #57606a;
+            font-size: 14px;
+            margin-bottom: 8px;
         }
         .category-count {
-            font-size: 0.9rem;
-            opacity: 0.8;
+            font-size: 12px;
+            color: #57606a;
         }
         .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 2px solid #e9ecef;
+            display: flex;
+            gap: 24px;
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid #d0d7de;
         }
         .stat-item {
-            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #667eea;
+            font-size: 20px;
+            font-weight: 600;
         }
         .stat-label {
-            color: #666;
-            font-size: 0.9rem;
+            color: #57606a;
+            font-size: 14px;
         }
         footer {
-            text-align: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 2px solid #e9ecef;
-            color: #666;
+            margin-top: 32px;
+            padding-top: 16px;
+            border-top: 1px solid #d0d7de;
+            color: #57606a;
+            font-size: 12px;
         }
         .github-link {
-            color: #667eea;
+            position: fixed;
+            top: 12px;
+            right: 16px;
+            background: #24292e;
+            color: #ffffff;
+            padding: 6px 12px;
+            border-radius: 6px;
             text-decoration: none;
-            font-weight: bold;
+            font-size: 14px;
+            font-weight: 500;
         }
         .github-link:hover {
-            text-decoration: underline;
+            background: #57606a;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🎬 Robo Manim Add-ons</h1>
-        <p class="subtitle">Interactive Demo Gallery</p>
+    <a href="https://github.com/provility/robo-manim-add-ons" class="github-link">GitHub →</a>
 
+    <div class="header">
+        <div class="header-content">
+            <h1>robo-manim-add-ons</h1>
+            <p class="subtitle">Utility functions for Manim Community Edition</p>
+        </div>
+    </div>
+
+    <div class="container">
         <div class="intro">
-            <p>Welcome to the demonstration gallery for <strong>robo-manim-add-ons</strong>, a collection of utility functions for creating mathematical animations with Manim Community Edition.</p>
-            <p style="margin-top: 1rem;">Browse demos by category below. Each demo includes interactive video playback, code snippets, and detailed explanations.</p>
+            <strong>About:</strong> Collection of utility functions for creating mathematical animations with Manim Community Edition. Each category below contains working demos with inline video playback and code examples.
         </div>
 
         <div class="categories">
             <a href="geometry.html" class="category-card">
-                <div class="category-icon">🔷</div>
-                <div class="category-title">Geometry</div>
+                <div class="category-header">
+                    <span>🔷</span>
+                    <div class="category-title">Geometry</div>
+                </div>
                 <div class="category-desc">Perpendicular and parallel line construction utilities</div>
-                <div class="category-count">10 demonstrations</div>
+                <div class="category-count">10 demos</div>
             </a>
 
             <a href="vectors.html" class="category-card">
-                <div class="category-icon">🔢</div>
-                <div class="category-title">Vectors</div>
+                <div class="category-header">
+                    <span>🔢</span>
+                    <div class="category-title">Vectors</div>
+                </div>
                 <div class="category-desc">Vector operations including projection, decomposition, and transformations</div>
-                <div class="category-count">18 demonstrations</div>
+                <div class="category-count">18 demos</div>
             </a>
 
             <a href="annotation.html" class="category-card">
-                <div class="category-icon">📏</div>
-                <div class="category-title">Annotation</div>
+                <div class="category-header">
+                    <span>📏</span>
+                    <div class="category-title">Annotation</div>
+                </div>
                 <div class="category-desc">Distance markers and geometric annotation utilities</div>
-                <div class="category-count">7 demonstrations</div>
+                <div class="category-count">7 demos</div>
             </a>
 
             <a href="labels.html" class="category-card">
-                <div class="category-icon">🏷️</div>
-                <div class="category-title">Labels</div>
+                <div class="category-header">
+                    <span>🏷️</span>
+                    <div class="category-title">Labels</div>
+                </div>
                 <div class="category-desc">Vertex and edge labeling for polygons</div>
-                <div class="category-count">5 demonstrations</div>
+                <div class="category-count">5 demos</div>
             </a>
 
             <a href="intersection.html" class="category-card">
-                <div class="category-icon">⚡</div>
-                <div class="category-title">Intersection</div>
+                <div class="category-header">
+                    <span>⚡</span>
+                    <div class="category-title">Intersection</div>
+                </div>
                 <div class="category-desc">Line-line and line-circle intersection utilities</div>
-                <div class="category-count">6 demonstrations</div>
+                <div class="category-count">6 demos</div>
             </a>
 
             <a href="transform.html" class="category-card">
-                <div class="category-icon">🔄</div>
-                <div class="category-title">Transform</div>
+                <div class="category-header">
+                    <span>🔄</span>
+                    <div class="category-title">Transform</div>
+                </div>
                 <div class="category-desc">Vector transformation utilities (translated, rotated, scaled)</div>
-                <div class="category-count">6 demonstrations</div>
+                <div class="category-count">6 demos</div>
             </a>
         </div>
 
         <div class="stats">
             <div class="stat-item">
-                <div class="stat-number">52</div>
-                <div class="stat-label">Total Demos</div>
+                <span class="stat-number">52</span>
+                <span class="stat-label">total demos</span>
             </div>
             <div class="stat-item">
-                <div class="stat-number">6</div>
-                <div class="stat-label">Categories</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">With Videos</div>
+                <span class="stat-number">6</span>
+                <span class="stat-label">categories</span>
             </div>
         </div>
 
         <footer>
-            <p>View source code and documentation on <a href="https://github.com/provility/robo-manim-add-ons" class="github-link">GitHub</a></p>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Built with Manim Community Edition</p>
+            Built with Manim Community Edition
         </footer>
     </div>
 </body>

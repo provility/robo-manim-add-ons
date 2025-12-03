@@ -12,125 +12,120 @@
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
+            line-height: 1.5;
+            color: #24292e;
+            background: #ffffff;
+            font-size: 14px;
         }
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: #f6f8fa;
+            border-bottom: 1px solid #d0d7de;
+            padding: 12px 16px;
         }
         .header-content {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
         }
         .back-link {
-            color: white;
+            color: #0969da;
             text-decoration: none;
-            display: inline-block;
-            margin-bottom: 1rem;
-            opacity: 0.9;
+            font-size: 14px;
         }
         .back-link:hover {
-            opacity: 1;
+            text-decoration: underline;
         }
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 8px 0 4px 0;
         }
         .subtitle {
-            opacity: 0.9;
-            font-size: 1.1rem;
+            color: #57606a;
+            font-size: 14px;
         }
         .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 16px;
         }
         .demo-grid {
             display: grid;
-            gap: 3rem;
+            gap: 24px;
         }
         .demo-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .demo-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            background: #ffffff;
         }
         .demo-content {
-            padding: 2rem;
+            padding: 16px;
         }
         .demo-title {
-            font-size: 1.8rem;
-            color: #667eea;
-            margin-bottom: 0.5rem;
+            font-size: 16px;
+            font-weight: 600;
+            color: #24292e;
+            margin-bottom: 4px;
         }
         .demo-description {
-            color: #666;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+            color: #57606a;
+            margin-bottom: 12px;
+            font-size: 14px;
         }
         video {
             width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-bottom: 1.5rem;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            margin-bottom: 12px;
         }
         .code-section {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 1.5rem;
-            border-left: 4px solid #667eea;
+            background: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 12px;
         }
         .code-title {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #24292e;
+            font-size: 14px;
         }
         pre {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 1rem;
+            background: #f6f8fa;
+            color: #24292e;
+            padding: 12px;
             border-radius: 6px;
             overflow-x: auto;
-            font-size: 0.9rem;
+            font-size: 12px;
             line-height: 1.5;
+            margin: 0;
         }
         code {
-            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
         }
-        .github-badge {
+        .github-link {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            background: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            top: 12px;
+            right: 16px;
+            background: #24292e;
+            color: #ffffff;
+            padding: 6px 12px;
+            border-radius: 6px;
             text-decoration: none;
-            color: #667eea;
-            font-weight: bold;
-            transition: transform 0.2s;
+            font-size: 14px;
+            font-weight: 500;
         }
-        .github-badge:hover {
-            transform: scale(1.05);
+        .github-link:hover {
+            background: #57606a;
         }
     </style>
 </head>
 <body>
-    <a href="https://github.com/provility/robo-manim-add-ons" class="github-badge">⭐ GitHub</a>
+    <a href="https://github.com/provility/robo-manim-add-ons" class="github-link">GitHub →</a>
 
     <div class="header">
         <div class="header-content">
-            <a href="index.html" class="back-link">← Back to Gallery</a>
-            <h1>🔷 Geometry Demos</h1>
+            <a href="index.html" class="back-link">← Back</a>
+            <h1>Geometry Demos</h1>
             <p class="subtitle">Perpendicular and parallel line construction utilities</p>
         </div>
     </div>
@@ -141,17 +136,27 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">DynamicParallelExample</h2>
-                    <p class="demo-description">Demo: DynamicParallelExample</p>
+                    <p class="demo-description">Dynamic parallel line following reference line</p>
 
                     <video controls>
-                        <source src="../demos/geometry/DynamicParallelExample.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/geometry/DynamicParallelExample.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for DynamicParallelExample
-# See examples/geometry/ for full source</code></pre>
+                        <pre><code>base_line = Line(LEFT * 3, RIGHT * 3, color=BLUE)
+following_dot = Dot(UP * 1.5, color=YELLOW)
+
+parallel_line = always_redraw(
+    lambda: parallel(base_line, following_dot, length=4, placement="mid").set_color(GREEN)
+)
+
+self.play(Create(base_line))
+self.play(FadeIn(following_dot), Create(parallel_line))
+
+# Rotate base line - parallel line follows
+self.play(Rotate(base_line, angle=PI/4, about_point=ORIGIN), run_time=3)</code></pre>
                     </div>
                 </div>
             </div>
@@ -160,17 +165,28 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">DynamicPerpExample</h2>
-                    <p class="demo-description">Demo: DynamicPerpExample</p>
+                    <p class="demo-description">Dynamic perpendicular with always_redraw()</p>
 
                     <video controls>
-                        <source src="../demos/geometry/DynamicPerpExample.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/geometry/DynamicPerpExample.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for DynamicPerpExample
-# See examples/geometry/ for full source</code></pre>
+                        <pre><code>base_line = Line(LEFT * 2, RIGHT * 2, color=BLUE)
+center_dot = Dot(ORIGIN, color=YELLOW)
+
+perp_line = always_redraw(
+    lambda: perp(base_line, center_dot, length=3, placement="mid").set_color(RED)
+)
+
+self.play(Create(base_line))
+self.play(FadeIn(center_dot))
+self.play(Create(perp_line))
+
+self.play(Rotate(base_line, angle=PI/3, about_point=ORIGIN), run_time=3)
+self.play(Rotate(base_line, angle=-PI/3, about_point=ORIGIN), run_time=3)</code></pre>
                     </div>
                 </div>
             </div>
@@ -179,17 +195,21 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">GeometryComboDemo</h2>
-                    <p class="demo-description">Demo: GeometryComboDemo</p>
+                    <p class="demo-description">Combining perpendicular and parallel</p>
 
                     <video controls>
-                        <source src="../demos/geometry/GeometryComboDemo.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/geometry/GeometryComboDemo.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for GeometryComboDemo
-# See examples/geometry/ for full source</code></pre>
+                        <pre><code>ref_line = Line(LEFT * 2 + DOWN, RIGHT * 2 + UP, color=BLUE)
+dot = Dot(ORIGIN, color=RED)
+perp_line = perp(ref_line, dot, 3.0, placement="mid").set_color(GREEN)
+
+dot2 = Dot(UP * 2 + LEFT, color=ORANGE)
+parallel_line = parallel(ref_line, dot2, 2.5, placement="mid").set_color(YELLOW)</code></pre>
                     </div>
                 </div>
             </div>
@@ -198,17 +218,28 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">InteractivePerpUpdater</h2>
-                    <p class="demo-description">Demo: InteractivePerpUpdater</p>
+                    <p class="demo-description">Perpendicular line following a moving point</p>
 
                     <video controls>
-                        <source src="../demos/geometry/InteractivePerpUpdater.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/geometry/InteractivePerpUpdater.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for InteractivePerpUpdater
-# See examples/geometry/ for full source</code></pre>
+                        <pre><code>ref_line = Line(LEFT * 3, RIGHT * 3, color=BLUE).shift(DOWN)
+moving_dot = Dot(ORIGIN, color=RED)
+
+perp_line = always_redraw(
+    lambda: perp(ref_line, moving_dot, length=3.0, placement="mid").set_color(GREEN)
+)
+
+self.play(Create(ref_line))
+self.add(moving_dot, perp_line)
+
+# Move dot along path - perpendicular updates
+self.play(moving_dot.animate.shift(RIGHT * 2 + UP), run_time=2)
+self.play(moving_dot.animate.shift(LEFT * 4), run_time=3)</code></pre>
                     </div>
                 </div>
             </div>
@@ -217,17 +248,32 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">MultiplePerpendicularUpdaters</h2>
-                    <p class="demo-description">Demo: MultiplePerpendicularUpdaters</p>
+                    <p class="demo-description">Multiple perpendiculars at different positions</p>
 
                     <video controls>
-                        <source src="../demos/geometry/MultiplePerpendicularUpdaters.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/geometry/MultiplePerpendicularUpdaters.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for MultiplePerpendicularUpdaters
-# See examples/geometry/ for full source</code></pre>
+                        <pre><code>ref_line = Line(LEFT * 3, RIGHT * 3, color=BLUE)
+
+# Create three dots at different positions
+dots = [
+    Dot(LEFT * 2, color=RED),
+    Dot(ORIGIN, color=GREEN),
+    Dot(RIGHT * 2, color=YELLOW)
+]
+
+# Create perpendiculars with updaters
+perps = [
+    always_redraw(lambda d=dot: perp(ref_line, d, 2.0, placement="mid").set_color(dot.get_color()))
+    for dot in dots
+]
+
+# Rotate reference line - all perpendiculars update
+self.play(Rotate(ref_line, angle=PI/3, about_point=ORIGIN), run_time=3)</code></pre>
                     </div>
                 </div>
             </div>
@@ -236,17 +282,24 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">ParallelDemo</h2>
-                    <p class="demo-description">Demo: ParallelDemo</p>
+                    <p class="demo-description">Basic parallel line construction</p>
 
                     <video controls>
-                        <source src="../demos/geometry/ParallelDemo.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/geometry/ParallelDemo.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for ParallelDemo
-# See examples/geometry/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons import parallel
+
+ref_line = Line(LEFT + DOWN, RIGHT + UP, color=BLUE)
+dot = Dot(UP * 2, color=RED)
+parallel_line = parallel(ref_line, dot, length=3.0, placement="mid").set_color(YELLOW)
+
+self.play(Create(ref_line))
+self.play(Create(dot))
+self.play(Create(parallel_line))</code></pre>
                     </div>
                 </div>
             </div>
@@ -255,17 +308,30 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">ParallelLinesGrid</h2>
-                    <p class="demo-description">Demo: ParallelLinesGrid</p>
+                    <p class="demo-description">Grid of parallel lines with dynamic updates</p>
 
                     <video controls>
-                        <source src="../demos/geometry/ParallelLinesGrid.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/geometry/ParallelLinesGrid.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for ParallelLinesGrid
-# See examples/geometry/ for full source</code></pre>
+                        <pre><code>ref_line = Line(LEFT * 3, RIGHT * 3, color=BLUE).rotate(PI/6)
+
+# Create grid of dots
+grid_dots = VGroup(*[
+    Dot(LEFT * 2 + UP * i) for i in range(-2, 3)
+])
+
+# Create parallel lines for each dot
+parallel_lines = VGroup(*[
+    always_redraw(lambda d=dot: parallel(ref_line, d, 4.0, placement="mid").set_color(GREEN))
+    for dot in grid_dots
+])
+
+# Rotate reference line - all parallels update
+self.play(Rotate(ref_line, angle=PI/4, about_point=ORIGIN), run_time=4)</code></pre>
                     </div>
                 </div>
             </div>
@@ -274,17 +340,41 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">ParallelogramUpdater</h2>
-                    <p class="demo-description">Demo: ParallelogramUpdater</p>
+                    <p class="demo-description">Dynamic parallelogram construction</p>
 
                     <video controls>
-                        <source src="../demos/geometry/ParallelogramUpdater.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/geometry/ParallelogramUpdater.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for ParallelogramUpdater
-# See examples/geometry/ for full source</code></pre>
+                        <pre><code>base = Line(LEFT * 2 + DOWN, RIGHT * 2 + DOWN, color=BLUE)
+top_left_dot = Dot(LEFT * 1.5 + UP, color=YELLOW)
+
+side = always_redraw(
+    lambda: Line(base.get_start(), top_left_dot.get_center(), color=BLUE)
+)
+
+top = always_redraw(
+    lambda: parallel(
+        base, top_left_dot,
+        length=base.get_length(),
+        placement="start"
+    ).set_color(GREEN)
+)
+
+top_right_dot = always_redraw(lambda: Dot(top.get_end(), color=YELLOW))
+
+right_side = always_redraw(
+    lambda: parallel(
+        side, top_right_dot,
+        length=side.get_length(),
+        placement="end"
+    ).set_color(GREEN)
+)
+
+self.play(top_left_dot.animate.move_to(LEFT * 2.5 + UP * 2), run_time=3)</code></pre>
                     </div>
                 </div>
             </div>
@@ -293,17 +383,24 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">PerpDemo</h2>
-                    <p class="demo-description">Demo: PerpDemo</p>
+                    <p class="demo-description">Basic perpendicular line construction</p>
 
                     <video controls>
-                        <source src="../demos/geometry/PerpDemo.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/geometry/PerpDemo.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for PerpDemo
-# See examples/geometry/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons import perp
+
+ref_line = Line(LEFT * 3, RIGHT * 3, color=BLUE)
+dot = Dot(ORIGIN, color=RED)
+perp_line = perp(ref_line, dot, length=4.0, placement="mid").set_color(GREEN)
+
+self.play(Create(ref_line))
+self.play(Create(dot))
+self.play(Create(perp_line))</code></pre>
                     </div>
                 </div>
             </div>
@@ -312,17 +409,24 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">PlacementDemo</h2>
-                    <p class="demo-description">Demo: PlacementDemo</p>
+                    <p class="demo-description">Placement options: start, mid, end</p>
 
                     <video controls>
-                        <source src="../demos/geometry/PlacementDemo.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/geometry/PlacementDemo.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for PlacementDemo
-# See examples/geometry/ for full source</code></pre>
+                        <pre><code>ref_line = Line(LEFT * 4, RIGHT * 4, color=BLUE)
+
+dot_mid = Dot(ORIGIN, color=RED)
+dot_start = Dot(UP * 2, color=GREEN)
+dot_end = Dot(DOWN * 2, color=YELLOW)
+
+perp_mid = perp(ref_line, dot_mid, 2.0, placement="mid").set_color(RED)
+perp_start = perp(ref_line, dot_start, 2.0, placement="start").set_color(GREEN)
+perp_end = perp(ref_line, dot_end, 2.0, placement="end").set_color(YELLOW)</code></pre>
                     </div>
                 </div>
             </div>

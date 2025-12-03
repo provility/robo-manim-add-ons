@@ -12,125 +12,120 @@
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
+            line-height: 1.5;
+            color: #24292e;
+            background: #ffffff;
+            font-size: 14px;
         }
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: #f6f8fa;
+            border-bottom: 1px solid #d0d7de;
+            padding: 12px 16px;
         }
         .header-content {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
         }
         .back-link {
-            color: white;
+            color: #0969da;
             text-decoration: none;
-            display: inline-block;
-            margin-bottom: 1rem;
-            opacity: 0.9;
+            font-size: 14px;
         }
         .back-link:hover {
-            opacity: 1;
+            text-decoration: underline;
         }
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 8px 0 4px 0;
         }
         .subtitle {
-            opacity: 0.9;
-            font-size: 1.1rem;
+            color: #57606a;
+            font-size: 14px;
         }
         .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 16px;
         }
         .demo-grid {
             display: grid;
-            gap: 3rem;
+            gap: 24px;
         }
         .demo-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .demo-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            background: #ffffff;
         }
         .demo-content {
-            padding: 2rem;
+            padding: 16px;
         }
         .demo-title {
-            font-size: 1.8rem;
-            color: #667eea;
-            margin-bottom: 0.5rem;
+            font-size: 16px;
+            font-weight: 600;
+            color: #24292e;
+            margin-bottom: 4px;
         }
         .demo-description {
-            color: #666;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+            color: #57606a;
+            margin-bottom: 12px;
+            font-size: 14px;
         }
         video {
             width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-bottom: 1.5rem;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            margin-bottom: 12px;
         }
         .code-section {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 1.5rem;
-            border-left: 4px solid #667eea;
+            background: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 12px;
         }
         .code-title {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #24292e;
+            font-size: 14px;
         }
         pre {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 1rem;
+            background: #f6f8fa;
+            color: #24292e;
+            padding: 12px;
             border-radius: 6px;
             overflow-x: auto;
-            font-size: 0.9rem;
+            font-size: 12px;
             line-height: 1.5;
+            margin: 0;
         }
         code {
-            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
         }
-        .github-badge {
+        .github-link {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            background: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            top: 12px;
+            right: 16px;
+            background: #24292e;
+            color: #ffffff;
+            padding: 6px 12px;
+            border-radius: 6px;
             text-decoration: none;
-            color: #667eea;
-            font-weight: bold;
-            transition: transform 0.2s;
+            font-size: 14px;
+            font-weight: 500;
         }
-        .github-badge:hover {
-            transform: scale(1.05);
+        .github-link:hover {
+            background: #57606a;
         }
     </style>
 </head>
 <body>
-    <a href="https://github.com/provility/robo-manim-add-ons" class="github-badge">⭐ GitHub</a>
+    <a href="https://github.com/provility/robo-manim-add-ons" class="github-link">GitHub →</a>
 
     <div class="header">
         <div class="header-content">
-            <a href="index.html" class="back-link">← Back to Gallery</a>
-            <h1>🔢 Vector Demos</h1>
+            <a href="index.html" class="back-link">← Back</a>
+            <h1>Vector Demos</h1>
             <p class="subtitle">Vector operations including projection, decomposition, and transformations</p>
         </div>
     </div>
@@ -141,17 +136,33 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">BasicDecompositionDemo</h2>
-                    <p class="demo-description">Demo: BasicDecompositionDemo</p>
+                    <p class="demo-description">Vector decomposition into parallel and perpendicular components</p>
 
                     <video controls>
-                        <source src="../demos/vectors/BasicDecompositionDemo.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/BasicDecompositionDemo.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for BasicDecompositionDemo
-# See examples/vectors/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+
+# Reference vector (horizontal)
+vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
+
+# Vector to decompose
+vector_a = Arrow(ORIGIN, RIGHT * 2 + UP * 1.5, buff=0, color=RED)
+
+# Create decomposition components
+parallel = VectorUtils.decompose_parallel(vector_a, vector_b, color=GREEN)
+perp = VectorUtils.decompose_perp(vector_a, vector_b, color=ORANGE)
+
+self.play(GrowArrow(parallel))
+self.play(GrowArrow(perp))
+
+# Add dashed line to complete the decomposition triangle
+dashed = DashedLine(vector_a.get_end(), parallel.get_end(), color=GRAY)
+self.play(Create(dashed))</code></pre>
                     </div>
                 </div>
             </div>
@@ -160,17 +171,37 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">DotProductProjectionDemo</h2>
-                    <p class="demo-description">Demo: DotProductProjectionDemo</p>
+                    <p class="demo-description">Vector projection with step-by-step visualization</p>
 
                     <video controls>
-                        <source src="../demos/vectors/DotProductProjectionDemo.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/DotProductProjectionDemo.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for DotProductProjectionDemo
-# See examples/vectors/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+
+vector_a = Arrow(ORIGIN, RIGHT * 3.5, buff=0, color=BLUE)
+vector_b = Arrow(ORIGIN, RIGHT * 2.5 + UP * 1.5, buff=0, color=RED)
+
+# Show angle between vectors
+angle_sector = Sector(radius=0.5, angle=angle, start_angle=0, color=YELLOW, fill_opacity=0.3)
+self.play(FadeIn(angle_sector))
+
+# Show projection line
+proj_line = VectorUtils.projection_line(vector_b, vector_a, color=GRAY)
+proj_line_dashed = DashedLine(proj_line.get_start(), proj_line.get_end(), color=GRAY)
+self.play(Create(proj_line_dashed))
+
+# Show right angle indicator
+right_angle = RightAngle(Line(proj_point, vector_a.get_end()),
+                         Line(proj_point, vector_b.get_end()))
+self.play(Create(right_angle))
+
+# Show projection vector
+proj_vector = VectorUtils.project_onto(vector_b, vector_a, color=GREEN)
+self.play(GrowArrow(proj_vector))</code></pre>
                     </div>
                 </div>
             </div>
@@ -179,17 +210,34 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">DotProductVisualization</h2>
-                    <p class="demo-description">Demo: DotProductVisualization</p>
+                    <p class="demo-description">Visualize dot product as projection times magnitude</p>
 
                     <video controls>
-                        <source src="../demos/vectors/DotProductVisualization.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/DotProductVisualization.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for DotProductVisualization
-# See examples/vectors/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+
+# Formula
+formula = MathTex(r"\vec{a} \cdot \vec{b} = |\vec{a}| \, |\text{proj}_{\vec{a}} \vec{b}|")
+
+vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
+vector_b = Arrow(ORIGIN, RIGHT * 2.2 + UP * 1.3, buff=0, color=RED)
+
+# Show projection
+proj = VectorUtils.project_onto(vector_b, vector_a, color=GREEN)
+proj_line = DashedLine(proj.get_end(), vector_b.get_end(), color=GRAY)
+
+# Highlight |a| with brace
+brace_a = Brace(vector_a, direction=DOWN, color=BLUE)
+label_a = brace_a.get_text(r"$|\vec{a}|$")
+
+# Highlight projection with brace
+brace_proj = Brace(proj, direction=DOWN, color=GREEN)
+label_proj = brace_proj.get_text(r"$|\text{proj}|$")</code></pre>
                     </div>
                 </div>
             </div>
@@ -198,17 +246,36 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">DynamicProjection</h2>
-                    <p class="demo-description">Demo: DynamicProjection</p>
+                    <p class="demo-description">Interactive projection that updates with vector rotation</p>
 
                     <video controls>
-                        <source src="../demos/vectors/DynamicProjection.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/DynamicProjection.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for DynamicProjection
-# See examples/vectors/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+
+vector_a = Arrow(ORIGIN, RIGHT * 3.5, buff=0, color=BLUE)
+vector_b = Arrow(ORIGIN, RIGHT * 2 + UP * 1.5, buff=0, color=RED)
+
+# Dynamic projection using always_redraw
+proj_vector = always_redraw(
+    lambda: VectorUtils.project_onto(vector_b, vector_a, color=GREEN)
+)
+
+proj_line = always_redraw(
+    lambda: DashedLine(proj_vector.get_end(), vector_b.get_end(), color=GRAY)
+)
+
+right_angle = always_redraw(
+    lambda: RightAngle(Line(proj_vector.get_end(), vector_a.get_end()),
+                       Line(proj_vector.get_end(), vector_b.get_end()))
+)
+
+# Rotate vector b - projection updates automatically
+self.play(Rotate(vector_b, angle=PI, about_point=ORIGIN), run_time=4)</code></pre>
                     </div>
                 </div>
             </div>
@@ -217,17 +284,33 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">InclinedPlaneForceDecomposition</h2>
-                    <p class="demo-description">Demo: InclinedPlaneForceDecomposition</p>
+                    <p class="demo-description">Practical example: Force decomposition on inclined plane</p>
 
                     <video controls>
-                        <source src="../demos/vectors/InclinedPlaneForceDecomposition.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/InclinedPlaneForceDecomposition.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for InclinedPlaneForceDecomposition
-# See examples/vectors/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+
+# Create inclined plane (line)
+angle = PI/6  # 30 degrees
+plane = Line(LEFT * 3, RIGHT * 3, color=GRAY).rotate(angle, about_point=ORIGIN)
+
+# Gravity force vector (pointing down)
+gravity = Arrow(ORIGIN, DOWN * 2, buff=0, color=RED)
+
+# Create slope direction (parallel to plane)
+slope_direction = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE).rotate(angle, about_point=ORIGIN)
+
+# Decompose gravity into parallel (down slope) and perpendicular (into plane)
+parallel_force = VectorUtils.decompose_parallel(gravity, slope_direction, color=GREEN)
+perp_force = VectorUtils.decompose_perp(gravity, slope_direction, color=ORANGE)
+
+self.play(GrowArrow(parallel_force))
+self.play(GrowArrow(perp_force))</code></pre>
                     </div>
                 </div>
             </div>
@@ -236,17 +319,39 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">MultipleDecompositions</h2>
-                    <p class="demo-description">Demo: MultipleDecompositions</p>
+                    <p class="demo-description">Multiple simultaneous decompositions with updaters</p>
 
                     <video controls>
-                        <source src="../demos/vectors/MultipleDecompositions.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/MultipleDecompositions.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for MultipleDecompositions
-# See examples/vectors/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+
+# Central reference vector
+ref_vector = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
+
+# Multiple vectors at different angles
+angles = [PI/6, PI/3, PI/2, 2*PI/3, 5*PI/6]
+vectors = VGroup()
+
+for angle in angles:
+    vec = Arrow(ORIGIN, RIGHT * 2, buff=0, color=RED).rotate(angle, about_point=ORIGIN)
+    vectors.add(vec)
+
+    # Create decomposition components
+    parallel = always_redraw(
+        lambda v=vec: VectorUtils.decompose_parallel(v, ref_vector, color=GREEN)
+    )
+
+    perp = always_redraw(
+        lambda v=vec: VectorUtils.decompose_perp(v, ref_vector, color=ORANGE)
+    )
+
+# Rotate reference vector - all decompositions update
+self.play(Rotate(ref_vector, angle=PI/3, about_point=ORIGIN), run_time=4)</code></pre>
                     </div>
                 </div>
             </div>
@@ -255,17 +360,34 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">OppositeDirectionDecomposition</h2>
-                    <p class="demo-description">Demo: OppositeDirectionDecomposition</p>
+                    <p class="demo-description">Decomposition when vectors point in opposite directions</p>
 
                     <video controls>
-                        <source src="../demos/vectors/OppositeDirectionDecomposition.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/OppositeDirectionDecomposition.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for OppositeDirectionDecomposition
-# See examples/vectors/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+
+# Reference vector (pointing right)
+vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
+
+# Vector pointing opposite direction (starts pointing left)
+vector_a = Arrow(ORIGIN, LEFT * 2 + UP * 0.5, buff=0, color=RED)
+
+# Create dynamic decomposition
+parallel = always_redraw(
+    lambda: VectorUtils.decompose_parallel(vector_a, vector_b, color=GREEN)
+)
+
+perp = always_redraw(
+    lambda: VectorUtils.decompose_perp(vector_a, vector_b, color=ORANGE)
+)
+
+# Rotate vector_a to show parallel component changing sign
+self.play(Rotate(vector_a, angle=PI, about_point=ORIGIN), run_time=4)</code></pre>
                     </div>
                 </div>
             </div>
@@ -274,17 +396,32 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">ProjectionCases</h2>
-                    <p class="demo-description">Demo: ProjectionCases</p>
+                    <p class="demo-description">Different projection cases: acute, right, and obtuse angles</p>
 
                     <video controls>
-                        <source src="../demos/vectors/ProjectionCases.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionCases.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for ProjectionCases
-# See examples/vectors/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+
+# Case 1: Acute angle (positive projection)
+vec_a1 = Arrow(LEFT * 5, LEFT * 5 + RIGHT * 2, buff=0, color=BLUE)
+vec_b1 = Arrow(LEFT * 5, LEFT * 5 + RIGHT * 1.5 + UP * 0.8, buff=0, color=RED)
+proj1 = VectorUtils.project_onto(vec_b1, vec_a1, color=GREEN)
+line1 = DashedLine(proj1.get_end(), vec_b1.get_end(), color=GRAY)
+
+# Case 2: Right angle (zero projection)
+vec_a2 = Arrow(LEFT * 1, LEFT * 1 + RIGHT * 2, buff=0, color=BLUE)
+vec_b2 = Arrow(LEFT * 1, LEFT * 1 + UP * 1.5, buff=0, color=RED)
+proj2 = VectorUtils.project_onto(vec_b2, vec_a2, color=GREEN)
+
+# Case 3: Obtuse angle (negative projection)
+vec_a3 = Arrow(RIGHT * 3, RIGHT * 3 + RIGHT * 2, buff=0, color=BLUE)
+vec_b3 = Arrow(RIGHT * 3, RIGHT * 3 + LEFT * 0.8 + UP * 1.2, buff=0, color=RED)
+proj3 = VectorUtils.project_onto(vec_b3, vec_a3, color=GREEN)</code></pre>
                     </div>
                 </div>
             </div>
@@ -293,17 +430,34 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">ProjectionDecomposition</h2>
-                    <p class="demo-description">Demo: ProjectionDecomposition</p>
+                    <p class="demo-description">Decompose vector into parallel and perpendicular components</p>
 
                     <video controls>
-                        <source src="../demos/vectors/ProjectionDecomposition.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionDecomposition.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for ProjectionDecomposition
-# See examples/vectors/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+
+# Title formula
+title = MathTex(r"\vec{b} = \vec{b}_\parallel + \vec{b}_\perp")
+
+vector_a = Arrow(ORIGIN, RIGHT * 3.5, buff=0, color=BLUE)
+vector_b = Arrow(ORIGIN, RIGHT * 2.5 + UP * 1.8, buff=0, color=RED)
+
+# Parallel component (projection)
+parallel = VectorUtils.decompose_parallel(vector_b, vector_a, color=GREEN)
+self.play(GrowArrow(parallel))
+
+# Perpendicular component
+perp = VectorUtils.decompose_perp(vector_b, vector_a, color=ORANGE)
+self.play(GrowArrow(perp))
+
+# Dashed line completing triangle
+dashed = DashedLine(vector_b.get_end(), parallel.get_end(), color=GRAY)
+self.play(Create(dashed))</code></pre>
                     </div>
                 </div>
             </div>
@@ -312,17 +466,35 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">ProjectionDemo</h2>
-                    <p class="demo-description">Demo: ProjectionDemo</p>
+                    <p class="demo-description">Vector projection with dynamic rotation</p>
 
                     <video controls>
-                        <source src="../demos/vectors/ProjectionDemo.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionDemo.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for ProjectionDemo
-# See examples/vectors/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+
+vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0)
+vector_b = Arrow(ORIGIN, RIGHT * 2 + UP * 1.5, buff=0)
+
+# Projection visualizations with updaters
+projection = always_redraw(
+    lambda: VectorUtils.project_onto(vector_b, vector_a)
+)
+
+proj_line = always_redraw(
+    lambda: VectorUtils.projection_line(vector_b, vector_a)
+)
+
+proj_region = always_redraw(
+    lambda: VectorUtils.projection_region(vector_b, vector_a, fill_opacity=0.3)
+)
+
+# Rotate vector_b - projections update dynamically
+self.play(Rotate(vector_b, angle=PI, about_point=ORIGIN))</code></pre>
                     </div>
                 </div>
             </div>
@@ -331,17 +503,37 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">ProjectionScaling</h2>
-                    <p class="demo-description">Demo: ProjectionScaling</p>
+                    <p class="demo-description">Projection magnitude changes with vector magnitude</p>
 
                     <video controls>
-                        <source src="../demos/vectors/ProjectionScaling.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionScaling.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for ProjectionScaling
-# See examples/vectors/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+
+# Fixed target
+vector_a = Arrow(ORIGIN, RIGHT * 3.5, buff=0, color=BLUE)
+
+# Scaling vector
+vector_b = Arrow(ORIGIN, RIGHT * 1 + UP * 0.8, buff=0, color=RED)
+
+# Dynamic projection
+proj = always_redraw(
+    lambda: VectorUtils.project_onto(vector_b, vector_a, color=GREEN)
+)
+
+proj_line = always_redraw(
+    lambda: DashedLine(proj.get_end(), vector_b.get_end(), color=GRAY)
+)
+
+# Scale up vector b - projection grows
+self.play(vector_b.animate.put_start_and_end_on(ORIGIN, RIGHT * 2.5 + UP * 2), run_time=2)
+
+# Scale down vector b - projection shrinks
+self.play(vector_b.animate.put_start_and_end_on(ORIGIN, RIGHT * 0.5 + UP * 0.4), run_time=2)</code></pre>
                     </div>
                 </div>
             </div>
@@ -350,17 +542,36 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">ProjectionScalingDemo</h2>
-                    <p class="demo-description">Demo: ProjectionScalingDemo</p>
+                    <p class="demo-description">Projection scaling with vector magnitude</p>
 
                     <video controls>
-                        <source src="../demos/vectors/ProjectionScalingDemo.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionScalingDemo.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for ProjectionScalingDemo
-# See examples/vectors/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+
+vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0)
+vector_b = Arrow(ORIGIN, RIGHT * 1 + UP * 1, buff=0)
+
+# Projection with always_redraw
+projection = always_redraw(
+    lambda: VectorUtils.project_onto(vector_b, vector_a)
+)
+
+proj_line = always_redraw(
+    lambda: VectorUtils.projection_line(vector_b, vector_a)
+)
+
+proj_region = always_redraw(
+    lambda: VectorUtils.projection_region(vector_b, vector_a, fill_opacity=0.3)
+)
+
+# Scale vector_b - projection scales proportionally
+new_end = RIGHT * 2.5 + UP * 2.5
+self.play(vector_b.animate.put_start_and_end_on(ORIGIN, new_end))</code></pre>
                     </div>
                 </div>
             </div>
@@ -369,17 +580,31 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">ProjectionWithFormula</h2>
-                    <p class="demo-description">Demo: ProjectionWithFormula</p>
+                    <p class="demo-description">Projection with mathematical formula display</p>
 
                     <video controls>
-                        <source src="../demos/vectors/ProjectionWithFormula.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionWithFormula.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for ProjectionWithFormula
-# See examples/vectors/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+
+# Formula at top
+formula = MathTex(r"\text{proj}_{\vec{a}} \vec{b} = \frac{\vec{a} \cdot \vec{b}}{|\vec{a}|^2} \vec{a}")
+self.play(Write(formula))
+
+# Vectors
+vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
+vector_b = Arrow(ORIGIN, RIGHT * 2 + UP * 1.5, buff=0, color=RED)
+
+# Show projection
+proj_vector = VectorUtils.project_onto(vector_b, vector_a, color=GREEN)
+proj_line = DashedLine(proj_vector.get_end(), vector_b.get_end(), color=GRAY)
+
+self.play(GrowArrow(proj_vector))
+self.play(Create(proj_line))</code></pre>
                     </div>
                 </div>
             </div>
@@ -388,17 +613,31 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">ProjectionWithRegion</h2>
-                    <p class="demo-description">Demo: ProjectionWithRegion</p>
+                    <p class="demo-description">Projection with shaded triangular region</p>
 
                     <video controls>
-                        <source src="../demos/vectors/ProjectionWithRegion.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionWithRegion.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for ProjectionWithRegion
-# See examples/vectors/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+
+vector_a = Arrow(ORIGIN, RIGHT * 3.5, buff=0, color=BLUE)
+vector_b = Arrow(ORIGIN, RIGHT * 2.5 + UP * 1.5, buff=0, color=RED)
+
+# Show shaded region
+region = VectorUtils.projection_region(vector_b, vector_a, fill_opacity=0.3, color=YELLOW)
+self.play(FadeIn(region))
+
+# Show projection vector
+proj_vector = VectorUtils.project_onto(vector_b, vector_a, color=GREEN)
+self.play(GrowArrow(proj_vector))
+
+# Show perpendicular line
+proj_line = DashedLine(proj_vector.get_end(), vector_b.get_end(), color=GRAY)
+self.play(Create(proj_line))</code></pre>
                     </div>
                 </div>
             </div>
@@ -407,17 +646,34 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">ReverseAtDemo</h2>
-                    <p class="demo-description">Demo: ReverseAtDemo</p>
+                    <p class="demo-description">Vector reversal for subtraction visualization</p>
 
                     <video controls>
-                        <source src="../demos/vectors/ReverseAtDemo.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ReverseAtDemo.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for ReverseAtDemo
-# See examples/vectors/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+
+origin = Dot(ORIGIN, color=YELLOW)
+vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
+vector_b = Arrow(ORIGIN, UP * 2, buff=0, color=RED)
+
+# Create -b at origin
+neg_b_at_origin = VectorUtils.reverse_at(vector_b, ORIGIN, color=PURPLE)
+self.play(Create(neg_b_at_origin))
+
+# Move -b to tip of a
+neg_b_at_tip = VectorUtils.reverse_at(vector_b, vector_a.get_end(), color=PURPLE)
+self.play(Transform(neg_b_at_origin, neg_b_at_tip))
+
+# Show result vector (a - b)
+vec_a_dir = vector_a.get_end() - vector_a.get_start()
+vec_b_dir = vector_b.get_end() - vector_b.get_start()
+result_vector = Arrow(ORIGIN, ORIGIN + vec_a_dir - vec_b_dir, buff=0, color=GREEN)
+self.play(GrowArrow(result_vector))</code></pre>
                     </div>
                 </div>
             </div>
@@ -426,17 +682,34 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">RotatingReferenceDecomposition</h2>
-                    <p class="demo-description">Demo: RotatingReferenceDecomposition</p>
+                    <p class="demo-description">Decomposition updates as reference vector rotates</p>
 
                     <video controls>
-                        <source src="../demos/vectors/RotatingReferenceDecomposition.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/RotatingReferenceDecomposition.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for RotatingReferenceDecomposition
-# See examples/vectors/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+
+# Vector to decompose (fixed)
+vector_a = Arrow(ORIGIN, RIGHT * 2.5 + UP * 1.5, buff=0, color=RED)
+
+# Rotating reference vector
+vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
+
+# Create dynamic decomposition
+parallel = always_redraw(
+    lambda: VectorUtils.decompose_parallel(vector_a, vector_b, color=GREEN)
+)
+
+perp = always_redraw(
+    lambda: VectorUtils.decompose_perp(vector_a, vector_b, color=ORANGE)
+)
+
+# Rotate reference vector - decomposition changes
+self.play(Rotate(vector_b, angle=PI/2, about_point=ORIGIN), run_time=3)</code></pre>
                     </div>
                 </div>
             </div>
@@ -445,17 +718,38 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">RotatingVectorDecomposition</h2>
-                    <p class="demo-description">Demo: RotatingVectorDecomposition</p>
+                    <p class="demo-description">Decomposition updates as vector rotates</p>
 
                     <video controls>
-                        <source src="../demos/vectors/RotatingVectorDecomposition.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/RotatingVectorDecomposition.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for RotatingVectorDecomposition
-# See examples/vectors/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+
+# Fixed reference vector
+vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
+
+# Rotating vector
+vector_a = Arrow(ORIGIN, RIGHT * 2 + UP * 1, buff=0, color=RED)
+
+# Create dynamic decomposition with always_redraw
+parallel = always_redraw(
+    lambda: VectorUtils.decompose_parallel(vector_a, vector_b, color=GREEN)
+)
+
+perp = always_redraw(
+    lambda: VectorUtils.decompose_perp(vector_a, vector_b, color=ORANGE)
+)
+
+dashed = always_redraw(
+    lambda: DashedLine(vector_a.get_end(), parallel.get_end(), color=GRAY)
+)
+
+# Rotate vector_a - watch decomposition change
+self.play(Rotate(vector_a, angle=PI, about_point=ORIGIN), run_time=4)</code></pre>
                     </div>
                 </div>
             </div>
@@ -464,17 +758,37 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">ScalingVectorDecomposition</h2>
-                    <p class="demo-description">Demo: ScalingVectorDecomposition</p>
+                    <p class="demo-description">Decomposition with vector magnitude changes</p>
 
                     <video controls>
-                        <source src="../demos/vectors/ScalingVectorDecomposition.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ScalingVectorDecomposition.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for ScalingVectorDecomposition
-# See examples/vectors/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons.vector_utils import VectorUtils
+
+# Fixed reference vector
+vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
+
+# Vector that will scale
+vector_a = Arrow(ORIGIN, RIGHT * 1 + UP * 1, buff=0, color=RED)
+
+# Create dynamic decomposition
+parallel = always_redraw(
+    lambda: VectorUtils.decompose_parallel(vector_a, vector_b, color=GREEN)
+)
+
+perp = always_redraw(
+    lambda: VectorUtils.decompose_perp(vector_a, vector_b, color=ORANGE)
+)
+
+# Scale up - decomposition components scale proportionally
+self.play(
+    vector_a.animate.put_start_and_end_on(ORIGIN, RIGHT * 2.5 + UP * 2.5),
+    run_time=3
+)</code></pre>
                     </div>
                 </div>
             </div>

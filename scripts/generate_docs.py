@@ -65,125 +65,120 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         }}
         body {{
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
+            line-height: 1.5;
+            color: #24292e;
+            background: #ffffff;
+            font-size: 14px;
         }}
         .header {{
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: #f6f8fa;
+            border-bottom: 1px solid #d0d7de;
+            padding: 12px 16px;
         }}
         .header-content {{
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
         }}
         .back-link {{
-            color: white;
+            color: #0969da;
             text-decoration: none;
-            display: inline-block;
-            margin-bottom: 1rem;
-            opacity: 0.9;
+            font-size: 14px;
         }}
         .back-link:hover {{
-            opacity: 1;
+            text-decoration: underline;
         }}
         h1 {{
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 8px 0 4px 0;
         }}
         .subtitle {{
-            opacity: 0.9;
-            font-size: 1.1rem;
+            color: #57606a;
+            font-size: 14px;
         }}
         .container {{
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 16px;
         }}
         .demo-grid {{
             display: grid;
-            gap: 3rem;
+            gap: 24px;
         }}
         .demo-card {{
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }}
-        .demo-card:hover {{
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            background: #ffffff;
         }}
         .demo-content {{
-            padding: 2rem;
+            padding: 16px;
         }}
         .demo-title {{
-            font-size: 1.8rem;
-            color: #667eea;
-            margin-bottom: 0.5rem;
+            font-size: 16px;
+            font-weight: 600;
+            color: #24292e;
+            margin-bottom: 4px;
         }}
         .demo-description {{
-            color: #666;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+            color: #57606a;
+            margin-bottom: 12px;
+            font-size: 14px;
         }}
         video {{
             width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-bottom: 1.5rem;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            margin-bottom: 12px;
         }}
         .code-section {{
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 1.5rem;
-            border-left: 4px solid #667eea;
+            background: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 12px;
         }}
         .code-title {{
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #24292e;
+            font-size: 14px;
         }}
         pre {{
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 1rem;
+            background: #f6f8fa;
+            color: #24292e;
+            padding: 12px;
             border-radius: 6px;
             overflow-x: auto;
-            font-size: 0.9rem;
+            font-size: 12px;
             line-height: 1.5;
+            margin: 0;
         }}
         code {{
-            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
         }}
-        .github-badge {{
+        .github-link {{
             position: fixed;
-            top: 20px;
-            right: 20px;
-            background: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            top: 12px;
+            right: 16px;
+            background: #24292e;
+            color: #ffffff;
+            padding: 6px 12px;
+            border-radius: 6px;
             text-decoration: none;
-            color: #667eea;
-            font-weight: bold;
-            transition: transform 0.2s;
+            font-size: 14px;
+            font-weight: 500;
         }}
-        .github-badge:hover {{
-            transform: scale(1.05);
+        .github-link:hover {{
+            background: #57606a;
         }}
     </style>
 </head>
 <body>
-    <a href="https://github.com/provility/robo-manim-add-ons" class="github-badge">⭐ GitHub</a>
+    <a href="https://github.com/provility/robo-manim-add-ons" class="github-link">GitHub →</a>
 
     <div class="header">
         <div class="header-content">
-            <a href="index.html" class="back-link">← Back to Gallery</a>
-            <h1>{icon} {title}</h1>
+            <a href="index.html" class="back-link">← Back</a>
+            <h1>{title}</h1>
             <p class="subtitle">{description}</p>
         </div>
     </div>
@@ -205,7 +200,7 @@ DEMO_CARD_TEMPLATE = """            <!-- {demo_name} -->
                     <p class="demo-description">{demo_desc}</p>
 
                     <video controls>
-                        <source src="../demos/{category}/{video_file}" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/{category}/{video_file}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
@@ -228,6 +223,35 @@ def get_demos_from_directory(category):
     return videos
 
 
+def extract_demo_info(category, demo_name):
+    """Extract description and code snippet from INDEX.md for a demo."""
+    index_file = Path(__file__).parent.parent / "demos" / category / "INDEX.md"
+
+    if not index_file.exists():
+        return {
+            "description": f"Demo: {demo_name}",
+            "code": f"# See examples/{category}/ for source code"
+        }
+
+    content = index_file.read_text()
+
+    # Find the demo section
+    import re
+    # Match: ## DemoName
+    pattern = rf"##\s+{re.escape(demo_name)}\s*\n\*\*(.+?)\*\*\s*\n.*?```python\n(.*?)```"
+    match = re.search(pattern, content, re.DOTALL)
+
+    if match:
+        description = match.group(1)
+        code = match.group(2).strip()
+        return {"description": description, "code": code}
+
+    return {
+        "description": f"Demo: {demo_name}",
+        "code": f"# See examples/{category}/ for source code"
+    }
+
+
 def generate_category_page(category, config):
     """Generate HTML page for a category."""
 
@@ -237,12 +261,15 @@ def generate_category_page(category, config):
     # Generate demo cards
     demo_cards = []
     for demo_name in demo_names:
+        # Extract real description and code from INDEX.md
+        info = extract_demo_info(category, demo_name)
+
         card = DEMO_CARD_TEMPLATE.format(
             demo_name=demo_name,
-            demo_desc=f"Demo: {demo_name}",
+            demo_desc=info["description"],
             category=category,
             video_file=f"{demo_name}.mp4",
-            code_snippet=f"# Code for {demo_name}\n# See examples/{category}/ for full source"
+            code_snippet=info["code"]
         )
         demo_cards.append(card)
 

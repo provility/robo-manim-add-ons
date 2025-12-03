@@ -12,125 +12,120 @@
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
+            line-height: 1.5;
+            color: #24292e;
+            background: #ffffff;
+            font-size: 14px;
         }
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: #f6f8fa;
+            border-bottom: 1px solid #d0d7de;
+            padding: 12px 16px;
         }
         .header-content {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
         }
         .back-link {
-            color: white;
+            color: #0969da;
             text-decoration: none;
-            display: inline-block;
-            margin-bottom: 1rem;
-            opacity: 0.9;
+            font-size: 14px;
         }
         .back-link:hover {
-            opacity: 1;
+            text-decoration: underline;
         }
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 8px 0 4px 0;
         }
         .subtitle {
-            opacity: 0.9;
-            font-size: 1.1rem;
+            color: #57606a;
+            font-size: 14px;
         }
         .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 16px;
         }
         .demo-grid {
             display: grid;
-            gap: 3rem;
+            gap: 24px;
         }
         .demo-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .demo-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            background: #ffffff;
         }
         .demo-content {
-            padding: 2rem;
+            padding: 16px;
         }
         .demo-title {
-            font-size: 1.8rem;
-            color: #667eea;
-            margin-bottom: 0.5rem;
+            font-size: 16px;
+            font-weight: 600;
+            color: #24292e;
+            margin-bottom: 4px;
         }
         .demo-description {
-            color: #666;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+            color: #57606a;
+            margin-bottom: 12px;
+            font-size: 14px;
         }
         video {
             width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-bottom: 1.5rem;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            margin-bottom: 12px;
         }
         .code-section {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 1.5rem;
-            border-left: 4px solid #667eea;
+            background: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 12px;
         }
         .code-title {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #24292e;
+            font-size: 14px;
         }
         pre {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 1rem;
+            background: #f6f8fa;
+            color: #24292e;
+            padding: 12px;
             border-radius: 6px;
             overflow-x: auto;
-            font-size: 0.9rem;
+            font-size: 12px;
             line-height: 1.5;
+            margin: 0;
         }
         code {
-            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
         }
-        .github-badge {
+        .github-link {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            background: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            top: 12px;
+            right: 16px;
+            background: #24292e;
+            color: #ffffff;
+            padding: 6px 12px;
+            border-radius: 6px;
             text-decoration: none;
-            color: #667eea;
-            font-weight: bold;
-            transition: transform 0.2s;
+            font-size: 14px;
+            font-weight: 500;
         }
-        .github-badge:hover {
-            transform: scale(1.05);
+        .github-link:hover {
+            background: #57606a;
         }
     </style>
 </head>
 <body>
-    <a href="https://github.com/provility/robo-manim-add-ons" class="github-badge">⭐ GitHub</a>
+    <a href="https://github.com/provility/robo-manim-add-ons" class="github-link">GitHub →</a>
 
     <div class="header">
         <div class="header-content">
-            <a href="index.html" class="back-link">← Back to Gallery</a>
-            <h1>⚡ Intersection Demos</h1>
+            <a href="index.html" class="back-link">← Back</a>
+            <h1>Intersection Demos</h1>
             <p class="subtitle">Line-line and line-circle intersection utilities</p>
         </div>
     </div>
@@ -141,17 +136,23 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">BasicIntersectionDemo</h2>
-                    <p class="demo-description">Demo: BasicIntersectionDemo</p>
+                    <p class="demo-description">Basic line-line intersection</p>
 
                     <video controls>
-                        <source src="../demos/intersection/BasicIntersectionDemo.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/BasicIntersectionDemo.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for BasicIntersectionDemo
-# See examples/intersection/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons import intersect_lines
+
+line1 = Line(LEFT * 3, RIGHT * 3, color=BLUE)
+line2 = Line(DOWN * 2, UP * 2, color=GREEN)
+
+# Returns a Dot at intersection point
+intersection_dot = intersect_lines(line1, line2)
+intersection_dot.set_color(RED).scale(1.5)</code></pre>
                     </div>
                 </div>
             </div>
@@ -160,17 +161,25 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">BasicLineCircleIntersection</h2>
-                    <p class="demo-description">Demo: BasicLineCircleIntersection</p>
+                    <p class="demo-description">Line through circle (2 intersection points)</p>
 
                     <video controls>
-                        <source src="../demos/intersection/BasicLineCircleIntersection.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/BasicLineCircleIntersection.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for BasicLineCircleIntersection
-# See examples/intersection/ for full source</code></pre>
+                        <pre><code>from robo_manim_add_ons import intersect_line_circle
+
+circle = Circle(radius=2, color=BLUE)
+line = Line(LEFT * 3, RIGHT * 3, color=GREEN)
+
+# Returns VGroup containing 0, 1, or 2 Dots
+intersections = intersect_line_circle(line, circle)
+
+for dot in intersections:
+    dot.set_color(RED).scale(1.5)</code></pre>
                     </div>
                 </div>
             </div>
@@ -179,17 +188,25 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">DynamicIntersectionDemo</h2>
-                    <p class="demo-description">Demo: DynamicIntersectionDemo</p>
+                    <p class="demo-description">Intersection follows rotating line using always_redraw()</p>
 
                     <video controls>
-                        <source src="../demos/intersection/DynamicIntersectionDemo.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/DynamicIntersectionDemo.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for DynamicIntersectionDemo
-# See examples/intersection/ for full source</code></pre>
+                        <pre><code>fixed_line = Line(LEFT * 3, RIGHT * 3, color=BLUE)
+rotating_line = Line(DOWN * 2, UP * 2, color=GREEN)
+
+# Intersection updates automatically as line rotates
+intersection_dot = always_redraw(
+    lambda: intersect_lines(fixed_line, rotating_line)
+        .set_color(RED).scale(1.5)
+)
+
+self.play(Rotate(rotating_line, angle=PI/3, about_point=ORIGIN))</code></pre>
                     </div>
                 </div>
             </div>
@@ -198,17 +215,27 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">DynamicLineCircleIntersection</h2>
-                    <p class="demo-description">Demo: DynamicLineCircleIntersection</p>
+                    <p class="demo-description">Dynamic intersection with rotating line</p>
 
                     <video controls>
-                        <source src="../demos/intersection/DynamicLineCircleIntersection.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/DynamicLineCircleIntersection.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for DynamicLineCircleIntersection
-# See examples/intersection/ for full source</code></pre>
+                        <pre><code>circle = Circle(radius=2, color=BLUE)
+line = Line(LEFT * 3, RIGHT * 3, color=GREEN)
+
+# Intersections update automatically with always_redraw
+intersections = always_redraw(
+    lambda: VGroup(*[
+        dot.set_color(RED).scale(1.5)
+        for dot in intersect_line_circle(line, circle)
+    ])
+)
+
+self.play(Rotate(line, angle=PI/4, about_point=ORIGIN))</code></pre>
                     </div>
                 </div>
             </div>
@@ -217,17 +244,24 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">ParallelLinesDemo</h2>
-                    <p class="demo-description">Demo: ParallelLinesDemo</p>
+                    <p class="demo-description">Parallel lines return empty VGroup</p>
 
                     <video controls>
-                        <source src="../demos/intersection/ParallelLinesDemo.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/ParallelLinesDemo.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for ParallelLinesDemo
-# See examples/intersection/ for full source</code></pre>
+                        <pre><code>line1 = Line(LEFT * 3, RIGHT * 3).shift(UP)
+line2 = Line(LEFT * 3, RIGHT * 3).shift(DOWN)
+
+result = intersect_lines(line1, line2)
+
+# Check if parallel (no intersection)
+if len(result) == 0:
+    # Lines are parallel
+    pass</code></pre>
                     </div>
                 </div>
             </div>
@@ -236,17 +270,22 @@
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">TangentLineDemo</h2>
-                    <p class="demo-description">Demo: TangentLineDemo</p>
+                    <p class="demo-description">Tangent line (1 intersection point)</p>
 
                     <video controls>
-                        <source src="../demos/intersection/TangentLineDemo.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/TangentLineDemo.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
-                        <pre><code># Code for TangentLineDemo
-# See examples/intersection/ for full source</code></pre>
+                        <pre><code>circle = Circle(radius=2, color=BLUE)
+line = Line(LEFT * 3 + UP * 2, RIGHT * 3 + UP * 2, color=GREEN)
+
+intersections = intersect_line_circle(line, circle)
+
+# Tangent line produces 1 intersection point
+print(f"Found {len(intersections)} intersection(s)")</code></pre>
                     </div>
                 </div>
             </div>
