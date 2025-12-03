@@ -12,10 +12,11 @@ from robo_manim_add_ons import perp
 
 ref_line = Line(LEFT * 3, RIGHT * 3, color=BLUE)
 dot = Dot(ORIGIN, color=RED)
+perp_line = perp(ref_line, dot, length=4.0, placement="mid").set_color(GREEN)
 
-# Create perpendicular line through dot
-perp_line = perp(ref_line, dot, length=4.0, placement="mid")
-perp_line.set_color(GREEN)
+self.play(Create(ref_line))
+self.play(Create(dot))
+self.play(Create(perp_line))
 ```
 
 ![PerpDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/PerpDemo_ManimCE_v0.19.0.png)
@@ -32,10 +33,11 @@ from robo_manim_add_ons import parallel
 
 ref_line = Line(LEFT + DOWN, RIGHT + UP, color=BLUE)
 dot = Dot(UP * 2, color=RED)
+parallel_line = parallel(ref_line, dot, length=3.0, placement="mid").set_color(YELLOW)
 
-# Create parallel line through dot
-parallel_line = parallel(ref_line, dot, length=3.0, placement="mid")
-parallel_line.set_color(YELLOW)
+self.play(Create(ref_line))
+self.play(Create(dot))
+self.play(Create(parallel_line))
 ```
 
 ![ParallelDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/ParallelDemo_ManimCE_v0.19.0.png)
@@ -50,14 +52,13 @@ parallel_line.set_color(YELLOW)
 ```python
 ref_line = Line(LEFT * 4, RIGHT * 4, color=BLUE)
 
-dot_mid = Dot(ORIGIN)
-dot_start = Dot(UP * 2)
-dot_end = Dot(DOWN * 2)
+dot_mid = Dot(ORIGIN, color=RED)
+dot_start = Dot(UP * 2, color=GREEN)
+dot_end = Dot(DOWN * 2, color=YELLOW)
 
-# Three placement options
-perp_mid = perp(ref_line, dot_mid, 2.0, placement="mid")      # centered on dot
-perp_start = perp(ref_line, dot_start, 2.0, placement="start")  # starts at dot
-perp_end = perp(ref_line, dot_end, 2.0, placement="end")       # ends at dot
+perp_mid = perp(ref_line, dot_mid, 2.0, placement="mid").set_color(RED)
+perp_start = perp(ref_line, dot_start, 2.0, placement="start").set_color(GREEN)
+perp_end = perp(ref_line, dot_end, 2.0, placement="end").set_color(YELLOW)
 ```
 
 ![PlacementDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/PlacementDemo_ManimCE_v0.19.0.png)
@@ -71,12 +72,9 @@ perp_end = perp(ref_line, dot_end, 2.0, placement="end")       # ends at dot
 
 ```python
 ref_line = Line(LEFT * 2 + DOWN, RIGHT * 2 + UP, color=BLUE)
+dot = Dot(ORIGIN, color=RED)
+perp_line = perp(ref_line, dot, 3.0, placement="mid").set_color(GREEN)
 
-# Perpendicular to ref_line
-dot1 = Dot(ORIGIN, color=RED)
-perp_line = perp(ref_line, dot1, 3.0, placement="mid").set_color(GREEN)
-
-# Parallel to ref_line
 dot2 = Dot(UP * 2 + LEFT, color=ORANGE)
 parallel_line = parallel(ref_line, dot2, 2.5, placement="mid").set_color(YELLOW)
 ```
@@ -94,13 +92,16 @@ parallel_line = parallel(ref_line, dot2, 2.5, placement="mid").set_color(YELLOW)
 base_line = Line(LEFT * 2, RIGHT * 2, color=BLUE)
 center_dot = Dot(ORIGIN, color=YELLOW)
 
-# Perpendicular updates automatically as base_line rotates
 perp_line = always_redraw(
-    lambda: perp(base_line, center_dot, length=3, placement="mid")
-        .set_color(RED)
+    lambda: perp(base_line, center_dot, length=3, placement="mid").set_color(RED)
 )
 
-self.play(Rotate(base_line, angle=PI/3, about_point=ORIGIN))
+self.play(Create(base_line))
+self.play(FadeIn(center_dot))
+self.play(Create(perp_line))
+
+self.play(Rotate(base_line, angle=PI/3, about_point=ORIGIN), run_time=3)
+self.play(Rotate(base_line, angle=-PI/3, about_point=ORIGIN), run_time=3)
 ```
 
 ![DynamicPerpExample](https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/DynamicPerpExample_ManimCE_v0.19.0.png)
@@ -116,23 +117,29 @@ self.play(Rotate(base_line, angle=PI/3, about_point=ORIGIN))
 base = Line(LEFT * 2 + DOWN, RIGHT * 2 + DOWN, color=BLUE)
 top_left_dot = Dot(LEFT * 1.5 + UP, color=YELLOW)
 
-# Side from base to dot
 side = always_redraw(
     lambda: Line(base.get_start(), top_left_dot.get_center(), color=BLUE)
 )
 
-# Top edge parallel to base
 top = always_redraw(
-    lambda: parallel(base, top_left_dot, length=base.get_length(), placement="start")
-        .set_color(GREEN)
+    lambda: parallel(
+        base, top_left_dot,
+        length=base.get_length(),
+        placement="start"
+    ).set_color(GREEN)
 )
 
-# Right side parallel to left side
 top_right_dot = always_redraw(lambda: Dot(top.get_end(), color=YELLOW))
+
 right_side = always_redraw(
-    lambda: parallel(side, top_right_dot, length=side.get_length(), placement="end")
-        .set_color(GREEN)
+    lambda: parallel(
+        side, top_right_dot,
+        length=side.get_length(),
+        placement="end"
+    ).set_color(GREEN)
 )
+
+self.play(top_left_dot.animate.move_to(LEFT * 2.5 + UP * 2), run_time=3)
 ```
 
 ![ParallelogramUpdater](https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/ParallelogramUpdater_ManimCE_v0.19.0.png)
@@ -147,19 +154,23 @@ right_side = always_redraw(
 ```python
 from robo_manim_add_ons.vector_utils import VectorUtils
 
-vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0)
-vector_b = Arrow(ORIGIN, UP * 2, buff=0)
+origin = Dot(ORIGIN, color=YELLOW)
+vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
+vector_b = Arrow(ORIGIN, UP * 2, buff=0, color=RED)
 
-# Vector subtraction: a - b = a + (-b)
 # Create -b at origin
 neg_b_at_origin = VectorUtils.reverse_at(vector_b, ORIGIN, color=PURPLE)
+self.play(Create(neg_b_at_origin))
 
 # Move -b to tip of a
-shift_vector = VectorUtils.shift_amount(vector_a, neg_b_at_origin)
-self.play(neg_b_at_origin.animate.shift(shift_vector))
+neg_b_at_tip = VectorUtils.reverse_at(vector_b, vector_a.get_end(), color=PURPLE)
+self.play(Transform(neg_b_at_origin, neg_b_at_tip))
 
-# Result vector
-result = VectorUtils.subtract(vector_a, vector_b, color=GREEN)
+# Show result vector (a - b)
+vec_a_dir = vector_a.get_end() - vector_a.get_start()
+vec_b_dir = vector_b.get_end() - vector_b.get_start()
+result_vector = Arrow(ORIGIN, ORIGIN + vec_a_dir - vec_b_dir, buff=0, color=GREEN)
+self.play(GrowArrow(result_vector))
 ```
 
 ![ReverseAtDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/ReverseAtDemo_ManimCE_v0.19.0.png)

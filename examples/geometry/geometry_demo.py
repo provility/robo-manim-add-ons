@@ -10,25 +10,13 @@ class PerpDemo(Scene):
     """Demonstrate the perp function."""
 
     def construct(self):
-        # Create a horizontal reference line
         ref_line = Line(LEFT * 3, RIGHT * 3, color=BLUE)
-        ref_line_label = Text("Reference Line", font_size=24).next_to(ref_line, DOWN)
-
-        # Create a dot at origin
         dot = Dot(ORIGIN, color=RED)
-        dot_label = Text("Dot", font_size=20).next_to(dot, UP, buff=0.2)
+        perp_line = perp(ref_line, dot, length=4.0, placement="mid").set_color(GREEN)
 
-        # Create perpendicular line with mid placement
-        perp_line = perp(ref_line, dot, length=4.0, placement="mid")
-        perp_line.set_color(GREEN)
-        perp_label = Text("Perpendicular Line", font_size=24).next_to(perp_line, RIGHT)
-
-        # Animate
-        self.play(Create(ref_line), Write(ref_line_label))
-        self.wait(0.5)
-        self.play(Create(dot), Write(dot_label))
-        self.wait(0.5)
-        self.play(Create(perp_line), Write(perp_label))
+        self.play(Create(ref_line))
+        self.play(Create(dot))
+        self.play(Create(perp_line))
         self.wait(2)
 
 
@@ -36,25 +24,13 @@ class ParallelDemo(Scene):
     """Demonstrate the parallel function."""
 
     def construct(self):
-        # Create a diagonal reference line
         ref_line = Line(LEFT + DOWN, RIGHT + UP, color=BLUE)
-        ref_line_label = Text("Reference Line", font_size=24).next_to(ref_line, LEFT, buff=0.3)
-
-        # Create a dot above the line
         dot = Dot(UP * 2, color=RED)
-        dot_label = Text("Dot", font_size=20).next_to(dot, UP, buff=0.2)
+        parallel_line = parallel(ref_line, dot, length=3.0, placement="mid").set_color(YELLOW)
 
-        # Create parallel line with mid placement
-        parallel_line = parallel(ref_line, dot, length=3.0, placement="mid")
-        parallel_line.set_color(YELLOW)
-        parallel_label = Text("Parallel Line", font_size=24).next_to(parallel_line, RIGHT, buff=0.3)
-
-        # Animate
-        self.play(Create(ref_line), Write(ref_line_label))
-        self.wait(0.5)
-        self.play(Create(dot), Write(dot_label))
-        self.wait(0.5)
-        self.play(Create(parallel_line), Write(parallel_label))
+        self.play(Create(ref_line))
+        self.play(Create(dot))
+        self.play(Create(parallel_line))
         self.wait(2)
 
 
@@ -62,41 +38,28 @@ class PlacementDemo(Scene):
     """Demonstrate different placement options."""
 
     def construct(self):
-        # Create horizontal reference line
         ref_line = Line(LEFT * 4, RIGHT * 4, color=BLUE)
-        ref_label = Text("Reference", font_size=20).next_to(ref_line, DOWN, buff=0.3)
 
-        # Create three dots at different heights
         dot_mid = Dot(ORIGIN, color=RED)
         dot_start = Dot(UP * 2, color=GREEN)
         dot_end = Dot(DOWN * 2, color=YELLOW)
 
-        # Labels for dots
-        label_mid = Text('placement="mid"', font_size=18).next_to(dot_mid, LEFT, buff=0.5)
-        label_start = Text('placement="start"', font_size=18).next_to(dot_start, LEFT, buff=0.5)
-        label_end = Text('placement="end"', font_size=18).next_to(dot_end, LEFT, buff=0.5)
-
-        # Create perpendicular lines with different placements
         perp_mid = perp(ref_line, dot_mid, 2.0, placement="mid").set_color(RED)
         perp_start = perp(ref_line, dot_start, 2.0, placement="start").set_color(GREEN)
         perp_end = perp(ref_line, dot_end, 2.0, placement="end").set_color(YELLOW)
 
-        # Show reference line first
-        self.play(Create(ref_line), Write(ref_label))
+        self.play(Create(ref_line))
         self.wait(0.5)
 
-        # Show mid placement
-        self.play(Create(dot_mid), Write(label_mid))
+        self.play(Create(dot_mid))
         self.play(Create(perp_mid))
         self.wait(1)
 
-        # Show start placement
-        self.play(Create(dot_start), Write(label_start))
+        self.play(Create(dot_start))
         self.play(Create(perp_start))
         self.wait(1)
 
-        # Show end placement
-        self.play(Create(dot_end), Write(label_end))
+        self.play(Create(dot_end))
         self.play(Create(perp_end))
         self.wait(2)
 
@@ -105,34 +68,20 @@ class GeometryComboDemo(Scene):
     """Demonstrate both perp and parallel together."""
 
     def construct(self):
-        # Create a diagonal line
         ref_line = Line(LEFT * 2 + DOWN, RIGHT * 2 + UP, color=BLUE)
-
-        # Create a dot
         dot = Dot(ORIGIN, color=RED)
+        perp_line = perp(ref_line, dot, 3.0, placement="mid").set_color(GREEN)
 
-        # Create perpendicular line
-        perp_line = perp(ref_line, dot, 3.0, placement="mid")
-        perp_line.set_color(GREEN)
-
-        # Create parallel line at a different position
         dot2 = Dot(UP * 2 + LEFT, color=ORANGE)
-        parallel_line = parallel(ref_line, dot2, 2.5, placement="mid")
-        parallel_line.set_color(YELLOW)
+        parallel_line = parallel(ref_line, dot2, 2.5, placement="mid").set_color(YELLOW)
 
-        # Labels
-        ref_label = Text("Reference", font_size=20, color=BLUE).next_to(ref_line, DOWN)
-        perp_label = Text("Perpendicular", font_size=20, color=GREEN).next_to(perp_line, RIGHT)
-        parallel_label = Text("Parallel", font_size=20, color=YELLOW).next_to(parallel_line, UP)
-
-        # Animate
-        self.play(Create(ref_line), Write(ref_label))
+        self.play(Create(ref_line))
         self.wait(0.5)
 
         self.play(Create(dot))
-        self.play(Create(perp_line), Write(perp_label))
+        self.play(Create(perp_line))
         self.wait(1)
 
         self.play(Create(dot2))
-        self.play(Create(parallel_line), Write(parallel_label))
+        self.play(Create(parallel_line))
         self.wait(2)
