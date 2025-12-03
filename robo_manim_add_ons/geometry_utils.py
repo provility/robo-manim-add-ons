@@ -235,3 +235,53 @@ def reflect(line: Line, point: Union[np.ndarray, Dot]) -> Dot:
     reflected_point = 2 * projected_point - point_pos
 
     return Dot(reflected_point)
+
+
+def extended_line(line: Line, proportion: float, length: float) -> Line:
+    """
+    Create a line extending from a point on an existing line.
+
+    The new line starts at a point determined by the proportion parameter
+    (0 = start of line, 1 = end of line) and extends in the same direction
+    as the original line for the specified length.
+
+    Args:
+        line: The reference Line object
+        proportion: Position on the line where the new line starts (0 to 1)
+        length: Length of the new line extending from that point
+
+    Returns:
+        A new Line object extending from the specified point
+
+    Raises:
+        ValueError: If proportion is not between 0 and 1
+
+    Example:
+        >>> from manim import *
+        >>> from robo_manim_add_ons import extended_line
+        >>>
+        >>> line = Line(LEFT, RIGHT)
+        >>> # Create a line from the endpoint extending right by 2 units
+        >>> ext_line = extended_line(line, proportion=1.0, length=2.0)
+        >>> # Create a line from midpoint extending right by 1 unit
+        >>> mid_ext = extended_line(line, proportion=0.5, length=1.0)
+    """
+    if not 0 <= proportion <= 1:
+        raise ValueError(f"proportion must be between 0 and 1, got {proportion}")
+
+    # Get line endpoints
+    start = line.get_start()
+    end = line.get_end()
+
+    # Calculate point at proportion t along the line
+    point_on_line = start + proportion * (end - start)
+
+    # Get direction vector and normalize
+    direction = end - start
+    direction_normalized = direction / np.linalg.norm(direction)
+
+    # Create new line from that point, extending in the same direction
+    new_start = point_on_line
+    new_end = point_on_line + direction_normalized * length
+
+    return Line(new_start, new_end)

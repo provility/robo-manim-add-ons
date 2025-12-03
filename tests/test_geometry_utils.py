@@ -7,7 +7,7 @@ import numpy as np
 from manim import Line, Dot, ORIGIN, LEFT, RIGHT, UP, DOWN
 
 
-from robo_manim_add_ons.geometry_utils import perp, parallel, project, reflect
+from robo_manim_add_ons.geometry_utils import perp, parallel, project, reflect, extended_line
 
 
 class TestPerp:
@@ -326,6 +326,142 @@ class TestReflect:
 
         # Should be equal
         assert np.isclose(dist_original, dist_reflected, atol=1e-6)
+
+
+class TestExtendedLine:
+    """Tests for the extended_line function."""
+
+    def test_extended_line_from_end(self):
+        """Test extending from the end of a line (proportion=1.0)."""
+        line = Line(LEFT, RIGHT)
+        ext_line = extended_line(line, proportion=1.0, length=2.0)
+
+        # New line should start at the end of original line
+        assert ext_line is not None
+        assert isinstance(ext_line, Line)
+        assert np.allclose(ext_line.get_start(), RIGHT, atol=1e-6)
+
+        # Check length
+        length = np.linalg.norm(ext_line.get_end() - ext_line.get_start())
+        assert np.isclose(length, 2.0, atol=1e-6)
+
+    def test_extended_line_from_start(self):
+        """Test extending from the start of a line (proportion=0.0)."""
+        line = Line(LEFT, RIGHT)
+        ext_line = extended_line(line, proportion=0.0, length=1.5)
+
+        # New line should start at the beginning of original line
+        assert np.allclose(ext_line.get_start(), LEFT, atol=1e-6)
+
+        # Check length
+        length = np.linalg.norm(ext_line.get_end() - ext_line.get_start())
+        assert np.isclose(length, 1.5, atol=1e-6)
+
+    def test_extended_line_from_midpoint(self):
+        """Test extending from the midpoint of a line (proportion=0.5)."""
+        line = Line(LEFT, RIGHT)
+        ext_line = extended_line(line, proportion=0.5, length=1.0)
+
+        # New line should start at the midpoint
+        midpoint = (line.get_start() + line.get_end()) / 2
+        assert np.allclose(ext_line.get_start(), midpoint, atol=1e-6)
+
+        # Check length
+        length = np.linalg.norm(ext_line.get_end() - ext_line.get_start())
+        assert np.isclose(length, 1.0, atol=1e-6)
+
+    def test_extended_line_same_direction(self):
+        """Test that extended line has the same direction as original."""
+        line = Line(LEFT, RIGHT)
+        ext_line = extended_line(line, proportion=1.0, length=2.0)
+
+        # Get direction vectors
+        line_dir = line.get_end() - line.get_start()
+        ext_dir = ext_line.get_end() - ext_line.get_start()
+
+        # Normalize both
+        line_dir_norm = line_dir / np.linalg.norm(line_dir)
+        ext_dir_norm = ext_dir / np.linalg.norm(ext_dir)
+
+        # Should be in the same direction
+        assert np.allclose(line_dir_norm, ext_dir_norm, atol=1e-6)
+
+    def test_extended_line_diagonal(self):
+        """Test extending a diagonal line."""
+        line = Line(ORIGIN, RIGHT + UP)
+        ext_line = extended_line(line, proportion=1.0, length=np.sqrt(2))
+
+        # Should extend diagonally
+        assert ext_line is not None
+
+        # Check that it starts at the end of original line
+        assert np.allclose(ext_line.get_start(), RIGHT + UP, atol=1e-6)
+
+        # Check direction is preserved
+        line_dir = line.get_end() - line.get_start()
+        ext_dir = ext_line.get_end() - ext_line.get_start()
+        line_dir_norm = line_dir / np.linalg.norm(line_dir)
+        ext_dir_norm = ext_dir / np.linalg.norm(ext_dir)
+        assert np.allclose(line_dir_norm, ext_dir_norm, atol=1e-6)
+
+    def test_extended_line_quarter_point(self):
+        """Test extending from a quarter point (proportion=0.25)."""
+        line = Line(LEFT * 4, RIGHT * 4)
+        ext_line = extended_line(line, proportion=0.25, length=2.0)
+
+        # Calculate expected start point
+        expected_start = LEFT * 4 + 0.25 * (RIGHT * 4 - LEFT * 4)
+        assert np.allclose(ext_line.get_start(), expected_start, atol=1e-6)
+
+        # Check length
+        length = np.linalg.norm(ext_line.get_end() - ext_line.get_start())
+        assert np.isclose(length, 2.0, atol=1e-6)
+
+    def test_extended_line_invalid_proportion_too_low(self):
+        """Test that proportion < 0 raises ValueError."""
+        line = Line(LEFT, RIGHT)
+
+        with pytest.raises(ValueError, match="proportion must be between 0 and 1"):
+            extended_line(line, proportion=-0.1, length=2.0)
+
+    def test_extended_line_invalid_proportion_too_high(self):
+        """Test that proportion > 1 raises ValueError."""
+        line = Line(LEFT, RIGHT)
+
+        with pytest.raises(ValueError, match="proportion must be between 0 and 1"):
+            extended_line(line, proportion=1.5, length=2.0)
+
+    def test_extended_line_various_proportions(self):
+        """Test extended lines at various proportions maintain correct properties."""
+        line = Line(LEFT * 2, RIGHT * 2)
+        proportions = [0.0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
+        length = 1.5
+
+        for prop in proportions:
+            ext_line = extended_line(line, proportion=prop, length=length)
+
+            # Check length is correct
+            actual_length = np.linalg.norm(ext_line.get_end() - ext_line.get_start())
+            assert np.isclose(actual_length, length, atol=1e-6)
+
+            # Check direction is preserved
+            line_dir = line.get_end() - line.get_start()
+            ext_dir = ext_line.get_end() - ext_line.get_start()
+            line_dir_norm = line_dir / np.linalg.norm(line_dir)
+            ext_dir_norm = ext_dir / np.linalg.norm(ext_dir)
+            assert np.allclose(line_dir_norm, ext_dir_norm, atol=1e-6)
+
+    def test_extended_line_vertical(self):
+        """Test extending a vertical line."""
+        line = Line(DOWN, UP)
+        ext_line = extended_line(line, proportion=1.0, length=1.0)
+
+        # Should start at UP and extend upward
+        assert np.allclose(ext_line.get_start(), UP, atol=1e-6)
+
+        # End should be further up
+        expected_end = UP + np.array([0, 1, 0])
+        assert np.allclose(ext_line.get_end(), expected_end, atol=1e-6)
 
 
 class TestGeometryUtilsIntegration:
