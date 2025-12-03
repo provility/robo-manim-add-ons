@@ -24,6 +24,12 @@ CATEGORIES = {
         "description": "Vector operations including projection, decomposition, and transformations",
         "count": 18
     },
+    "arrows": {
+        "title": "Arrow Demos",
+        "icon": "➡️",
+        "description": "Advanced arrow utilities with dashing, curves, perpendicular offsets, and markers",
+        "count": 8
+    },
     "annotation": {
         "title": "Annotation Demos",
         "icon": "📏",

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow Demos - Robo Manim Add-ons</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
+            color: #24292e;
+            background: #ffffff;
+            font-size: 14px;
+        }
+        .header {
+            background: #f6f8fa;
+            border-bottom: 1px solid #d0d7de;
+            padding: 12px 16px;
+        }
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .back-link {
+            color: #0969da;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 8px 0 4px 0;
+        }
+        .subtitle {
+            color: #57606a;
+            font-size: 14px;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+        .demo-grid {
+            display: grid;
+            gap: 24px;
+        }
+        .demo-card {
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            background: #ffffff;
+        }
+        .demo-content {
+            padding: 16px;
+        }
+        .demo-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #24292e;
+            margin-bottom: 4px;
+        }
+        .demo-description {
+            color: #57606a;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        .media-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .media-item {
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .media-item img {
+            width: 100%;
+            display: block;
+        }
+        video {
+            width: 100%;
+            display: block;
+        }
+        .media-label {
+            font-size: 12px;
+            color: #57606a;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+        .code-section {
+            background: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 12px;
+            position: relative;
+        }
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .code-title {
+            font-weight: 600;
+            color: #24292e;
+            font-size: 14px;
+        }
+        .copy-button {
+            background: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 12px;
+            color: #24292e;
+            cursor: pointer;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .copy-button:hover {
+            background: #f6f8fa;
+            border-color: #0969da;
+        }
+        .copy-button:active {
+            background: #e6e8ea;
+        }
+        .copy-button.copied {
+            color: #1a7f37;
+            border-color: #1a7f37;
+        }
+        pre {
+            margin: 0;
+            padding: 12px;
+            border-radius: 6px;
+            overflow-x: auto;
+            background: #ffffff !important;
+            border: 1px solid #d0d7de;
+        }
+        pre code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 12px;
+            line-height: 1.5;
+            background: transparent !important;
+            padding: 0 !important;
+        }
+        code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        }
+        .github-link {
+            position: fixed;
+            top: 12px;
+            right: 16px;
+            background: #24292e;
+            color: #ffffff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .github-link:hover {
+            background: #57606a;
+        }
+    </style>
+</head>
+<body>
+    <a href="https://github.com/provility/robo-manim-add-ons" class="github-link">GitHub →</a>
+
+    <div class="header">
+        <div class="header-content">
+            <a href="index.html" class="back-link">← Back</a>
+            <h1>Arrow Demos</h1>
+            <p class="subtitle">Advanced arrow utilities with dashing, curves, perpendicular offsets, and markers</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="demo-grid">
+                        <!-- BasicArrowDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">BasicArrowDemo</h2>
+                    <p class="demo-description">Simple arrow with textbook-style tips</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/arrows/BasicArrowDemo.png" alt="BasicArrowDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/arrows/BasicArrowDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Source code in examples/arrows/</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BidirectionalArrowDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">BidirectionalArrowDemo</h2>
+                    <p class="demo-description">Arrow with tips on both ends</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/arrows/BidirectionalArrowDemo.png" alt="BidirectionalArrowDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/arrows/BidirectionalArrowDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Source code in examples/arrows/</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CombinedFeaturesDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">CombinedFeaturesDemo</h2>
+                    <p class="demo-description">Combining multiple features: dashed lines with labels</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/arrows/CombinedFeaturesDemo.png" alt="CombinedFeaturesDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/arrows/CombinedFeaturesDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Source code in examples/arrows/</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CurvedArrowDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">CurvedArrowDemo</h2>
+                    <p class="demo-description">Arrows along circular arcs with different angles</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/arrows/CurvedArrowDemo.png" alt="CurvedArrowDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/arrows/CurvedArrowDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Source code in examples/arrows/</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DashedArrowDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">DashedArrowDemo</h2>
+                    <p class="demo-description">Arrow with dashed line</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/arrows/DashedArrowDemo.png" alt="DashedArrowDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/arrows/DashedArrowDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Source code in examples/arrows/</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LabelPositioningDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">LabelPositioningDemo</h2>
+                    <p class="demo-description">Automatic label positioning with perpendicular offset</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/arrows/LabelPositioningDemo.png" alt="LabelPositioningDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/arrows/LabelPositioningDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Source code in examples/arrows/</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MarkerDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">MarkerDemo</h2>
+                    <p class="demo-description">Directional markers at specific points</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/arrows/MarkerDemo.png" alt="MarkerDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/arrows/MarkerDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Source code in examples/arrows/</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PerpendicularBufferDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">PerpendicularBufferDemo</h2>
+                    <p class="demo-description">Arrows with perpendicular offset</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/arrows/PerpendicularBufferDemo.png" alt="PerpendicularBufferDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/arrows/PerpendicularBufferDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Source code in examples/arrows/</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize syntax highlighting
+        hljs.highlightAll();
+
+        // Copy button functionality
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-section').querySelector('code');
+            const text = codeBlock.textContent;
+
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
