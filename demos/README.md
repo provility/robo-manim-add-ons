@@ -12,6 +12,10 @@ Perpendicular and parallel line construction utilities.
 Vector operations including projection, decomposition, and transformations.
 - 18 demonstrations with videos and screenshots
 
+### ➡️ [Arrow Demos](arrows/INDEX.md)
+Advanced arrow utilities with dashing, curves, perpendicular offsets, and markers.
+- 8 demonstrations with videos and screenshots
+
 ### 📏 [Annotation Demos](annotation/INDEX.md)
 Distance marker and geometric annotation utilities.
 - 7 demonstrations with videos and screenshots
@@ -32,9 +36,9 @@ Vector transformation utilities (translated, rotated, scaled).
 
 ## Summary
 
-**Total: 52 demonstrations**
-- 52 MP4 videos
-- 52 PNG screenshots
+**Total: 60 demonstrations**
+- 60 MP4 videos
+- 60 PNG screenshots
 - Organized by utility category
 
 ## Regenerating Demos
@@ -48,6 +52,7 @@ manim -ql examples/geometry/geometry_demo.py -a
 manim -ql examples/geometry/dynamic_geometry_demo.py -a
 manim -ql examples/geometry/vector_decomposition_demo.py -a
 manim -ql examples/geometry/vector_projection_demo.py -a
+manim -ql examples/arrow_utils_demo.py -a
 manim -ql examples/annotation/annotation_demo.py -a
 manim -ql examples/labels/dynamic_labels_demo.py -a
 manim -ql examples/intersection/intersection_demo.py -a

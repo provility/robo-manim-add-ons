@@ -10,8 +10,9 @@ from .annotation_utils import distance_marker, label, hatched_region
 from .intersection_utils import intersect_lines, intersect_line_circle
 from .vector_utils import VectorUtils
 from .transform_utils import translated, rotated, scaled
+from .arrow_utils import ArrowUtil
 
-__all__ = ["perp", "parallel", "project", "reflect", "extended_line", "vertex_labels", "edge_labels", "distance_marker", "label", "hatched_region", "intersect_lines", "intersect_line_circle", "VectorUtils", "translated", "rotated", "scaled", "show_usage"]
+__all__ = ["perp", "parallel", "project", "reflect", "extended_line", "vertex_labels", "edge_labels", "distance_marker", "label", "hatched_region", "intersect_lines", "intersect_line_circle", "VectorUtils", "translated", "rotated", "scaled", "ArrowUtil", "show_usage"]
 
 
 def show_usage():
