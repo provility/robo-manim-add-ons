@@ -109,7 +109,7 @@ class ArrowUtil:
         Returns:
             list: Two Line objects forming the tip
         """
-        sign = -1 if invert else 1
+        sign = 1 if invert else -1
         index = -1 if not invert else 0
 
         # Get the tip point
