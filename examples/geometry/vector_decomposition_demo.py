@@ -9,8 +9,6 @@ Focus on geometric relationships, not styling.
 from manim import *
 from robo_manim_add_ons.vector_utils import VectorUtils
 
-# Use unfilled arrow tips for textbook-style vectors
-Arrow.set_default(tip_shape=ArrowTriangleTip)
 
 
 class BasicDecompositionDemo(Scene):
@@ -18,10 +16,10 @@ class BasicDecompositionDemo(Scene):
 
     def construct(self):
         # Reference vector (horizontal)
-        vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
+        vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0, fill_opacity=0, color=BLUE)
 
         # Vector to decompose
-        vector_a = Arrow(ORIGIN, RIGHT * 2 + UP * 1.5, buff=0, color=RED)
+        vector_a = Arrow(ORIGIN, RIGHT * 2 + UP * 1.5, buff=0, fill_opacity=0, color=RED)
 
         # Show vectors
         self.play(GrowArrow(vector_b))
@@ -51,10 +49,10 @@ class RotatingVectorDecomposition(Scene):
 
     def construct(self):
         # Fixed reference vector
-        vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
+        vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0, fill_opacity=0, color=BLUE)
 
         # Rotating vector
-        vector_a = Arrow(ORIGIN, RIGHT * 2 + UP * 1, buff=0, color=RED)
+        vector_a = Arrow(ORIGIN, RIGHT * 2 + UP * 1, buff=0, fill_opacity=0, color=RED)
 
         # Create dynamic decomposition with always_redraw
         parallel = always_redraw(
@@ -103,10 +101,10 @@ class RotatingReferenceDecomposition(Scene):
 
     def construct(self):
         # Vector to decompose (fixed)
-        vector_a = Arrow(ORIGIN, RIGHT * 2.5 + UP * 1.5, buff=0, color=RED)
+        vector_a = Arrow(ORIGIN, RIGHT * 2.5 + UP * 1.5, buff=0, fill_opacity=0, color=RED)
 
         # Rotating reference vector
-        vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
+        vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0, fill_opacity=0, color=BLUE)
 
         # Create dynamic decomposition
         parallel = always_redraw(
@@ -154,10 +152,10 @@ class ScalingVectorDecomposition(Scene):
 
     def construct(self):
         # Fixed reference vector
-        vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
+        vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0, fill_opacity=0, color=BLUE)
 
         # Vector that will scale
-        vector_a = Arrow(ORIGIN, RIGHT * 1 + UP * 1, buff=0, color=RED)
+        vector_a = Arrow(ORIGIN, RIGHT * 1 + UP * 1, buff=0, fill_opacity=0, color=RED)
 
         # Create dynamic decomposition
         parallel = always_redraw(
@@ -207,10 +205,10 @@ class InclinedPlaneForceDecomposition(Scene):
         plane = Line(LEFT * 3, RIGHT * 3, color=GRAY).rotate(angle, about_point=ORIGIN)
 
         # Gravity force vector (pointing down)
-        gravity = Arrow(ORIGIN, DOWN * 2, buff=0, color=RED)
+        gravity = Arrow(ORIGIN, DOWN * 2, buff=0, fill_opacity=0, color=RED)
 
         # Create slope direction (parallel to plane)
-        slope_direction = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE).rotate(angle, about_point=ORIGIN)
+        slope_direction = Arrow(ORIGIN, RIGHT * 3, buff=0, fill_opacity=0, color=BLUE).rotate(angle, about_point=ORIGIN)
 
         # Show plane and force
         self.play(Create(plane))
@@ -242,7 +240,7 @@ class MultipleDecompositions(Scene):
 
     def construct(self):
         # Central reference vector
-        ref_vector = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
+        ref_vector = Arrow(ORIGIN, RIGHT * 3, buff=0, fill_opacity=0, color=BLUE)
 
         # Multiple vectors at different angles
         angles = [PI/6, PI/3, PI/2, 2*PI/3, 5*PI/6]
@@ -251,7 +249,7 @@ class MultipleDecompositions(Scene):
 
         for i, angle in enumerate(angles):
             # Create vector at angle
-            vec = Arrow(ORIGIN, RIGHT * 2, buff=0, color=RED).rotate(angle, about_point=ORIGIN)
+            vec = Arrow(ORIGIN, RIGHT * 2, buff=0, fill_opacity=0, color=RED).rotate(angle, about_point=ORIGIN)
             vectors.add(vec)
 
             # Create decomposition components
@@ -297,10 +295,10 @@ class OppositeDirectionDecomposition(Scene):
 
     def construct(self):
         # Reference vector (pointing right)
-        vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
+        vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0, fill_opacity=0, color=BLUE)
 
         # Vector pointing opposite direction (starts pointing left)
-        vector_a = Arrow(ORIGIN, LEFT * 2 + UP * 0.5, buff=0, color=RED)
+        vector_a = Arrow(ORIGIN, LEFT * 2 + UP * 0.5, buff=0, fill_opacity=0, color=RED)
 
         # Create dynamic decomposition
         parallel = always_redraw(

@@ -5,15 +5,13 @@ Forward Vector Demo - Copy and shift a vector forward
 from manim import *
 from robo_manim_add_ons.vector_utils import VectorUtils
 
-# Use unfilled arrow tips for textbook-style vectors
-Arrow.set_default(tip_shape=ArrowTriangleTip)
 
 
 class ForwardVectorDemo(Scene):
     """Basic example: Copy and shift a vector forward"""
 
     def construct(self):
-        source = Arrow(LEFT * 2, RIGHT * 2, color=BLUE, buff=0)
+        source = Arrow(LEFT * 2, RIGHT * 2, color=BLUE, buff=0, fill_opacity=0)
         self.play(GrowArrow(source))
         self.wait()
 

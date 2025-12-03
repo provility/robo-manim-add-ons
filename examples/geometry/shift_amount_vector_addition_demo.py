@@ -5,19 +5,17 @@ Shift Amount Vector Addition Demo - Vector addition using shift_amount for anima
 from manim import *
 from robo_manim_add_ons.vector_utils import VectorUtils
 
-# Use unfilled arrow tips for textbook-style vectors
-Arrow.set_default(tip_shape=ArrowTriangleTip)
 
 
 class ShiftAmountVectorAddition(Scene):
     """Example: Vector addition using shift_amount for animation"""
 
     def construct(self):
-        vector_a = Arrow(ORIGIN, RIGHT * 2, color=BLUE, buff=0)
+        vector_a = Arrow(ORIGIN, RIGHT * 2, color=BLUE, buff=0, fill_opacity=0)
         self.play(GrowArrow(vector_a))
         self.wait(0.5)
 
-        vector_b = Arrow(DOWN * 2, DOWN * 2 + UP * 1.5, color=RED, buff=0)
+        vector_b = Arrow(DOWN * 2, DOWN * 2 + UP * 1.5, color=RED, buff=0, fill_opacity=0)
         self.play(GrowArrow(vector_b))
         self.wait()
 

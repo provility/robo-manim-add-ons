@@ -9,17 +9,15 @@ Focus on geometric relationships, not styling.
 from manim import *
 from robo_manim_add_ons.vector_utils import VectorUtils
 
-# Use unfilled arrow tips for textbook-style vectors
-Arrow.set_default(tip_shape=ArrowTriangleTip)
 
 
 class ProjectionDemo(Scene):
     def construct(self):
         # Fixed target vector (horizontal)
-        vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0)
+        vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, fill_opacity=0)
 
         # Moving vector that we'll project onto vector_a
-        vector_b = Arrow(ORIGIN, RIGHT * 2 + UP * 1.5, buff=0)
+        vector_b = Arrow(ORIGIN, RIGHT * 2 + UP * 1.5, buff=0, fill_opacity=0)
 
         # Create projection visualizations
         projection = VectorUtils.project_onto(vector_b, vector_a)
@@ -83,10 +81,10 @@ class ProjectionPerpDemoScene(Scene):
 
     def construct(self):
         # Fixed horizontal vector
-        vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0)
+        vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, fill_opacity=0)
 
         # Start with diagonal vector
-        vector_b = Arrow(ORIGIN, RIGHT * 2 + UP * 0.5, buff=0)
+        vector_b = Arrow(ORIGIN, RIGHT * 2 + UP * 0.5, buff=0, fill_opacity=0)
 
         # Create projection visualizations with updaters
         projection = always_redraw(
@@ -130,10 +128,10 @@ class ProjectionScalingDemo(Scene):
 
     def construct(self):
         # Fixed horizontal vector
-        vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0)
+        vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, fill_opacity=0)
 
         # Vector that will scale
-        vector_b = Arrow(ORIGIN, RIGHT * 1 + UP * 1, buff=0)
+        vector_b = Arrow(ORIGIN, RIGHT * 1 + UP * 1, buff=0, fill_opacity=0)
 
         # Create projection visualizations with always_redraw
         projection = always_redraw(

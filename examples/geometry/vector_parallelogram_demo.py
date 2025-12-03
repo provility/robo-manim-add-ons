@@ -8,8 +8,6 @@ Uses copy_at() for parallelogram sides and add() for the diagonal result.
 from manim import *
 from robo_manim_add_ons.vector_utils import VectorUtils
 
-# Use unfilled arrow tips for textbook-style vectors
-Arrow.set_default(tip_shape=ArrowTriangleTip)
 
 
 class ParallelogramLawDemo(Scene):
@@ -17,8 +15,8 @@ class ParallelogramLawDemo(Scene):
 
     def construct(self):
         # Define vectors starting from same point (tail-to-tail)
-        vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
-        vector_b = Arrow(ORIGIN, UP * 2, buff=0, color=RED)
+        vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, fill_opacity=0, color=BLUE)
+        vector_b = Arrow(ORIGIN, UP * 2, buff=0, fill_opacity=0, color=RED)
 
         origin = Dot(ORIGIN, color=YELLOW)
 
@@ -57,8 +55,8 @@ class ParallelogramWithLabels(Scene):
 
     def construct(self):
         # Vectors
-        vector_a = Arrow(ORIGIN, RIGHT * 2.5, buff=0, color=BLUE)
-        vector_b = Arrow(ORIGIN, UP * 1.5, buff=0, color=RED)
+        vector_a = Arrow(ORIGIN, RIGHT * 2.5, buff=0, fill_opacity=0, color=BLUE)
+        vector_b = Arrow(ORIGIN, UP * 1.5, buff=0, fill_opacity=0, color=RED)
 
         # Labels
         label_a = MathTex(r"\vec{a}", color=BLUE).next_to(vector_a, DOWN)
@@ -101,8 +99,8 @@ class DynamicParallelogram(Scene):
 
     def construct(self):
         # Base vectors
-        vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
-        vector_b = Arrow(ORIGIN, UP * 2, buff=0, color=RED)
+        vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, fill_opacity=0, color=BLUE)
+        vector_b = Arrow(ORIGIN, UP * 2, buff=0, fill_opacity=0, color=RED)
 
         # Dynamic parallelogram sides
         b_copy = always_redraw(
@@ -160,13 +158,13 @@ class ComparisonTipToTailVsParallelogram(Scene):
     def construct(self):
         # Left side: Tip-to-tail method
         left_title = Text("Tip-to-Tail", font_size=28).move_to(LEFT * 3 + UP * 3)
-        left_a = Arrow(LEFT * 4.5, LEFT * 4.5 + RIGHT * 1.5, buff=0, color=BLUE)
-        left_b_original = Arrow(LEFT * 4.5, LEFT * 4.5 + UP * 1.2, buff=0, color=RED)
+        left_a = Arrow(LEFT * 4.5, LEFT * 4.5 + RIGHT * 1.5, buff=0, fill_opacity=0, color=BLUE)
+        left_b_original = Arrow(LEFT * 4.5, LEFT * 4.5 + UP * 1.2, buff=0, fill_opacity=0, color=RED)
 
         # Right side: Parallelogram method
         right_title = Text("Parallelogram", font_size=28).move_to(RIGHT * 3 + UP * 3)
-        right_a = Arrow(RIGHT * 1.5, RIGHT * 1.5 + RIGHT * 1.5, buff=0, color=BLUE)
-        right_b = Arrow(RIGHT * 1.5, RIGHT * 1.5 + UP * 1.2, buff=0, color=RED)
+        right_a = Arrow(RIGHT * 1.5, RIGHT * 1.5 + RIGHT * 1.5, buff=0, fill_opacity=0, color=BLUE)
+        right_b = Arrow(RIGHT * 1.5, RIGHT * 1.5 + UP * 1.2, buff=0, fill_opacity=0, color=RED)
 
         # Show titles and base vectors
         self.play(Write(left_title), Write(right_title))
@@ -201,9 +199,9 @@ class MultipleVectorAdditions(Scene):
 
     def construct(self):
         # Three vectors from origin
-        vec_a = Arrow(ORIGIN, RIGHT * 2, buff=0, color=BLUE)
-        vec_b = Arrow(ORIGIN, UP * 1.5, buff=0, color=RED)
-        vec_c = Arrow(ORIGIN, LEFT * 0.5 + UP * 0.8, buff=0, color=YELLOW)
+        vec_a = Arrow(ORIGIN, RIGHT * 2, buff=0, fill_opacity=0, color=BLUE)
+        vec_b = Arrow(ORIGIN, UP * 1.5, buff=0, fill_opacity=0, color=RED)
+        vec_c = Arrow(ORIGIN, LEFT * 0.5 + UP * 0.8, buff=0, fill_opacity=0, color=YELLOW)
 
         # Labels
         label_a = MathTex(r"\vec{a}", color=BLUE).next_to(vec_a, DOWN)
@@ -237,7 +235,7 @@ class MultipleVectorAdditions(Scene):
         vec_b_dir = vec_b.get_end() - vec_b.get_start()
         vec_c_dir = vec_c.get_end() - vec_c.get_start()
         final_end = ORIGIN + vec_a_dir + vec_b_dir + vec_c_dir
-        final_result = Arrow(ORIGIN, final_end, buff=0, color=GREEN, stroke_width=6)
+        final_result = Arrow(ORIGIN, final_end, buff=0, fill_opacity=0, color=GREEN, stroke_width=6)
 
         label_final = MathTex(r"\vec{a} + \vec{b} + \vec{c}", color=GREEN).next_to(final_result, DOWN)
 
@@ -251,8 +249,8 @@ class ParallelogramGrid(Scene):
 
     def construct(self):
         # Base vectors
-        vec_a = Arrow(ORIGIN, RIGHT * 1.5, buff=0, color=BLUE)
-        vec_b = Arrow(ORIGIN, UP * 1, buff=0, color=RED)
+        vec_a = Arrow(ORIGIN, RIGHT * 1.5, buff=0, fill_opacity=0, color=BLUE)
+        vec_b = Arrow(ORIGIN, UP * 1, buff=0, fill_opacity=0, color=RED)
 
         # Create grid of parallelograms
         positions = [
@@ -286,8 +284,8 @@ class ParallelogramProof(Scene):
 
     def construct(self):
         # Base vectors
-        vector_a = Arrow(ORIGIN, RIGHT * 2.5, buff=0, color=BLUE)
-        vector_b = Arrow(ORIGIN, UP * 2, buff=0, color=RED)
+        vector_a = Arrow(ORIGIN, RIGHT * 2.5, buff=0, fill_opacity=0, color=BLUE)
+        vector_b = Arrow(ORIGIN, UP * 2, buff=0, fill_opacity=0, color=RED)
 
         # Show vectors
         self.play(GrowArrow(vector_a), GrowArrow(vector_b))

@@ -2,7 +2,28 @@
   "permissions": {
     "allow": [
       "Bash(git push:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(xargs:*)",
+      "Bash(git rm:*)",
+      "Bash(for f in demos/transform/*.mp4)",
+      "Bash(do ffmpeg -i \"$f\" -vf \"select=eq(n\\,0)\" -vframes 1 \"$f%.mp4.png\" -y)",
+      "Bash(done)",
+      "Bash(for f in media/videos/vector_decomposition_demo/480p15/*.mp4)",
+      "Bash(for:*)",
+      "Bash(ffmpeg:*)",
+      "Bash(do ffmpeg -i \"demos/geometry/$scene.mp4\" -vf \"select=eq(n\\,0)\" -vframes 1 \"demos/geometry/$scene.png\" -y)",
+      "Bash(awk:*)",
+      "Bash(do)",
+      "Bash(if [ -f \"$dir/INDEX.md\" ])",
+      "Bash(then)",
+      "Bash(echo:*)",
+      "Bash(fi)",
+      "Bash(curl -s https://api.github.com/repos/provility/robo-manim-add-ons)",
+      "Bash(curl -s https://api.github.com/repos/provility/robo-manim-add-ons/pages)",
+      "Bash(gh api:*)",
+      "Read(//tmp/**)",
+      "Bash(if [ -f \"$file\" ])",
+      "Bash(git reset:*)"
     ],
     "deny": [],
     "ask": []

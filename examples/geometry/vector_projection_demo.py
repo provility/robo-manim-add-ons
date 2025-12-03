@@ -8,8 +8,6 @@ Uses project_onto(), projection_line(), and projection_region() from VectorUtils
 from manim import *
 from robo_manim_add_ons.vector_utils import VectorUtils
 
-# Use unfilled arrow tips for textbook-style vectors
-Arrow.set_default(tip_shape=ArrowTriangleTip)
 
 
 class DotProductProjectionDemo(Scene):
@@ -17,8 +15,8 @@ class DotProductProjectionDemo(Scene):
 
     def construct(self):
         # Define vectors
-        vector_a = Arrow(ORIGIN, RIGHT * 3.5, buff=0, color=BLUE)
-        vector_b = Arrow(ORIGIN, RIGHT * 2.5 + UP * 1.5, buff=0, color=RED)
+        vector_a = Arrow(ORIGIN, RIGHT * 3.5, buff=0, fill_opacity=0, color=BLUE)
+        vector_b = Arrow(ORIGIN, RIGHT * 2.5 + UP * 1.5, buff=0, fill_opacity=0, color=RED)
 
         origin = Dot(ORIGIN, color=YELLOW)
 
@@ -89,8 +87,8 @@ class ProjectionWithFormula(Scene):
 
     def construct(self):
         # Vectors
-        vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
-        vector_b = Arrow(ORIGIN, RIGHT * 2 + UP * 1.5, buff=0, color=RED)
+        vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, fill_opacity=0, color=BLUE)
+        vector_b = Arrow(ORIGIN, RIGHT * 2 + UP * 1.5, buff=0, fill_opacity=0, color=RED)
 
         # Labels
         label_a = MathTex(r"\vec{a}", color=BLUE).next_to(vector_a, DOWN)
@@ -130,8 +128,8 @@ class DynamicProjection(Scene):
 
     def construct(self):
         # Base vectors
-        vector_a = Arrow(ORIGIN, RIGHT * 3.5, buff=0, color=BLUE)
-        vector_b = Arrow(ORIGIN, RIGHT * 2 + UP * 1.5, buff=0, color=RED)
+        vector_a = Arrow(ORIGIN, RIGHT * 3.5, buff=0, fill_opacity=0, color=BLUE)
+        vector_b = Arrow(ORIGIN, RIGHT * 2 + UP * 1.5, buff=0, fill_opacity=0, color=RED)
 
         # Dynamic projection using VectorUtils
         proj_vector = always_redraw(
@@ -183,8 +181,8 @@ class ProjectionWithRegion(Scene):
 
     def construct(self):
         # Vectors
-        vector_a = Arrow(ORIGIN, RIGHT * 3.5, buff=0, color=BLUE)
-        vector_b = Arrow(ORIGIN, RIGHT * 2.5 + UP * 1.5, buff=0, color=RED)
+        vector_a = Arrow(ORIGIN, RIGHT * 3.5, buff=0, fill_opacity=0, color=BLUE)
+        vector_b = Arrow(ORIGIN, RIGHT * 2.5 + UP * 1.5, buff=0, fill_opacity=0, color=RED)
 
         # Show vectors
         self.play(GrowArrow(vector_a), GrowArrow(vector_b))
@@ -226,8 +224,8 @@ class ProjectionCases(Scene):
 
         # Case 1: Acute angle (positive projection)
         case1_label = Text("Acute Angle", font_size=24).move_to(LEFT * 4 + UP * 2.5)
-        vec_a1 = Arrow(LEFT * 5, LEFT * 5 + RIGHT * 2, buff=0, color=BLUE)
-        vec_b1 = Arrow(LEFT * 5, LEFT * 5 + RIGHT * 1.5 + UP * 0.8, buff=0, color=RED)
+        vec_a1 = Arrow(LEFT * 5, LEFT * 5 + RIGHT * 2, buff=0, fill_opacity=0, color=BLUE)
+        vec_b1 = Arrow(LEFT * 5, LEFT * 5 + RIGHT * 1.5 + UP * 0.8, buff=0, fill_opacity=0, color=RED)
         proj1 = VectorUtils.project_onto(vec_b1, vec_a1, color=GREEN, stroke_width=4)
         line1 = DashedLine(proj1.get_end(), vec_b1.get_end(), color=GRAY, dash_length=0.06)
 
@@ -238,8 +236,8 @@ class ProjectionCases(Scene):
 
         # Case 2: Right angle (zero projection)
         case2_label = Text("Right Angle", font_size=24).move_to(ORIGIN + UP * 2.5)
-        vec_a2 = Arrow(LEFT * 1, LEFT * 1 + RIGHT * 2, buff=0, color=BLUE)
-        vec_b2 = Arrow(LEFT * 1, LEFT * 1 + UP * 1.5, buff=0, color=RED)
+        vec_a2 = Arrow(LEFT * 1, LEFT * 1 + RIGHT * 2, buff=0, fill_opacity=0, color=BLUE)
+        vec_b2 = Arrow(LEFT * 1, LEFT * 1 + UP * 1.5, buff=0, fill_opacity=0, color=RED)
         proj2 = VectorUtils.project_onto(vec_b2, vec_a2, color=GREEN, stroke_width=4)
         line2 = DashedLine(proj2.get_end(), vec_b2.get_end(), color=GRAY, dash_length=0.06)
 
@@ -250,8 +248,8 @@ class ProjectionCases(Scene):
 
         # Case 3: Obtuse angle (negative projection)
         case3_label = Text("Obtuse Angle", font_size=24).move_to(RIGHT * 4 + UP * 2.5)
-        vec_a3 = Arrow(RIGHT * 3, RIGHT * 3 + RIGHT * 2, buff=0, color=BLUE)
-        vec_b3 = Arrow(RIGHT * 3, RIGHT * 3 + LEFT * 0.8 + UP * 1.2, buff=0, color=RED)
+        vec_a3 = Arrow(RIGHT * 3, RIGHT * 3 + RIGHT * 2, buff=0, fill_opacity=0, color=BLUE)
+        vec_b3 = Arrow(RIGHT * 3, RIGHT * 3 + LEFT * 0.8 + UP * 1.2, buff=0, fill_opacity=0, color=RED)
         proj3 = VectorUtils.project_onto(vec_b3, vec_a3, color=GREEN, stroke_width=4)
         line3 = DashedLine(proj3.get_end(), vec_b3.get_end(), color=GRAY, dash_length=0.06)
 
@@ -269,8 +267,8 @@ class ProjectionDecomposition(Scene):
         title = MathTex(r"\vec{b} = \vec{b}_\parallel + \vec{b}_\perp", font_size=36).to_edge(UP)
 
         # Vectors
-        vector_a = Arrow(ORIGIN, RIGHT * 3.5, buff=0, color=BLUE)
-        vector_b = Arrow(ORIGIN, RIGHT * 2.5 + UP * 1.8, buff=0, color=RED)
+        vector_a = Arrow(ORIGIN, RIGHT * 3.5, buff=0, fill_opacity=0, color=BLUE)
+        vector_b = Arrow(ORIGIN, RIGHT * 2.5 + UP * 1.8, buff=0, fill_opacity=0, color=RED)
 
         label_a = MathTex(r"\vec{a}", color=BLUE).next_to(vector_a, DOWN)
         label_b = MathTex(r"\vec{b}", color=RED).next_to(vector_b, LEFT)
@@ -314,10 +312,10 @@ class ProjectionScaling(Scene):
 
     def construct(self):
         # Fixed target
-        vector_a = Arrow(ORIGIN, RIGHT * 3.5, buff=0, color=BLUE)
+        vector_a = Arrow(ORIGIN, RIGHT * 3.5, buff=0, fill_opacity=0, color=BLUE)
 
         # Scaling vector
-        vector_b = Arrow(ORIGIN, RIGHT * 1 + UP * 0.8, buff=0, color=RED)
+        vector_b = Arrow(ORIGIN, RIGHT * 1 + UP * 0.8, buff=0, fill_opacity=0, color=RED)
 
         # Dynamic projection
         proj = always_redraw(
@@ -364,8 +362,8 @@ class DotProductVisualization(Scene):
         ).to_edge(UP)
 
         # Vectors
-        vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
-        vector_b = Arrow(ORIGIN, RIGHT * 2.2 + UP * 1.3, buff=0, color=RED)
+        vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, fill_opacity=0, color=BLUE)
+        vector_b = Arrow(ORIGIN, RIGHT * 2.2 + UP * 1.3, buff=0, fill_opacity=0, color=RED)
 
         # Show setup
         self.play(Write(formula))

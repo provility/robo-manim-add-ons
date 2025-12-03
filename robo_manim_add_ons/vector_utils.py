@@ -5,7 +5,7 @@ Provides helper class for vector operations like forward projection.
 """
 
 import numpy as np
-from manim import Mobject, Arrow, Line, Polygon, ArrowTriangleTip
+from manim import Mobject, Arrow, Line, Polygon
 from manim.utils.space_ops import normalize
 
 
@@ -220,7 +220,7 @@ class VectorUtils:
         # Get source properties as defaults
         default_kwargs = {
             'buff': 0,
-            'tip_shape': ArrowTriangleTip,
+            'fill_opacity': 0,  # Open arrow tips (textbook style)
             'color': source.get_color() if not 'color' in arrow_kwargs else arrow_kwargs['color'],
             'stroke_width': source.get_stroke_width() if not 'stroke_width' in arrow_kwargs else arrow_kwargs['stroke_width'],
         }
@@ -277,7 +277,7 @@ class VectorUtils:
         # Get source properties as defaults
         default_kwargs = {
             'buff': 0,
-            'tip_shape': ArrowTriangleTip,
+            'fill_opacity': 0,  # Open arrow tips (textbook style)
             'color': source.get_color() if not 'color' in arrow_kwargs else arrow_kwargs['color'],
             'stroke_width': source.get_stroke_width() if not 'stroke_width' in arrow_kwargs else arrow_kwargs['stroke_width'],
         }
@@ -326,7 +326,7 @@ class VectorUtils:
         proj_endpoint = vector_target.get_start() + proj_length * target_unit
 
         # Create projection arrow
-        default_kwargs = {'buff': 0, 'tip_shape': ArrowTriangleTip}
+        default_kwargs = {'buff': 0, 'fill_opacity': 0}
         default_kwargs.update(arrow_kwargs)
 
         return Arrow(vector_target.get_start(), proj_endpoint, **default_kwargs)
@@ -379,7 +379,7 @@ class VectorUtils:
         parallel_endpoint = source.get_start() + parallel_component
 
         # Create arrow with styling
-        default_kwargs = {'buff': 0, 'tip_shape': ArrowTriangleTip}
+        default_kwargs = {'buff': 0, 'fill_opacity': 0}
         default_kwargs.update(arrow_kwargs)
 
         return Arrow(source.get_start(), parallel_endpoint, **default_kwargs)
@@ -436,7 +436,7 @@ class VectorUtils:
         perp_endpoint = source.get_end()
 
         # Create arrow with styling
-        default_kwargs = {'buff': 0, 'tip_shape': ArrowTriangleTip}
+        default_kwargs = {'buff': 0, 'fill_opacity': 0}
         default_kwargs.update(arrow_kwargs)
 
         return Arrow(perp_start_point, perp_endpoint, **default_kwargs)
@@ -563,7 +563,7 @@ class VectorUtils:
 
         result_end = start_point + vec_a_dir + vec_b_dir
 
-        default_kwargs = {'buff': 0, 'tip_shape': ArrowTriangleTip}
+        default_kwargs = {'buff': 0, 'fill_opacity': 0}
         default_kwargs.update(arrow_kwargs)
 
         return Arrow(start_point, result_end, **default_kwargs)
@@ -617,7 +617,7 @@ class VectorUtils:
 
         result_end = start_point + vec_a_dir - vec_b_dir
 
-        default_kwargs = {'buff': 0, 'tip_shape': ArrowTriangleTip}
+        default_kwargs = {'buff': 0, 'fill_opacity': 0}
         default_kwargs.update(arrow_kwargs)
 
         return Arrow(start_point, result_end, **default_kwargs)
@@ -666,7 +666,7 @@ class VectorUtils:
 
         end_point = start_point + scaled_dir
 
-        default_kwargs = {'buff': 0, 'tip_shape': ArrowTriangleTip}
+        default_kwargs = {'buff': 0, 'fill_opacity': 0}
         default_kwargs.update(arrow_kwargs)
 
         return Arrow(start_point, end_point, **default_kwargs)

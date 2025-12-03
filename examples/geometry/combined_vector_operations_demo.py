@@ -5,8 +5,6 @@ Combined Vector Operations Demo - Combining tail_at_tip and shift_amount
 from manim import *
 from robo_manim_add_ons.vector_utils import VectorUtils
 
-# Use unfilled arrow tips for textbook-style vectors
-Arrow.set_default(tip_shape=ArrowTriangleTip)
 
 
 class CombinedVectorOperations(Scene):
@@ -14,12 +12,12 @@ class CombinedVectorOperations(Scene):
 
     def construct(self):
         # Vector A
-        vector_a = Arrow(ORIGIN, RIGHT * 2, color=BLUE, buff=0)
+        vector_a = Arrow(ORIGIN, RIGHT * 2, color=BLUE, buff=0, fill_opacity=0)
         self.play(GrowArrow(vector_a))
         self.wait(0.5)
 
         # Vector B at origin
-        vector_b = Arrow(ORIGIN, UP * 1.5, color=RED, buff=0)
+        vector_b = Arrow(ORIGIN, UP * 1.5, color=RED, buff=0, fill_opacity=0)
         self.play(GrowArrow(vector_b))
         self.wait(0.5)
 

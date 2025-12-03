@@ -8,8 +8,6 @@ Demonstrates reverse_at, shift_amount, and subtract methods.
 from manim import *
 from robo_manim_add_ons.vector_utils import VectorUtils
 
-# Use unfilled arrow tips for textbook-style vectors
-Arrow.set_default(tip_shape=ArrowTriangleTip)
 
 
 class VectorSubtractionDemo(Scene):
@@ -17,8 +15,8 @@ class VectorSubtractionDemo(Scene):
 
     def construct(self):
         # Define vectors
-        vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
-        vector_b = Arrow(ORIGIN, UP * 2, buff=0, color=RED)
+        vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, fill_opacity=0, color=BLUE)
+        vector_b = Arrow(ORIGIN, UP * 2, buff=0, fill_opacity=0, color=RED)
 
         origin = Dot(ORIGIN, color=YELLOW)
 
@@ -54,8 +52,8 @@ class VectorSubtractionWithLabels(Scene):
 
     def construct(self):
         # Define vectors
-        vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
-        vector_b = Arrow(ORIGIN, UP * 2, buff=0, color=RED)
+        vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, fill_opacity=0, color=BLUE)
+        vector_b = Arrow(ORIGIN, UP * 2, buff=0, fill_opacity=0, color=RED)
 
         # Labels
         label_a = MathTex(r"\vec{a}", color=BLUE).next_to(vector_a, DOWN)
@@ -109,8 +107,8 @@ class VectorAdditionDemo(Scene):
 
     def construct(self):
         # Define vectors
-        vector_a = Arrow(ORIGIN, RIGHT * 2.5, buff=0, color=BLUE)
-        vector_b = Arrow(ORIGIN, UP * 1.5, buff=0, color=RED)
+        vector_a = Arrow(ORIGIN, RIGHT * 2.5, buff=0, fill_opacity=0, color=BLUE)
+        vector_b = Arrow(ORIGIN, UP * 1.5, buff=0, fill_opacity=0, color=RED)
 
         # Title
         title = Text("Vector Addition: a + b", font_size=36).to_edge(UP)
@@ -136,8 +134,8 @@ class DynamicVectorSubtraction(Scene):
 
     def construct(self):
         # Moving vectors
-        vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
-        vector_b = Arrow(ORIGIN, UP * 2, buff=0, color=RED)
+        vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, fill_opacity=0, color=BLUE)
+        vector_b = Arrow(ORIGIN, UP * 2, buff=0, fill_opacity=0, color=RED)
 
         # Dynamic -b at tip of a
         neg_b = always_redraw(
@@ -190,7 +188,7 @@ class ScalarMultiplicationDemo(Scene):
 
     def construct(self):
         # Original vector
-        vector_a = Arrow(ORIGIN, RIGHT * 2, buff=0, color=BLUE)
+        vector_a = Arrow(ORIGIN, RIGHT * 2, buff=0, fill_opacity=0, color=BLUE)
 
         # Show original
         self.play(GrowArrow(vector_a))
@@ -222,8 +220,8 @@ class ComprehensiveVectorOperations(Scene):
 
     def construct(self):
         # Base vectors
-        a = Arrow(ORIGIN, RIGHT * 2.5, buff=0, color=BLUE)
-        b = Arrow(ORIGIN, UP * 1.5, buff=0, color=RED)
+        a = Arrow(ORIGIN, RIGHT * 2.5, buff=0, fill_opacity=0, color=BLUE)
+        b = Arrow(ORIGIN, UP * 1.5, buff=0, fill_opacity=0, color=RED)
 
         # Show base vectors
         self.play(GrowArrow(a), GrowArrow(b))

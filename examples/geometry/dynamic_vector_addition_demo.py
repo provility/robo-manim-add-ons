@@ -5,16 +5,14 @@ Dynamic Vector Addition Demo - Dynamic vector addition with rotating base
 from manim import *
 from robo_manim_add_ons.vector_utils import VectorUtils
 
-# Use unfilled arrow tips for textbook-style vectors
-Arrow.set_default(tip_shape=ArrowTriangleTip)
 
 
 class DynamicVectorAddition(Scene):
     """Example: Dynamic vector addition with rotating base"""
 
     def construct(self):
-        vector_a = Arrow(ORIGIN, RIGHT * 2, color=BLUE, buff=0)
-        vector_b_template = Arrow(ORIGIN, UP * 1.5, color=RED, buff=0)
+        vector_a = Arrow(ORIGIN, RIGHT * 2, color=BLUE, buff=0, fill_opacity=0)
+        vector_b_template = Arrow(ORIGIN, UP * 1.5, color=RED, buff=0, fill_opacity=0)
 
         vector_b_at_tip = always_redraw(
             lambda: VectorUtils.tail_at_tip(vector_a, vector_b_template).set_color(ORANGE)
