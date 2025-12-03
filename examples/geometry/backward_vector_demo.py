@@ -5,6 +5,9 @@ Backward Vector Demo - Copy and shift a vector backward
 from manim import *
 from robo_manim_add_ons.vector_utils import VectorUtils
 
+# Use unfilled arrow tips for textbook-style vectors
+Arrow.set_default(tip_shape=ArrowTriangleTip)
+
 
 class BackwardVectorDemo(Scene):
     """Basic example: Copy and shift a vector backward"""

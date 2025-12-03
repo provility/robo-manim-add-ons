@@ -5,6 +5,9 @@ Vector Addition Demo - Vector addition using tip-to-tail with resultant
 from manim import *
 from robo_manim_add_ons.vector_utils import VectorUtils
 
+# Use unfilled arrow tips for textbook-style vectors
+Arrow.set_default(tip_shape=ArrowTriangleTip)
+
 
 class VectorAdditionDemo(Scene):
     """Example: Vector addition using tip-to-tail with resultant"""

@@ -5,7 +5,8 @@ Provides helper class for vector operations like forward projection.
 """
 
 import numpy as np
-from manim import Mobject
+from manim import Mobject, Arrow, Line, Polygon, ArrowTriangleTip
+from manim.utils.space_ops import normalize
 
 
 class VectorUtils:
@@ -216,12 +217,10 @@ class VectorUtils:
         # Calculate end point
         end_point = start_point + direction
 
-        # Create new arrow with same styling as source if not overridden
-        from manim import Arrow
-
         # Get source properties as defaults
         default_kwargs = {
             'buff': 0,
+            'tip_shape': ArrowTriangleTip,
             'color': source.get_color() if not 'color' in arrow_kwargs else arrow_kwargs['color'],
             'stroke_width': source.get_stroke_width() if not 'stroke_width' in arrow_kwargs else arrow_kwargs['stroke_width'],
         }
@@ -275,12 +274,10 @@ class VectorUtils:
         # Calculate end point
         end_point = start_point + reversed_direction
 
-        # Create new arrow with same styling as source if not overridden
-        from manim import Arrow
-
         # Get source properties as defaults
         default_kwargs = {
             'buff': 0,
+            'tip_shape': ArrowTriangleTip,
             'color': source.get_color() if not 'color' in arrow_kwargs else arrow_kwargs['color'],
             'stroke_width': source.get_stroke_width() if not 'stroke_width' in arrow_kwargs else arrow_kwargs['stroke_width'],
         }
@@ -317,9 +314,6 @@ class VectorUtils:
             >>> projection = VectorUtils.project_onto(vector_b, vector_a)
             >>> # Creates arrow showing component of vector_b along vector_a
         """
-        from manim import Arrow
-        from manim.utils.space_ops import normalize
-
         # Extract direction vectors
         target_direction = vector_target.get_end() - vector_target.get_start()
         to_project_direction = vector_to_project.get_end() - vector_to_project.get_start()
@@ -332,10 +326,120 @@ class VectorUtils:
         proj_endpoint = vector_target.get_start() + proj_length * target_unit
 
         # Create projection arrow
-        default_kwargs = {'buff': 0}
+        default_kwargs = {'buff': 0, 'tip_shape': ArrowTriangleTip}
         default_kwargs.update(arrow_kwargs)
 
         return Arrow(vector_target.get_start(), proj_endpoint, **default_kwargs)
+
+    @staticmethod
+    def decompose_parallel(source: Mobject, decompose_against: Mobject, **arrow_kwargs) -> Mobject:
+        """
+        Create an arrow representing the parallel component of source relative to decompose_against.
+
+        This method decomposes the source vector into its parallel component along the
+        decompose_against vector. The parallel component is the projection of source onto
+        decompose_against. Combined with decompose_perp, this provides a complete vector
+        decomposition: source = parallel + perpendicular.
+
+        Args:
+            source: The vector to decompose (typically an Arrow)
+            decompose_against: The reference vector to decompose relative to (typically an Arrow)
+            **arrow_kwargs: Optional styling parameters (color, buff, tip_length, stroke_width, etc.)
+
+        Returns:
+            An Arrow representing the parallel component (starts at source's start point)
+
+        Example:
+            >>> from manim import *
+            >>> from robo_manim_add_ons.vector_utils import VectorUtils
+            >>>
+            >>> # Vector A to decompose
+            >>> vector_a = Arrow(ORIGIN, RIGHT * 2 + UP * 1, buff=0)
+            >>> # Vector B as reference
+            >>> vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0)
+            >>>
+            >>> # Get parallel component of A along B
+            >>> parallel = VectorUtils.decompose_parallel(vector_a, vector_b, color=GREEN)
+            >>> # Creates arrow showing component of vector_a parallel to vector_b
+            >>>
+            >>> # Get perpendicular component to complete decomposition
+            >>> perp = VectorUtils.decompose_perp(vector_a, vector_b, color=ORANGE)
+            >>> # Now: vector_a = parallel + perp (visually)
+        """
+        # Calculate vector directions
+        vec_source_direction = source.get_end() - source.get_start()
+        vec_against_direction = decompose_against.get_end() - decompose_against.get_start()
+
+        # Calculate parallel component (projection of source onto decompose_against)
+        against_unit = normalize(vec_against_direction)
+        parallel_magnitude = np.dot(vec_source_direction, against_unit)
+        parallel_component = parallel_magnitude * against_unit
+
+        # Create parallel component vector starting at source's start
+        parallel_endpoint = source.get_start() + parallel_component
+
+        # Create arrow with styling
+        default_kwargs = {'buff': 0, 'tip_shape': ArrowTriangleTip}
+        default_kwargs.update(arrow_kwargs)
+
+        return Arrow(source.get_start(), parallel_endpoint, **default_kwargs)
+
+    @staticmethod
+    def decompose_perp(source: Mobject, decompose_against: Mobject, **arrow_kwargs) -> Mobject:
+        """
+        Create an arrow representing the perpendicular component of source relative to decompose_against.
+
+        This method decomposes the source vector into its perpendicular (rejection) component
+        relative to the decompose_against vector. This component is orthogonal to decompose_against.
+        Combined with decompose_parallel, this provides a complete vector decomposition:
+        source = parallel + perpendicular.
+
+        Args:
+            source: The vector to decompose (typically an Arrow)
+            decompose_against: The reference vector to decompose relative to (typically an Arrow)
+            **arrow_kwargs: Optional styling parameters (color, buff, tip_length, stroke_width, etc.)
+
+        Returns:
+            An Arrow representing the perpendicular component (starts at parallel component endpoint)
+
+        Example:
+            >>> from manim import *
+            >>> from robo_manim_add_ons.vector_utils import VectorUtils
+            >>>
+            >>> # Vector A to decompose
+            >>> vector_a = Arrow(ORIGIN, RIGHT * 2 + UP * 1, buff=0)
+            >>> # Vector B as reference
+            >>> vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0)
+            >>>
+            >>> # Get parallel component first
+            >>> parallel = VectorUtils.decompose_parallel(vector_a, vector_b, color=GREEN)
+            >>>
+            >>> # Get perpendicular component
+            >>> perp = VectorUtils.decompose_perp(vector_a, vector_b, color=ORANGE)
+            >>> # Starts at end of parallel component, ends at tip of vector_a
+            >>>
+            >>> # Visualization shows: vector_a = parallel + perp
+        """
+        # Calculate vector directions
+        vec_source_direction = source.get_end() - source.get_start()
+        vec_against_direction = decompose_against.get_end() - decompose_against.get_start()
+
+        # Calculate parallel component
+        against_unit = normalize(vec_against_direction)
+        parallel_magnitude = np.dot(vec_source_direction, against_unit)
+        parallel_component = parallel_magnitude * against_unit
+
+        # Calculate perpendicular component starting point (end of parallel component)
+        perp_start_point = source.get_start() + parallel_component
+
+        # Perpendicular component ends at source's endpoint
+        perp_endpoint = source.get_end()
+
+        # Create arrow with styling
+        default_kwargs = {'buff': 0, 'tip_shape': ArrowTriangleTip}
+        default_kwargs.update(arrow_kwargs)
+
+        return Arrow(perp_start_point, perp_endpoint, **default_kwargs)
 
     @staticmethod
     def projection_line(vector_to_project: Mobject, vector_target: Mobject, **line_kwargs) -> Mobject:
@@ -363,9 +467,6 @@ class VectorUtils:
             >>> proj_line = VectorUtils.projection_line(vector_b, vector_a)
             >>> # Creates line showing perpendicular component
         """
-        from manim import Line
-        from manim.utils.space_ops import normalize
-
         # Extract direction vectors
         target_direction = vector_target.get_end() - vector_target.get_start()
         to_project_direction = vector_to_project.get_end() - vector_to_project.get_start()
@@ -408,9 +509,6 @@ class VectorUtils:
             >>> region = VectorUtils.projection_region(vector_b, vector_a, fill_opacity=0.3)
             >>> # Creates shaded triangle showing projection relationship
         """
-        from manim import Polygon
-        from manim.utils.space_ops import normalize
-
         # Extract direction vectors
         target_direction = vector_target.get_end() - vector_target.get_start()
         to_project_direction = vector_to_project.get_end() - vector_to_project.get_start()
@@ -427,3 +525,148 @@ class VectorUtils:
             vector_to_project.get_end(),
             **polygon_kwargs
         )
+
+    @staticmethod
+    def add(vector_a: Mobject, vector_b: Mobject, start_point: np.ndarray = None, **arrow_kwargs) -> Mobject:
+        """
+        Create the result vector of vector addition a + b.
+
+        This method computes the mathematical result of adding two vectors and returns
+        an arrow representing the sum. The result starts at the specified start_point
+        (defaulting to vector_a's start) and points to a + b.
+
+        Args:
+            vector_a: First vector
+            vector_b: Second vector to add
+            start_point: Starting point for result vector (defaults to vector_a's start)
+            **arrow_kwargs: Optional styling parameters (color, buff, tip_length, stroke_width, etc.)
+
+        Returns:
+            Arrow representing a + b
+
+        Example:
+            >>> from manim import *
+            >>> from robo_manim_add_ons.vector_utils import VectorUtils
+            >>>
+            >>> vector_a = Arrow(ORIGIN, RIGHT * 2, buff=0, color=BLUE)
+            >>> vector_b = Arrow(ORIGIN, UP * 1.5, buff=0, color=RED)
+            >>>
+            >>> # Create result vector a + b
+            >>> result = VectorUtils.add(vector_a, vector_b, color=GREEN)
+            >>> # Creates green arrow from ORIGIN to (2, 1.5, 0)
+        """
+        vec_a_dir = vector_a.get_end() - vector_a.get_start()
+        vec_b_dir = vector_b.get_end() - vector_b.get_start()
+
+        if start_point is None:
+            start_point = vector_a.get_start()
+
+        result_end = start_point + vec_a_dir + vec_b_dir
+
+        default_kwargs = {'buff': 0, 'tip_shape': ArrowTriangleTip}
+        default_kwargs.update(arrow_kwargs)
+
+        return Arrow(start_point, result_end, **default_kwargs)
+
+    @staticmethod
+    def subtract(vector_a: Mobject, vector_b: Mobject, start_point: np.ndarray = None, **arrow_kwargs) -> Mobject:
+        """
+        Create the result vector of vector subtraction a - b.
+
+        This method computes the mathematical result of subtracting vector_b from vector_a
+        and returns an arrow representing the difference. The result starts at the specified
+        start_point (defaulting to vector_a's start) and points to a - b.
+
+        Useful for vector subtraction visualizations where you show a - b = a + (-b).
+
+        Args:
+            vector_a: Vector to subtract from
+            vector_b: Vector to subtract
+            start_point: Starting point for result vector (defaults to vector_a's start)
+            **arrow_kwargs: Optional styling parameters (color, buff, tip_length, stroke_width, etc.)
+
+        Returns:
+            Arrow representing a - b
+
+        Example:
+            >>> from manim import *
+            >>> from robo_manim_add_ons.vector_utils import VectorUtils
+            >>>
+            >>> vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0, color=BLUE)
+            >>> vector_b = Arrow(ORIGIN, UP * 2, buff=0, color=RED)
+            >>>
+            >>> # Create result vector a - b
+            >>> result = VectorUtils.subtract(vector_a, vector_b, color=GREEN)
+            >>> # Creates green arrow from ORIGIN to (3, -2, 0)
+            >>>
+            >>> # Use in subtraction visualization:
+            >>> # Step 1: Show -b at origin
+            >>> neg_b = VectorUtils.reverse_at(vector_b, ORIGIN, color=PURPLE)
+            >>> # Step 2: Move -b to tip of a
+            >>> shift = VectorUtils.shift_amount(vector_a, neg_b)
+            >>> self.play(neg_b.animate.shift(shift))
+            >>> # Step 3: Show result
+            >>> result = VectorUtils.subtract(vector_a, vector_b, color=GREEN)
+            >>> self.play(GrowArrow(result))
+        """
+        vec_a_dir = vector_a.get_end() - vector_a.get_start()
+        vec_b_dir = vector_b.get_end() - vector_b.get_start()
+
+        if start_point is None:
+            start_point = vector_a.get_start()
+
+        result_end = start_point + vec_a_dir - vec_b_dir
+
+        default_kwargs = {'buff': 0, 'tip_shape': ArrowTriangleTip}
+        default_kwargs.update(arrow_kwargs)
+
+        return Arrow(start_point, result_end, **default_kwargs)
+
+    @staticmethod
+    def scalar_multiply(vector: Mobject, scalar: float, start_point: np.ndarray = None, **arrow_kwargs) -> Mobject:
+        """
+        Create a vector scaled by a scalar multiplier.
+
+        This method multiplies a vector by a scalar value, returning a new arrow with
+        the scaled magnitude. The direction remains the same for positive scalars,
+        and is reversed for negative scalars.
+
+        Args:
+            vector: The vector to scale
+            scalar: The scalar multiplier (can be negative to reverse direction)
+            start_point: Starting point for result vector (defaults to vector's start)
+            **arrow_kwargs: Optional styling parameters (color, buff, tip_length, stroke_width, etc.)
+
+        Returns:
+            Arrow representing scalar * vector
+
+        Example:
+            >>> from manim import *
+            >>> from robo_manim_add_ons.vector_utils import VectorUtils
+            >>>
+            >>> vector_a = Arrow(ORIGIN, RIGHT * 2, buff=0, color=BLUE)
+            >>>
+            >>> # Create 2 * vector_a
+            >>> scaled_up = VectorUtils.scalar_multiply(vector_a, 2, color=GREEN)
+            >>> # Creates green arrow from ORIGIN to (4, 0, 0)
+            >>>
+            >>> # Create 0.5 * vector_a
+            >>> scaled_down = VectorUtils.scalar_multiply(vector_a, 0.5, color=YELLOW)
+            >>> # Creates yellow arrow from ORIGIN to (1, 0, 0)
+            >>>
+            >>> # Create -1 * vector_a (reversal)
+            >>> reversed_vec = VectorUtils.scalar_multiply(vector_a, -1, color=RED)
+            >>> # Creates red arrow from ORIGIN to (-2, 0, 0)
+        """
+        vec_dir = vector.get_end() - vector.get_start()
+        scaled_dir = vec_dir * scalar
+
+        if start_point is None:
+            start_point = vector.get_start()
+
+        end_point = start_point + scaled_dir
+
+        default_kwargs = {'buff': 0, 'tip_shape': ArrowTriangleTip}
+        default_kwargs.update(arrow_kwargs)
+
+        return Arrow(start_point, end_point, **default_kwargs)

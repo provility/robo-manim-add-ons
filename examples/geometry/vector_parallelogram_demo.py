@@ -8,6 +8,9 @@ Uses copy_at() for parallelogram sides and add() for the diagonal result.
 from manim import *
 from robo_manim_add_ons.vector_utils import VectorUtils
 
+# Use unfilled arrow tips for textbook-style vectors
+Arrow.set_default(tip_shape=ArrowTriangleTip)
+
 
 class ParallelogramLawDemo(Scene):
     """Basic parallelogram law: tail-to-tail vectors form a parallelogram"""

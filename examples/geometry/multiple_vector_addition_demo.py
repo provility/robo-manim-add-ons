@@ -5,6 +5,9 @@ Multiple Vector Addition Demo - Adding multiple vectors using tail_at_tip
 from manim import *
 from robo_manim_add_ons.vector_utils import VectorUtils
 
+# Use unfilled arrow tips for textbook-style vectors
+Arrow.set_default(tip_shape=ArrowTriangleTip)
+
 
 class MultipleVectorAddition(Scene):
     """Example: Adding multiple vectors using tail_at_tip"""

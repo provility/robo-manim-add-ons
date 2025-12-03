@@ -8,6 +8,9 @@ Uses project_onto(), projection_line(), and projection_region() from VectorUtils
 from manim import *
 from robo_manim_add_ons.vector_utils import VectorUtils
 
+# Use unfilled arrow tips for textbook-style vectors
+Arrow.set_default(tip_shape=ArrowTriangleTip)
+
 
 class DotProductProjectionDemo(Scene):
     """Basic projection: project vector b onto vector a"""

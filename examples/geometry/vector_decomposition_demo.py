@@ -9,6 +9,9 @@ Focus on geometric relationships, not styling.
 from manim import *
 from robo_manim_add_ons.vector_utils import VectorUtils
 
+# Use unfilled arrow tips for textbook-style vectors
+Arrow.set_default(tip_shape=ArrowTriangleTip)
+
 
 class BasicDecompositionDemo(Scene):
     """Basic example: Decompose vector A into components parallel and perpendicular to vector B"""

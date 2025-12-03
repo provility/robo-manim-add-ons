@@ -5,6 +5,9 @@ Combined Vector Operations Demo - Combining tail_at_tip and shift_amount
 from manim import *
 from robo_manim_add_ons.vector_utils import VectorUtils
 
+# Use unfilled arrow tips for textbook-style vectors
+Arrow.set_default(tip_shape=ArrowTriangleTip)
+
 
 class CombinedVectorOperations(Scene):
     """Example: Combining tail_at_tip and shift_amount"""
