@@ -29,7 +29,7 @@ self.play(Rotate(triangle, angle=PI/3))  # Labels follow!
 
 ![DynamicVertexLabelsExample](https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/DynamicVertexLabelsExample_ManimCE_v0.19.0.png)
 
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/DynamicVertexLabelsExample.mp4" controls width="100%"></video>
+**[▶️ Watch Video](https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/DynamicVertexLabelsExample.mp4)**
 
 ---
 
@@ -58,7 +58,7 @@ self.play(square.animate.stretch(1.5, dim=0))  # Labels adapt!
 
 ![DynamicEdgeLabelsExample](https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/DynamicEdgeLabelsExample_ManimCE_v0.19.0.png)
 
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/DynamicEdgeLabelsExample.mp4" controls width="100%"></video>
+**[▶️ Watch Video](https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/DynamicEdgeLabelsExample.mp4)**
 
 ---
 
@@ -92,7 +92,7 @@ edge_label_objects = always_redraw(
 
 ![DynamicVertexAndEdgeLabels](https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/DynamicVertexAndEdgeLabels_ManimCE_v0.19.0.png)
 
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/DynamicVertexAndEdgeLabels.mp4" controls width="100%"></video>
+**[▶️ Watch Video](https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/DynamicVertexAndEdgeLabels.mp4)**
 
 ---
 
@@ -119,7 +119,7 @@ self.play(Transform(triangle, square))
 
 ![MorphingPolygonLabels](https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/MorphingPolygonLabels_ManimCE_v0.19.0.png)
 
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/MorphingPolygonLabels.mp4" controls width="100%"></video>
+**[▶️ Watch Video](https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/MorphingPolygonLabels.mp4)**
 
 ---
 
@@ -154,4 +154,4 @@ self.play(hexagon.animate.stretch(1.8, dim=1))
 
 ![InteractivePolygonWithUpdater](https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/InteractivePolygonWithUpdater_ManimCE_v0.19.0.png)
 
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/InteractivePolygonWithUpdater.mp4" controls width="100%"></video>
+**[▶️ Watch Video](https://github.com/provility/robo-manim-add-ons/raw/main/demos/labels/InteractivePolygonWithUpdater.mp4)**

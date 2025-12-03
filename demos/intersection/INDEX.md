@@ -20,7 +20,7 @@ intersection_dot.set_color(RED).scale(1.5)
 
 ![BasicIntersectionDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/BasicIntersectionDemo_ManimCE_v0.19.0.png)
 
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/BasicIntersectionDemo.mp4" controls width="100%"></video>
+**[▶️ Watch Video](https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/BasicIntersectionDemo.mp4)**
 
 ---
 
@@ -41,7 +41,7 @@ if len(result) == 0:
 
 ![ParallelLinesDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/ParallelLinesDemo_ManimCE_v0.19.0.png)
 
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/ParallelLinesDemo.mp4" controls width="100%"></video>
+**[▶️ Watch Video](https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/ParallelLinesDemo.mp4)**
 
 ---
 
@@ -63,7 +63,7 @@ self.play(Rotate(rotating_line, angle=PI/3, about_point=ORIGIN))
 
 ![DynamicIntersectionDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/DynamicIntersectionDemo_ManimCE_v0.19.0.png)
 
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/DynamicIntersectionDemo.mp4" controls width="100%"></video>
+**[▶️ Watch Video](https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/DynamicIntersectionDemo.mp4)**
 
 ---
 
@@ -85,7 +85,7 @@ for dot in intersections:
 
 ![BasicLineCircleIntersection](https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/BasicLineCircleIntersection_ManimCE_v0.19.0.png)
 
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/BasicLineCircleIntersection.mp4" controls width="100%"></video>
+**[▶️ Watch Video](https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/BasicLineCircleIntersection.mp4)**
 
 ---
 
@@ -104,7 +104,7 @@ print(f"Found {len(intersections)} intersection(s)")
 
 ![TangentLineDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/TangentLineDemo_ManimCE_v0.19.0.png)
 
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/TangentLineDemo.mp4" controls width="100%"></video>
+**[▶️ Watch Video](https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/TangentLineDemo.mp4)**
 
 ---
 
@@ -128,4 +128,4 @@ self.play(Rotate(line, angle=PI/4, about_point=ORIGIN))
 
 ![DynamicLineCircleIntersection](https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/DynamicLineCircleIntersection_ManimCE_v0.19.0.png)
 
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/DynamicLineCircleIntersection.mp4" controls width="100%"></video>
+**[▶️ Watch Video](https://github.com/provility/robo-manim-add-ons/raw/main/demos/intersection/DynamicLineCircleIntersection.mp4)**

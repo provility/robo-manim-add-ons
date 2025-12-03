@@ -7,7 +7,7 @@ Demonstrations of `label()`, `hatched_region()`, and `distance_marker()` functio
 ## BasicLabelDemo
 **Simple label between two points**
 
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/BasicLabelDemo.mp4" controls width="100%"></video>
+**[▶️ Watch Video](https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/BasicLabelDemo.mp4)**
 
 ```python
 from robo_manim_add_ons import label
@@ -45,7 +45,7 @@ self.add(axes, boundary, hatched)
 
 ![DiagonalHatchDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/DiagonalHatchDemo_ManimCE_v0.19.0.png)
 
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/DiagonalHatchDemo.mp4" controls width="100%"></video>
+**[▶️ Watch Video](https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/DiagonalHatchDemo.mp4)**
 
 ---
 
@@ -72,14 +72,14 @@ self.add(axes, boundary, hatched)
 
 ![TriangleHatchDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/TriangleHatchDemo_ManimCE_v0.19.0.png)
 
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/TriangleHatchDemo.mp4" controls width="100%"></video>
+**[▶️ Watch Video](https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/TriangleHatchDemo.mp4)**
 
 ---
 
 ## BasicDistanceMarker
 **Triangle with distance markers**
 
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/BasicDistanceMarker.mp4" controls width="100%"></video>
+**[▶️ Watch Video](https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/BasicDistanceMarker.mp4)**
 
 ```python
 from robo_manim_add_ons import distance_marker
@@ -100,7 +100,7 @@ marker_a = distance_marker(
 ## DistanceMarkerRectangle
 **Annotating rectangle dimensions**
 
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/DistanceMarkerRectangle.mp4" controls width="100%"></video>
+**[▶️ Watch Video](https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/DistanceMarkerRectangle.mp4)**
 
 ```python
 rect = Rectangle(width=4, height=2.5, color=WHITE)
@@ -126,7 +126,7 @@ height_marker = distance_marker(
 ## DistanceMarkerWithDots
 **Using Dot objects with markers**
 
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/DistanceMarkerWithDots.mp4" controls width="100%"></video>
+**[▶️ Watch Video](https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/DistanceMarkerWithDots.mp4)**
 
 ```python
 # Create Dot objects
@@ -151,7 +151,7 @@ marker_ca = distance_marker(dot_c, dot_a, label_text="d_{CA}")
 ## PythagoreanTheorem
 **Right triangle with Pythagorean theorem**
 
-<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/PythagoreanTheorem.mp4" controls width="100%"></video>
+**[▶️ Watch Video](https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/PythagoreanTheorem.mp4)**
 
 ```python
 triangle = Polygon(

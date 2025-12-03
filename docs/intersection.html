@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intersection Demos - Robo Manim Add-ons</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .back-link {
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        .back-link:hover {
+            opacity: 1;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        .demo-grid {
+            display: grid;
+            gap: 3rem;
+        }
+        .demo-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .demo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+        .demo-content {
+            padding: 2rem;
+        }
+        .demo-title {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        .demo-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        video {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+        }
+        .code-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid #667eea;
+        }
+        .code-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        code {
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+        }
+        .github-badge {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            text-decoration: none;
+            color: #667eea;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        .github-badge:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <a href="https://github.com/provility/robo-manim-add-ons" class="github-badge">⭐ GitHub</a>
+
+    <div class="header">
+        <div class="header-content">
+            <a href="index.html" class="back-link">← Back to Gallery</a>
+            <h1>⚡ Intersection Demos</h1>
+            <p class="subtitle">Line-line and line-circle intersection utilities</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="demo-grid">
+                        <!-- BasicIntersectionDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">BasicIntersectionDemo</h2>
+                    <p class="demo-description">Demo: BasicIntersectionDemo</p>
+
+                    <video controls>
+                        <source src="../demos/intersection/BasicIntersectionDemo.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <div class="code-section">
+                        <div class="code-title">Code Example:</div>
+                        <pre><code># Code for BasicIntersectionDemo
+# See examples/intersection/ for full source</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BasicLineCircleIntersection -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">BasicLineCircleIntersection</h2>
+                    <p class="demo-description">Demo: BasicLineCircleIntersection</p>
+
+                    <video controls>
+                        <source src="../demos/intersection/BasicLineCircleIntersection.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <div class="code-section">
+                        <div class="code-title">Code Example:</div>
+                        <pre><code># Code for BasicLineCircleIntersection
+# See examples/intersection/ for full source</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DynamicIntersectionDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">DynamicIntersectionDemo</h2>
+                    <p class="demo-description">Demo: DynamicIntersectionDemo</p>
+
+                    <video controls>
+                        <source src="../demos/intersection/DynamicIntersectionDemo.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <div class="code-section">
+                        <div class="code-title">Code Example:</div>
+                        <pre><code># Code for DynamicIntersectionDemo
+# See examples/intersection/ for full source</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DynamicLineCircleIntersection -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">DynamicLineCircleIntersection</h2>
+                    <p class="demo-description">Demo: DynamicLineCircleIntersection</p>
+
+                    <video controls>
+                        <source src="../demos/intersection/DynamicLineCircleIntersection.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <div class="code-section">
+                        <div class="code-title">Code Example:</div>
+                        <pre><code># Code for DynamicLineCircleIntersection
+# See examples/intersection/ for full source</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ParallelLinesDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">ParallelLinesDemo</h2>
+                    <p class="demo-description">Demo: ParallelLinesDemo</p>
+
+                    <video controls>
+                        <source src="../demos/intersection/ParallelLinesDemo.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <div class="code-section">
+                        <div class="code-title">Code Example:</div>
+                        <pre><code># Code for ParallelLinesDemo
+# See examples/intersection/ for full source</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TangentLineDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">TangentLineDemo</h2>
+                    <p class="demo-description">Demo: TangentLineDemo</p>
+
+                    <video controls>
+                        <source src="../demos/intersection/TangentLineDemo.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <div class="code-section">
+                        <div class="code-title">Code Example:</div>
+                        <pre><code># Code for TangentLineDemo
+# See examples/intersection/ for full source</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
