@@ -32,23 +32,39 @@ class ExtendedLineBasicDemo(Scene):
         self.wait(2)
 
 
-class ExtendedLineMultipleDemo(Scene):
-    """Show multiple extensions at various proportions."""
+class ExtendedLinePolygonDemo(Scene):
+    """Extend sides of a polygon outward."""
 
     def construct(self):
-        base_line = Line(LEFT * 3, RIGHT * 3, color=BLUE)
-        self.play(Create(base_line))
+        # Create a triangle
+        triangle = Polygon(
+            LEFT * 2 + DOWN,
+            RIGHT * 2 + DOWN,
+            UP * 2,
+            color=BLUE
+        )
+        self.play(Create(triangle))
         self.wait(0.5)
 
-        proportions = [0.0, 0.25, 0.5, 0.75, 1.0]
-        colors = [RED, ORANGE, GREEN, YELLOW, PURPLE]
+        # Get the three sides as lines
+        vertices = triangle.get_vertices()
+        side1 = Line(vertices[0], vertices[1], color=BLUE)
+        side2 = Line(vertices[1], vertices[2], color=BLUE)
+        side3 = Line(vertices[2], vertices[0], color=BLUE)
 
-        ext_lines = VGroup()
-        for prop, color in zip(proportions, colors):
-            ext = extended_line(base_line, proportion=prop, length=1.0).set_color(color)
-            ext_lines.add(ext)
+        # Extend each side outward from both ends
+        ext1_start = extended_line(side1, proportion=0.0, length=1.0).set_color(RED)
+        ext1_end = extended_line(side1, proportion=1.0, length=1.0).set_color(RED)
 
-        self.play(LaggedStart(*[Create(line) for line in ext_lines], lag_ratio=0.3))
+        ext2_start = extended_line(side2, proportion=0.0, length=1.0).set_color(RED)
+        ext2_end = extended_line(side2, proportion=1.0, length=1.0).set_color(RED)
+
+        ext3_start = extended_line(side3, proportion=0.0, length=1.0).set_color(RED)
+        ext3_end = extended_line(side3, proportion=1.0, length=1.0).set_color(RED)
+
+        extensions = VGroup(ext1_start, ext1_end, ext2_start, ext2_end, ext3_start, ext3_end)
+
+        self.play(LaggedStart(*[Create(ext) for ext in extensions], lag_ratio=0.2))
         self.wait(2)
 
 
