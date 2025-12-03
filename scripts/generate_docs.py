@@ -124,11 +124,30 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             margin-bottom: 12px;
             font-size: 14px;
         }}
-        video {{
-            width: 100%;
+        .media-row {{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }}
+        .media-item {{
             border: 1px solid #d0d7de;
             border-radius: 6px;
-            margin-bottom: 12px;
+            overflow: hidden;
+        }}
+        .media-item img {{
+            width: 100%;
+            display: block;
+        }}
+        video {{
+            width: 100%;
+            display: block;
+        }}
+        .media-label {{
+            font-size: 12px;
+            color: #57606a;
+            margin-bottom: 4px;
+            font-weight: 500;
         }}
         .code-section {{
             background: #f6f8fa;
@@ -199,10 +218,22 @@ DEMO_CARD_TEMPLATE = """            <!-- {demo_name} -->
                     <h2 class="demo-title">{demo_name}</h2>
                     <p class="demo-description">{demo_desc}</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/{category}/{video_file}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/{category}/{png_file}" alt="{demo_name} preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/{category}/{video_file}" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -269,6 +300,7 @@ def generate_category_page(category, config):
             demo_desc=info["description"],
             category=category,
             video_file=f"{demo_name}.mp4",
+            png_file=f"{demo_name}.png",
             code_snippet=info["code"]
         )
         demo_cards.append(card)

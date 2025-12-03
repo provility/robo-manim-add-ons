@@ -71,11 +71,30 @@
             margin-bottom: 12px;
             font-size: 14px;
         }
-        video {
-            width: 100%;
+        .media-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .media-item {
             border: 1px solid #d0d7de;
             border-radius: 6px;
-            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .media-item img {
+            width: 100%;
+            display: block;
+        }
+        video {
+            width: 100%;
+            display: block;
+        }
+        .media-label {
+            font-size: 12px;
+            color: #57606a;
+            margin-bottom: 4px;
+            font-weight: 500;
         }
         .code-section {
             background: #f6f8fa;
@@ -138,10 +157,22 @@
                     <h2 class="demo-title">RotatedBecomeExample</h2>
                     <p class="demo-description">Demo: RotatedBecomeExample</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/transform/RotatedBecomeExample.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/transform/RotatedBecomeExample.png" alt="RotatedBecomeExample preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/transform/RotatedBecomeExample.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -156,10 +187,22 @@
                     <h2 class="demo-title">RotatedUpdaterExample</h2>
                     <p class="demo-description">Demo: RotatedUpdaterExample</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/transform/RotatedUpdaterExample.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/transform/RotatedUpdaterExample.png" alt="RotatedUpdaterExample preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/transform/RotatedUpdaterExample.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -174,10 +217,22 @@
                     <h2 class="demo-title">ScaledBecomeExample</h2>
                     <p class="demo-description">Demo: ScaledBecomeExample</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/transform/ScaledBecomeExample.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/transform/ScaledBecomeExample.png" alt="ScaledBecomeExample preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/transform/ScaledBecomeExample.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -192,10 +247,22 @@
                     <h2 class="demo-title">ScaledUpdaterExample</h2>
                     <p class="demo-description">Demo: ScaledUpdaterExample</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/transform/ScaledUpdaterExample.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/transform/ScaledUpdaterExample.png" alt="ScaledUpdaterExample preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/transform/ScaledUpdaterExample.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -210,10 +277,22 @@
                     <h2 class="demo-title">TranslatedBecomeExample</h2>
                     <p class="demo-description">Demo: TranslatedBecomeExample</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/transform/TranslatedBecomeExample.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/transform/TranslatedBecomeExample.png" alt="TranslatedBecomeExample preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/transform/TranslatedBecomeExample.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -228,10 +307,22 @@
                     <h2 class="demo-title">TranslatedUpdaterExample</h2>
                     <p class="demo-description">Demo: TranslatedUpdaterExample</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/transform/TranslatedUpdaterExample.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/transform/TranslatedUpdaterExample.png" alt="TranslatedUpdaterExample preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/transform/TranslatedUpdaterExample.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>

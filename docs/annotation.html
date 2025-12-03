@@ -71,11 +71,30 @@
             margin-bottom: 12px;
             font-size: 14px;
         }
-        video {
-            width: 100%;
+        .media-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .media-item {
             border: 1px solid #d0d7de;
             border-radius: 6px;
-            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .media-item img {
+            width: 100%;
+            display: block;
+        }
+        video {
+            width: 100%;
+            display: block;
+        }
+        .media-label {
+            font-size: 12px;
+            color: #57606a;
+            margin-bottom: 4px;
+            font-weight: 500;
         }
         .code-section {
             background: #f6f8fa;
@@ -138,10 +157,22 @@
                     <h2 class="demo-title">BasicDistanceMarker</h2>
                     <p class="demo-description">Triangle with distance markers</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/BasicDistanceMarker.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/BasicDistanceMarker.png" alt="BasicDistanceMarker preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/BasicDistanceMarker.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -166,10 +197,22 @@ marker_a = distance_marker(
                     <h2 class="demo-title">BasicLabelDemo</h2>
                     <p class="demo-description">Simple label between two points</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/BasicLabelDemo.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/BasicLabelDemo.png" alt="BasicLabelDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/BasicLabelDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -191,10 +234,22 @@ ab_label = label("AB", dot_a, dot_b, buff=0.5)</code></pre>
                     <h2 class="demo-title">DiagonalHatchDemo</h2>
                     <p class="demo-description">Diagonal hatching pattern on a rectangle</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/DiagonalHatchDemo.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/DiagonalHatchDemo.png" alt="DiagonalHatchDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/DiagonalHatchDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -223,10 +278,22 @@ self.add(axes, boundary, hatched)</code></pre>
                     <h2 class="demo-title">DistanceMarkerRectangle</h2>
                     <p class="demo-description">Annotating rectangle dimensions</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/DistanceMarkerRectangle.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/DistanceMarkerRectangle.png" alt="DistanceMarkerRectangle preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/DistanceMarkerRectangle.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -256,10 +323,22 @@ height_marker = distance_marker(
                     <h2 class="demo-title">DistanceMarkerWithDots</h2>
                     <p class="demo-description">Using Dot objects with markers</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/DistanceMarkerWithDots.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/DistanceMarkerWithDots.png" alt="DistanceMarkerWithDots preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/DistanceMarkerWithDots.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -288,10 +367,22 @@ marker_ca = distance_marker(dot_c, dot_a, label_text="d_{CA}")</code></pre>
                     <h2 class="demo-title">PythagoreanTheorem</h2>
                     <p class="demo-description">Right triangle with Pythagorean theorem</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/PythagoreanTheorem.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/PythagoreanTheorem.png" alt="PythagoreanTheorem preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/PythagoreanTheorem.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -332,10 +423,22 @@ formula = MathTex(r"a^2 + b^2 = c^2")</code></pre>
                     <h2 class="demo-title">TriangleHatchDemo</h2>
                     <p class="demo-description">Backslash hatching pattern on a triangle</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/TriangleHatchDemo.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/TriangleHatchDemo.png" alt="TriangleHatchDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/annotation/TriangleHatchDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>

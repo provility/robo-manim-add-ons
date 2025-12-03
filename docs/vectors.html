@@ -71,11 +71,30 @@
             margin-bottom: 12px;
             font-size: 14px;
         }
-        video {
-            width: 100%;
+        .media-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .media-item {
             border: 1px solid #d0d7de;
             border-radius: 6px;
-            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .media-item img {
+            width: 100%;
+            display: block;
+        }
+        video {
+            width: 100%;
+            display: block;
+        }
+        .media-label {
+            font-size: 12px;
+            color: #57606a;
+            margin-bottom: 4px;
+            font-weight: 500;
         }
         .code-section {
             background: #f6f8fa;
@@ -138,10 +157,22 @@
                     <h2 class="demo-title">BasicDecompositionDemo</h2>
                     <p class="demo-description">Vector decomposition into parallel and perpendicular components</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/BasicDecompositionDemo.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/BasicDecompositionDemo.png" alt="BasicDecompositionDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/BasicDecompositionDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -173,10 +204,22 @@ self.play(Create(dashed))</code></pre>
                     <h2 class="demo-title">DotProductProjectionDemo</h2>
                     <p class="demo-description">Vector projection with step-by-step visualization</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/DotProductProjectionDemo.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/DotProductProjectionDemo.png" alt="DotProductProjectionDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/DotProductProjectionDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -212,10 +255,22 @@ self.play(GrowArrow(proj_vector))</code></pre>
                     <h2 class="demo-title">DotProductVisualization</h2>
                     <p class="demo-description">Visualize dot product as projection times magnitude</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/DotProductVisualization.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/DotProductVisualization.png" alt="DotProductVisualization preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/DotProductVisualization.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -248,10 +303,22 @@ label_proj = brace_proj.get_text(r"$|\text{proj}|$")</code></pre>
                     <h2 class="demo-title">DynamicProjection</h2>
                     <p class="demo-description">Interactive projection that updates with vector rotation</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/DynamicProjection.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/DynamicProjection.png" alt="DynamicProjection preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/DynamicProjection.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -286,10 +353,22 @@ self.play(Rotate(vector_b, angle=PI, about_point=ORIGIN), run_time=4)</code></pr
                     <h2 class="demo-title">InclinedPlaneForceDecomposition</h2>
                     <p class="demo-description">Practical example: Force decomposition on inclined plane</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/InclinedPlaneForceDecomposition.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/InclinedPlaneForceDecomposition.png" alt="InclinedPlaneForceDecomposition preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/InclinedPlaneForceDecomposition.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -321,10 +400,22 @@ self.play(GrowArrow(perp_force))</code></pre>
                     <h2 class="demo-title">MultipleDecompositions</h2>
                     <p class="demo-description">Multiple simultaneous decompositions with updaters</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/MultipleDecompositions.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/MultipleDecompositions.png" alt="MultipleDecompositions preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/MultipleDecompositions.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -362,10 +453,22 @@ self.play(Rotate(ref_vector, angle=PI/3, about_point=ORIGIN), run_time=4)</code>
                     <h2 class="demo-title">OppositeDirectionDecomposition</h2>
                     <p class="demo-description">Decomposition when vectors point in opposite directions</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/OppositeDirectionDecomposition.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/OppositeDirectionDecomposition.png" alt="OppositeDirectionDecomposition preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/OppositeDirectionDecomposition.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -398,10 +501,22 @@ self.play(Rotate(vector_a, angle=PI, about_point=ORIGIN), run_time=4)</code></pr
                     <h2 class="demo-title">ProjectionCases</h2>
                     <p class="demo-description">Different projection cases: acute, right, and obtuse angles</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionCases.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionCases.png" alt="ProjectionCases preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionCases.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -432,10 +547,22 @@ proj3 = VectorUtils.project_onto(vec_b3, vec_a3, color=GREEN)</code></pre>
                     <h2 class="demo-title">ProjectionDecomposition</h2>
                     <p class="demo-description">Decompose vector into parallel and perpendicular components</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionDecomposition.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionDecomposition.png" alt="ProjectionDecomposition preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionDecomposition.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -468,10 +595,22 @@ self.play(Create(dashed))</code></pre>
                     <h2 class="demo-title">ProjectionDemo</h2>
                     <p class="demo-description">Vector projection with dynamic rotation</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionDemo.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionDemo.png" alt="ProjectionDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -505,10 +644,22 @@ self.play(Rotate(vector_b, angle=PI, about_point=ORIGIN))</code></pre>
                     <h2 class="demo-title">ProjectionScaling</h2>
                     <p class="demo-description">Projection magnitude changes with vector magnitude</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionScaling.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionScaling.png" alt="ProjectionScaling preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionScaling.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -544,10 +695,22 @@ self.play(vector_b.animate.put_start_and_end_on(ORIGIN, RIGHT * 0.5 + UP * 0.4),
                     <h2 class="demo-title">ProjectionScalingDemo</h2>
                     <p class="demo-description">Projection scaling with vector magnitude</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionScalingDemo.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionScalingDemo.png" alt="ProjectionScalingDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionScalingDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -582,10 +745,22 @@ self.play(vector_b.animate.put_start_and_end_on(ORIGIN, new_end))</code></pre>
                     <h2 class="demo-title">ProjectionWithFormula</h2>
                     <p class="demo-description">Projection with mathematical formula display</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionWithFormula.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionWithFormula.png" alt="ProjectionWithFormula preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionWithFormula.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -615,10 +790,22 @@ self.play(Create(proj_line))</code></pre>
                     <h2 class="demo-title">ProjectionWithRegion</h2>
                     <p class="demo-description">Projection with shaded triangular region</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionWithRegion.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionWithRegion.png" alt="ProjectionWithRegion preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ProjectionWithRegion.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -648,10 +835,22 @@ self.play(Create(proj_line))</code></pre>
                     <h2 class="demo-title">ReverseAtDemo</h2>
                     <p class="demo-description">Vector reversal for subtraction visualization</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ReverseAtDemo.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ReverseAtDemo.png" alt="ReverseAtDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ReverseAtDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -684,10 +883,22 @@ self.play(GrowArrow(result_vector))</code></pre>
                     <h2 class="demo-title">RotatingReferenceDecomposition</h2>
                     <p class="demo-description">Decomposition updates as reference vector rotates</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/RotatingReferenceDecomposition.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/RotatingReferenceDecomposition.png" alt="RotatingReferenceDecomposition preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/RotatingReferenceDecomposition.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -720,10 +931,22 @@ self.play(Rotate(vector_b, angle=PI/2, about_point=ORIGIN), run_time=3)</code></
                     <h2 class="demo-title">RotatingVectorDecomposition</h2>
                     <p class="demo-description">Decomposition updates as vector rotates</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/RotatingVectorDecomposition.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/RotatingVectorDecomposition.png" alt="RotatingVectorDecomposition preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/RotatingVectorDecomposition.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -760,10 +983,22 @@ self.play(Rotate(vector_a, angle=PI, about_point=ORIGIN), run_time=4)</code></pr
                     <h2 class="demo-title">ScalingVectorDecomposition</h2>
                     <p class="demo-description">Decomposition with vector magnitude changes</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ScalingVectorDecomposition.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ScalingVectorDecomposition.png" alt="ScalingVectorDecomposition preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/ScalingVectorDecomposition.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>

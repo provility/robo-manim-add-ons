@@ -71,11 +71,30 @@
             margin-bottom: 12px;
             font-size: 14px;
         }
-        video {
-            width: 100%;
+        .media-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .media-item {
             border: 1px solid #d0d7de;
             border-radius: 6px;
-            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .media-item img {
+            width: 100%;
+            display: block;
+        }
+        video {
+            width: 100%;
+            display: block;
+        }
+        .media-label {
+            font-size: 12px;
+            color: #57606a;
+            margin-bottom: 4px;
+            font-weight: 500;
         }
         .code-section {
             background: #f6f8fa;
@@ -138,10 +157,22 @@
                     <h2 class="demo-title">BasicIntersectionDemo</h2>
                     <p class="demo-description">Basic line-line intersection</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/BasicIntersectionDemo.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/BasicIntersectionDemo.png" alt="BasicIntersectionDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/BasicIntersectionDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -163,10 +194,22 @@ intersection_dot.set_color(RED).scale(1.5)</code></pre>
                     <h2 class="demo-title">BasicLineCircleIntersection</h2>
                     <p class="demo-description">Line through circle (2 intersection points)</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/BasicLineCircleIntersection.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/BasicLineCircleIntersection.png" alt="BasicLineCircleIntersection preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/BasicLineCircleIntersection.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -190,10 +233,22 @@ for dot in intersections:
                     <h2 class="demo-title">DynamicIntersectionDemo</h2>
                     <p class="demo-description">Intersection follows rotating line using always_redraw()</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/DynamicIntersectionDemo.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/DynamicIntersectionDemo.png" alt="DynamicIntersectionDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/DynamicIntersectionDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -217,10 +272,22 @@ self.play(Rotate(rotating_line, angle=PI/3, about_point=ORIGIN))</code></pre>
                     <h2 class="demo-title">DynamicLineCircleIntersection</h2>
                     <p class="demo-description">Dynamic intersection with rotating line</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/DynamicLineCircleIntersection.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/DynamicLineCircleIntersection.png" alt="DynamicLineCircleIntersection preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/DynamicLineCircleIntersection.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -246,10 +313,22 @@ self.play(Rotate(line, angle=PI/4, about_point=ORIGIN))</code></pre>
                     <h2 class="demo-title">ParallelLinesDemo</h2>
                     <p class="demo-description">Parallel lines return empty VGroup</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/ParallelLinesDemo.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/ParallelLinesDemo.png" alt="ParallelLinesDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/ParallelLinesDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -272,10 +351,22 @@ if len(result) == 0:
                     <h2 class="demo-title">TangentLineDemo</h2>
                     <p class="demo-description">Tangent line (1 intersection point)</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/TangentLineDemo.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/TangentLineDemo.png" alt="TangentLineDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/intersection/TangentLineDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>

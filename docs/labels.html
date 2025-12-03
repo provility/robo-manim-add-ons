@@ -71,11 +71,30 @@
             margin-bottom: 12px;
             font-size: 14px;
         }
-        video {
-            width: 100%;
+        .media-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .media-item {
             border: 1px solid #d0d7de;
             border-radius: 6px;
-            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .media-item img {
+            width: 100%;
+            display: block;
+        }
+        video {
+            width: 100%;
+            display: block;
+        }
+        .media-label {
+            font-size: 12px;
+            color: #57606a;
+            margin-bottom: 4px;
+            font-weight: 500;
         }
         .code-section {
             background: #f6f8fa;
@@ -138,10 +157,22 @@
                     <h2 class="demo-title">DynamicEdgeLabelsExample</h2>
                     <p class="demo-description">Edge labels on transforming square</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/labels/DynamicEdgeLabelsExample.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/labels/DynamicEdgeLabelsExample.png" alt="DynamicEdgeLabelsExample preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/labels/DynamicEdgeLabelsExample.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -172,10 +203,22 @@ self.play(square.animate.stretch(1.5, dim=0))  # Labels adapt!</code></pre>
                     <h2 class="demo-title">DynamicVertexAndEdgeLabels</h2>
                     <p class="demo-description">Both vertex and edge labels together</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/labels/DynamicVertexAndEdgeLabels.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/labels/DynamicVertexAndEdgeLabels.png" alt="DynamicVertexAndEdgeLabels preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/labels/DynamicVertexAndEdgeLabels.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -211,10 +254,22 @@ edge_label_objects = always_redraw(
                     <h2 class="demo-title">DynamicVertexLabelsExample</h2>
                     <p class="demo-description">Vertex labels following transforming triangle</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/labels/DynamicVertexLabelsExample.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/labels/DynamicVertexLabelsExample.png" alt="DynamicVertexLabelsExample preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/labels/DynamicVertexLabelsExample.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -245,10 +300,22 @@ self.play(Rotate(triangle, angle=PI/3))  # Labels follow!</code></pre>
                     <h2 class="demo-title">InteractivePolygonWithUpdater</h2>
                     <p class="demo-description">Real-time edge length calculation</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/labels/InteractivePolygonWithUpdater.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/labels/InteractivePolygonWithUpdater.png" alt="InteractivePolygonWithUpdater preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/labels/InteractivePolygonWithUpdater.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
@@ -285,10 +352,22 @@ self.play(hexagon.animate.stretch(1.8, dim=1))</code></pre>
                     <h2 class="demo-title">MorphingPolygonLabels</h2>
                     <p class="demo-description">Labels adapt to morphing polygons</p>
 
-                    <video controls>
-                        <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/labels/MorphingPolygonLabels.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/labels/MorphingPolygonLabels.png" alt="MorphingPolygonLabels preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/labels/MorphingPolygonLabels.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="code-section">
                         <div class="code-title">Code Example:</div>
