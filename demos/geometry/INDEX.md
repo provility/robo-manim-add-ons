@@ -138,3 +138,95 @@ right_side = always_redraw(
 ![ParallelogramUpdater](https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/ParallelogramUpdater_ManimCE_v0.19.0.png)
 
 <video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/ParallelogramUpdater.mp4" controls width="100%"></video>
+
+---
+
+## ReverseAtDemo
+**Vector reversal for subtraction visualization**
+
+```python
+from robo_manim_add_ons.vector_utils import VectorUtils
+
+vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0)
+vector_b = Arrow(ORIGIN, UP * 2, buff=0)
+
+# Vector subtraction: a - b = a + (-b)
+# Create -b at origin
+neg_b_at_origin = VectorUtils.reverse_at(vector_b, ORIGIN, color=PURPLE)
+
+# Move -b to tip of a
+shift_vector = VectorUtils.shift_amount(vector_a, neg_b_at_origin)
+self.play(neg_b_at_origin.animate.shift(shift_vector))
+
+# Result vector
+result = VectorUtils.subtract(vector_a, vector_b, color=GREEN)
+```
+
+![ReverseAtDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/ReverseAtDemo_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/ReverseAtDemo.mp4" controls width="100%"></video>
+
+---
+
+## ProjectionDemo
+**Vector projection with dynamic rotation**
+
+```python
+from robo_manim_add_ons.vector_utils import VectorUtils
+
+vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0)
+vector_b = Arrow(ORIGIN, RIGHT * 2 + UP * 1.5, buff=0)
+
+# Projection visualizations with updaters
+projection = always_redraw(
+    lambda: VectorUtils.project_onto(vector_b, vector_a)
+)
+
+proj_line = always_redraw(
+    lambda: VectorUtils.projection_line(vector_b, vector_a)
+)
+
+proj_region = always_redraw(
+    lambda: VectorUtils.projection_region(vector_b, vector_a, fill_opacity=0.3)
+)
+
+# Rotate vector_b - projections update dynamically
+self.play(Rotate(vector_b, angle=PI, about_point=ORIGIN))
+```
+
+![ProjectionDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/ProjectionDemo_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/ProjectionDemo.mp4" controls width="100%"></video>
+
+---
+
+## ProjectionScalingDemo
+**Projection scaling with vector magnitude**
+
+```python
+from robo_manim_add_ons.vector_utils import VectorUtils
+
+vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0)
+vector_b = Arrow(ORIGIN, RIGHT * 1 + UP * 1, buff=0)
+
+# Projection with always_redraw
+projection = always_redraw(
+    lambda: VectorUtils.project_onto(vector_b, vector_a)
+)
+
+proj_line = always_redraw(
+    lambda: VectorUtils.projection_line(vector_b, vector_a)
+)
+
+proj_region = always_redraw(
+    lambda: VectorUtils.projection_region(vector_b, vector_a, fill_opacity=0.3)
+)
+
+# Scale vector_b - projection scales proportionally
+new_end = RIGHT * 2.5 + UP * 2.5
+self.play(vector_b.animate.put_start_and_end_on(ORIGIN, new_end))
+```
+
+![ProjectionScalingDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/ProjectionScalingDemo_ManimCE_v0.19.0.png)
+
+<video src="https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/ProjectionScalingDemo.mp4" controls width="100%"></video>

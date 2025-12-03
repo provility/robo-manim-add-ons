@@ -78,7 +78,7 @@ class VectorUtils:
         return shifted_vector
 
     @staticmethod
-    def perpMove(source: Mobject, distance: float) -> Mobject:
+    def perp_move(source: Mobject, distance: float) -> Mobject:
         """
         Create a copy of a vector shifted perpendicular to its direction.
 
@@ -99,7 +99,7 @@ class VectorUtils:
             >>> from robo_manim_add_ons.vector_utils import VectorUtils
             >>>
             >>> source_vector = Arrow(ORIGIN, RIGHT * 2, color=BLUE)
-            >>> shifted_vector = VectorUtils.perpMove(source_vector, 1.5)
+            >>> shifted_vector = VectorUtils.perp_move(source_vector, 1.5)
             >>> # Creates a copy of the arrow shifted 1.5 units upward (perpendicular)
         """
         # Calculate shift direction
@@ -114,7 +114,7 @@ class VectorUtils:
         return shifted_vector
 
     @staticmethod
-    def tailAtTip(vector_a: Mobject, vector_b: Mobject) -> Mobject:
+    def tail_at_tip(vector_a: Mobject, vector_b: Mobject) -> Mobject:
         """
         Create a copy of vector B positioned so its tail starts at vector A's tip.
 
@@ -134,7 +134,7 @@ class VectorUtils:
             >>>
             >>> vector_a = Arrow(ORIGIN, RIGHT * 2, color=BLUE)
             >>> vector_b = Arrow(ORIGIN, UP * 1.5, color=RED)
-            >>> vector_b_shifted = VectorUtils.tailAtTip(vector_a, vector_b)
+            >>> vector_b_shifted = VectorUtils.tail_at_tip(vector_a, vector_b)
             >>> # Creates a copy of vector_b starting at the tip of vector_a
         """
         # Calculate direction of vector B
@@ -150,7 +150,7 @@ class VectorUtils:
         return shifted_vector
 
     @staticmethod
-    def shiftAmount(vector_target: Mobject, vector_source: Mobject) -> np.ndarray:
+    def shift_amount(vector_target: Mobject, vector_source: Mobject) -> np.ndarray:
         """
         Calculate the shift vector needed to move vector_source's tail to vector_target's tip.
 
@@ -171,9 +171,259 @@ class VectorUtils:
             >>>
             >>> vector_a = Arrow(ORIGIN, RIGHT * 2, color=BLUE, buff=0)
             >>> vector_b = Arrow(LEFT, LEFT + UP, color=RED, buff=0)
-            >>> shift_vector = VectorUtils.shiftAmount(vector_a, vector_b)
+            >>> shift_vector = VectorUtils.shift_amount(vector_a, vector_b)
             >>> # In animation: self.play(vector_b.animate.shift(shift_vector))
         """
         # Calculate shift needed: from source's start to target's end
         shift_vector = vector_target.get_end() - vector_source.get_start()
         return shift_vector
+
+    @staticmethod
+    def copy_at(source: Mobject, start_point: np.ndarray, **arrow_kwargs) -> Mobject:
+        """
+        Create a copy of a vector with the same direction and magnitude at a new starting point.
+
+        This method is useful for creating parallelograms or positioning vectors with the same
+        direction at different locations without manually extracting and recalculating directions.
+
+        Args:
+            source: The source Mobject (typically a Line or Arrow) to copy
+            start_point: The new starting point (numpy array or Manim constant)
+            **arrow_kwargs: Optional styling parameters (color, buff, tip_length, stroke_width, etc.)
+
+        Returns:
+            A new Mobject with the same direction and magnitude as source, starting at start_point
+
+        Example:
+            >>> from manim import *
+            >>> from robo_manim_add_ons.vector_utils import VectorUtils
+            >>>
+            >>> # Original vector
+            >>> vector_a = Arrow(ORIGIN, RIGHT * 2, color=BLUE, buff=0)
+            >>>
+            >>> # Create parallelogram side: copy vector_a starting from different point
+            >>> vector_a_copy = VectorUtils.copy_at(vector_a, UP * 2, color=RED)
+            >>> # Creates a red arrow with same direction/length as vector_a, starting at UP * 2
+            >>>
+            >>> # Parallelogram construction example:
+            >>> vector_b = Arrow(ORIGIN, UP * 1.5, color=GREEN, buff=0)
+            >>> side_a = VectorUtils.copy_at(vector_a, vector_b.get_end())
+            >>> side_b = VectorUtils.copy_at(vector_b, vector_a.get_end())
+        """
+        # Extract direction from source vector
+        direction = source.get_end() - source.get_start()
+
+        # Calculate end point
+        end_point = start_point + direction
+
+        # Create new arrow with same styling as source if not overridden
+        from manim import Arrow
+
+        # Get source properties as defaults
+        default_kwargs = {
+            'buff': 0,
+            'color': source.get_color() if not 'color' in arrow_kwargs else arrow_kwargs['color'],
+            'stroke_width': source.get_stroke_width() if not 'stroke_width' in arrow_kwargs else arrow_kwargs['stroke_width'],
+        }
+
+        # Merge with provided kwargs (provided kwargs override defaults)
+        default_kwargs.update(arrow_kwargs)
+
+        # Create and return new arrow
+        return Arrow(start_point, end_point, **default_kwargs)
+
+    @staticmethod
+    def reverse_at(source: Mobject, start_point: np.ndarray, **arrow_kwargs) -> Mobject:
+        """
+        Create a reversed copy of a vector at a specific starting point.
+
+        This method takes a vector and creates a new arrow with the opposite direction
+        (negated direction vector) at the specified starting point. This is particularly
+        useful for vector subtraction visualizations where you need -b positioned at
+        the tip of vector a.
+
+        Args:
+            source: The source Mobject (typically a Line or Arrow) to reverse
+            start_point: The new starting point (numpy array or Manim constant)
+            **arrow_kwargs: Optional styling parameters (color, buff, tip_length, stroke_width, etc.)
+
+        Returns:
+            A new Mobject with the opposite direction of source, starting at start_point
+
+        Example:
+            >>> from manim import *
+            >>> from robo_manim_add_ons.vector_utils import VectorUtils
+            >>>
+            >>> # Original vector
+            >>> vector_b = Arrow(ORIGIN, RIGHT * 2, color=BLUE, buff=0)
+            >>>
+            >>> # Create reversed vector at a different point (for vector subtraction)
+            >>> vector_a = Arrow(ORIGIN, UP * 1.5, color=GREEN, buff=0)
+            >>> neg_b = VectorUtils.reverse_at(vector_b, vector_a.get_end(), color=PURPLE)
+            >>> # Creates a purple arrow with opposite direction to vector_b, starting at tip of vector_a
+            >>>
+            >>> # Usage in vector subtraction: a - b = a + (-b)
+            >>> # Step 1: Show -b at origin
+            >>> neg_b_at_origin = VectorUtils.reverse_at(vector_b, ORIGIN, color=PURPLE)
+            >>> # Step 2: Move -b to tip of a
+            >>> neg_b_at_tip = VectorUtils.reverse_at(vector_b, vector_a.get_end(), color=PURPLE)
+        """
+        # Extract direction from source vector and negate it
+        direction = source.get_end() - source.get_start()
+        reversed_direction = -direction
+
+        # Calculate end point
+        end_point = start_point + reversed_direction
+
+        # Create new arrow with same styling as source if not overridden
+        from manim import Arrow
+
+        # Get source properties as defaults
+        default_kwargs = {
+            'buff': 0,
+            'color': source.get_color() if not 'color' in arrow_kwargs else arrow_kwargs['color'],
+            'stroke_width': source.get_stroke_width() if not 'stroke_width' in arrow_kwargs else arrow_kwargs['stroke_width'],
+        }
+
+        # Merge with provided kwargs (provided kwargs override defaults)
+        default_kwargs.update(arrow_kwargs)
+
+        # Create and return new arrow
+        return Arrow(start_point, end_point, **default_kwargs)
+
+    @staticmethod
+    def project_onto(vector_to_project: Mobject, vector_target: Mobject, **arrow_kwargs) -> Mobject:
+        """
+        Create the projection arrow of one vector onto another.
+
+        This method projects vector_to_project onto vector_target and returns an arrow
+        representing the parallel component. Useful for visualizing dot products and
+        vector decomposition (v = parallel + perpendicular components).
+
+        Args:
+            vector_to_project: The vector to be projected (typically an Arrow)
+            vector_target: The vector to project onto (typically an Arrow)
+            **arrow_kwargs: Optional styling parameters (color, buff, tip_length, stroke_width, etc.)
+
+        Returns:
+            An Arrow representing the projection (starts at vector_target's start)
+
+        Example:
+            >>> from manim import *
+            >>> from robo_manim_add_ons.vector_utils import VectorUtils
+            >>>
+            >>> vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0)
+            >>> vector_b = Arrow(ORIGIN, RIGHT * 2 + UP * 1.5, buff=0)
+            >>> projection = VectorUtils.project_onto(vector_b, vector_a)
+            >>> # Creates arrow showing component of vector_b along vector_a
+        """
+        from manim import Arrow
+        from manim.utils.space_ops import normalize
+
+        # Extract direction vectors
+        target_direction = vector_target.get_end() - vector_target.get_start()
+        to_project_direction = vector_to_project.get_end() - vector_to_project.get_start()
+
+        # Calculate projection using dot product
+        target_unit = normalize(target_direction)
+        proj_length = np.dot(to_project_direction, target_unit)
+
+        # Calculate projection endpoint
+        proj_endpoint = vector_target.get_start() + proj_length * target_unit
+
+        # Create projection arrow
+        default_kwargs = {'buff': 0}
+        default_kwargs.update(arrow_kwargs)
+
+        return Arrow(vector_target.get_start(), proj_endpoint, **default_kwargs)
+
+    @staticmethod
+    def projection_line(vector_to_project: Mobject, vector_target: Mobject, **line_kwargs) -> Mobject:
+        """
+        Create the perpendicular line from projected vector tip to original vector tip.
+
+        This line represents the perpendicular component (rejection) of the projection,
+        showing the "distance" from the original vector to its projection. When vectors
+        are perpendicular, this line has maximum length and projection is zero.
+
+        Args:
+            vector_to_project: The vector to be projected (typically an Arrow)
+            vector_target: The vector to project onto (typically an Arrow)
+            **line_kwargs: Optional styling parameters (color, dash_length, stroke_width, etc.)
+
+        Returns:
+            A Line from the projection endpoint to the tip of vector_to_project
+
+        Example:
+            >>> from manim import *
+            >>> from robo_manim_add_ons.vector_utils import VectorUtils
+            >>>
+            >>> vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0)
+            >>> vector_b = Arrow(ORIGIN, RIGHT * 2 + UP * 1.5, buff=0)
+            >>> proj_line = VectorUtils.projection_line(vector_b, vector_a)
+            >>> # Creates line showing perpendicular component
+        """
+        from manim import Line
+        from manim.utils.space_ops import normalize
+
+        # Extract direction vectors
+        target_direction = vector_target.get_end() - vector_target.get_start()
+        to_project_direction = vector_to_project.get_end() - vector_to_project.get_start()
+
+        # Calculate projection endpoint
+        target_unit = normalize(target_direction)
+        proj_length = np.dot(to_project_direction, target_unit)
+        proj_endpoint = vector_target.get_start() + proj_length * target_unit
+
+        # Create line from projection endpoint to original vector tip
+        return Line(proj_endpoint, vector_to_project.get_end(), **line_kwargs)
+
+    @staticmethod
+    def projection_region(vector_to_project: Mobject, vector_target: Mobject, **polygon_kwargs) -> Mobject:
+        """
+        Create a shaded triangular region showing the projection area.
+
+        This creates a triangle with vertices at:
+        1. Start of target vector (origin)
+        2. Endpoint of projection
+        3. Tip of vector being projected
+
+        When vectors are perpendicular, the projection is zero and the triangle
+        collapses to a line. The area visually represents the magnitude of projection.
+
+        Args:
+            vector_to_project: The vector to be projected (typically an Arrow)
+            vector_target: The vector to project onto (typically an Arrow)
+            **polygon_kwargs: Optional styling parameters (fill_opacity, color, stroke_width, etc.)
+
+        Returns:
+            A Polygon representing the projection region
+
+        Example:
+            >>> from manim import *
+            >>> from robo_manim_add_ons.vector_utils import VectorUtils
+            >>>
+            >>> vector_a = Arrow(ORIGIN, RIGHT * 3, buff=0)
+            >>> vector_b = Arrow(ORIGIN, RIGHT * 2 + UP * 1.5, buff=0)
+            >>> region = VectorUtils.projection_region(vector_b, vector_a, fill_opacity=0.3)
+            >>> # Creates shaded triangle showing projection relationship
+        """
+        from manim import Polygon
+        from manim.utils.space_ops import normalize
+
+        # Extract direction vectors
+        target_direction = vector_target.get_end() - vector_target.get_start()
+        to_project_direction = vector_to_project.get_end() - vector_to_project.get_start()
+
+        # Calculate projection endpoint
+        target_unit = normalize(target_direction)
+        proj_length = np.dot(to_project_direction, target_unit)
+        proj_endpoint = vector_target.get_start() + proj_length * target_unit
+
+        # Create triangle: origin -> projection endpoint -> vector tip -> origin
+        return Polygon(
+            vector_target.get_start(),
+            proj_endpoint,
+            vector_to_project.get_end(),
+            **polygon_kwargs
+        )
