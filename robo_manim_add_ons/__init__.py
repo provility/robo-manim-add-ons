@@ -4,15 +4,17 @@ Robo Manim Add-ons: A collection of utilities and extensions for Manim Community
 
 __version__ = "0.1.0"
 
-from .geometry_utils import perp, parallel, project, reflect, extended_line
+from .geometry_utils import perp, parallel, project, reflect, extended_line, pll, xl
 from .label_utils import vertex_labels, edge_labels
-from .annotation_utils import distance_marker, label, hatched_region
-from .intersection_utils import intersect_lines, intersect_line_circle
+from .annotation_utils import distance_marker, label, hatched_region, dm, hatch
+from .intersection_utils import intersect_lines, intersect_line_circle, ill, ilc
 from .vector_utils import VectorUtils
 from .transform_utils import translated, rotated, scaled
 from .arrow_utils import ArrowUtil
+from .custom_objects import ArcDashedVMobject, ArcArrowDashed
+from .exp_utils import Exp, x, y, st, ed, mid, mag, uv, vec, ang, slope, val, pt, m2v, v2m, x2v, vl, hl, lra, vra, r2p
 
-__all__ = ["perp", "parallel", "project", "reflect", "extended_line", "vertex_labels", "edge_labels", "distance_marker", "label", "hatched_region", "intersect_lines", "intersect_line_circle", "VectorUtils", "translated", "rotated", "scaled", "ArrowUtil", "show_usage"]
+__all__ = ["perp", "parallel", "project", "reflect", "extended_line", "pll", "xl", "vertex_labels", "edge_labels", "distance_marker", "label", "hatched_region", "dm", "hatch", "intersect_lines", "intersect_line_circle", "ill", "ilc", "VectorUtils", "translated", "rotated", "scaled", "ArrowUtil", "ArcDashedVMobject", "ArcArrowDashed", "Exp", "x", "y", "st", "ed", "mid", "mag", "uv", "vec", "ang", "slope", "val", "pt", "m2v", "v2m", "x2v", "vl", "hl", "lra", "vra", "r2p", "show_usage"]
 
 
 def show_usage():

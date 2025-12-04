@@ -13,6 +13,29 @@ class VectorUtils:
     """Utility class for vector operations on Manim objects."""
 
     @staticmethod
+    def create_vector(start: np.ndarray, end: np.ndarray, **kwargs) -> Arrow:
+        """
+        Create a vector arrow with open arrow tip (textbook style).
+
+        Args:
+            start: Starting point of the vector
+            end: Ending point of the vector
+            **kwargs: Additional styling parameters (color, stroke_width, etc.)
+
+        Returns:
+            Arrow with open tip style
+
+        Example:
+            >>> from manim import *
+            >>> from robo_manim_add_ons.vector_utils import VectorUtils
+            >>>
+            >>> vec = VectorUtils.create_vector(ORIGIN, RIGHT * 2, color=BLUE)
+        """
+        default_kwargs = {'buff': 0, 'fill_opacity': 0}
+        default_kwargs.update(kwargs)
+        return Arrow(start, end, **default_kwargs)
+
+    @staticmethod
     def forward(source: Mobject, distance: float) -> Mobject:
         """
         Create a copy of a vector shifted forward along its direction.
@@ -670,3 +693,47 @@ class VectorUtils:
         default_kwargs.update(arrow_kwargs)
 
         return Arrow(start_point, end_point, **default_kwargs)
+
+    # ============================================================================
+    # 2-Letter Aliases for Common Methods
+    # ============================================================================
+
+    @staticmethod
+    def fw(source: Mobject, distance: float) -> Mobject:
+        """Alias for forward(). See forward() for full documentation."""
+        return VectorUtils.forward(source, distance)
+
+    @staticmethod
+    def bw(source: Mobject, distance: float) -> Mobject:
+        """Alias for backward(). See backward() for full documentation."""
+        return VectorUtils.backward(source, distance)
+
+    @staticmethod
+    def pm(source: Mobject, distance: float) -> Mobject:
+        """Alias for perp_move(). See perp_move() for full documentation."""
+        return VectorUtils.perp_move(source, distance)
+
+    @staticmethod
+    def cp(source: Mobject, start_point: np.ndarray, **arrow_kwargs) -> Mobject:
+        """Alias for copy_at(). See copy_at() for full documentation."""
+        return VectorUtils.copy_at(source, start_point, **arrow_kwargs)
+
+    @staticmethod
+    def rv(source: Mobject, start_point: np.ndarray, **arrow_kwargs) -> Mobject:
+        """Alias for reverse_at(). See reverse_at() for full documentation."""
+        return VectorUtils.reverse_at(source, start_point, **arrow_kwargs)
+
+    @staticmethod
+    def tt(vector_a: Mobject, vector_b: Mobject) -> Mobject:
+        """Alias for tail_at_tip(). See tail_at_tip() for full documentation."""
+        return VectorUtils.tail_at_tip(vector_a, vector_b)
+
+    @staticmethod
+    def sa(vector_target: Mobject, vector_source: Mobject) -> np.ndarray:
+        """Alias for shift_amount(). See shift_amount() for full documentation."""
+        return VectorUtils.shift_amount(vector_target, vector_source)
+
+    @staticmethod
+    def po(vector_to_project: Mobject, vector_target: Mobject, **arrow_kwargs) -> Mobject:
+        """Alias for project_onto(). See project_onto() for full documentation."""
+        return VectorUtils.project_onto(vector_to_project, vector_target, **arrow_kwargs)

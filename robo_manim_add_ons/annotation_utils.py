@@ -8,16 +8,15 @@ import numpy as np
 from manim import DoubleArrow, Line, MathTex, VGroup, Polygon, Intersection
 
 
-def distance_marker(point1, point2, color="#1e40af", stroke_width=2, tick_size=0.25, label_text="", label_offset=0.3, marker_offset=0):
+def distance_marker(point1, point2=None, color="#1e40af", stroke_width=2, tick_size=0.25, label_text="", label_offset=0.3, marker_offset=0):
     """
     Create a distance marker with double arrow and perpendicular ticks.
 
     Args:
-        point1: Starting point - can be:
-                - List/tuple: [x, y, z]
-                - numpy array
-                - Manim Dot or any Mobject with get_center() method
-        point2: Ending point - can be:
+        point1: Either a line object OR the starting point
+                - Line object: Any Mobject with get_start() and get_end() methods (Line, Arrow, etc.)
+                - Starting point: List/tuple [x, y, z], numpy array, or Dot (with get_center())
+        point2: Ending point (optional if point1 is a line object) - can be:
                 - List/tuple: [x, y, z]
                 - numpy array
                 - Manim Dot or any Mobject with get_center() method
@@ -38,7 +37,7 @@ def distance_marker(point1, point2, color="#1e40af", stroke_width=2, tick_size=0
         >>> from manim import *
         >>> from robo_manim_add_ons import distance_marker
         >>>
-        >>> # Basic usage
+        >>> # Using two points (Dots, arrays, or lists)
         >>> marker1 = distance_marker(
         ...     [0, 0, 0],
         ...     [3, 0, 0],
@@ -46,25 +45,33 @@ def distance_marker(point1, point2, color="#1e40af", stroke_width=2, tick_size=0
         ...     color=BLUE
         ... )
         >>>
-        >>> # Offset marker away from line
-        >>> marker2 = distance_marker(
-        ...     [0, 0, 0],
-        ...     [3, 0, 0],
-        ...     label_text="d",
-        ...     marker_offset=0.5  # Marker offset perpendicular to line
-        ... )
+        >>> # Using a line object
+        >>> line = Line(LEFT, RIGHT)
+        >>> marker2 = distance_marker(line, label_text="d", marker_offset=0.5)
+        >>>
+        >>> # Using Dot objects
+        >>> dot_a = Dot(ORIGIN)
+        >>> dot_b = Dot(RIGHT * 2)
+        >>> marker3 = distance_marker(dot_a, dot_b, label_text="2")
     """
-    # Extract coordinates from point1
-    if hasattr(point1, 'get_center'):
-        start_pt = point1.get_center()
+    # Detect if point1 is a line object (has get_start and get_end methods)
+    if point2 is None and hasattr(point1, 'get_start') and hasattr(point1, 'get_end'):
+        # point1 is a line object
+        start_pt = point1.get_start()
+        end_pt = point1.get_end()
     else:
-        start_pt = np.array(point1)
+        # Two separate points provided
+        # Extract coordinates from point1
+        if hasattr(point1, 'get_center'):
+            start_pt = point1.get_center()
+        else:
+            start_pt = np.array(point1)
 
-    # Extract coordinates from point2
-    if hasattr(point2, 'get_center'):
-        end_pt = point2.get_center()
-    else:
-        end_pt = np.array(point2)
+        # Extract coordinates from point2
+        if hasattr(point2, 'get_center'):
+            end_pt = point2.get_center()
+        else:
+            end_pt = np.array(point2)
 
     # Calculate direction and perpendicular
     direction = end_pt - start_pt
@@ -271,3 +278,27 @@ def hatched_region(axes, vertices, spacing=0.2, direction="/", color="#808080", 
                         hatched.add(Line(start, end, color=color, stroke_width=stroke_width))
 
     return hatched, boundary_polygon
+
+
+# ============================================================================
+# Aliases
+# ============================================================================
+
+def dm(point1, point2=None, **kwargs):
+    """
+    Alias for distance_marker().
+
+    Accepts either a line object OR two points (Dots, arrays, or lists).
+    See distance_marker() for full documentation.
+
+    Examples:
+        dm(line, label_text="d")
+        dm([0, 0, 0], [3, 0, 0], label_text="3")
+        dm(dot_a, dot_b, label_text="AB")
+    """
+    return distance_marker(point1, point2, **kwargs)
+
+
+def hatch(axes, vertices, **kwargs):
+    """Alias for hatched_region(). See hatched_region() for full documentation."""
+    return hatched_region(axes, vertices, **kwargs)

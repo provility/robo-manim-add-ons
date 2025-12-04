@@ -1,6 +1,8 @@
 # Annotation Utilities
 
-Demonstrations of `label()`, `hatched_region()`, and `distance_marker()` functions for geometric annotations.
+Demonstrations of `label()`, `hatched_region()`, `distance_marker()`, and their aliases for geometric annotations.
+
+**Aliases:** `dm` (distance_marker), `hatch` (hatched_region)
 
 ---
 
@@ -86,13 +88,36 @@ from robo_manim_add_ons import distance_marker
 
 triangle = Polygon([-2, -1, 0], [2, -1, 0], [0, 2, 0], color=WHITE)
 
-# Add distance marker on each side
+# Add distance marker on each side (using two points)
 marker_a = distance_marker(
     [-2, -1, 0], [2, -1, 0],
     label_text="a",
     color=BLUE,
     label_offset=0.4  # Distance from line to label
 )
+```
+
+---
+
+## LineObjectDemo
+**Using Line objects directly with distance markers**
+
+**[▶️ Watch Video](https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/LineObjectDemo.mp4)**
+
+```python
+from robo_manim_add_ons import distance_marker, dm
+
+# Create line objects
+line1 = Line([-3, 1.5, 0], [3, 1.5, 0], color=BLUE)
+line2 = Arrow([-2, 0, 0], [2, 0, 0], color=RED, buff=0)
+
+# Pass line objects directly to distance_marker or dm alias
+marker1 = distance_marker(line1, label_text="Line", marker_offset=0.5)
+marker2 = dm(line2, label_text="Arrow", marker_offset=0.5)
+
+# Both signatures work:
+# dm(line_object, **kwargs)           # Line/Arrow object
+# dm(point1, point2, **kwargs)        # Two points (Dots, arrays, or lists)
 ```
 
 ---

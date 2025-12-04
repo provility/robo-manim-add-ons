@@ -285,3 +285,17 @@ def extended_line(line: Line, proportion: float, length: float) -> Line:
     new_end = point_on_line + direction_normalized * length
 
     return Line(new_start, new_end)
+
+
+# ============================================================================
+# Aliases
+# ============================================================================
+
+def pll(line: Line, dot: Dot, length: float, placement: str = "mid") -> Line:
+    """Alias for parallel(). See parallel() for full documentation."""
+    return parallel(line, dot, length, placement)
+
+
+def xl(line: Line, proportion: float, length: float) -> Line:
+    """Alias for extended_line(). See extended_line() for full documentation."""
+    return extended_line(line, proportion, length)

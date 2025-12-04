@@ -144,3 +144,17 @@ def intersect_line_circle(line: Line, circle: Circle) -> VGroup:
     point2 = p1 + t2 * d
 
     return VGroup(Dot(point1), Dot(point2))
+
+
+# ============================================================================
+# Aliases
+# ============================================================================
+
+def ill(line1: Line, line2: Line) -> Union[Dot, VGroup]:
+    """Alias for intersect_lines(). See intersect_lines() for full documentation."""
+    return intersect_lines(line1, line2)
+
+
+def ilc(line: Line, circle: Circle) -> VGroup:
+    """Alias for intersect_line_circle(). See intersect_line_circle() for full documentation."""
+    return intersect_line_circle(line, circle)
