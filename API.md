@@ -1,10 +1,10 @@
 # Robo Manim Add-ons API Reference
 
-Compact API listing for quick reference. For detailed documentation, see individual module docs.
+Compact API listing for quick reference. All utilities organized in one place.
 
 ---
 
-## Expression Utils (`exp_utils`)
+## Core Expression Utils
 
 ### Coordinate Extraction
 ```python
@@ -23,7 +23,7 @@ uv(obj) -> np.ndarray                        # Get unit vector
 vec(obj) -> np.ndarray                       # Get vector
 ang(obj) -> float                            # Get angle in radians
 slope(obj) -> float                          # Get slope (y/x)
-val(obj) -> float                            # Get value from ValueTracker or number
+val(obj) -> float                            # Get value from ValueTracker/number
 ```
 
 ### Point Creation
@@ -39,113 +39,90 @@ r2p(obj, proportion) -> Dot                  # Point at proportion along object
 ```python
 vl(x, y1=-20, y2=20) -> Line                 # Vertical line at x
 hl(y, x1=-20, x2=20) -> Line                 # Horizontal line at y
-lra(radius, angle, from_x=0, from_y=0) -> Line       # Line using polar coords
-vra(radius, angle, from_x=0, from_y=0) -> Arrow     # Arrow using polar coords
-ln(*args) -> Line                            # Flexible Line creation (red)
-vt(*args) -> Arrow                           # Flexible Arrow creation (red)
+lra(radius, angle, from_x=0, from_y=0) -> Line       # Line using polar coords (degrees)
+vra(radius, angle, from_x=0, from_y=0) -> Arrow     # Arrow using polar coords (degrees)
+ln(*args) -> Line                            # Flexible Line (red): (pt,pt) | (x,y,x,y) | (pt,x,y)
+vt(*args) -> Arrow                           # Flexible Arrow (red): same as ln
 ```
 
 ### Shape Creation
 ```python
 tri(p1, p2, p3) -> Polygon                   # Triangle from three points (red)
-cr(*args) -> Circle                          # Circle (flexible arguments)
-aa(*args, radius=0.5, dash=True) -> ArcArrow         # Angle arc (dashed)
-aa2(*args, radius=0.5) -> Angle              # Angle using Manim's Angle class
+cr(*args) -> Circle                          # Circle: (line) | (center,radius) | (pt,pt)
+aa(*args, radius=0.5, dash=True) -> ArcArrow         # Angle arc (dashed): (l1,l2) | (p1,vertex,p3)
+aa2(*args, radius=0.5) -> Angle              # Manim Angle: supports quadrant control
 ```
 
----
-
-## Annotation Utils (`annotation_utils`)
-
+### Geometry Operations
 ```python
-distance_marker(pt1, pt2=None, color="#1e40af", stroke_width=2, tick_size=0.25, text="", label_offset=0.3, marker_offset=0)
-dm(pt1, pt2=None, **kwargs)                  # Alias for distance_marker
+perp(line, dot, length, placement="mid") -> Line    # Perpendicular line
+pll(line, dot, length, placement="mid") -> Line     # Parallel line (alias: parallel)
+project(line, point) -> Dot                  # Project point onto line (infinite)
+reflect(line, point) -> Dot                  # Reflect point across line (infinite)
+xl(line, proportion, length) -> Line         # Extend line (alias: extended_line)
+```
+
+### Intersection Operations
+```python
+ill(line1, line2) -> Union[Dot, VGroup]      # Line-line intersection (alias: intersect_lines)
+ilc(line, circle) -> VGroup                  # Line-circle intersection (alias: intersect_line_circle)
+```
+
+### Annotation
+```python
+dm(pt1, pt2=None, **kwargs)                  # Distance marker (alias: distance_marker)
+# Key params: text="", color="#1e40af", stroke_width=2, tick_size=0.25, label_offset=0.3, marker_offset=0
 label(latex_text, pt1, pt2, buff=0.5, alpha=0.5, auto_rotate=True) -> MathTex
-hatched_region(axes, vertices, spacing=0.2, direction="/", color="#808080", stroke_width=2)
-hatch(axes, vertices, **kwargs)              # Alias for hatched_region
+hatch(axes, vertices, **kwargs)              # Hatched region (alias: hatched_region)
+# Key params: spacing=0.2, direction="/", color="#808080", stroke_width=2
 ```
 
----
-
-## Geometry Utils (`geometry_utils`)
-
+### Style Operations (Chainable)
 ```python
-perp(line, dot, length, placement="mid") -> Line      # Perpendicular line
-parallel(line, dot, length, placement="mid") -> Line  # Parallel line
-pll(line, dot, length, placement="mid") -> Line       # Alias for parallel
-project(line, point) -> Dot                  # Project point onto line
-reflect(line, point) -> Dot                  # Reflect point across line
-extended_line(line, proportion, length) -> Line       # Extend line
-xl(line, proportion, length) -> Line         # Alias for extended_line
+stroke(obj, color) -> VMobject               # Set stroke color
+fill(obj, color) -> VMobject                 # Set fill color
+sopacity(obj, opacity) -> VMobject           # Set stroke opacity
+fopacity(obj, opacity) -> VMobject           # Set fill opacity
+sw(obj, width) -> VMobject                   # Set stroke width
+style(obj) -> Style                          # Get Style wrapper for chaining
 ```
 
----
-
-## Intersection Utils (`intersection_utils`)
-
-```python
-intersect_lines(line1, line2) -> Union[Dot, VGroup]         # Line-line intersection
-ill(line1, line2) -> Union[Dot, VGroup]                     # Alias for intersect_lines
-intersect_line_circle(line, circle) -> VGroup               # Line-circle intersection
-ilc(line, circle) -> VGroup                                 # Alias for intersect_line_circle
-```
-
----
-
-## Style Utils (`style_utils`)
-
-```python
-stroke(obj, color) -> VMobject               # Set stroke color (chainable)
-fill(obj, color) -> VMobject                 # Set fill color (chainable)
-sopacity(obj, opacity) -> VMobject           # Set stroke opacity (chainable)
-fopacity(obj, opacity) -> VMobject           # Set fill opacity (chainable)
-sw(obj, width) -> VMobject                   # Set stroke width (chainable)
-style(obj) -> Style                          # Get Style object for chaining
-```
-
-### Style Chaining
+**Style Chaining:**
 ```python
 style(circle).fill(BLUE).stroke(RED).sw(3).fopacity(0.5).sopacity(1)
 ```
 
----
-
-## Transform Utils (`transform_utils`)
-
+### Transform Operations
 ```python
 translated(obj, dx, dy) -> Mobject           # Copy and translate
 rotated(obj, angle_deg, about=None) -> Mobject          # Copy and rotate
 scaled(obj, scale_factor, about=None) -> Mobject        # Copy and scale
 ```
 
+### Graph Operations
+```python
+graph(axes, func, x_range=None, **kwargs) -> ParametricFunction
+GraphUtils.graph(axes, func, x_range=None, **kwargs)    # Class method version
+```
+
 ---
 
-## Vector Utils (`vector_utils`)
+## Vector Utils (VectorUtils Class)
 
-### VectorUtils Class Methods
 ```python
 VectorUtils.forward(source, distance) -> Mobject        # Copy forward by distance
-VectorUtils.fw(source, distance) -> Mobject             # Alias for forward
+VectorUtils.fw(source, distance) -> Mobject             # Alias
 VectorUtils.backward(source, distance) -> Mobject       # Copy backward by distance
-VectorUtils.bw(source, distance) -> Mobject             # Alias for backward
+VectorUtils.bw(source, distance) -> Mobject             # Alias
 VectorUtils.perp_move(source, distance) -> Mobject      # Copy perpendicular by distance
-VectorUtils.pm(source, distance) -> Mobject             # Alias for perp_move
+VectorUtils.pm(source, distance) -> Mobject             # Alias
 VectorUtils.copy_at(source, position) -> Mobject        # Copy at position
 VectorUtils.reverse_at(source, position) -> Mobject     # Copy reversed at position
 ```
 
 ---
 
-## Graph Utils (`graph_utils`)
-
-```python
-GraphUtils.graph(axes, func, x_range=None, **kwargs) -> ParametricFunction
-graph(axes, func, x_range=None, **kwargs) -> ParametricFunction    # Function alias
-```
-
----
-
-## Label Utils (`label_utils`)
+## Label Utils
 
 ```python
 vertex_labels(graph, labels, font_size=24, buff=0.2, **kwargs) -> VGroup
@@ -154,9 +131,8 @@ edge_labels(graph, labels, font_size=20, buff=0.1, **kwargs) -> VGroup
 
 ---
 
-## Arrow Utils (`arrow_utils`)
+## Arrow Utils (ArrowUtil Class)
 
-### ArrowUtil Static Methods
 ```python
 ArrowUtil.arc_arrow(arc, color=WHITE, stroke_width=2, tip_length=0.2, buff=0)
 ArrowUtil.smooth_arc_arrow(start, end, angle=PI/2, color=WHITE, stroke_width=2, tip_length=0.2, buff=0)
@@ -187,7 +163,7 @@ class RogebraScene(Scene):
     rtf(*args)                               # ReplacementTransform (pairs of source,target)
 ```
 
-### Usage Examples
+**Examples:**
 ```python
 self.fadeIn(obj1, obj2, 2)                   # Fade in 2 objects over 2 seconds
 self.fadeOut(obj1)                           # Fade out 1 object
@@ -199,16 +175,15 @@ self.tf(obj1, target1, True, 2)              # Transform with copy over 2 second
 
 ## Exp Class (Alternative Interface)
 
-All `exp_utils` functions also available as static methods:
+All expression utilities available as static methods:
 
 ```python
-Exp.x(obj)       Exp.y(obj)        Exp.st(obj)       Exp.ed(obj)
-Exp.mid(obj)     Exp.mag(obj)      Exp.uv(obj)       Exp.vec(obj)
-Exp.ang(obj)     Exp.slope(obj)    Exp.val(obj)      Exp.pt(x,y,z)
-Exp.m2v(...)     Exp.v2m(...)      Exp.x2v(...)      Exp.vl(...)
-Exp.hl(...)      Exp.lra(...)      Exp.vra(...)      Exp.r2p(...)
-Exp.ln(...)      Exp.vt(...)       Exp.tri(...)      Exp.aa(...)
-Exp.aa2(...)     Exp.cr(...)       Exp.graph(...)
+Exp.x(obj)       Exp.y(obj)        Exp.st(obj)       Exp.ed(obj)       Exp.mid(obj)
+Exp.mag(obj)     Exp.uv(obj)       Exp.vec(obj)      Exp.ang(obj)      Exp.slope(obj)
+Exp.val(obj)     Exp.pt(x,y,z)     Exp.m2v(...)      Exp.v2m(...)      Exp.x2v(...)
+Exp.vl(...)      Exp.hl(...)       Exp.lra(...)      Exp.vra(...)      Exp.r2p(...)
+Exp.ln(...)      Exp.vt(...)       Exp.tri(...)      Exp.aa(...)       Exp.aa2(...)
+Exp.cr(...)      Exp.graph(...)
 ```
 
 ---
@@ -216,21 +191,23 @@ Exp.aa2(...)     Exp.cr(...)       Exp.graph(...)
 ## Import Examples
 
 ```python
-# Individual imports
+# Minimal imports
 from robo_manim_add_ons import x, y, pt, ln, dm, style
 
-# Category imports
+# All expression utils
 from robo_manim_add_ons import (
-    # Exp utils
+    # Coords & vectors
     x, y, st, ed, mid, mag, uv, vec, ang, slope, val,
-    pt, m2v, v2m, x2v, vl, hl, lra, vra, r2p,
-    ln, vt, tri, aa, aa2, cr,
-    # Annotation
-    dm, label, hatch,
+    # Points
+    pt, m2v, v2m, x2v, r2p,
+    # Lines & shapes
+    vl, hl, lra, vra, ln, vt, tri, aa, aa2, cr,
     # Geometry
     perp, pll, project, reflect, xl,
     # Intersection
     ill, ilc,
+    # Annotation
+    dm, label, hatch,
     # Style
     stroke, fill, sopacity, fopacity, sw, style,
     # Transform
@@ -245,9 +222,20 @@ from robo_manim_add_ons import Exp, VectorUtils, ArrowUtil, GraphUtils, Style
 
 ---
 
-**Legend:**
-- Functions with `->` show return types
+## Quick Reference by Category
+
+**Getters:** `x` `y` `st` `ed` `mid` `mag` `uv` `vec` `ang` `slope` `val`
+**Creators:** `pt` `m2v` `v2m` `x2v` `r2p` `vl` `hl` `lra` `vra` `ln` `vt` `tri` `cr` `aa` `aa2`
+**Geometry:** `perp` `pll` `project` `reflect` `xl` `ill` `ilc`
+**Annotation:** `dm` `label` `hatch`
+**Style:** `stroke` `fill` `sopacity` `fopacity` `sw` `style`
+**Transform:** `translated` `rotated` `scaled`
+
+---
+
+**Notes:**
+- All 2-letter functions are aliases for longer names
 - Functions with `*args` accept flexible arguments (see individual docs)
-- Functions with `**kwargs` accept additional keyword arguments
 - Chainable functions return the object for method chaining
-- Aliases are short names for longer function names
+- Angles in degrees for `lra`/`vra`, radians for `ang`/`rotated`
+- Points can be: Dot, np.array, [x,y,z], or any object with `get_center()`
