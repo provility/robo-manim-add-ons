@@ -48,6 +48,9 @@ vt(*args) -> Arrow                           # Flexible Arrow (red): same as ln
 ### Shape Creation
 ```python
 tri(p1, p2, p3) -> Polygon                   # Triangle from three points (red)
+tri_sss(a, b, c) -> Polygon                  # Triangle from 3 sides (SSS) (red)
+tri_sas(a, angle_deg, b) -> Polygon          # Triangle from 2 sides + angle (SAS) (red)
+tri_ssa(a, b, angle_deg) -> Polygon          # Triangle from 2 sides + angle (SSA ambiguous) (red)
 rect(*args) -> Rectangle                     # Rectangle: (w,h) | (lb,tr) | (lb,lt,rt,rb)
 cr(*args) -> Circle                          # Circle: (line) | (center,radius) | (pt,pt)
 aa(*args, radius=0.5, dash=True) -> ArcArrow         # Angle arc (dashed): (l1,l2) | (p1,vertex,p3)
@@ -183,8 +186,9 @@ Exp.x(obj)       Exp.y(obj)        Exp.st(obj)       Exp.ed(obj)       Exp.mid(o
 Exp.mag(obj)     Exp.uv(obj)       Exp.vec(obj)      Exp.ang(obj)      Exp.slope(obj)
 Exp.val(obj)     Exp.pt(x,y,z)     Exp.m2v(...)      Exp.v2m(...)      Exp.x2v(...)
 Exp.vl(...)      Exp.hl(...)       Exp.lra(...)      Exp.vra(...)      Exp.r2p(...)
-Exp.ln(...)      Exp.vt(...)       Exp.tri(...)      Exp.rect(...)     Exp.aa(...)
-Exp.aa2(...)     Exp.cr(...)       Exp.graph(...)
+Exp.ln(...)      Exp.vt(...)       Exp.tri(...)      Exp.tri_sss(...)  Exp.tri_sas(...)
+Exp.tri_ssa(...) Exp.rect(...)     Exp.aa(...)       Exp.aa2(...)      Exp.cr(...)
+Exp.graph(...)
 ```
 
 ---
@@ -202,7 +206,7 @@ from robo_manim_add_ons import (
     # Points
     pt, m2v, v2m, x2v, r2p,
     # Lines & shapes
-    vl, hl, lra, vra, ln, vt, tri, rect, aa, aa2, cr,
+    vl, hl, lra, vra, ln, vt, tri, tri_sss, tri_sas, tri_ssa, rect, aa, aa2, cr,
     # Geometry
     perp, pll, project, reflect, xl,
     # Intersection
@@ -226,7 +230,7 @@ from robo_manim_add_ons import Exp, VectorUtils, ArrowUtil, GraphUtils, Style
 ## Quick Reference by Category
 
 **Getters:** `x` `y` `st` `ed` `mid` `mag` `uv` `vec` `ang` `slope` `val`
-**Creators:** `pt` `m2v` `v2m` `x2v` `r2p` `vl` `hl` `lra` `vra` `ln` `vt` `tri` `rect` `cr` `aa` `aa2`
+**Creators:** `pt` `m2v` `v2m` `x2v` `r2p` `vl` `hl` `lra` `vra` `ln` `vt` `tri` `tri_sss` `tri_sas` `tri_ssa` `rect` `cr` `aa` `aa2`
 **Geometry:** `perp` `pll` `project` `reflect` `xl` `ill` `ilc`
 **Annotation:** `dm` `label` `hatch`
 **Style:** `stroke` `fill` `sopacity` `fopacity` `sw` `style`
