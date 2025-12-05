@@ -9,7 +9,7 @@ import numpy as np
 from typing import Union
 from manim import Line, Arrow, Dot, Polygon, Arc, Angle, Circle, Rectangle, RED
 from .graph_utils import GraphUtils
-from .shape_utils import rect as _rect, tri_sss as _tri_sss, tri_sas as _tri_sas, tri_ssa as _tri_ssa
+from .shape_utils import rect as _rect, tri_sss as _sss, tri_sas as _sas, tri_ssa as _ssa
 
 
 def x(obj: Union[object, np.ndarray, list]) -> float:
@@ -1327,32 +1327,35 @@ def rect(*args, **kwargs) -> Rectangle:
     return _rect(*args, **kwargs)
 
 
-def tri_sss(a: float, b: float, c: float, **kwargs) -> Polygon:
+def sss(a: float, b: float = None, c: float = None, **kwargs) -> Polygon:
     """
     Create a triangle using SSS (Side-Side-Side) construction.
 
     Args:
-        a: Length of side opposite to vertex A
-        b: Length of side opposite to vertex B
-        c: Length of side opposite to vertex C
+        a: Length of side (if only arg, creates equilateral triangle)
+        b: Length of second side (optional, defaults to 'a' for equilateral)
+        c: Length of third side (optional, defaults to 'a' for equilateral)
         **kwargs: Additional styling arguments (color, fill_opacity, etc.)
 
     Returns:
         A Polygon (triangle) object (red by default)
 
     Example:
-        >>> from robo_manim_add_ons import tri_sss
+        >>> from robo_manim_add_ons import sss
+        >>>
+        >>> # Equilateral triangle with side length 5
+        >>> triangle = sss(5)
         >>>
         >>> # 3-4-5 right triangle
-        >>> triangle = tri_sss(3, 4, 5)
+        >>> triangle = sss(3, 4, 5)
         >>>
-        >>> # Equilateral triangle
-        >>> triangle = tri_sss(2, 2, 2)
+        >>> # Isosceles triangle
+        >>> triangle = sss(3, 3, 4)
     """
-    return _tri_sss(a, b, c, **kwargs)
+    return _sss(a, b, c, **kwargs)
 
 
-def tri_sas(a: float, angle_deg: float, b: float, **kwargs) -> Polygon:
+def sas(a: float, angle_deg: float, b: float, **kwargs) -> Polygon:
     """
     Create a triangle using SAS (Side-Angle-Side) construction.
 
@@ -1366,18 +1369,18 @@ def tri_sas(a: float, angle_deg: float, b: float, **kwargs) -> Polygon:
         A Polygon (triangle) object (red by default)
 
     Example:
-        >>> from robo_manim_add_ons import tri_sas
+        >>> from robo_manim_add_ons import sas
         >>>
         >>> # Right triangle with sides 3 and 4
-        >>> triangle = tri_sas(3, 90, 4)
+        >>> triangle = sas(3, 90, 4)
         >>>
         >>> # Triangle with 60° angle
-        >>> triangle = tri_sas(2, 60, 3)
+        >>> triangle = sas(2, 60, 3)
     """
-    return _tri_sas(a, angle_deg, b, **kwargs)
+    return _sas(a, angle_deg, b, **kwargs)
 
 
-def tri_ssa(a: float, b: float, angle_deg: float, **kwargs) -> Polygon:
+def ssa(a: float, b: float, angle_deg: float, **kwargs) -> Polygon:
     """
     Create a triangle using SSA (Side-Side-Angle) construction.
 
@@ -1393,11 +1396,11 @@ def tri_ssa(a: float, b: float, angle_deg: float, **kwargs) -> Polygon:
         A Polygon (triangle) object (red by default)
 
     Example:
-        >>> from robo_manim_add_ons import tri_ssa
+        >>> from robo_manim_add_ons import ssa
         >>>
-        >>> triangle = tri_ssa(3, 5, 30)
+        >>> triangle = ssa(3, 5, 30)
     """
-    return _tri_ssa(a, b, angle_deg, **kwargs)
+    return _ssa(a, b, angle_deg, **kwargs)
 
 
 def cr(*args, **kwargs) -> Circle:
@@ -1509,7 +1512,7 @@ class Exp:
     """
     Expression utility class for extracting coordinates and properties from various types.
 
-    This class provides the same functionality as the standalone x, y, st, ed, mid, mag, uv, vec, ang, slope, val, pt, m2v, v2m, x2v, vl, hl, lra, vra, r2p, ln, vt, tri, aa, rect, cr, tri_sss, tri_sas, tri_ssa, and graph functions,
+    This class provides the same functionality as the standalone x, y, st, ed, mid, mag, uv, vec, ang, slope, val, pt, m2v, v2m, x2v, vl, hl, lra, vra, r2p, ln, vt, tri, aa, rect, cr, sss, sas, ssa, and graph functions,
     but in a class-based interface for those who prefer it.
     """
     x = staticmethod(x)
@@ -1539,7 +1542,7 @@ class Exp:
     aa2 = staticmethod(aa2)
     rect = staticmethod(rect)
     cr = staticmethod(cr)
-    tri_sss = staticmethod(tri_sss)
-    tri_sas = staticmethod(tri_sas)
-    tri_ssa = staticmethod(tri_ssa)
+    sss = staticmethod(sss)
+    sas = staticmethod(sas)
+    ssa = staticmethod(ssa)
     graph = staticmethod(GraphUtils.graph)

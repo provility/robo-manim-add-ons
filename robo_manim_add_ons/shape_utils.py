@@ -127,7 +127,7 @@ def rect(*args, **kwargs) -> Rectangle:
         raise ValueError(f"rect() takes 2 or 4 arguments, got {len(args)}")
 
 
-def tri_sss(a: float, b: float, c: float, **kwargs) -> Polygon:
+def tri_sss(a: float, b: float = None, c: float = None, **kwargs) -> Polygon:
     """
     Create a triangle using SSS (Side-Side-Side) construction.
 
@@ -137,8 +137,8 @@ def tri_sss(a: float, b: float, c: float, **kwargs) -> Polygon:
 
     Args:
         a: Length of side opposite to vertex A (between vertices B and C)
-        b: Length of side opposite to vertex B (between vertices A and C)
-        c: Length of side opposite to vertex C (between vertices A and B)
+        b: Length of side opposite to vertex B (optional, defaults to 'a' for equilateral)
+        c: Length of side opposite to vertex C (optional, defaults to 'a' for equilateral)
         **kwargs: Additional styling arguments (color, fill_opacity, etc.)
 
     Returns:
@@ -150,15 +150,21 @@ def tri_sss(a: float, b: float, c: float, **kwargs) -> Polygon:
     Example:
         >>> from robo_manim_add_ons import tri_sss
         >>>
+        >>> # Create an equilateral triangle with side length 5
+        >>> triangle = tri_sss(5)
+        >>>
         >>> # Create a 3-4-5 right triangle
         >>> triangle = tri_sss(3, 4, 5)
-        >>>
-        >>> # Create an equilateral triangle
-        >>> triangle = tri_sss(2, 2, 2, color=BLUE)
         >>>
         >>> # Create an isosceles triangle
         >>> triangle = tri_sss(3, 3, 4)
     """
+    # If b and c are not provided, create equilateral triangle
+    if b is None and c is None:
+        b = a
+        c = a
+    elif b is None or c is None:
+        raise ValueError("Either provide 1 argument (equilateral) or 3 arguments (a, b, c)")
     # Check triangle inequality: sum of any two sides must be greater than the third
     if a + b <= c or a + c <= b or b + c <= a:
         raise ValueError(
