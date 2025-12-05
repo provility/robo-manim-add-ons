@@ -8,7 +8,7 @@ import numpy as np
 from manim import DoubleArrow, Line, MathTex, VGroup, Polygon, Intersection
 
 
-def distance_marker(point1, point2=None, color="#1e40af", stroke_width=2, tick_size=0.25, label_text="", label_offset=0.3, marker_offset=0):
+def distance_marker(point1, point2=None, color="#1e40af", stroke_width=2, tick_size=0.25, text="", label_offset=0.3, marker_offset=0):
     """
     Create a distance marker with double arrow and perpendicular ticks.
 
@@ -23,7 +23,7 @@ def distance_marker(point1, point2=None, color="#1e40af", stroke_width=2, tick_s
         color: Color of the marker (default "#1e40af")
         stroke_width: Width of the marker lines (default 2)
         tick_size: Size of perpendicular tick marks (default 0.25)
-        label_text: Optional label text to display at midpoint (default "")
+        text: Optional label text to display at midpoint (default "")
         label_offset: Distance to offset label perpendicular to line (default 0.3)
                      Positive values offset in one direction, negative in the other
         marker_offset: Distance to offset entire marker perpendicular to line (default 0)
@@ -41,18 +41,18 @@ def distance_marker(point1, point2=None, color="#1e40af", stroke_width=2, tick_s
         >>> marker1 = distance_marker(
         ...     [0, 0, 0],
         ...     [3, 0, 0],
-        ...     label_text="3",
+        ...     text="3",
         ...     color=BLUE
         ... )
         >>>
         >>> # Using a line object
         >>> line = Line(LEFT, RIGHT)
-        >>> marker2 = distance_marker(line, label_text="d", marker_offset=0.5)
+        >>> marker2 = distance_marker(line, text="d", marker_offset=0.5)
         >>>
         >>> # Using Dot objects
         >>> dot_a = Dot(ORIGIN)
         >>> dot_b = Dot(RIGHT * 2)
-        >>> marker3 = distance_marker(dot_a, dot_b, label_text="2")
+        >>> marker3 = distance_marker(dot_a, dot_b, text="2")
     """
     # Detect if point1 is a line object (has get_start and get_end methods)
     if point2 is None and hasattr(point1, 'get_start') and hasattr(point1, 'get_end'):
@@ -97,8 +97,8 @@ def distance_marker(point1, point2=None, color="#1e40af", stroke_width=2, tick_s
     tick_end = Line(end_pt - tick_offset, end_pt + tick_offset, color=color, stroke_width=stroke_width)
 
     # Create VGroup with or without label
-    if label_text:
-        marker_label = MathTex(label_text).set_color(color)
+    if text:
+        marker_label = MathTex(text).set_color(color)
         # Position label at midpoint + perpendicular offset
         midpoint = (start_pt + end_pt) / 2
         label_position = midpoint + perpendicular_normalized * label_offset
@@ -292,9 +292,9 @@ def dm(point1, point2=None, **kwargs):
     See distance_marker() for full documentation.
 
     Examples:
-        dm(line, label_text="d")
-        dm([0, 0, 0], [3, 0, 0], label_text="3")
-        dm(dot_a, dot_b, label_text="AB")
+        dm(line, text="d")
+        dm([0, 0, 0], [3, 0, 0], text="3")
+        dm(dot_a, dot_b, text="AB")
     """
     return distance_marker(point1, point2, **kwargs)
 

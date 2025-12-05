@@ -51,7 +51,7 @@ class TestDistanceMarker:
             marker = distance_marker(
                 [0, 0, 0],
                 [3, 0, 0],
-                label_text="d"
+                text="d"
             )
 
             # Verify label was created
@@ -140,7 +140,7 @@ class TestDistanceMarker:
             marker = distance_marker(
                 [0, 0, 0],
                 [3, 0, 0],
-                label_text="d",
+                text="d",
                 label_offset=0.5
             )
 
@@ -168,7 +168,7 @@ class TestDistanceMarker:
             marker = distance_marker(
                 [0, 0, 0],
                 [3, 0, 0],
-                label_text="d",
+                text="d",
                 label_offset=-0.5
             )
 
@@ -194,7 +194,7 @@ class TestDistanceMarker:
             marker = distance_marker(
                 [0, 0, 0],
                 [3, 0, 0],
-                label_text="d",
+                text="d",
                 label_offset=0
             )
 
@@ -226,7 +226,7 @@ class TestDistanceMarkerIntegration:
         marker = distance_marker(
             [0, 0, 0],
             [3, 0, 0],
-            label_text="d"
+            text="d"
         )
 
         from manim import VGroup
@@ -240,7 +240,7 @@ class TestDistanceMarkerIntegration:
         marker = distance_marker(
             [0, 0, 0],
             [3, 0, 0],
-            label_text="d",
+            text="d",
             label_offset=0.5
         )
 
@@ -281,7 +281,7 @@ class TestDistanceMarkerIntegration:
         dot1 = Dot([0, 1, 0])
         point2 = [3, 1, 0]
 
-        marker = distance_marker(dot1, point2, label_text="d")
+        marker = distance_marker(dot1, point2, text="d")
 
         # Verify it returns a VGroup
         assert isinstance(marker, VGroup)
@@ -316,7 +316,7 @@ class TestDistanceMarkerIntegration:
         marker = distance_marker(
             dot1,
             dot2,
-            label_text=r"\ell",
+            text=r"\ell",
             label_offset=0.4
         )
 
@@ -337,7 +337,7 @@ class TestDistanceMarkerIntegration:
         marker = distance_marker(
             [0, 0, 0],
             [4, 0, 0],
-            label_text="d",
+            text="d",
             marker_offset=0.6
         )
 
@@ -373,7 +373,7 @@ class TestDistanceMarkerIntegration:
         marker = distance_marker(
             [0, 0, 0],
             [3, 0, 0],
-            label_text="d",
+            text="d",
             marker_offset=0.5,   # Offset entire marker
             label_offset=0.3     # Additional offset for label
         )
