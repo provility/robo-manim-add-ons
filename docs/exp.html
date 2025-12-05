@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expression Utilities - Robo Manim Add-ons</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
+            color: #24292e;
+            background: #ffffff;
+            font-size: 14px;
+        }
+        .header {
+            background: #f6f8fa;
+            border-bottom: 1px solid #d0d7de;
+            padding: 12px 16px;
+        }
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .back-link {
+            color: #0969da;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 8px 0 4px 0;
+        }
+        .subtitle {
+            color: #57606a;
+            font-size: 14px;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+        .demo-grid {
+            display: grid;
+            gap: 24px;
+        }
+        .demo-card {
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            background: #ffffff;
+        }
+        .demo-content {
+            padding: 16px;
+        }
+        .demo-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #24292e;
+            margin-bottom: 4px;
+        }
+        .demo-description {
+            color: #57606a;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        .media-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .media-item {
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .media-item img {
+            width: 100%;
+            display: block;
+        }
+        video {
+            width: 100%;
+            display: block;
+        }
+        .media-label {
+            font-size: 12px;
+            color: #57606a;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+        .code-section {
+            background: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 12px;
+            position: relative;
+        }
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .code-title {
+            font-weight: 600;
+            color: #24292e;
+            font-size: 14px;
+        }
+        .copy-button {
+            background: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 12px;
+            color: #24292e;
+            cursor: pointer;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .copy-button:hover {
+            background: #f6f8fa;
+            border-color: #0969da;
+        }
+        .copy-button:active {
+            background: #e6e8ea;
+        }
+        .copy-button.copied {
+            color: #1a7f37;
+            border-color: #1a7f37;
+        }
+        pre {
+            margin: 0;
+            padding: 12px;
+            border-radius: 6px;
+            overflow-x: auto;
+            background: #ffffff !important;
+            border: 1px solid #d0d7de;
+        }
+        pre code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 12px;
+            line-height: 1.5;
+            background: transparent !important;
+            padding: 0 !important;
+        }
+        code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        }
+        .github-link {
+            position: fixed;
+            top: 12px;
+            right: 16px;
+            background: #24292e;
+            color: #ffffff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .github-link:hover {
+            background: #57606a;
+        }
+    </style>
+</head>
+<body>
+    <a href="https://github.com/provility/robo-manim-add-ons" class="github-link">GitHub →</a>
+
+    <div class="header">
+        <div class="header-content">
+            <a href="index.html" class="back-link">← Back</a>
+            <h1>Expression Utilities</h1>
+            <p class="subtitle">Utility functions for extracting coordinates, creating points, and working with Manim objects</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="demo-grid">
+                        <!-- 2016333726_2688965532_1196637954 -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">2016333726_2688965532_1196637954</h2>
+                    <p class="demo-description">Demo: 2016333726_2688965532_1196637954</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_1196637954.png" alt="2016333726_2688965532_1196637954 preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_1196637954.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Code not found for 2016333726_2688965532_1196637954</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2016333726_2688965532_1233118748 -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">2016333726_2688965532_1233118748</h2>
+                    <p class="demo-description">Demo: 2016333726_2688965532_1233118748</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_1233118748.png" alt="2016333726_2688965532_1233118748 preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_1233118748.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Code not found for 2016333726_2688965532_1233118748</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2016333726_2688965532_1482170164 -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">2016333726_2688965532_1482170164</h2>
+                    <p class="demo-description">Demo: 2016333726_2688965532_1482170164</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_1482170164.png" alt="2016333726_2688965532_1482170164 preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_1482170164.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Code not found for 2016333726_2688965532_1482170164</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2016333726_2688965532_160466754 -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">2016333726_2688965532_160466754</h2>
+                    <p class="demo-description">Demo: 2016333726_2688965532_160466754</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_160466754.png" alt="2016333726_2688965532_160466754 preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_160466754.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Code not found for 2016333726_2688965532_160466754</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2016333726_2688965532_1696021787 -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">2016333726_2688965532_1696021787</h2>
+                    <p class="demo-description">Demo: 2016333726_2688965532_1696021787</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_1696021787.png" alt="2016333726_2688965532_1696021787 preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_1696021787.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Code not found for 2016333726_2688965532_1696021787</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2016333726_2688965532_2199188705 -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">2016333726_2688965532_2199188705</h2>
+                    <p class="demo-description">Demo: 2016333726_2688965532_2199188705</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_2199188705.png" alt="2016333726_2688965532_2199188705 preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_2199188705.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Code not found for 2016333726_2688965532_2199188705</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2016333726_2688965532_2331422473 -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">2016333726_2688965532_2331422473</h2>
+                    <p class="demo-description">Demo: 2016333726_2688965532_2331422473</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_2331422473.png" alt="2016333726_2688965532_2331422473 preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_2331422473.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Code not found for 2016333726_2688965532_2331422473</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2016333726_2688965532_2401082363 -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">2016333726_2688965532_2401082363</h2>
+                    <p class="demo-description">Demo: 2016333726_2688965532_2401082363</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_2401082363.png" alt="2016333726_2688965532_2401082363 preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_2401082363.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Code not found for 2016333726_2688965532_2401082363</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2016333726_2688965532_2728748143 -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">2016333726_2688965532_2728748143</h2>
+                    <p class="demo-description">Demo: 2016333726_2688965532_2728748143</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_2728748143.png" alt="2016333726_2688965532_2728748143 preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_2728748143.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Code not found for 2016333726_2688965532_2728748143</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2016333726_2688965532_3337779902 -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">2016333726_2688965532_3337779902</h2>
+                    <p class="demo-description">Demo: 2016333726_2688965532_3337779902</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_3337779902.png" alt="2016333726_2688965532_3337779902 preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_3337779902.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Code not found for 2016333726_2688965532_3337779902</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2016333726_2688965532_3373160850 -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">2016333726_2688965532_3373160850</h2>
+                    <p class="demo-description">Demo: 2016333726_2688965532_3373160850</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_3373160850.png" alt="2016333726_2688965532_3373160850 preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_3373160850.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Code not found for 2016333726_2688965532_3373160850</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2016333726_2688965532_3477030023 -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">2016333726_2688965532_3477030023</h2>
+                    <p class="demo-description">Demo: 2016333726_2688965532_3477030023</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_3477030023.png" alt="2016333726_2688965532_3477030023 preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_3477030023.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Code not found for 2016333726_2688965532_3477030023</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2016333726_2688965532_3814404977 -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">2016333726_2688965532_3814404977</h2>
+                    <p class="demo-description">Demo: 2016333726_2688965532_3814404977</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_3814404977.png" alt="2016333726_2688965532_3814404977 preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_3814404977.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Code not found for 2016333726_2688965532_3814404977</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2016333726_2688965532_4118758567 -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">2016333726_2688965532_4118758567</h2>
+                    <p class="demo-description">Demo: 2016333726_2688965532_4118758567</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_4118758567.png" alt="2016333726_2688965532_4118758567 preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_4118758567.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Code not found for 2016333726_2688965532_4118758567</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2016333726_2688965532_4120506365 -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">2016333726_2688965532_4120506365</h2>
+                    <p class="demo-description">Demo: 2016333726_2688965532_4120506365</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_4120506365.png" alt="2016333726_2688965532_4120506365 preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_4120506365.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Code not found for 2016333726_2688965532_4120506365</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2016333726_2688965532_4224654016 -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">2016333726_2688965532_4224654016</h2>
+                    <p class="demo-description">Demo: 2016333726_2688965532_4224654016</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_4224654016.png" alt="2016333726_2688965532_4224654016 preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_4224654016.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Code not found for 2016333726_2688965532_4224654016</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2016333726_2688965532_612836805 -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">2016333726_2688965532_612836805</h2>
+                    <p class="demo-description">Demo: 2016333726_2688965532_612836805</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_612836805.png" alt="2016333726_2688965532_612836805 preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_612836805.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Code not found for 2016333726_2688965532_612836805</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2016333726_2688965532_628987456 -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">2016333726_2688965532_628987456</h2>
+                    <p class="demo-description">Demo: 2016333726_2688965532_628987456</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_628987456.png" alt="2016333726_2688965532_628987456 preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_628987456.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Code not found for 2016333726_2688965532_628987456</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2016333726_2688965532_837558302 -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">2016333726_2688965532_837558302</h2>
+                    <p class="demo-description">Demo: 2016333726_2688965532_837558302</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_837558302.png" alt="2016333726_2688965532_837558302 preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/2016333726_2688965532_837558302.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Code not found for 2016333726_2688965532_837558302</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AngDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">AngDemo</h2>
+                    <p class="demo-description">Demo: AngDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/AngDemo.png" alt="AngDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/AngDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">line = Line(ORIGIN, pt(2, 2))
+angle_rad = ang(line)
+angle_deg = np.degrees(angle_rad)
+
+arc = Arc(radius=0.5, start_angle=0, angle=angle_rad, color=YELLOW)
+label = Text(f"{angle_deg:.0f}°", font_size=24).move_to(pt(1, -0.5))
+
+self.add(line, arc, label)
+self.wait()</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EdDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">EdDemo</h2>
+                    <p class="demo-description">Demo: EdDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/EdDemo.png" alt="EdDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/EdDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">line = Line(pt(-2, -1), pt(2, 1))
+end_dot = ed(line)
+end_dot.set_color(RED)
+
+label = Text("End", font_size=24, color=RED).next_to(end_dot, UP)
+
+self.add(line, end_dot, label)
+self.wait()</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HlDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">HlDemo</h2>
+                    <p class="demo-description">Demo: HlDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/HlDemo.png" alt="HlDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/HlDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">line = hl(1, -2, 2)
+label = Text("hl(1, -2, 2)", font_size=24).next_to(line, UP)
+
+self.add(line, label)
+self.wait()</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LlaDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">LlaDemo</h2>
+                    <p class="demo-description">Demo: LlaDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/LlaDemo.png" alt="LlaDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/LlaDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Code not found for LlaDemo</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LraDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">LraDemo</h2>
+                    <p class="demo-description">Demo: LraDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/LraDemo.png" alt="LraDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/LraDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">line = lra(2.5, 30)
+label = Text("lra(2.5, 30°)", font_size=24).next_to(line, UR)
+
+self.add(line, label)
+self.wait()</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- M2vDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">M2vDemo</h2>
+                    <p class="demo-description">Demo: M2vDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/M2vDemo.png" alt="M2vDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/M2vDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">axes = Axes(x_range=[-3, 3], y_range=[-2, 2], x_length=6, y_length=4)
+dot = m2v(axes, 2, 1)  # Returns a Dot at screen coordinates for (2, 1)
+dot.set_color(GREEN)
+
+label = Text("(2, 1)", font_size=24, color=GREEN).next_to(dot, UR)
+
+self.add(axes, dot, label)
+self.wait()</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MagDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">MagDemo</h2>
+                    <p class="demo-description">Demo: MagDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/MagDemo.png" alt="MagDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/MagDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">line = Line(pt(-2, 0), pt(2, 0))
+length = mag(line)
+
+label = Text(f"Length = {length:.1f}", font_size=24).next_to(line, DOWN)
+
+self.add(line, label)
+self.wait()</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MidDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">MidDemo</h2>
+                    <p class="demo-description">Demo: MidDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/MidDemo.png" alt="MidDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/MidDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">line = Line(pt(-2, -1), pt(2, 1))
+center_dot = mid(line)
+center_dot.set_color(YELLOW)
+
+label = Text("Mid", font_size=24, color=YELLOW).next_to(center_dot, DOWN)
+
+self.add(line, center_dot, label)
+self.wait()</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PtDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">PtDemo</h2>
+                    <p class="demo-description">Demo: PtDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/PtDemo.png" alt="PtDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/PtDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">dot = pt(2, 1.5)
+dot.set_color(BLUE)
+
+label = Text("pt(2, 1.5)", font_size=24).next_to(dot, UR)
+
+self.add(dot, label)
+self.wait()</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- R2pDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">R2pDemo</h2>
+                    <p class="demo-description">Demo: R2pDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/R2pDemo.png" alt="R2pDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/R2pDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">line = Line(pt(-3, -1), pt(3, 2))
+dot_25 = r2p(line, 0.25)
+dot_50 = r2p(line, 0.5)
+dot_75 = r2p(line, 0.75)
+
+dot_25.set_color(GREEN)
+dot_50.set_color(YELLOW)
+dot_75.set_color(RED)
+
+label_25 = Text("25%", font_size=20, color=GREEN).next_to(dot_25, DOWN)
+label_50 = Text("50%", font_size=20, color=YELLOW).next_to(dot_50, DOWN)
+label_75 = Text("75%", font_size=20, color=RED).next_to(dot_75, UP)
+
+self.add(line, dot_25, dot_50, dot_75, label_25, label_50, label_75)
+self.wait()</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SlopeDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">SlopeDemo</h2>
+                    <p class="demo-description">Demo: SlopeDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/SlopeDemo.png" alt="SlopeDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/SlopeDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">line = Line(pt(-2, -1), pt(2, 1))
+slp = slope(line)
+
+label = Text(f"slope = {slp:.2f}", font_size=24).next_to(line, DOWN)
+
+self.add(line, label)
+self.wait()</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- StDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">StDemo</h2>
+                    <p class="demo-description">Demo: StDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/StDemo.png" alt="StDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/StDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">line = Line(pt(-2, -1), pt(2, 1))
+start_dot = st(line)
+start_dot.set_color(GREEN)
+
+label = Text("Start", font_size=24, color=GREEN).next_to(start_dot, DOWN)
+
+self.add(line, start_dot, label)
+self.wait()</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UvDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">UvDemo</h2>
+                    <p class="demo-description">Demo: UvDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/UvDemo.png" alt="UvDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/UvDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">line = Line(ORIGIN, pt(3, 3))
+unit = uv(line)
+unit_arrow = Arrow(ORIGIN, unit * 1.5, buff=0, color=YELLOW)
+
+label = Text("Unit Vector", font_size=24, color=YELLOW).next_to(unit_arrow, UR)
+
+self.add(line, unit_arrow, label)
+self.wait()</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- V2mDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">V2mDemo</h2>
+                    <p class="demo-description">Demo: V2mDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/V2mDemo.png" alt="V2mDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/V2mDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">axes = Axes(x_range=[-3, 3], y_range=[-2, 2], x_length=6, y_length=4)
+dot = v2m(axes, 2, 1)  # Returns a Dot at model coordinates for screen point (2, 1)
+dot.set_color(RED)
+
+# Get the model coordinates for the label
+model_coords = axes.p2c(np.array([2, 1, 0]))
+label = Text(f"({model_coords[0]:.1f}, {model_coords[1]:.1f})",
+             font_size=24, color=RED).next_to(dot, UR)
+
+self.add(axes, dot, label)
+self.wait()</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ValDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">ValDemo</h2>
+                    <p class="demo-description">Demo: ValDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/ValDemo.png" alt="ValDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/ValDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">tracker = ValueTracker(3.14)
+value = val(tracker)
+
+label = Text(f"value = {value:.2f}", font_size=36)
+
+self.add(label)
+self.wait()</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VecDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">VecDemo</h2>
+                    <p class="demo-description">Demo: VecDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/VecDemo.png" alt="VecDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/VecDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">line = Line(pt(-1, -1), pt(2, 1))
+vector = vec(line)
+arrow = Arrow(ORIGIN, vector, buff=0, color=BLUE)
+
+label = Text("Vector", font_size=24, color=BLUE).next_to(arrow, UP)
+
+self.add(line, arrow, label)
+self.wait()</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VlDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">VlDemo</h2>
+                    <p class="demo-description">Demo: VlDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/VlDemo.png" alt="VlDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/VlDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">line = vl(1, -2, 2)
+label = Text("vl(1, -2, 2)", font_size=24).next_to(line, RIGHT)
+
+self.add(line, label)
+self.wait()</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VlaDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">VlaDemo</h2>
+                    <p class="demo-description">Demo: VlaDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/VlaDemo.png" alt="VlaDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/VlaDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Code not found for VlaDemo</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VraDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">VraDemo</h2>
+                    <p class="demo-description">Demo: VraDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/VraDemo.png" alt="VraDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/VraDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">arrow = vra(2.5, 120)
+label = Text("vra(2.5, 120°)", font_size=24, color=YELLOW).next_to(arrow, UP)
+
+self.add(arrow, label)
+self.wait()</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- XDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">XDemo</h2>
+                    <p class="demo-description">Demo: XDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/XDemo.png" alt="XDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/XDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">dot = pt(2, 1)
+x_val = x(dot)
+
+dot_label = Text(f"x = {x_val}", font_size=24).next_to(dot, UP)
+
+self.add(dot, dot_label)
+self.wait()</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- YDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">YDemo</h2>
+                    <p class="demo-description">Demo: YDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/YDemo.png" alt="YDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/exp/YDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python">dot = pt(1, 2)
+y_val = y(dot)
+
+dot_label = Text(f"y = {y_val}", font_size=24).next_to(dot, UP)
+
+self.add(dot, dot_label)
+self.wait()</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize syntax highlighting
+        hljs.highlightAll();
+
+        // Copy button functionality
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-section').querySelector('code');
+            const text = codeBlock.textContent;
+
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

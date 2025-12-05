@@ -186,7 +186,52 @@
 
     <div class="container">
         <div class="demo-grid">
-                        <!-- DynamicEdgeLabelsExample -->
+                        <!-- AnimatedLabelColors -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">AnimatedLabelColors</h2>
+                    <p class="demo-description">Demo: AnimatedLabelColors</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/labels/AnimatedLabelColors.png" alt="AnimatedLabelColors preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/labels/AnimatedLabelColors.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Create a triangle
+triangle = Polygon(
+    [-2, -1.5, 0],
+    [2, -1.5, 0],
+    [0, 2, 0],
+    color=BLUE
+)
+
+# Vertex labels with dynamic colors
+vertex_label_objects = VGroup()
+
+# ValueTracker to control color animation
+color_tracker = ValueTracker(0)</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DynamicEdgeLabelsExample -->
             <div class="demo-card">
                 <div class="demo-content">
                     <h2 class="demo-title">DynamicEdgeLabelsExample</h2>
@@ -214,7 +259,8 @@
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">square = Square(side_length=3, color=GREEN)
+                        <pre><code class="language-python"># Create a square
+square = Square(side_length=3, color=GREEN)
 
 # Create edge labels using always_redraw
 labels = always_redraw(
@@ -287,7 +333,8 @@ self.wait()</code></pre>
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">pentagon = RegularPolygon(n=5, color=PURPLE).scale(2)
+                        <pre><code class="language-python"># Create a pentagon
+pentagon = RegularPolygon(n=5, color=PURPLE).scale(2)
 
 # Create both vertex and edge labels with always_redraw
 vertex_label_objects = always_redraw(
@@ -364,7 +411,8 @@ self.wait()</code></pre>
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">triangle = Polygon(
+                        <pre><code class="language-python"># Create a triangle
+triangle = Polygon(
     [-2, -1, 0],
     [2, -1, 0],
     [0, 2, 0],
@@ -443,80 +491,11 @@ self.wait()</code></pre>
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">hexagon = RegularPolygon(n=6, color=RED).scale(2)
+                        <pre><code class="language-python"># Create a hexagon
+hexagon = RegularPolygon(n=6, color=RED).scale(2)
 
 # Create vertex labels with custom updater
-vertex_label_group = VGroup()
-
-def update_vertex_labels(mob):
-    # Clear existing labels
-    mob.become(VGroup(*vertex_labels(
-        hexagon,
-        labels=[f"V_{i+1}" for i in range(len(hexagon.get_vertices()))],
-        scale=0.6,
-        color=WHITE,
-        buff=0.3
-    )))
-
-vertex_label_group.add_updater(update_vertex_labels)
-
-# Create edge labels with custom updater
-edge_label_group = VGroup()
-
-def update_edge_labels(mob):
-    # Calculate edge lengths and display them
-    vertices = hexagon.get_vertices()
-    n = len(vertices)
-    edge_lengths = []
-
-    for i in range(n):
-        p1 = vertices[i]
-        p2 = vertices[(i + 1) % n]
-        length = np.linalg.norm(p2 - p1)
-        edge_lengths.append(f"{length:.1f}")
-
-    mob.become(VGroup(*edge_labels(
-        hexagon,
-        labels=edge_lengths,
-        scale=0.5,
-        color=YELLOW,
-        buff=0.25
-    )))
-
-edge_label_group.add_updater(update_edge_labels)
-
-title = Text("Interactive Labels with Edge Lengths", font_size=24).to_edge(UP)
-
-# Show scene
-self.add(title)
-self.play(Create(hexagon))
-self.add(vertex_label_group, edge_label_group)
-self.wait()
-
-# Scale - watch edge lengths update!
-self.play(
-    hexagon.animate.scale(0.5),
-    run_time=2
-)
-self.wait()
-
-# Stretch vertically
-self.play(
-    hexagon.animate.stretch(1.8, dim=1),
-    run_time=2
-)
-self.wait()
-
-# Rotate
-self.play(
-    Rotate(hexagon, angle=PI/3),
-    run_time=2
-)
-self.wait()
-
-# Clean up updaters
-vertex_label_group.clear_updaters()
-edge_label_group.clear_updaters()</code></pre>
+vertex_label_group = VGroup()</code></pre>
                     </div>
                 </div>
             </div>
@@ -549,7 +528,8 @@ edge_label_group.clear_updaters()</code></pre>
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">triangle = Polygon(
+                        <pre><code class="language-python"># Start with a triangle
+triangle = Polygon(
     [-2, -1.5, 0],
     [2, -1.5, 0],
     [0, 2, 0],
@@ -601,6 +581,110 @@ self.play(
     run_time=3
 )
 self.wait(2)</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MultiplePolygonsWithLabels -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">MultiplePolygonsWithLabels</h2>
+                    <p class="demo-description">Demo: MultiplePolygonsWithLabels</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/labels/MultiplePolygonsWithLabels.png" alt="MultiplePolygonsWithLabels preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/labels/MultiplePolygonsWithLabels.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Create three polygons
+triangle = Polygon(
+    [-3, 0, 0],
+    [-2, 1.5, 0],
+    [-1, 0, 0],
+    color=BLUE
+)
+
+square = Square(side_length=1.5, color=GREEN).shift(ORIGIN)
+
+pentagon = RegularPolygon(n=5, color=RED).scale(0.8).shift(RIGHT * 3)
+
+# Create labels for each polygon
+triangle_labels = always_redraw(
+    lambda: VGroup(*vertex_labels(
+        triangle,
+        labels=["A", "B", "C"],
+        scale=0.5,
+        color=BLUE,
+        buff=0.2
+    ))
+)
+
+square_labels = always_redraw(
+    lambda: VGroup(*edge_labels(
+        square,
+        labels=["a", "b", "c", "d"],
+        scale=0.5,
+        color=YELLOW,
+        buff=0.15
+    ))
+)
+
+pentagon_labels = always_redraw(
+    lambda: VGroup(*vertex_labels(
+        pentagon,
+        labels=["1", "2", "3", "4", "5"],
+        scale=0.5,
+        color=RED,
+        buff=0.2
+    ))
+)
+
+title = Text("Multiple Polygons with Labels", font_size=24).to_edge(UP)
+
+# Show all polygons
+self.add(title)
+self.play(
+    Create(triangle),
+    Create(square),
+    Create(pentagon)
+)
+self.add(triangle_labels, square_labels, pentagon_labels)
+self.wait()
+
+# Animate all polygons independently
+self.play(
+    Rotate(triangle, angle=PI/3),
+    square.animate.scale(1.5),
+    Rotate(pentagon, angle=-PI/3),
+    run_time=3
+)
+self.wait()
+
+# Move them around
+self.play(
+    triangle.animate.shift(DOWN * 0.5),
+    square.animate.shift(UP * 0.5),
+    pentagon.animate.shift(DOWN * 0.5),
+    run_time=2
+)
+self.wait()</code></pre>
                     </div>
                 </div>
             </div>

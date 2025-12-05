@@ -8,7 +8,7 @@ from robo_manim_add_ons import (
 class XDemo(Scene):
     """Extract x-coordinate from objects"""
     def construct(self):
-        dot = Dot(pt(2, 1))
+        dot = pt(2, 1)
         x_val = x(dot)
 
         dot_label = Text(f"x = {x_val}", font_size=24).next_to(dot, UP)
@@ -20,7 +20,7 @@ class XDemo(Scene):
 class YDemo(Scene):
     """Extract y-coordinate from objects"""
     def construct(self):
-        dot = Dot(pt(1, 2))
+        dot = pt(1, 2)
         y_val = y(dot)
 
         dot_label = Text(f"y = {y_val}", font_size=24).next_to(dot, UP)
@@ -33,8 +33,8 @@ class StDemo(Scene):
     """Get start point of a line"""
     def construct(self):
         line = Line(pt(-2, -1), pt(2, 1))
-        start_point = st(line)
-        start_dot = Dot(start_point, color=GREEN)
+        start_dot = st(line)
+        start_dot.set_color(GREEN)
 
         label = Text("Start", font_size=24, color=GREEN).next_to(start_dot, DOWN)
 
@@ -46,8 +46,8 @@ class EdDemo(Scene):
     """Get end point of a line"""
     def construct(self):
         line = Line(pt(-2, -1), pt(2, 1))
-        end_point = ed(line)
-        end_dot = Dot(end_point, color=RED)
+        end_dot = ed(line)
+        end_dot.set_color(RED)
 
         label = Text("End", font_size=24, color=RED).next_to(end_dot, UP)
 
@@ -147,8 +147,8 @@ class ValDemo(Scene):
 class PtDemo(Scene):
     """Create point from coordinates"""
     def construct(self):
-        point = pt(2, 1.5)
-        dot = Dot(point, color=BLUE)
+        dot = pt(2, 1.5)
+        dot.set_color(BLUE)
 
         label = Text("pt(2, 1.5)", font_size=24).next_to(dot, UR)
 
@@ -177,7 +177,7 @@ class V2mDemo(Scene):
         dot.set_color(RED)
 
         # Get the model coordinates for the label
-        model_coords = axes.p2c(pt(2, 1))
+        model_coords = axes.p2c(np.array([2, 1, 0]))
         label = Text(f"({model_coords[0]:.1f}, {model_coords[1]:.1f})",
                      font_size=24, color=RED).next_to(dot, UR)
 

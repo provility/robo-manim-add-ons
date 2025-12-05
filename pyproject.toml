@@ -32,6 +32,7 @@ classifiers = [
 
 dependencies = [
     "manim>=0.18.0",
+    "sympy>=1.12",
 ]
 
 [project.optional-dependencies]

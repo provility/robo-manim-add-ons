@@ -610,28 +610,55 @@ self.wait(1)</code></pre>
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">vector_a = VectorUtils.create_vector(ORIGIN, RIGHT * 2, color=BLUE)
-vector_b_template = VectorUtils.create_vector(ORIGIN, UP * 1.5, color=RED)
+                        <pre><code class="language-python"># Moving vectors
+vector_a = VectorUtils.create_vector(ORIGIN, RIGHT * 3, color=BLUE)
+vector_b = VectorUtils.create_vector(ORIGIN, UP * 2, color=RED)
 
-vector_b_at_tip = always_redraw(
-    lambda: VectorUtils.tail_at_tip(vector_a, vector_b_template).set_color(ORANGE)
+# Dynamic b at tip of a
+b_at_tip = always_redraw(
+    lambda: VectorUtils.copy_at(
+        vector_b, vector_a.get_end(),
+        color="#c2410c", stroke_width=4
+    )
 )
 
-resultant = always_redraw(
-    lambda: Arrow(ORIGIN, vector_b_at_tip.get_end(), color=GREEN, buff=0).set_stroke(width=5)
+# Dynamic result
+result = always_redraw(
+    lambda: VectorUtils.add(
+        vector_a, vector_b,
+        color=GREEN, stroke_width=6
+    )
 )
 
-self.play(Create(vector_a))
-self.play(Create(vector_b_at_tip))
-self.play(Create(resultant))
-self.wait()
+# Dynamic dashed line from origin to tip of a
+dashed = always_redraw(
+    lambda: DashedLine(
+        vector_b.get_end(),
+        vector_a.get_end() + (vector_b.get_end() - vector_b.get_start()),
+        color=GRAY, dash_length=0.1
+    )
+)
 
+# Show initial state
+self.play(Create(vector_a), Create(vector_b))
+self.add(b_at_tip, dashed, result)
+self.wait(1)
+
+# Rotate vector b - addition updates
 self.play(
-    Rotate(vector_a, angle=2*PI, about_point=ORIGIN),
-    run_time=8,
-    rate_func=linear
+    Rotate(vector_b, angle=PI, about_point=ORIGIN),
+    run_time=4,
+    rate_func=smooth
 )
-self.wait(2)</code></pre>
+self.wait(1)
+
+# Scale vector a - addition updates
+scaled_vector_a = VectorUtils.scalar_multiply(vector_a, 0.5, color=BLUE)
+self.play(
+    Transform(vector_a, scaled_vector_a),
+    run_time=2
+)
+self.wait(1)</code></pre>
                     </div>
                 </div>
             </div>
@@ -785,29 +812,7 @@ self.wait(2)</code></pre>
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">vectors = [
-    VectorUtils.create_vector(ORIGIN, RIGHT * 1.5, color=BLUE),
-    VectorUtils.create_vector(ORIGIN, UP * 1.2, color=RED),
-    VectorUtils.create_vector(ORIGIN, LEFT * 0.8, color=YELLOW),
-    VectorUtils.create_vector(ORIGIN, UP * 0.8, color=PURPLE),
-]
-
-current = vectors[0]
-self.play(Create(current))
-self.wait(0.5)
-
-for i in range(1, len(vectors)):
-    next_vector = VectorUtils.tail_at_tip(current, vectors[i])
-    self.play(Create(next_vector), run_time=1)
-    self.wait(0.3)
-    current = next_vector
-
-self.wait()
-
-resultant = Arrow(ORIGIN, current.get_end(), color=GREEN, buff=0)
-resultant.set_stroke(width=6)
-self.play(Create(resultant), run_time=1.5)
-self.wait(2)</code></pre>
+                        <pre><code class="language-python"># Code not found for MultipleVectorAddition</code></pre>
                     </div>
                 </div>
             </div>
@@ -861,6 +866,55 @@ resultant.set_stroke(width=6)
 
 self.play(Create(resultant))
 self.wait(2)</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PerpMoveDemo -->
+            <div class="demo-card">
+                <div class="demo-content">
+                    <h2 class="demo-title">PerpMoveDemo</h2>
+                    <p class="demo-description">Demo: PerpMoveDemo</p>
+
+                    <div class="media-row">
+                        <div>
+                            <div class="media-label">Preview</div>
+                            <div class="media-item">
+                                <img src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/PerpMoveDemo.png" alt="PerpMoveDemo preview">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="media-label">Video</div>
+                            <div class="media-item">
+                                <video controls>
+                                    <source src="https://raw.githubusercontent.com/provility/robo-manim-add-ons/main/demos/vectors/PerpMoveDemo.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">Code Example</div>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-python"># Define vector
+vector_a = VectorUtils.create_vector(ORIGIN, RIGHT * 3, color=BLUE)
+
+origin = Dot(ORIGIN, color=YELLOW)
+
+# Show initial vector
+self.add(origin)
+self.play(Create(vector_a))
+self.wait(1)
+
+# Create perpendicular shifted vector using VectorUtils
+shifted_vector = VectorUtils.perp_move(vector_a, 1)
+shifted_vector.set_color("#b91c1c")
+
+# KEY ANIMATION: Transform from original to shifted
+self.play(TransformFromCopy(vector_a, shifted_vector), run_time=1.5)
+self.wait(1)</code></pre>
                     </div>
                 </div>
             </div>
@@ -956,22 +1010,7 @@ self.wait(1)</code></pre>
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">vector_a = VectorUtils.create_vector(ORIGIN, RIGHT * 2, color=BLUE)
-self.play(Create(vector_a))
-self.wait(0.5)
-
-vector_b = Arrow(DOWN * 2, DOWN * 2 + UP * 1.5, color=RED)
-self.play(Create(vector_b))
-self.wait()
-
-shift_vector = VectorUtils.shift_amount(vector_a, vector_b)
-self.play(vector_b.animate.shift(shift_vector), run_time=2)
-self.wait()
-
-resultant = Arrow(ORIGIN, vector_b.get_end(), color=GREEN, buff=0)
-resultant.set_stroke(width=6)
-self.play(Create(resultant), run_time=1.5)
-self.wait(2)</code></pre>
+                        <pre><code class="language-python"># Code not found for ShiftAmountVectorAddition</code></pre>
                     </div>
                 </div>
             </div>
@@ -1004,26 +1043,38 @@ self.wait(2)</code></pre>
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">vector_a = VectorUtils.create_vector(ORIGIN, RIGHT * 2.5, color=BLUE)
-self.play(Create(vector_a))
-self.wait(0.5)
-
+                        <pre><code class="language-python"># Define vectors
+vector_a = VectorUtils.create_vector(ORIGIN, RIGHT * 3, color=BLUE)
 vector_b = VectorUtils.create_vector(ORIGIN, UP * 2, color=RED)
-self.play(Create(vector_b))
+
+origin = Dot(ORIGIN, color=YELLOW)
+
+# Show initial vectors
+self.add(origin)
+self.play(Create(vector_a), Create(vector_b))
+self.wait(1)
+
+# STEP 1: Create vector B at its original position
+vector_b_at_origin = VectorUtils.copy_at(
+    vector_b, vector_b.get_start(),
+    color="#c2410c", tip_length=0.25
+)
+self.play(Create(vector_b_at_origin), run_time=1.0)
+self.wait(0.3)
+
+# STEP 2: Move vector B to tip of A
+# Calculate the shift needed (tail of B should be at tip of A)
+shift_vector = VectorUtils.shift_amount(vector_a, vector_b_at_origin)
+self.play(vector_b_at_origin.animate.shift(shift_vector), run_time=1.0)
 self.wait(0.5)
 
-vector_b_at_tip = VectorUtils.tail_at_tip(vector_a, vector_b).set_color(RED)
-self.play(
-    FadeOut(vector_b),
-    Create(vector_b_at_tip),
-    run_time=1.5
+# STEP 3: Create the result vector
+result_vector = VectorUtils.add(
+    vector_a, vector_b,
+    color="#047857", tip_length=0.3, stroke_width=6
 )
-self.wait()
-
-resultant = VectorUtils.create_vector(ORIGIN, vector_b_at_tip.get_end(), color=GREEN)
-resultant.set_stroke(width=6)
-self.play(Create(resultant), run_time=1.5)
-self.wait(2)</code></pre>
+self.play(GrowArrow(result_vector), run_time=1.0)
+self.wait(1)</code></pre>
                     </div>
                 </div>
             </div>
@@ -1067,25 +1118,26 @@ self.add(origin)
 self.play(Create(vector_a), Create(vector_b))
 self.wait(1)
 
-# STEP 1: Create -b at origin using VectorUtils
+# STEP 1: Reverse vector b at its original position
 reversed_b_at_origin = VectorUtils.reverse_at(
-    vector_b, ORIGIN,
+    vector_b, vector_b.get_start(),
     color=PURPLE, tip_length=0.25
 )
 self.play(Create(reversed_b_at_origin), run_time=1.0)
 self.wait(0.5)
 
-# STEP 2: Move -b to tip of a using VectorUtils
+# STEP 2: Move reversed vector to tip of a
+# Calculate the shift needed (tail of reversed_b should be at tip of a)
 shift_vector = VectorUtils.shift_amount(vector_a, reversed_b_at_origin)
 self.play(reversed_b_at_origin.animate.shift(shift_vector), run_time=1.0)
 self.wait(0.5)
 
-# STEP 3: Show result vector using VectorUtils
+# STEP 3: Create the result vector
 result_vector = VectorUtils.subtract(
     vector_a, vector_b,
     color="#047857", tip_length=0.3, stroke_width=6
 )
-self.play(Create(result_vector), run_time=1.0)
+self.play(GrowArrow(result_vector), run_time=1.0)
 self.wait(1)</code></pre>
                     </div>
                 </div>

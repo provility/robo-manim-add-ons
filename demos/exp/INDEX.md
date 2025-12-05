@@ -74,13 +74,13 @@ y_val = y(dot)  # Returns 2.0
 
 ### st() - Get start point
 
-Get the start point of a line or other object with `get_start()` method.
+Get the start point of a line or other object with `get_start()` method as a Dot.
 
 ```python
 from robo_manim_add_ons import st
 
 line = Line(pt(-2, -1), pt(2, 1))
-start_point = st(line)  # Returns np.array([-2, -1, 0])
+start_dot = st(line)  # Returns Dot at start point
 ```
 
 ![StDemo](StDemo.png)
@@ -90,13 +90,13 @@ start_point = st(line)  # Returns np.array([-2, -1, 0])
 
 ### ed() - Get end point
 
-Get the end point of a line or other object with `get_end()` method.
+Get the end point of a line or other object with `get_end()` method as a Dot.
 
 ```python
 from robo_manim_add_ons import ed
 
 line = Line(pt(-2, -1), pt(2, 1))
-end_point = ed(line)  # Returns np.array([2, 1, 0])
+end_dot = ed(line)  # Returns Dot at end point
 ```
 
 ![EdDemo](EdDemo.png)
@@ -224,13 +224,12 @@ value = val(tracker)  # Returns 3.14
 
 ### pt() - Create point
 
-Create a point as numpy array from x, y, z coordinates (z defaults to 0).
+Create a Dot at the specified x, y, z coordinates (z defaults to 0).
 
 ```python
 from robo_manim_add_ons import pt
 
-point = pt(2, 1.5)  # Returns np.array([2, 1.5, 0])
-dot = Dot(point)
+dot = pt(2, 1.5)  # Returns Dot at [2, 1.5, 0]
 ```
 
 ![PtDemo](PtDemo.png)
@@ -390,6 +389,6 @@ from robo_manim_add_ons import (
 - All angle parameters are in **degrees** (converted to radians internally)
 - Functions with `from_x` and `from_y` parameters default to `(0, 0)`
 - All functions are designed to work seamlessly with Manim objects
-- `pt()` always returns `np.array([x, y, z])` with z defaulting to 0
-- Coordinate conversion functions (`m2v`, `v2m`, `x2v`) return **Dot** objects, not numpy arrays
-- Functions like `mid()` and `r2p()` also return **Dot** objects for convenience
+- **Position functions** return `Dot` objects: `pt()`, `st()`, `ed()`, `mid()`, `m2v()`, `v2m()`, `x2v()`, `r2p()`
+- **Vector/direction functions** return `np.ndarray`: `uv()`, `vec()`
+- **Scalar functions** return `float`: `x()`, `y()`, `mag()`, `ang()`, `slope()`, `val()`

@@ -53,6 +53,12 @@ CATEGORIES = {
         "icon": "🔄",
         "description": "Vector transformation utilities (translated, rotated, scaled)",
         "count": 6
+    },
+    "exp": {
+        "title": "Expression Utilities",
+        "icon": "⚙️",
+        "description": "Utility functions for extracting coordinates, creating points, and working with Manim objects",
+        "count": 20
     }
 }
 
@@ -323,7 +329,6 @@ def get_demos_from_directory(category):
 def extract_demo_info(category, demo_name):
     """Extract description from INDEX.md and code from source .py file."""
     import re
-    import ast
 
     # Get description from INDEX.md
     index_file = Path(__file__).parent.parent / "demos" / category / "INDEX.md"
@@ -336,41 +341,77 @@ def extract_demo_info(category, demo_name):
         if match:
             description = match.group(1)
 
-    # Extract code from source Python file
-    examples_dir = Path(__file__).parent.parent / "examples" / category
-    code = f"# Source code in examples/{category}/"
+    # Extract code from source Python file in demos directory
+    demos_dir = Path(__file__).parent.parent / "demos" / category
+    code = f"# Code not found for {demo_name}"
 
-    if examples_dir.exists():
+    for examples_dir in [demos_dir]:
+        if not examples_dir.exists():
+            continue
+
         for py_file in examples_dir.glob("*.py"):
             try:
                 source = py_file.read_text()
 
                 # Check if this file contains the scene class
-                if f"class {demo_name}" in source:
-                    # Extract the class definition using AST
-                    tree = ast.parse(source)
+                if f"class {demo_name}(Scene)" in source:
+                    # Extract the entire class using simple text parsing
+                    lines = source.split('\n')
 
-                    for node in ast.walk(tree):
-                        if isinstance(node, ast.ClassDef) and node.name == demo_name:
-                            # Find the construct method
-                            for item in node.body:
-                                if isinstance(item, ast.FunctionDef) and item.name == "construct":
-                                    # Get the source code of construct method body
-                                    start_line = item.body[0].lineno - 1  # -1 for 0-indexing
-                                    end_line = item.body[-1].end_lineno
-
-                                    lines = source.split('\n')
-                                    method_lines = lines[start_line:end_line]
-
-                                    # Remove common indentation
-                                    if method_lines:
-                                        indent = len(method_lines[0]) - len(method_lines[0].lstrip())
-                                        code = '\n'.join(line[indent:] if len(line) > indent else line
-                                                        for line in method_lines)
-                                    break
+                    # Find class start
+                    class_start = None
+                    for i, line in enumerate(lines):
+                        if f"class {demo_name}(Scene):" in line:
+                            class_start = i
                             break
-            except Exception:
+
+                    if class_start is not None:
+                        # Find construct method
+                        construct_start = None
+                        for i in range(class_start, len(lines)):
+                            if 'def construct(self):' in lines[i]:
+                                construct_start = i + 1  # Start after the def line
+                                break
+
+                        if construct_start is not None:
+                            # Extract construct body until next method or class end
+                            construct_body = []
+                            base_indent = None
+
+                            for i in range(construct_start, len(lines)):
+                                line = lines[i]
+
+                                # Stop at next method definition or empty class
+                                if line.strip() and not line.startswith(' ' * 4):
+                                    break
+                                if line.strip().startswith('def ') and i > construct_start:
+                                    break
+
+                                # Set base indentation from first non-empty line
+                                if base_indent is None and line.strip():
+                                    base_indent = len(line) - len(line.lstrip())
+
+                                # Add line with dedented content
+                                if base_indent is not None:
+                                    if line.strip():
+                                        dedented = line[base_indent:] if len(line) >= base_indent else line
+                                        construct_body.append(dedented)
+                                    else:
+                                        construct_body.append('')
+
+                            if construct_body:
+                                # Remove trailing empty lines
+                                while construct_body and not construct_body[-1].strip():
+                                    construct_body.pop()
+                                code = '\n'.join(construct_body)
+                                break
+            except Exception as e:
+                print(f"  Warning: Could not extract code for {demo_name}: {e}")
                 continue
+
+        # If we found the code, stop searching other directories
+        if code and not code.startswith("# Code not found"):
+            break
 
     return {"description": description, "code": code}
 

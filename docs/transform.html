@@ -255,7 +255,8 @@ self.wait()</code></pre>
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">ref_line = Line(ORIGIN, RIGHT * 2, color=BLUE)
+                        <pre><code class="language-python"># Create a reference line that will rotate
+ref_line = Line(ORIGIN, RIGHT * 2, color=BLUE)
 center_dot = Dot(ORIGIN, color=YELLOW)
 
 # Create a follower line that stays rotated by 45 degrees
@@ -340,7 +341,8 @@ self.wait()</code></pre>
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">ref_circle = Circle(radius=0.5, color=BLUE).shift(LEFT * 2)
+                        <pre><code class="language-python"># Create a reference circle that will scale
+ref_circle = Circle(radius=0.5, color=BLUE).shift(LEFT * 2)
 
 # Create a follower circle that is always 2x the size
 follower = Circle(radius=0.5, color=RED)
@@ -426,7 +428,8 @@ self.wait()</code></pre>
                             <div class="code-title">Code Example</div>
                             <button class="copy-button" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><code class="language-python">ref_square = Square(color=BLUE).shift(LEFT * 3)
+                        <pre><code class="language-python"># Create a reference square that will move
+ref_square = Square(color=BLUE).shift(LEFT * 3)
 
 # Create a follower square that uses updater to stay translated
 follower = Square(color=RED)
