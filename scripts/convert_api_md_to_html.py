@@ -107,7 +107,7 @@ def main():
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API Reference - Robo Manim Add-ons</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
     <style>
@@ -118,72 +118,70 @@ def main():
         }}
         body {{
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.7;
-            color: #1a1a1a;
-            background: #ffffff;
-            font-size: 16px;
-            padding: 16px;
+            line-height: 1.6;
+            color: #000;
+            background: #fff;
+            font-size: 17px;
+            padding: 20px 40px;
             max-width: 1400px;
             margin: 0 auto;
         }}
         h1 {{
-            font-size: 42px;
-            font-weight: 700;
-            margin: 16px 0 12px 0;
-            border-bottom: 2px solid #000;
-            padding-bottom: 6px;
+            font-size: 44px;
+            font-weight: 800;
+            margin: 20px 0 15px 0;
+            border-bottom: 3px solid #000;
+            padding-bottom: 8px;
             color: #000;
         }}
         h2 {{
-            font-size: 32px;
-            font-weight: 700;
-            margin: 24px 0 12px 0;
-            border-bottom: 2px solid #000;
-            padding-bottom: 4px;
+            font-size: 34px;
+            font-weight: 800;
+            margin: 30px 0 15px 0;
+            border-bottom: 3px solid #000;
+            padding-bottom: 6px;
             color: #000;
         }}
         h3 {{
-            font-size: 22px;
-            font-weight: 600;
-            margin: 16px 0 8px 0;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 20px 0 10px 0;
             color: #000;
         }}
         p {{
-            margin: 6px 0;
-            line-height: 1.7;
-            font-size: 16px;
-        }}
-        pre {{
-            background: #f8f8f8;
-            border: 1px solid #e0e0e0;
-            border-left: 3px solid #000;
-            padding: 12px;
-            overflow-x: auto;
             margin: 8px 0;
-        }}
-        pre code {{
-            font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, 'Courier New', monospace;
-            font-size: 15px;
             line-height: 1.6;
-            background: transparent !important;
-            padding: 0 !important;
+            font-size: 17px;
             color: #000;
         }}
+        pre {{
+            padding: 20px;
+            overflow-x: auto;
+            margin: 15px 0;
+            border-radius: 4px;
+        }}
+        pre code {{
+            font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+            font-size: 16px;
+            line-height: 1.5;
+            font-weight: 500;
+        }}
         code {{
-            font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
-            background: #f0f0f0;
-            padding: 2px 5px;
-            font-size: 15px;
-            color: #d73a49;
-            border: 1px solid #e0e0e0;
+            font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+            background: #2c2c2c;
+            color: #61afef;
+            padding: 3px 6px;
+            font-size: 16px;
+            border-radius: 3px;
+            font-weight: 600;
         }}
         hr {{
             border: none;
-            border-top: 1px solid #ccc;
-            margin: 24px 0;
+            border-top: 2px solid #000;
+            margin: 30px 0;
         }}
         strong {{
-            font-weight: 700;
+            font-weight: 800;
             color: #000;
         }}
         .github-link {{
