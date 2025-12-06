@@ -135,12 +135,10 @@ mid(obj) -&gt; Dot
 # Get midpoint as Dot. obj must be: Manim object with get_center() (Line, Circle, VMobject)</code></pre>
 
 <h3>Vector Operations</h3>
-<pre><code class="language-python">mag(obj) -&gt; float
-# Get magnitude/length. obj can be: Manim object with get_length() (Line, Arc),
-# np.array (calculates norm), or list (converts to array then norm)
-
-mag(pt1, pt2) -&gt; float
-# Distance between two points. pt1, pt2 can each be: Dot, np.array, or list
+<pre><code class="language-python">mag(*args) -&gt; float
+# Single function with flexible args:
+#   mag(obj) - magnitude/length of obj (Line/Arc/np.array/list)
+#   mag(pt1, pt2) - distance between two points (Dot/np.array/list)
 
 uv(obj) -&gt; np.ndarray
 # Get unit vector. obj can be: Manim object with get_unit_vector() (Line, Vector),

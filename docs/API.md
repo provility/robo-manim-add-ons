@@ -22,12 +22,10 @@ mid(obj) -> Dot
 
 ### Vector Operations
 ```python
-mag(obj) -> float
-# Get magnitude/length. obj can be: Manim object with get_length() (Line, Arc),
-# np.array (calculates norm), or list (converts to array then norm)
-
-mag(pt1, pt2) -> float
-# Distance between two points. pt1, pt2 can each be: Dot, np.array, or list
+mag(*args) -> float
+# Single function with flexible args:
+#   mag(obj) - magnitude/length of obj (Line/Arc/np.array/list)
+#   mag(pt1, pt2) - distance between two points (Dot/np.array/list)
 
 uv(obj) -> np.ndarray
 # Get unit vector. obj can be: Manim object with get_unit_vector() (Line, Vector),
