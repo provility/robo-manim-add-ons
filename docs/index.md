@@ -35,8 +35,7 @@ class GeometryDemo(Scene):
 
 ## Documentation
 
-- **[📋 Quick API Reference](https://github.com/provility/robo-manim-add-ons/blob/main/API.md)** - Complete compact API listing (all functions in one page)
-- **[API Reference](api/)** - Detailed API documentation with examples
+- **[📋 Complete API Reference](https://github.com/provility/robo-manim-add-ons/blob/main/API.md)** - All functions and utilities in one page
 - **[Examples](examples/)** - Example scenes and usage patterns
 - **[GitHub Repository](https://github.com/provility/robo-manim-add-ons)** - Source code and issues
 

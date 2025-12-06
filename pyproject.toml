@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "MIT"}
 authors = [
-    {name = "Your Name", email = "your.email@example.com"}
+    {name = "Provility", email = "provility@example.com"}
 ]
 keywords = ["manim", "animation", "math", "visualization"]
 classifiers = [
@@ -45,9 +45,10 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/robo-manim-add-ons"
-Repository = "https://github.com/yourusername/robo-manim-add-ons"
-Issues = "https://github.com/yourusername/robo-manim-add-ons/issues"
+Homepage = "https://github.com/provility/robo-manim-add-ons"
+Documentation = "https://provility.github.io/robo-manim-add-ons/"
+Repository = "https://github.com/provility/robo-manim-add-ons"
+Issues = "https://github.com/provility/robo-manim-add-ons/issues"
 
 [tool.setuptools]
 packages = ["robo_manim_add_ons"]

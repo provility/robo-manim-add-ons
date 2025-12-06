@@ -16,7 +16,7 @@ pip install robo-manim-add-ons
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/robo-manim-add-ons.git
+git clone https://github.com/provility/robo-manim-add-ons.git
 cd robo-manim-add-ons
 ```
 

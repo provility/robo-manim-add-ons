@@ -70,7 +70,14 @@
       "Bash(do mv \"$f\" \"$f/0000.png/.png\")",
       "Bash(do [ -f \"$f0000.png\" ])",
       "Bash(do mv \"$f\" demos/exp/)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(source:*)",
+      "Bash(pip install:*)",
+      "Bash(twine check:*)",
+      "Bash(twine upload:*)",
+      "WebFetch(domain:pypi.org)",
+      "Bash(pip index versions:*)",
+      "Bash(git tag:*)"
     ],
     "deny": [],
     "ask": []
