@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference - Robo Manim Add-ons</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #24292e;
+            background: #ffffff;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 { font-size: 2em; margin: 20px 0; border-bottom: 2px solid #0969da; padding-bottom: 10px; }
+        h2 { font-size: 1.5em; margin: 30px 0 15px; color: #0969da; }
+        h3 { font-size: 1.2em; margin: 20px 0 10px; }
+        code {
+            background: #f6f8fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 16px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        pre code { background: none; padding: 0; }
+        a { color: #0969da; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+        }
+        hr { border: none; border-top: 1px solid #d0d7de; margin: 30px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Documentation</a>
+        <h1>Robo Manim Add-ons API Reference</h1>
+<p>Compact API listing for quick reference. All utilities organized in one place.</p>
+<hr />
+<h2>Core Expression Utils</h2>
+<h3>Coordinate Extraction</h3>
+<pre><code class="language-python">x(obj) -&gt; float                              # Extract x-coordinate
+y(obj) -&gt; float                              # Extract y-coordinate
+st(obj) -&gt; Dot                               # Get start point as Dot
+ed(obj) -&gt; Dot                               # Get end point as Dot
+mid(obj) -&gt; Dot                              # Get midpoint as Dot
+</code></pre>
+<h3>Vector Operations</h3>
+<pre><code class="language-python">mag(obj) -&gt; float                            # Get magnitude/length
+mag(pt1, pt2) -&gt; float                       # Distance between two points
+uv(obj) -&gt; np.ndarray                        # Get unit vector
+vec(obj) -&gt; np.ndarray                       # Get vector
+ang(obj) -&gt; float                            # Get angle in radians
+slope(obj) -&gt; float                          # Get slope (y/x)
+val(obj) -&gt; float                            # Get value from ValueTracker/number
+</code></pre>
+<h3>Point Creation</h3>
+<pre><code class="language-python">pt(x, y, z=0) -&gt; Dot                         # Create Dot at (x, y, z)
+m2v(axes, x, y) -&gt; Dot                       # Model to view coordinates
+v2m(axes, x, y) -&gt; Dot                       # View to model coordinates
+x2v(axes, graph, x) -&gt; Dot                   # Point on graph at x-value
+r2p(obj, proportion) -&gt; Dot                  # Point at proportion along object
+</code></pre>
+<h3>Line/Arrow Creation</h3>
+<pre><code class="language-python">vl(x, y1=-20, y2=20) -&gt; Line                 # Vertical line at x
+hl(y, x1=-20, x2=20) -&gt; Line                 # Horizontal line at y
+lra(radius, angle, from_x=0, from_y=0) -&gt; Line       # Line using polar coords (degrees)
+vra(radius, angle, from_x=0, from_y=0) -&gt; Arrow     # Arrow using polar coords (degrees)
+ln(*args) -&gt; Line                            # Flexible Line (red): (pt,pt) | (x,y,x,y) | (pt,x,y)
+vt(*args) -&gt; Arrow                           # Flexible Arrow (red): same as ln
+</code></pre>
+<h3>Shape Creation</h3>
+<pre><code class="language-python">tri(p1, p2, p3) -&gt; Polygon                   # Triangle from three points (red)
+sss(a, b=None, c=None) -&gt; Polygon            # Triangle SSS: (side) equilateral | (a,b,c)
+sas(a, angle_deg, b) -&gt; Polygon              # Triangle from 2 sides + angle (SAS) (red)
+ssa(a, b, angle_deg) -&gt; Polygon              # Triangle from 2 sides + angle (SSA ambiguous) (red)
+rect(*args) -&gt; Rectangle                     # Rectangle: (w,h) | (lb,tr) | (lb,lt,rt,rb)
+cr(*args) -&gt; Circle                          # Circle: (line) | (center,radius) | (pt,pt)
+aa(*args, radius=0.5, dash=True) -&gt; ArcArrow         # Angle arc (dashed): (l1,l2) | (p1,vertex,p3)
+aa2(*args, radius=0.5) -&gt; Angle              # Manim Angle: supports quadrant control
+</code></pre>
+<h3>Geometry Operations</h3>
+<pre><code class="language-python">perp(line, dot, length, placement=&quot;mid&quot;) -&gt; Line    # Perpendicular line
+pll(line, dot, length, placement=&quot;mid&quot;) -&gt; Line     # Parallel line (alias: parallel)
+project(line, point) -&gt; Dot                  # Project point onto line (infinite)
+reflect(line, point) -&gt; Dot                  # Reflect point across line (infinite)
+xl(line, proportion, length) -&gt; Line         # Extend line (alias: extended_line)
+</code></pre>
+<h3>Intersection Operations</h3>
+<pre><code class="language-python">ill(line1, line2) -&gt; Union[Dot, VGroup]      # Line-line intersection (alias: intersect_lines)
+ilc(line, circle) -&gt; VGroup                  # Line-circle intersection (alias: intersect_line_circle)
+</code></pre>
+<h3>Annotation</h3>
+<pre><code class="language-python">dm(pt1, pt2=None, **kwargs)                  # Distance marker (alias: distance_marker)
+# Key params: text=&quot;&quot;, color=&quot;#1e40af&quot;, stroke_width=2, tick_size=0.25, label_offset=0.3, marker_offset=0
+label(latex_text, pt1, pt2, buff=0.5, alpha=0.5, auto_rotate=True) -&gt; MathTex
+hatch(axes, vertices, **kwargs)              # Hatched region (alias: hatched_region)
+# Key params: spacing=0.2, direction=&quot;/&quot;, color=&quot;#808080&quot;, stroke_width=2
+</code></pre>
+<h3>Style Operations (Chainable)</h3>
+<pre><code class="language-python">stroke(obj, color) -&gt; VMobject               # Set stroke color
+fill(obj, color) -&gt; VMobject                 # Set fill color
+sopacity(obj, opacity) -&gt; VMobject           # Set stroke opacity
+fopacity(obj, opacity) -&gt; VMobject           # Set fill opacity
+sw(obj, width) -&gt; VMobject                   # Set stroke width
+style(obj) -&gt; Style                          # Get Style wrapper for chaining
+</code></pre>
+<p><strong>Style Chaining:</strong></p>
+<pre><code class="language-python">style(circle).fill(BLUE).stroke(RED).sw(3).fopacity(0.5).sopacity(1)
+</code></pre>
+<h3>Transform Operations</h3>
+<pre><code class="language-python">translated(obj, dx, dy) -&gt; Mobject           # Copy and translate
+rotated(obj, angle_deg, about=None) -&gt; Mobject          # Copy and rotate
+scaled(obj, scale_factor, about=None) -&gt; Mobject        # Copy and scale
+</code></pre>
+<h3>Graph Operations</h3>
+<pre><code class="language-python">graph(*args, x_range=[-5, 5], y_range=[-5, 5], axes=None, x_ticks=None, y_ticks=None, coords=True, **kwargs) -&gt; Tuple[Axes, object]
+# Args: 1 string (explicit/implicit) or 2 strings (parametric)
+# Returns: (axes, plot) - axes and the plotted function
+GraphUtils.graph(...)    # Class method version (same signature)
+</code></pre>
+<hr />
+<h2>Vector Utils (VectorUtils Class)</h2>
+<pre><code class="language-python"># Vector positioning (use short aliases)
+VectorUtils.fw(source, distance) -&gt; Mobject            # Forward: copy forward by distance
+VectorUtils.bw(source, distance) -&gt; Mobject            # Backward: copy backward by distance
+VectorUtils.pm(source, distance) -&gt; Mobject            # Perp move: copy perpendicular by distance
+VectorUtils.cp(source, start_point, **kwargs) -&gt; Mobject    # Copy at: copy at position with same direction
+VectorUtils.rv(source, start_point, **kwargs) -&gt; Mobject    # Reverse at: copy reversed at position
+VectorUtils.tt(vec_a, vec_b) -&gt; Mobject                # Tail at tip: position vec_b's tail at vec_a's tip
+VectorUtils.sa(vec_target, vec_source) -&gt; np.ndarray   # Shift amount: calculate shift vector
+
+# Vector arithmetic (standalone functions)
+addv(vec_a, vec_b, start_point=None, **kwargs) -&gt; Arrow          # Vector addition a + b
+subv(vec_a, vec_b, start_point=None, **kwargs) -&gt; Arrow          # Vector subtraction a - b
+sclv(vector, scalar, start_point=None, **kwargs) -&gt; Arrow        # Scalar multiplication
+
+# Vector decomposition &amp; projection (use short aliases)
+VectorUtils.po(vec, target, **kwargs) -&gt; Arrow         # Project onto: project vec onto target
+VectorUtils.dc(source, ref, perp=False, **kwargs) -&gt; Arrow    # Decompose: parallel/perp component
+VectorUtils.projection_line(vec, target, **kwargs) -&gt; Line    # Perpendicular line to projection
+VectorUtils.projection_region(vec, target, **kwargs) -&gt; Polygon    # Triangle showing projection area
+</code></pre>
+<hr />
+<h2>Point Utils (PointUtils Class)</h2>
+<pre><code class="language-python">addp(point, vector) -&gt; Dot                              # Displace point by vector
+PointUtils.addp(point, vector) -&gt; Dot                   # Class method version
+# Accepts: Dot + Arrow, Dot + np.array, np.array + Arrow, np.array + np.array
+</code></pre>
+<hr />
+<h2>Text Utils (TextUtils Class)</h2>
+<pre><code class="language-python">text(scene, mathtext, *indices) -&gt; MathTex             # Extract MathTex parts (no styling)
+text2(scene, mathtext, *indices) -&gt; MathTex            # Debug: extract + BLUE + ORANGE box
+TextUtils.text(scene, mathtext, *indices)              # Class method version
+TextUtils.text2(scene, mathtext, *indices)             # Class method version
+# mathtext: string (creates MathTex) or MathTex object
+# indices: int or &quot;1:2&quot; slice strings, chainable: eq[1][2] = (eq, 1, 2)
+# Silently fails on invalid indices, returns empty VMobject
+</code></pre>
+<hr />
+<h2>Label Utils</h2>
+<pre><code class="language-python">vertex_labels(polygon, labels, scale=0.7, color=WHITE, buff=0.3) -&gt; list
+# Returns list of positioned MathTex objects at polygon vertices
+edge_labels(polygon, labels, scale=0.6, color=YELLOW, buff=0.2) -&gt; list
+# Returns list of positioned MathTex objects at edge midpoints
+</code></pre>
+<hr />
+<h2>Arrow Utils (ArrowUtil Class)</h2>
+<pre><code class="language-python">ArrowUtil.arrow(start, end, buff=0, dashed=False, bidirectional=False, tip_angle=20*DEGREES, tip_length=0.3, **kwargs) -&gt; VMobject
+# Creates arrow with: dashing, perpendicular buffer, bidirectional tips
+ArrowUtil.curved_arrow(start, end, angle=45*DEGREES, tip_angle=20*DEGREES, tip_length=0.3, **kwargs) -&gt; VMobject
+# Creates curved arrow along circular arc
+ArrowUtil.perpendicular_offset(start, end, distance) -&gt; np.ndarray
+# Calculate perpendicular offset vector for a line segment
+ArrowUtil.label(arrow, tex, buff=0.2) -&gt; VMobject
+# Position label relative to arrow with perpendicular offset
+ArrowUtil.marker(point, direction, tip_angle=20*DEGREES, tip_length=0.3, **kwargs) -&gt; VGroup
+# Create directional marker (arrow tip) at a specific point
+</code></pre>
+<hr />
+<h2>RogebraScene</h2>
+<p>Convenient scene class with utility methods:</p>
+<pre><code class="language-python">class RogebraScene(MovingCameraScene):
+    # Animation shortcuts
+    fadeIn(*args)                            # Fade in objects (last arg = run_time)
+    fadeOut(*args)                           # Fade out objects (last arg = run_time)
+    amo(*args)                               # Animate move_to (pairs of obj,pos)
+    tf(*args)                                # Transform (pairs of source,target)
+    rtf(*args)                               # ReplacementTransform (pairs of source,target)
+
+    # Camera utilities
+    zoom(obj, wait_time=0.3, width_factor=1.2)  # Zoom to object, wait, restore
+
+    # MathTex utilities
+    text(mathtext, *indices)                 # Extract MathTex parts (no styling)
+    text2(mathtext, *indices)                # Debug: extract + BLUE + ORANGE box
+</code></pre>
+<p><strong>Examples:</strong></p>
+<pre><code class="language-python"># Animation shortcuts
+self.fadeIn(obj1, obj2, 2)                   # Fade in 2 objects over 2 seconds
+self.fadeOut(obj1)                           # Fade out 1 object
+self.amo(obj1, pos1, obj2, pos2, 1.5)        # Move 2 objects over 1.5 seconds
+self.tf(obj1, target1, True, 2)              # Transform with copy over 2 seconds
+
+# Camera zoom
+self.zoom(equation)                          # Quick zoom to equation
+self.zoom(text, 1.0, 1.5)                    # Zoom for 1s with 1.5x width
+
+# MathTex extraction
+eq = self.text(&quot;x^2 + y^2 = r^2&quot;)            # Create MathTex
+part = self.text(eq, 0)                      # Extract eq[0]
+self.text2(eq, 1, &quot;2:4&quot;)                     # Show eq[1][2:4] with highlight
+</code></pre>
+<hr />
+<h2>Exp Class (Alternative Interface)</h2>
+<p>All expression utilities available as static methods:</p>
+<pre><code class="language-python">Exp.x(obj)       Exp.y(obj)        Exp.st(obj)       Exp.ed(obj)       Exp.mid(obj)
+Exp.mag(obj)     Exp.uv(obj)       Exp.vec(obj)      Exp.ang(obj)      Exp.slope(obj)
+Exp.val(obj)     Exp.pt(x,y,z)     Exp.m2v(...)      Exp.v2m(...)      Exp.x2v(...)
+Exp.vl(...)      Exp.hl(...)       Exp.lra(...)      Exp.vra(...)      Exp.r2p(...)
+Exp.ln(...)      Exp.vt(...)       Exp.tri(...)      Exp.sss(...)      Exp.sas(...)
+Exp.ssa(...)     Exp.rect(...)     Exp.aa(...)       Exp.aa2(...)      Exp.cr(...)
+Exp.graph(...)
+</code></pre>
+<hr />
+<h2>Import Examples</h2>
+<pre><code class="language-python"># Minimal imports
+from robo_manim_add_ons import x, y, pt, ln, dm, style
+
+# All expression utils
+from robo_manim_add_ons import (
+    # Coords &amp; vectors
+    x, y, st, ed, mid, mag, uv, vec, ang, slope, val,
+    # Points
+    pt, m2v, v2m, x2v, r2p, addp,
+    # Lines &amp; shapes
+    vl, hl, lra, vra, ln, vt, tri, sss, sas, ssa, rect, aa, aa2, cr,
+    # Geometry
+    perp, pll, project, reflect, xl,
+    # Intersection
+    ill, ilc,
+    # Annotation
+    dm, label, hatch,
+    # Style
+    stroke, fill, sopacity, fopacity, sw, style,
+    # Transform
+    translated, rotated, scaled,
+    # Vector operations
+    addv, subv, sclv,
+    # Text utilities
+    text, text2,
+    # Scene
+    RogebraScene
+)
+
+# Class-based interface
+from robo_manim_add_ons import Exp, VectorUtils, PointUtils, TextUtils, ArrowUtil, GraphUtils, Style
+
+# Note: ArcArrow and ArcDashedVMobject are internal - use aa() and aa2() instead
+</code></pre>
+<hr />
+<h2>Quick Reference by Category</h2>
+<p><strong>Getters:</strong> <code>x</code> <code>y</code> <code>st</code> <code>ed</code> <code>mid</code> <code>mag</code> <code>uv</code> <code>vec</code> <code>ang</code> <code>slope</code> <code>val</code>
+<strong>Creators:</strong> <code>pt</code> <code>m2v</code> <code>v2m</code> <code>x2v</code> <code>r2p</code> <code>vl</code> <code>hl</code> <code>lra</code> <code>vra</code> <code>ln</code> <code>vt</code> <code>tri</code> <code>sss</code> <code>sas</code> <code>ssa</code> <code>rect</code> <code>cr</code> <code>aa</code> <code>aa2</code>
+<strong>Geometry:</strong> <code>perp</code> <code>pll</code> <code>project</code> <code>reflect</code> <code>xl</code> <code>ill</code> <code>ilc</code>
+<strong>Annotation:</strong> <code>dm</code> <code>label</code> <code>hatch</code>
+<strong>Style:</strong> <code>stroke</code> <code>fill</code> <code>sopacity</code> <code>fopacity</code> <code>sw</code> <code>style</code>
+<strong>Transform:</strong> <code>translated</code> <code>rotated</code> <code>scaled</code>
+<strong>Vector Ops:</strong> <code>addv</code> <code>subv</code> <code>sclv</code> <code>VectorUtils</code>
+<strong>Point Ops:</strong> <code>addp</code> <code>PointUtils</code>
+<strong>Text Ops:</strong> <code>text</code> <code>text2</code> <code>TextUtils</code>
+<strong>Scene Utils:</strong> <code>RogebraScene</code> (fadeIn, fadeOut, amo, tf, rtf, zoom, text, text2)</p>
+<hr />
+<p><strong>Notes:</strong>
+- All 2-letter functions are aliases for longer names
+- Functions with <code>*args</code> accept flexible arguments (see individual docs)
+- Chainable functions return the object for method chaining
+- Angles in degrees for <code>lra</code>/<code>vra</code>, radians for <code>ang</code>/<code>rotated</code>
+- Points can be: Dot, np.array, [x,y,z], or any object with <code>get_center()</code></p>
+        <hr>
+        <p style="text-align: center; color: #57606a; margin-top: 40px;">
+            <a href="https://github.com/provility/robo-manim-add-ons">GitHub Repository</a> | 
+            <a href="https://pypi.org/project/robo-manim-add-ons/">PyPI Package</a>
+        </p>
+    </div>
+</body>
+</html>
