@@ -1,9 +1,3 @@
-# Robo Manim Add-ons API Reference
-
-Compact API listing for quick reference. All utilities organized in one place.
-
----
-
 ## Core Expression Utils
 
 ### Coordinate Extraction
