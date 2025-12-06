@@ -4,28 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API Reference - Robo Manim Add-ons</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             color: #24292e;
             background: #ffffff;
+            font-size: 14px;
             padding: 20px;
-        }
-        .container {
             max-width: 1200px;
             margin: 0 auto;
         }
-        h1 { font-size: 2em; margin: 20px 0; border-bottom: 2px solid #0969da; padding-bottom: 10px; }
-        h2 { font-size: 1.5em; margin: 30px 0 15px; color: #0969da; }
-        h3 { font-size: 1.2em; margin: 20px 0 10px; }
-        code {
-            background: #f6f8fa;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Courier New', monospace;
-            font-size: 0.9em;
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin: 24px 0 16px 0;
+            border-bottom: 1px solid #d0d7de;
+            padding-bottom: 8px;
+        }
+        h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 32px 0 16px 0;
+            border-bottom: 1px solid #d0d7de;
+            padding-bottom: 8px;
+        }
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 16px 0 12px 0;
+        }
+        p {
+            margin: 8px 0;
+            line-height: 1.6;
         }
         pre {
             background: #f6f8fa;
@@ -33,186 +52,410 @@
             border-radius: 6px;
             padding: 16px;
             overflow-x: auto;
-            margin: 10px 0;
+            margin: 12px 0;
         }
-        pre code { background: none; padding: 0; }
-        a { color: #0969da; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        pre code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 12px;
+            line-height: 1.5;
+            background: transparent !important;
+            padding: 0 !important;
+        }
+        code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            background: #f6f8fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #d0d7de;
+            margin: 32px 0;
+        }
+        strong {
+            font-weight: 600;
+        }
+        .github-link {
+            position: fixed;
+            top: 12px;
+            right: 16px;
+            background: #24292e;
+            color: #ffffff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .github-link:hover {
+            background: #57606a;
+        }
         .back-link {
             display: inline-block;
-            margin-bottom: 20px;
-            padding: 8px 16px;
-            background: #f6f8fa;
-            border: 1px solid #d0d7de;
-            border-radius: 6px;
+            color: #0969da;
+            text-decoration: none;
+            margin-bottom: 16px;
+            font-size: 14px;
         }
-        hr { border: none; border-top: 1px solid #d0d7de; margin: 30px 0; }
+        .back-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-link">← Back to Documentation</a>
-        <h1>Robo Manim Add-ons API Reference</h1>
+    <a href="https://github.com/provility/robo-manim-add-ons" class="github-link">GitHub →</a>
+    <a href="index.html" class="back-link">← Back to Home</a>
+
+<h1>Robo Manim Add-ons API Reference</h1>
+
 <p>Compact API listing for quick reference. All utilities organized in one place.</p>
+
 <hr />
+
 <h2>Core Expression Utils</h2>
+
 <h3>Coordinate Extraction</h3>
-<pre><code class="language-python">x(obj) -&gt; float                              # Extract x-coordinate
-y(obj) -&gt; float                              # Extract y-coordinate
-st(obj) -&gt; Dot                               # Get start point as Dot
-ed(obj) -&gt; Dot                               # Get end point as Dot
-mid(obj) -&gt; Dot                              # Get midpoint as Dot
-</code></pre>
+<pre><code class="language-python">x(obj) -&gt; float
+# Extract x-coordinate. obj can be: Manim object with get_center() (Dot, VMobject),
+# np.array [x,y,z], or list [x,y,z]
+
+y(obj) -&gt; float
+# Extract y-coordinate. obj can be: Manim object with get_center() (Dot, VMobject),
+# np.array [x,y,z], or list [x,y,z]
+
+st(obj) -&gt; Dot
+# Get start point as Dot. obj can be: Manim object with get_start() (Line, Arc),
+# np.array [x,y,z], or list [x,y,z]
+
+ed(obj) -&gt; Dot
+# Get end point as Dot. obj can be: Manim object with get_end() (Line, Arc),
+# np.array [x,y,z], or list [x,y,z]
+
+mid(obj) -&gt; Dot
+# Get midpoint as Dot. obj must be: Manim object with get_center() (Line, Circle, VMobject)</code></pre>
+
 <h3>Vector Operations</h3>
-<pre><code class="language-python">mag(obj) -&gt; float                            # Get magnitude/length
-mag(pt1, pt2) -&gt; float                       # Distance between two points
-uv(obj) -&gt; np.ndarray                        # Get unit vector
-vec(obj) -&gt; np.ndarray                       # Get vector
-ang(obj) -&gt; float                            # Get angle in radians
-slope(obj) -&gt; float                          # Get slope (y/x)
-val(obj) -&gt; float                            # Get value from ValueTracker/number
-</code></pre>
+<pre><code class="language-python">mag(obj) -&gt; float
+# Get magnitude/length. obj can be: Manim object with get_length() (Line, Arc),
+# np.array (calculates norm), or list (converts to array then norm)
+
+mag(pt1, pt2) -&gt; float
+# Distance between two points. pt1, pt2 can each be: Dot, np.array, or list
+
+uv(obj) -&gt; np.ndarray
+# Get unit vector. obj can be: Manim object with get_unit_vector() (Line, Vector),
+# np.array (normalizes), or list (converts then normalizes)
+
+vec(obj) -&gt; np.ndarray
+# Get vector. obj can be: Manim object with get_vector() (Line - returns end-start),
+# np.array (returned as-is), or list (converted to np.array)
+
+ang(obj) -&gt; float
+# Get angle in radians. obj can be: Manim object with get_angle() (Line),
+# np.array (calculates arctan2(y,x)), or list (converts then arctan2)
+
+slope(obj) -&gt; float
+# Get slope (y/x). obj can be: Manim object with get_slope() (Line),
+# np.array (y/x), or list (converts then y/x)
+
+val(obj) -&gt; float
+# Get value. obj can be: Manim object with get_value() (ValueTracker, Variable),
+# or numeric value (int/float - returned as float)</code></pre>
+
 <h3>Point Creation</h3>
-<pre><code class="language-python">pt(x, y, z=0) -&gt; Dot                         # Create Dot at (x, y, z)
-m2v(axes, x, y) -&gt; Dot                       # Model to view coordinates
-v2m(axes, x, y) -&gt; Dot                       # View to model coordinates
-x2v(axes, graph, x) -&gt; Dot                   # Point on graph at x-value
-r2p(obj, proportion) -&gt; Dot                  # Point at proportion along object
-</code></pre>
+<pre><code class="language-python">pt(x, y, z=0) -&gt; Dot
+# Create Dot at coordinates (x, y, z). x, y, z are numeric values
+
+m2v(axes, x, y) -&gt; Dot
+# Model to view coordinates. Converts axes coordinates (x,y) to screen point as Dot
+
+v2m(axes, x, y) -&gt; Dot
+# View to model coordinates. Converts screen point (x,y) to axes coordinates as Dot
+
+x2v(axes, graph, x) -&gt; Dot
+# Point on graph at x-value. Wrapper for axes.i2gp(x, graph), returns Dot on graph
+
+r2p(obj, proportion) -&gt; Dot
+# Point at proportion along object. obj must have point_from_proportion() (Line, Arc, VMobject).
+# proportion: 0=start, 1=end</code></pre>
+
 <h3>Line/Arrow Creation</h3>
-<pre><code class="language-python">vl(x, y1=-20, y2=20) -&gt; Line                 # Vertical line at x
-hl(y, x1=-20, x2=20) -&gt; Line                 # Horizontal line at y
-lra(radius, angle, from_x=0, from_y=0) -&gt; Line       # Line using polar coords (degrees)
-vra(radius, angle, from_x=0, from_y=0) -&gt; Arrow     # Arrow using polar coords (degrees)
-ln(*args) -&gt; Line                            # Flexible Line (red): (pt,pt) | (x,y,x,y) | (pt,x,y)
-vt(*args) -&gt; Arrow                           # Flexible Arrow (red): same as ln
-</code></pre>
+<pre><code class="language-python">vl(x, y1=-20, y2=20) -&gt; Line
+# Vertical line at x from y1 to y2
+
+hl(y, x1=-20, x2=20) -&gt; Line
+# Horizontal line at y from x1 to x2
+
+lra(radius, angle, from_x=0, from_y=0) -&gt; Line
+# Line using polar coords (angle in DEGREES). From (from_x, from_y) with given radius and angle
+
+vra(radius, angle, from_x=0, from_y=0) -&gt; Arrow
+# Arrow using polar coords (angle in DEGREES). From (from_x, from_y) with given radius and angle
+
+ln(*args) -&gt; Line
+# Flexible red Line. Args: (pt, pt) | (x,y, x,y) | (pt, x,y) | (x,y, pt)
+# pt can be: Dot, VMobject with get_center(), or np.array
+
+vt(*args) -&gt; Arrow
+# Flexible red Arrow. Same args as ln(): (pt, pt) | (x,y, x,y) | (pt, x,y) | (x,y, pt)
+# pt can be: Dot, VMobject with get_center(), or np.array</code></pre>
+
 <h3>Shape Creation</h3>
-<pre><code class="language-python">tri(p1, p2, p3) -&gt; Polygon                   # Triangle from three points (red)
-sss(a, b=None, c=None) -&gt; Polygon            # Triangle SSS: (side) equilateral | (a,b,c)
-sas(a, angle_deg, b) -&gt; Polygon              # Triangle from 2 sides + angle (SAS) (red)
-ssa(a, b, angle_deg) -&gt; Polygon              # Triangle from 2 sides + angle (SSA ambiguous) (red)
-rect(*args) -&gt; Rectangle                     # Rectangle: (w,h) | (lb,tr) | (lb,lt,rt,rb)
-cr(*args) -&gt; Circle                          # Circle: (line) | (center,radius) | (pt,pt)
-aa(*args, radius=0.5, dash=True) -&gt; ArcArrow         # Angle arc (dashed): (l1,l2) | (p1,vertex,p3)
-aa2(*args, radius=0.5) -&gt; Angle              # Manim Angle: supports quadrant control
-</code></pre>
+<pre><code class="language-python">tri(p1, p2, p3) -&gt; Polygon
+# Red triangle from three points. p1, p2, p3 can each be: Dot, VMobject with get_center(), or np.array
+
+sss(a, b=None, c=None) -&gt; Polygon
+# Red triangle using SSS construction. (a) = equilateral, (a,b,c) = scalene/isosceles
+
+sas(a, angle_deg, b) -&gt; Polygon
+# Red triangle using SAS construction. angle_deg in DEGREES between sides a and b
+
+ssa(a, b, angle_deg) -&gt; Polygon
+# Red triangle using SSA construction (ambiguous case). Returns first valid solution
+
+rect(*args) -&gt; Rectangle
+# Rectangle. Args: (width, height) | (left_bottom, top_right) | (lb, lt, rt, rb)
+# Points can be: np.array, list, or Dot
+
+cr(*args) -&gt; Circle
+# Circle. Args: (line) center at line.get_center(), diameter=line.length |
+# (center, radius) where center is Dot/np.array | (pt1, pt2) midpoint=center, distance=diameter
+
+aa(*args, radius=0.5, dash=True) -&gt; ArcArrow
+# Angle arc visualization. Args: (line1, line2) | (p1, vertex, p3) where vertex is angle vertex.
+# dash=True for dashed arc, dash=False for solid. Points can be: Dot, VMobject, or np.array
+
+aa2(*args, radius=0.5, **kwargs) -&gt; Angle
+# Manim Angle with quadrant control. Args: (line1, line2) | (line1, line2, quadrant) |
+# (p1, vertex, p3) | (p1, vertex, p3, quadrant). quadrant: 1/-1 for CCW/CW, True/False for reflex</code></pre>
+
 <h3>Geometry Operations</h3>
-<pre><code class="language-python">perp(line, dot, length, placement=&quot;mid&quot;) -&gt; Line    # Perpendicular line
-pll(line, dot, length, placement=&quot;mid&quot;) -&gt; Line     # Parallel line (alias: parallel)
-project(line, point) -&gt; Dot                  # Project point onto line (infinite)
-reflect(line, point) -&gt; Dot                  # Reflect point across line (infinite)
-xl(line, proportion, length) -&gt; Line         # Extend line (alias: extended_line)
-</code></pre>
+<pre><code class="language-python">perp(line, dot, length, placement=&quot;mid&quot;) -&gt; Line
+# Perpendicular line to 'line' passing through 'dot'. placement: &quot;start&quot;|&quot;mid&quot;|&quot;end&quot;
+
+pll(line, dot, length, placement=&quot;mid&quot;) -&gt; Line
+# Parallel line to 'line' passing through 'dot'. placement: &quot;start&quot;|&quot;mid&quot;|&quot;end&quot;
+# Alias: parallel()
+
+project(line, point) -&gt; Dot
+# Project point onto line (extended infinitely). point can be: Dot or np.array
+
+reflect(line, point) -&gt; Dot
+# Reflect point across line (extended infinitely). point can be: Dot or np.array
+
+xl(line, proportion, length) -&gt; Line
+# Extend line at proportion (0=start, 1=end) by length. Alias: extended_line()</code></pre>
+
 <h3>Intersection Operations</h3>
-<pre><code class="language-python">ill(line1, line2) -&gt; Union[Dot, VGroup]      # Line-line intersection (alias: intersect_lines)
-ilc(line, circle) -&gt; VGroup                  # Line-circle intersection (alias: intersect_line_circle)
-</code></pre>
+<pre><code class="language-python">ill(line1, line2) -&gt; Union[Dot, VGroup]
+# Line-line intersection. Returns: Dot (if intersect) or empty VGroup (if parallel)
+# Alias: intersect_lines()
+
+ilc(line, circle) -&gt; VGroup
+# Line-circle intersection. Returns: VGroup of 0, 1, or 2 Dots depending on intersection
+# Alias: intersect_line_circle()</code></pre>
+
 <h3>Annotation</h3>
-<pre><code class="language-python">dm(pt1, pt2=None, **kwargs)                  # Distance marker (alias: distance_marker)
-# Key params: text=&quot;&quot;, color=&quot;#1e40af&quot;, stroke_width=2, tick_size=0.25, label_offset=0.3, marker_offset=0
+<pre><code class="language-python">dm(pt1, pt2=None, **kwargs) -&gt; VGroup
+# Distance marker. Args: (line) | (pt1, pt2) where pt1, pt2 can be: Dot, np.array, or list
+# Key params: text=&quot;&quot;, color=&quot;#1e40af&quot;, stroke_width=2, tick_size=0.25, label_offset=0.3
+# Alias: distance_marker()
+
 label(latex_text, pt1, pt2, buff=0.5, alpha=0.5, auto_rotate=True) -&gt; MathTex
-hatch(axes, vertices, **kwargs)              # Hatched region (alias: hatched_region)
-# Key params: spacing=0.2, direction=&quot;/&quot;, color=&quot;#808080&quot;, stroke_width=2
-</code></pre>
+# MathTex label between two points with perpendicular offset
+# pt1, pt2 can each be: Dot, np.array, list, or VMobject with get_center()
+
+hatch(axes, vertices, **kwargs) -&gt; VGroup
+# Hatched region visualization. vertices: list of (x,y) tuples in axes coordinates
+# Key params: spacing=0.2, direction=&quot;/&quot;|&quot;\&quot;|&quot;-&quot;|&quot;|&quot;, color=&quot;#808080&quot;, stroke_width=2
+# Alias: hatched_region()</code></pre>
+
 <h3>Style Operations (Chainable)</h3>
-<pre><code class="language-python">stroke(obj, color) -&gt; VMobject               # Set stroke color
-fill(obj, color) -&gt; VMobject                 # Set fill color
-sopacity(obj, opacity) -&gt; VMobject           # Set stroke opacity
-fopacity(obj, opacity) -&gt; VMobject           # Set fill opacity
-sw(obj, width) -&gt; VMobject                   # Set stroke width
-style(obj) -&gt; Style                          # Get Style wrapper for chaining
-</code></pre>
+<pre><code class="language-python">stroke(obj, color) -&gt; VMobject
+# Set stroke color. obj: any VMobject. Returns obj for chaining
+
+fill(obj, color) -&gt; VMobject
+# Set fill color. obj: any VMobject. Returns obj for chaining
+
+sopacity(obj, opacity) -&gt; VMobject
+# Set stroke opacity (0-1). obj: any VMobject. Returns obj for chaining
+
+fopacity(obj, opacity) -&gt; VMobject
+# Set fill opacity (0-1). obj: any VMobject. Returns obj for chaining
+
+sw(obj, width) -&gt; VMobject
+# Set stroke width. obj: any VMobject. Returns obj for chaining
+
+style(obj) -&gt; Style
+# Get Style wrapper for method chaining. All above methods available</code></pre>
+
 <p><strong>Style Chaining:</strong></p>
-<pre><code class="language-python">style(circle).fill(BLUE).stroke(RED).sw(3).fopacity(0.5).sopacity(1)
-</code></pre>
+<pre><code class="language-python">style(circle).fill(BLUE).stroke(RED).sw(3).fopacity(0.5).sopacity(1)</code></pre>
+
 <h3>Transform Operations</h3>
-<pre><code class="language-python">translated(obj, dx, dy) -&gt; Mobject           # Copy and translate
-rotated(obj, angle_deg, about=None) -&gt; Mobject          # Copy and rotate
-scaled(obj, scale_factor, about=None) -&gt; Mobject        # Copy and scale
-</code></pre>
+<pre><code class="language-python">translated(obj, dx, dy) -&gt; Mobject
+# Copy obj and translate by (dx, dy). Returns new copy, original unchanged
+
+rotated(obj, angle_deg, about=None) -&gt; Mobject
+# Copy obj and rotate by angle_deg (DEGREES). about: rotation point (default: obj center)
+
+scaled(obj, scale_factor, about=None) -&gt; Mobject
+# Copy obj and scale by factor. about: scaling point (default: obj center)</code></pre>
+
 <h3>Graph Operations</h3>
-<pre><code class="language-python">graph(*args, x_range=[-5, 5], y_range=[-5, 5], axes=None, x_ticks=None, y_ticks=None, coords=True, **kwargs) -&gt; Tuple[Axes, object]
-# Args: 1 string (explicit/implicit) or 2 strings (parametric)
-# Returns: (axes, plot) - axes and the plotted function
-GraphUtils.graph(...)    # Class method version (same signature)
-</code></pre>
+<pre><code class="language-python">graph(*args, x_range=[-5, 5], y_range=[-5, 5], axes=None, x_ticks=None, y_ticks=None,
+      coords=True, **kwargs) -&gt; Tuple[Axes, object]
+# Create graph with flexible equation input
+# Args: (equation_str) for explicit/implicit | (x_expr, y_expr) for parametric
+# equation_str examples: &quot;y=x**2&quot;, &quot;x**2+y**2=1&quot;, &quot;r=2*cos(theta)&quot; (polar)
+# Returns: (axes, plot) - the Axes object and plotted function
+# GraphUtils.graph(...) - Class method version with same signature</code></pre>
+
 <hr />
+
 <h2>Vector Utils (VectorUtils Class)</h2>
+
 <pre><code class="language-python"># Vector positioning (use short aliases)
-VectorUtils.fw(source, distance) -&gt; Mobject            # Forward: copy forward by distance
-VectorUtils.bw(source, distance) -&gt; Mobject            # Backward: copy backward by distance
-VectorUtils.pm(source, distance) -&gt; Mobject            # Perp move: copy perpendicular by distance
-VectorUtils.cp(source, start_point, **kwargs) -&gt; Mobject    # Copy at: copy at position with same direction
-VectorUtils.rv(source, start_point, **kwargs) -&gt; Mobject    # Reverse at: copy reversed at position
-VectorUtils.tt(vec_a, vec_b) -&gt; Mobject                # Tail at tip: position vec_b's tail at vec_a's tip
-VectorUtils.sa(vec_target, vec_source) -&gt; np.ndarray   # Shift amount: calculate shift vector
+VectorUtils.fw(source, distance) -&gt; Arrow
+# Forward: copy Arrow 'source' moved forward by distance. source must be Arrow
+
+VectorUtils.bw(source, distance) -&gt; Arrow
+# Backward: copy Arrow 'source' moved backward by distance. source must be Arrow
+
+VectorUtils.pm(source, distance) -&gt; Arrow
+# Perp move: copy Arrow 'source' moved perpendicular by distance. source must be Arrow
+
+VectorUtils.cp(source, start_point, **kwargs) -&gt; Arrow
+# Copy at: copy Arrow with same direction at new start_point. start_point: np.array or Dot
+
+VectorUtils.rv(source, start_point, **kwargs) -&gt; Arrow
+# Reverse at: copy Arrow reversed at new start_point. start_point: np.array or Dot
+
+VectorUtils.tt(vec_a, vec_b) -&gt; Arrow
+# Tail at tip: position vec_b's tail at vec_a's tip. Both must be Arrows
+
+VectorUtils.sa(vec_target, vec_source) -&gt; np.ndarray
+# Shift amount: calculate shift vector to move vec_source to vec_target position
 
 # Vector arithmetic (standalone functions)
-addv(vec_a, vec_b, start_point=None, **kwargs) -&gt; Arrow          # Vector addition a + b
-subv(vec_a, vec_b, start_point=None, **kwargs) -&gt; Arrow          # Vector subtraction a - b
-sclv(vector, scalar, start_point=None, **kwargs) -&gt; Arrow        # Scalar multiplication
+addv(vec_a, vec_b, start_point=None, **kwargs) -&gt; Arrow
+# Vector addition a + b. vec_a, vec_b must be Arrows. Returns new Arrow for sum
+
+subv(vec_a, vec_b, start_point=None, **kwargs) -&gt; Arrow
+# Vector subtraction a - b. vec_a, vec_b must be Arrows. Returns new Arrow for difference
+
+sclv(vector, scalar, start_point=None, **kwargs) -&gt; Arrow
+# Scalar multiplication. vector must be Arrow, scalar is numeric. Returns scaled Arrow
 
 # Vector decomposition &amp; projection (use short aliases)
-VectorUtils.po(vec, target, **kwargs) -&gt; Arrow         # Project onto: project vec onto target
-VectorUtils.dc(source, ref, perp=False, **kwargs) -&gt; Arrow    # Decompose: parallel/perp component
-VectorUtils.projection_line(vec, target, **kwargs) -&gt; Line    # Perpendicular line to projection
-VectorUtils.projection_region(vec, target, **kwargs) -&gt; Polygon    # Triangle showing projection area
-</code></pre>
+VectorUtils.po(vec, target, **kwargs) -&gt; Arrow
+# Project onto: project Arrow 'vec' onto Arrow 'target'. Returns projection Arrow
+
+VectorUtils.dc(source, ref, perp=False, **kwargs) -&gt; Arrow
+# Decompose: get parallel (perp=False) or perpendicular (perp=True) component of 'source' to 'ref'
+
+VectorUtils.projection_line(vec, target, **kwargs) -&gt; Line
+# Perpendicular line from vec tip to projection on target
+
+VectorUtils.projection_region(vec, target, **kwargs) -&gt; Polygon
+# Triangle region showing projection visualization</code></pre>
+
 <hr />
+
 <h2>Point Utils (PointUtils Class)</h2>
-<pre><code class="language-python">addp(point, vector) -&gt; Dot                              # Displace point by vector
-PointUtils.addp(point, vector) -&gt; Dot                   # Class method version
-# Accepts: Dot + Arrow, Dot + np.array, np.array + Arrow, np.array + np.array
-</code></pre>
+
+<pre><code class="language-python">addp(point, vector, **dot_kwargs) -&gt; Dot
+# Displace point by vector. point: Dot or np.array, vector: Arrow or np.array
+# Returns new Dot at displaced position
+# PointUtils.addp(...) - Class method version with same signature</code></pre>
+
 <hr />
+
 <h2>Text Utils (TextUtils Class)</h2>
-<pre><code class="language-python">text(scene, mathtext, *indices) -&gt; MathTex             # Extract MathTex parts (no styling)
-text2(scene, mathtext, *indices) -&gt; MathTex            # Debug: extract + BLUE + ORANGE box
-TextUtils.text(scene, mathtext, *indices)              # Class method version
-TextUtils.text2(scene, mathtext, *indices)             # Class method version
-# mathtext: string (creates MathTex) or MathTex object
-# indices: int or &quot;1:2&quot; slice strings, chainable: eq[1][2] = (eq, 1, 2)
+
+<pre><code class="language-python">text(scene, mathtext, *indices) -&gt; MathTex
+# Extract parts from MathTex. mathtext: string (creates MathTex) or MathTex object
+# indices: int or &quot;1:2&quot; slice strings. Chainable: eq[1][2] same as (eq, 1, 2)
 # Silently fails on invalid indices, returns empty VMobject
-</code></pre>
+
+text2(scene, mathtext, *indices) -&gt; MathTex
+# Debug version: extracts parts + highlights with BLUE color and ORANGE box
+# Same params as text(). Use for visual debugging of MathTex structure
+
+# TextUtils.text(...), TextUtils.text2(...) - Class method versions with same signatures</code></pre>
+
 <hr />
+
 <h2>Label Utils</h2>
+
 <pre><code class="language-python">vertex_labels(polygon, labels, scale=0.7, color=WHITE, buff=0.3) -&gt; list
-# Returns list of positioned MathTex objects at polygon vertices
+# Create labels at polygon vertices. labels: list of strings for each vertex
+# Returns list of MathTex objects positioned at vertices
+
 edge_labels(polygon, labels, scale=0.6, color=YELLOW, buff=0.2) -&gt; list
-# Returns list of positioned MathTex objects at edge midpoints
-</code></pre>
+# Create labels at polygon edge midpoints. labels: list of strings for each edge
+# Returns list of MathTex objects positioned at edge midpoints</code></pre>
+
 <hr />
+
 <h2>Arrow Utils (ArrowUtil Class)</h2>
-<pre><code class="language-python">ArrowUtil.arrow(start, end, buff=0, dashed=False, bidirectional=False, tip_angle=20*DEGREES, tip_length=0.3, **kwargs) -&gt; VMobject
-# Creates arrow with: dashing, perpendicular buffer, bidirectional tips
-ArrowUtil.curved_arrow(start, end, angle=45*DEGREES, tip_angle=20*DEGREES, tip_length=0.3, **kwargs) -&gt; VMobject
-# Creates curved arrow along circular arc
+
+<pre><code class="language-python">ArrowUtil.arrow(start, end, buff=0, dashed=False, bidirectional=False,
+                tip_angle=20*DEGREES, tip_length=0.3, **kwargs) -&gt; VMobject
+# Advanced arrow. start, end: np.array or Dot. buff: perpendicular offset distance
+# dashed: dashed line, bidirectional: tips on both ends
+
+ArrowUtil.curved_arrow(start, end, angle=45*DEGREES, tip_angle=20*DEGREES,
+                      tip_length=0.3, **kwargs) -&gt; VMobject
+# Curved arrow along circular arc. start, end: np.array or Dot, angle: arc curvature
+
 ArrowUtil.perpendicular_offset(start, end, distance) -&gt; np.ndarray
-# Calculate perpendicular offset vector for a line segment
+# Calculate perpendicular offset vector. start, end: np.array, distance: offset amount
+
 ArrowUtil.label(arrow, tex, buff=0.2) -&gt; VMobject
-# Position label relative to arrow with perpendicular offset
+# Position MathTex label relative to arrow with perpendicular offset
+
 ArrowUtil.marker(point, direction, tip_angle=20*DEGREES, tip_length=0.3, **kwargs) -&gt; VGroup
-# Create directional marker (arrow tip) at a specific point
-</code></pre>
+# Directional marker (arrow tip only). point, direction: np.array</code></pre>
+
 <hr />
+
 <h2>RogebraScene</h2>
-<p>Convenient scene class with utility methods:</p>
+
+<p>Convenient scene class extending MovingCameraScene with utility methods:</p>
+
 <pre><code class="language-python">class RogebraScene(MovingCameraScene):
     # Animation shortcuts
-    fadeIn(*args)                            # Fade in objects (last arg = run_time)
-    fadeOut(*args)                           # Fade out objects (last arg = run_time)
-    amo(*args)                               # Animate move_to (pairs of obj,pos)
-    tf(*args)                                # Transform (pairs of source,target)
-    rtf(*args)                               # ReplacementTransform (pairs of source,target)
+    fadeIn(*args)
+    # Fade in objects. Args: (obj1, obj2, ..., run_time) where last numeric arg is run_time
+
+    fadeOut(*args)
+    # Fade out objects. Args: (obj1, obj2, ..., run_time) where last numeric arg is run_time
+
+    amo(*args)
+    # Animate move_to. Args: (obj1, pos1, obj2, pos2, ..., run_time)
+    # Pairs of object-position, last numeric arg is run_time
+
+    tf(*args)
+    # Transform. Args: (source1, target1, source2, target2, ..., run_time)
+    # Pairs of source-target, last numeric arg is run_time
+
+    rtf(*args)
+    # ReplacementTransform. Args: (source1, target1, source2, target2, ..., run_time)
+    # Pairs of source-target, last numeric arg is run_time
 
     # Camera utilities
-    zoom(obj, wait_time=0.3, width_factor=1.2)  # Zoom to object, wait, restore
+    zoom(obj, wait_time=0.3, width_factor=1.2)
+    # Zoom camera to object, wait, then restore. obj: any Mobject
 
-    # MathTex utilities
-    text(mathtext, *indices)                 # Extract MathTex parts (no styling)
-    text2(mathtext, *indices)                # Debug: extract + BLUE + ORANGE box
-</code></pre>
+    # MathTex utilities (same as TextUtils)
+    text(mathtext, *indices) -&gt; MathTex
+    # Extract MathTex parts. mathtext: string or MathTex, indices: int or slice strings
+
+    text2(mathtext, *indices) -&gt; MathTex
+    # Debug version with BLUE + ORANGE highlight</code></pre>
+
 <p><strong>Examples:</strong></p>
 <pre><code class="language-python"># Animation shortcuts
 self.fadeIn(obj1, obj2, 2)                   # Fade in 2 objects over 2 seconds
@@ -227,21 +470,26 @@ self.zoom(text, 1.0, 1.5)                    # Zoom for 1s with 1.5x width
 # MathTex extraction
 eq = self.text(&quot;x^2 + y^2 = r^2&quot;)            # Create MathTex
 part = self.text(eq, 0)                      # Extract eq[0]
-self.text2(eq, 1, &quot;2:4&quot;)                     # Show eq[1][2:4] with highlight
-</code></pre>
+self.text2(eq, 1, &quot;2:4&quot;)                     # Show eq[1][2:4] with highlight</code></pre>
+
 <hr />
+
 <h2>Exp Class (Alternative Interface)</h2>
+
 <p>All expression utilities available as static methods:</p>
+
 <pre><code class="language-python">Exp.x(obj)       Exp.y(obj)        Exp.st(obj)       Exp.ed(obj)       Exp.mid(obj)
 Exp.mag(obj)     Exp.uv(obj)       Exp.vec(obj)      Exp.ang(obj)      Exp.slope(obj)
 Exp.val(obj)     Exp.pt(x,y,z)     Exp.m2v(...)      Exp.v2m(...)      Exp.x2v(...)
 Exp.vl(...)      Exp.hl(...)       Exp.lra(...)      Exp.vra(...)      Exp.r2p(...)
 Exp.ln(...)      Exp.vt(...)       Exp.tri(...)      Exp.sss(...)      Exp.sas(...)
 Exp.ssa(...)     Exp.rect(...)     Exp.aa(...)       Exp.aa2(...)      Exp.cr(...)
-Exp.graph(...)
-</code></pre>
+Exp.graph(...)</code></pre>
+
 <hr />
+
 <h2>Import Examples</h2>
+
 <pre><code class="language-python"># Minimal imports
 from robo_manim_add_ons import x, y, pt, ln, dm, style
 
@@ -274,32 +522,37 @@ from robo_manim_add_ons import (
 # Class-based interface
 from robo_manim_add_ons import Exp, VectorUtils, PointUtils, TextUtils, ArrowUtil, GraphUtils, Style
 
-# Note: ArcArrow and ArcDashedVMobject are internal - use aa() and aa2() instead
-</code></pre>
+# Note: ArcArrow and ArcDashedVMobject are internal - use aa() and aa2() instead</code></pre>
+
 <hr />
+
 <h2>Quick Reference by Category</h2>
-<p><strong>Getters:</strong> <code>x</code> <code>y</code> <code>st</code> <code>ed</code> <code>mid</code> <code>mag</code> <code>uv</code> <code>vec</code> <code>ang</code> <code>slope</code> <code>val</code>
-<strong>Creators:</strong> <code>pt</code> <code>m2v</code> <code>v2m</code> <code>x2v</code> <code>r2p</code> <code>vl</code> <code>hl</code> <code>lra</code> <code>vra</code> <code>ln</code> <code>vt</code> <code>tri</code> <code>sss</code> <code>sas</code> <code>ssa</code> <code>rect</code> <code>cr</code> <code>aa</code> <code>aa2</code>
-<strong>Geometry:</strong> <code>perp</code> <code>pll</code> <code>project</code> <code>reflect</code> <code>xl</code> <code>ill</code> <code>ilc</code>
-<strong>Annotation:</strong> <code>dm</code> <code>label</code> <code>hatch</code>
-<strong>Style:</strong> <code>stroke</code> <code>fill</code> <code>sopacity</code> <code>fopacity</code> <code>sw</code> <code>style</code>
-<strong>Transform:</strong> <code>translated</code> <code>rotated</code> <code>scaled</code>
-<strong>Vector Ops:</strong> <code>addv</code> <code>subv</code> <code>sclv</code> <code>VectorUtils</code>
-<strong>Point Ops:</strong> <code>addp</code> <code>PointUtils</code>
-<strong>Text Ops:</strong> <code>text</code> <code>text2</code> <code>TextUtils</code>
-<strong>Scene Utils:</strong> <code>RogebraScene</code> (fadeIn, fadeOut, amo, tf, rtf, zoom, text, text2)</p>
+
+<p><strong>Getters:</strong> `x` `y` `st` `ed` `mid` `mag` `uv` `vec` `ang` `slope` `val`</p>
+<p><strong>Creators:</strong> `pt` `m2v` `v2m` `x2v` `r2p` `vl` `hl` `lra` `vra` `ln` `vt` `tri` `sss` `sas` `ssa` `rect` `cr` `aa` `aa2`</p>
+<p><strong>Geometry:</strong> `perp` `pll` `project` `reflect` `xl` `ill` `ilc`</p>
+<p><strong>Annotation:</strong> `dm` `label` `hatch`</p>
+<p><strong>Style:</strong> `stroke` `fill` `sopacity` `fopacity` `sw` `style`</p>
+<p><strong>Transform:</strong> `translated` `rotated` `scaled`</p>
+<p><strong>Vector Ops:</strong> `addv` `subv` `sclv` `VectorUtils`</p>
+<p><strong>Point Ops:</strong> `addp` `PointUtils`</p>
+<p><strong>Text Ops:</strong> `text` `text2` `TextUtils`</p>
+<p><strong>Scene Utils:</strong> `RogebraScene` (fadeIn, fadeOut, amo, tf, rtf, zoom, text, text2)</p>
+
 <hr />
-<p><strong>Notes:</strong>
-- All 2-letter functions are aliases for longer names
-- Functions with <code>*args</code> accept flexible arguments (see individual docs)
-- Chainable functions return the object for method chaining
-- Angles in degrees for <code>lra</code>/<code>vra</code>, radians for <code>ang</code>/<code>rotated</code>
-- Points can be: Dot, np.array, [x,y,z], or any object with <code>get_center()</code></p>
-        <hr>
-        <p style="text-align: center; color: #57606a; margin-top: 40px;">
-            <a href="https://github.com/provility/robo-manim-add-ons">GitHub Repository</a> | 
-            <a href="https://pypi.org/project/robo-manim-add-ons/">PyPI Package</a>
-        </p>
-    </div>
+
+<p><strong>Notes:</strong></p>
+<p>- All 2-letter functions are aliases for longer names</p>
+<p>- Functions with <code>*args</code> accept flexible arguments (see individual docs)</p>
+<p>- Chainable functions return the object for method chaining</p>
+<p>- Angles in degrees for <code>lra</code>/<code>vra</code>, radians for <code>ang</code>/<code>rotated</code></p>
+<p>- Points can be: Dot, np.array, [x,y,z], or any object with <code>get_center()</code></p>
+
+
+
+    <script>
+        // Initialize syntax highlighting
+        hljs.highlightAll();
+    </script>
 </body>
 </html>
