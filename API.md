@@ -105,8 +105,10 @@ scaled(obj, scale_factor, about=None) -> Mobject        # Copy and scale
 
 ### Graph Operations
 ```python
-graph(axes, func, x_range=None, **kwargs) -> ParametricFunction
-GraphUtils.graph(axes, func, x_range=None, **kwargs)    # Class method version
+graph(*args, x_range=[-5, 5], y_range=[-5, 5], axes=None, x_ticks=None, y_ticks=None, coords=True, **kwargs) -> Tuple[Axes, object]
+# Args: 1 string (explicit/implicit) or 2 strings (parametric)
+# Returns: (axes, plot) - axes and the plotted function
+GraphUtils.graph(...)    # Class method version (same signature)
 ```
 
 ---
@@ -114,27 +116,25 @@ GraphUtils.graph(axes, func, x_range=None, **kwargs)    # Class method version
 ## Vector Utils (VectorUtils Class)
 
 ```python
-# Vector positioning
-VectorUtils.forward(source, distance) -> Mobject        # Copy forward by distance
-VectorUtils.fw(source, distance) -> Mobject             # Alias
-VectorUtils.backward(source, distance) -> Mobject       # Copy backward by distance
-VectorUtils.bw(source, distance) -> Mobject             # Alias
-VectorUtils.perp_move(source, distance) -> Mobject      # Copy perpendicular by distance
-VectorUtils.pm(source, distance) -> Mobject             # Alias
-VectorUtils.copy_at(source, position) -> Mobject        # Copy at position
-VectorUtils.reverse_at(source, position) -> Mobject     # Copy reversed at position
-VectorUtils.tail_at_tip(vec_a, vec_b) -> Mobject        # Position vec_b's tail at vec_a's tip
+# Vector positioning (use short aliases)
+VectorUtils.fw(source, distance) -> Mobject            # Forward: copy forward by distance
+VectorUtils.bw(source, distance) -> Mobject            # Backward: copy backward by distance
+VectorUtils.pm(source, distance) -> Mobject            # Perp move: copy perpendicular by distance
+VectorUtils.cp(source, start_point, **kwargs) -> Mobject    # Copy at: copy at position with same direction
+VectorUtils.rv(source, start_point, **kwargs) -> Mobject    # Reverse at: copy reversed at position
+VectorUtils.tt(vec_a, vec_b) -> Mobject                # Tail at tip: position vec_b's tail at vec_a's tip
+VectorUtils.sa(vec_target, vec_source) -> np.ndarray   # Shift amount: calculate shift vector
 
 # Vector arithmetic (standalone functions)
-addv(vec_a, vec_b, start_point=None) -> Arrow          # Vector addition a + b
-subv(vec_a, vec_b, start_point=None) -> Arrow          # Vector subtraction a - b
-sclv(vector, scalar, start_point=None) -> Arrow        # Scalar multiplication
+addv(vec_a, vec_b, start_point=None, **kwargs) -> Arrow          # Vector addition a + b
+subv(vec_a, vec_b, start_point=None, **kwargs) -> Arrow          # Vector subtraction a - b
+sclv(vector, scalar, start_point=None, **kwargs) -> Arrow        # Scalar multiplication
 
-# Vector decomposition & projection
-VectorUtils.project_onto(vec, target) -> Arrow         # Project vec onto target
-VectorUtils.decompose(vec, ref, perp=False) -> Arrow   # Parallel/perp component
-VectorUtils.projection_line(vec, target) -> Line       # Perpendicular line to projection
-VectorUtils.projection_region(vec, target) -> Polygon  # Triangle showing projection area
+# Vector decomposition & projection (use short aliases)
+VectorUtils.po(vec, target, **kwargs) -> Arrow         # Project onto: project vec onto target
+VectorUtils.dc(source, ref, perp=False, **kwargs) -> Arrow    # Decompose: parallel/perp component
+VectorUtils.projection_line(vec, target, **kwargs) -> Line    # Perpendicular line to projection
+VectorUtils.projection_region(vec, target, **kwargs) -> Polygon    # Triangle showing projection area
 ```
 
 ---
@@ -166,8 +166,10 @@ TextUtils.text2(scene, mathtext, *indices)             # Class method version
 ## Label Utils
 
 ```python
-vertex_labels(graph, labels, font_size=24, buff=0.2, **kwargs) -> VGroup
-edge_labels(graph, labels, font_size=20, buff=0.1, **kwargs) -> VGroup
+vertex_labels(polygon, labels, scale=0.7, color=WHITE, buff=0.3) -> list
+# Returns list of positioned MathTex objects at polygon vertices
+edge_labels(polygon, labels, scale=0.6, color=YELLOW, buff=0.2) -> list
+# Returns list of positioned MathTex objects at edge midpoints
 ```
 
 ---
@@ -175,18 +177,16 @@ edge_labels(graph, labels, font_size=20, buff=0.1, **kwargs) -> VGroup
 ## Arrow Utils (ArrowUtil Class)
 
 ```python
-ArrowUtil.arc_arrow(arc, color=WHITE, stroke_width=2, tip_length=0.2, buff=0)
-ArrowUtil.smooth_arc_arrow(start, end, angle=PI/2, color=WHITE, stroke_width=2, tip_length=0.2, buff=0)
+ArrowUtil.arrow(start, end, buff=0, dashed=False, bidirectional=False, tip_angle=20*DEGREES, tip_length=0.3, **kwargs) -> VMobject
+# Creates arrow with: dashing, perpendicular buffer, bidirectional tips
+ArrowUtil.curved_arrow(start, end, angle=45*DEGREES, tip_angle=20*DEGREES, tip_length=0.3, **kwargs) -> VMobject
+# Creates curved arrow along circular arc
 ArrowUtil.perpendicular_offset(start, end, distance) -> np.ndarray
-```
-
----
-
-## Custom Objects
-
-```python
-ArcArrow(arc, color=WHITE, stroke_width=2, tip_length=0.2, buff=0)
-ArcDashedVMobject(*args, num_dashes=15, **kwargs)
+# Calculate perpendicular offset vector for a line segment
+ArrowUtil.label(arrow, tex, buff=0.2) -> VMobject
+# Position label relative to arrow with perpendicular offset
+ArrowUtil.marker(point, direction, tip_angle=20*DEGREES, tip_length=0.3, **kwargs) -> VGroup
+# Create directional marker (arrow tip) at a specific point
 ```
 
 ---
@@ -282,6 +282,8 @@ from robo_manim_add_ons import (
 
 # Class-based interface
 from robo_manim_add_ons import Exp, VectorUtils, PointUtils, TextUtils, ArrowUtil, GraphUtils, Style
+
+# Note: ArcArrow and ArcDashedVMobject are internal - use aa() and aa2() instead
 ```
 
 ---
