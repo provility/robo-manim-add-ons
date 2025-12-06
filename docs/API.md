@@ -1,5 +1,3 @@
-## Core Expression Utils
-
 ### Coordinate Extraction
 ```python
 x(obj) -> float
@@ -223,8 +221,6 @@ graph(*args, x_range=[-5, 5], y_range=[-5, 5], axes=None, x_ticks=None, y_ticks=
 
 ---
 
-## Vector Utils (VectorUtils Class)
-
 ```python
 # Vector positioning (use short aliases)
 VectorUtils.fw(source, distance) -> Arrow
@@ -274,8 +270,6 @@ VectorUtils.projection_region(vec, target, **kwargs) -> Polygon
 
 ---
 
-## Point Utils (PointUtils Class)
-
 ```python
 addp(point, vector, **dot_kwargs) -> Dot
 # Displace point by vector. point: Dot or np.array, vector: Arrow or np.array
@@ -284,8 +278,6 @@ addp(point, vector, **dot_kwargs) -> Dot
 ```
 
 ---
-
-## Text Utils (TextUtils Class)
 
 ```python
 text(scene, mathtext, *indices) -> MathTex
@@ -302,8 +294,6 @@ text2(scene, mathtext, *indices) -> MathTex
 
 ---
 
-## Label Utils
-
 ```python
 vertex_labels(polygon, labels, scale=0.7, color=WHITE, buff=0.3) -> list
 # Create labels at polygon vertices. labels: list of strings for each vertex
@@ -315,8 +305,6 @@ edge_labels(polygon, labels, scale=0.6, color=YELLOW, buff=0.2) -> list
 ```
 
 ---
-
-## Arrow Utils (ArrowUtil Class)
 
 ```python
 ArrowUtil.arrow(start, end, buff=0, dashed=False, bidirectional=False,
@@ -339,8 +327,6 @@ ArrowUtil.marker(point, direction, tip_angle=20*DEGREES, tip_length=0.3, **kwarg
 ```
 
 ---
-
-## RogebraScene
 
 Convenient scene class extending MovingCameraScene with utility methods:
 
@@ -397,8 +383,6 @@ self.text2(eq, 1, "2:4")                     # Show eq[1][2:4] with highlight
 
 ---
 
-## Exp Class (Alternative Interface)
-
 All expression utilities available as static methods:
 
 ```python
@@ -412,8 +396,6 @@ Exp.graph(...)
 ```
 
 ---
-
-## Import Examples
 
 ```python
 # Minimal imports
@@ -452,8 +434,6 @@ from robo_manim_add_ons import Exp, VectorUtils, PointUtils, TextUtils, ArrowUti
 ```
 
 ---
-
-## Quick Reference by Category
 
 **Getters:** `x` `y` `st` `ed` `mid` `mag` `uv` `vec` `ang` `slope` `val`
 **Creators:** `pt` `m2v` `v2m` `x2v` `r2p` `vl` `hl` `lra` `vra` `ln` `vt` `tri` `sss` `sas` `ssa` `rect` `cr` `aa` `aa2`

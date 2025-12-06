@@ -114,8 +114,6 @@
     <a href="https://github.com/provility/robo-manim-add-ons" class="github-link">GitHub →</a>
     <a href="index.html" class="back-link">← Back to Home</a>
 
-<h2>Core Expression Utils</h2>
-
 <h3>Coordinate Extraction</h3>
 <pre><code class="language-python">x(obj) -&gt; float
 # Extract x-coordinate. obj can be: Manim object with get_center() (Dot, VMobject),
@@ -315,8 +313,6 @@ scaled(obj, scale_factor, about=None) -&gt; Mobject
 
 <hr />
 
-<h2>Vector Utils (VectorUtils Class)</h2>
-
 <pre><code class="language-python"># Vector positioning (use short aliases)
 VectorUtils.fw(source, distance) -&gt; Arrow
 # Forward: copy Arrow 'source' moved forward by distance. source must be Arrow
@@ -364,16 +360,12 @@ VectorUtils.projection_region(vec, target, **kwargs) -&gt; Polygon
 
 <hr />
 
-<h2>Point Utils (PointUtils Class)</h2>
-
 <pre><code class="language-python">addp(point, vector, **dot_kwargs) -&gt; Dot
 # Displace point by vector. point: Dot or np.array, vector: Arrow or np.array
 # Returns new Dot at displaced position
 # PointUtils.addp(...) - Class method version with same signature</code></pre>
 
 <hr />
-
-<h2>Text Utils (TextUtils Class)</h2>
 
 <pre><code class="language-python">text(scene, mathtext, *indices) -&gt; MathTex
 # Extract parts from MathTex. mathtext: string (creates MathTex) or MathTex object
@@ -388,8 +380,6 @@ text2(scene, mathtext, *indices) -&gt; MathTex
 
 <hr />
 
-<h2>Label Utils</h2>
-
 <pre><code class="language-python">vertex_labels(polygon, labels, scale=0.7, color=WHITE, buff=0.3) -&gt; list
 # Create labels at polygon vertices. labels: list of strings for each vertex
 # Returns list of MathTex objects positioned at vertices
@@ -399,8 +389,6 @@ edge_labels(polygon, labels, scale=0.6, color=YELLOW, buff=0.2) -&gt; list
 # Returns list of MathTex objects positioned at edge midpoints</code></pre>
 
 <hr />
-
-<h2>Arrow Utils (ArrowUtil Class)</h2>
 
 <pre><code class="language-python">ArrowUtil.arrow(start, end, buff=0, dashed=False, bidirectional=False,
                 tip_angle=20*DEGREES, tip_length=0.3, **kwargs) -&gt; VMobject
@@ -421,8 +409,6 @@ ArrowUtil.marker(point, direction, tip_angle=20*DEGREES, tip_length=0.3, **kwarg
 # Directional marker (arrow tip only). point, direction: np.array</code></pre>
 
 <hr />
-
-<h2>RogebraScene</h2>
 
 <p>Convenient scene class extending MovingCameraScene with utility methods:</p>
 
@@ -475,8 +461,6 @@ self.text2(eq, 1, &quot;2:4&quot;)                     # Show eq[1][2:4] with hi
 
 <hr />
 
-<h2>Exp Class (Alternative Interface)</h2>
-
 <p>All expression utilities available as static methods:</p>
 
 <pre><code class="language-python">Exp.x(obj)       Exp.y(obj)        Exp.st(obj)       Exp.ed(obj)       Exp.mid(obj)
@@ -488,8 +472,6 @@ Exp.ssa(...)     Exp.rect(...)     Exp.aa(...)       Exp.aa2(...)      Exp.cr(..
 Exp.graph(...)</code></pre>
 
 <hr />
-
-<h2>Import Examples</h2>
 
 <pre><code class="language-python"># Minimal imports
 from robo_manim_add_ons import x, y, pt, ln, dm, style
@@ -526,8 +508,6 @@ from robo_manim_add_ons import Exp, VectorUtils, PointUtils, TextUtils, ArrowUti
 # Note: ArcArrow and ArcDashedVMobject are internal - use aa() and aa2() instead</code></pre>
 
 <hr />
-
-<h2>Quick Reference by Category</h2>
 
 <p><strong>Getters:</strong> `x` `y` `st` `ed` `mid` `mag` `uv` `vec` `ang` `slope` `val`</p>
 <p><strong>Creators:</strong> `pt` `m2v` `v2m` `x2v` `r2p` `vl` `hl` `lra` `vra` `ln` `vt` `tri` `sss` `sas` `ssa` `rect` `cr` `aa` `aa2`</p>
