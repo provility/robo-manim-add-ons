@@ -114,6 +114,7 @@ GraphUtils.graph(axes, func, x_range=None, **kwargs)    # Class method version
 ## Vector Utils (VectorUtils Class)
 
 ```python
+# Vector positioning
 VectorUtils.forward(source, distance) -> Mobject        # Copy forward by distance
 VectorUtils.fw(source, distance) -> Mobject             # Alias
 VectorUtils.backward(source, distance) -> Mobject       # Copy backward by distance
@@ -122,6 +123,42 @@ VectorUtils.perp_move(source, distance) -> Mobject      # Copy perpendicular by 
 VectorUtils.pm(source, distance) -> Mobject             # Alias
 VectorUtils.copy_at(source, position) -> Mobject        # Copy at position
 VectorUtils.reverse_at(source, position) -> Mobject     # Copy reversed at position
+VectorUtils.tail_at_tip(vec_a, vec_b) -> Mobject        # Position vec_b's tail at vec_a's tip
+
+# Vector arithmetic (standalone functions)
+addv(vec_a, vec_b, start_point=None) -> Arrow          # Vector addition a + b
+subv(vec_a, vec_b, start_point=None) -> Arrow          # Vector subtraction a - b
+sclv(vector, scalar, start_point=None) -> Arrow        # Scalar multiplication
+
+# Vector decomposition & projection
+VectorUtils.project_onto(vec, target) -> Arrow         # Project vec onto target
+VectorUtils.decompose(vec, ref, perp=False) -> Arrow   # Parallel/perp component
+VectorUtils.projection_line(vec, target) -> Line       # Perpendicular line to projection
+VectorUtils.projection_region(vec, target) -> Polygon  # Triangle showing projection area
+```
+
+---
+
+## Point Utils (PointUtils Class)
+
+```python
+addp(point, vector) -> Dot                              # Displace point by vector
+PointUtils.addp(point, vector) -> Dot                   # Class method version
+# Accepts: Dot + Arrow, Dot + np.array, np.array + Arrow, np.array + np.array
+```
+
+---
+
+## Text Utils (TextUtils Class)
+
+```python
+text(scene, mathtext, *indices) -> MathTex             # Extract MathTex parts (no styling)
+text2(scene, mathtext, *indices) -> MathTex            # Debug: extract + BLUE + ORANGE box
+TextUtils.text(scene, mathtext, *indices)              # Class method version
+TextUtils.text2(scene, mathtext, *indices)             # Class method version
+# mathtext: string (creates MathTex) or MathTex object
+# indices: int or "1:2" slice strings, chainable: eq[1][2] = (eq, 1, 2)
+# Silently fails on invalid indices, returns empty VMobject
 ```
 
 ---
@@ -159,20 +196,38 @@ ArcDashedVMobject(*args, num_dashes=15, **kwargs)
 Convenient scene class with utility methods:
 
 ```python
-class RogebraScene(Scene):
+class RogebraScene(MovingCameraScene):
+    # Animation shortcuts
     fadeIn(*args)                            # Fade in objects (last arg = run_time)
     fadeOut(*args)                           # Fade out objects (last arg = run_time)
     amo(*args)                               # Animate move_to (pairs of obj,pos)
     tf(*args)                                # Transform (pairs of source,target)
     rtf(*args)                               # ReplacementTransform (pairs of source,target)
+
+    # Camera utilities
+    zoom(obj, wait_time=0.3, width_factor=1.2)  # Zoom to object, wait, restore
+
+    # MathTex utilities
+    text(mathtext, *indices)                 # Extract MathTex parts (no styling)
+    text2(mathtext, *indices)                # Debug: extract + BLUE + ORANGE box
 ```
 
 **Examples:**
 ```python
+# Animation shortcuts
 self.fadeIn(obj1, obj2, 2)                   # Fade in 2 objects over 2 seconds
 self.fadeOut(obj1)                           # Fade out 1 object
 self.amo(obj1, pos1, obj2, pos2, 1.5)        # Move 2 objects over 1.5 seconds
 self.tf(obj1, target1, True, 2)              # Transform with copy over 2 seconds
+
+# Camera zoom
+self.zoom(equation)                          # Quick zoom to equation
+self.zoom(text, 1.0, 1.5)                    # Zoom for 1s with 1.5x width
+
+# MathTex extraction
+eq = self.text("x^2 + y^2 = r^2")            # Create MathTex
+part = self.text(eq, 0)                      # Extract eq[0]
+self.text2(eq, 1, "2:4")                     # Show eq[1][2:4] with highlight
 ```
 
 ---
@@ -204,7 +259,7 @@ from robo_manim_add_ons import (
     # Coords & vectors
     x, y, st, ed, mid, mag, uv, vec, ang, slope, val,
     # Points
-    pt, m2v, v2m, x2v, r2p,
+    pt, m2v, v2m, x2v, r2p, addp,
     # Lines & shapes
     vl, hl, lra, vra, ln, vt, tri, sss, sas, ssa, rect, aa, aa2, cr,
     # Geometry
@@ -217,12 +272,16 @@ from robo_manim_add_ons import (
     stroke, fill, sopacity, fopacity, sw, style,
     # Transform
     translated, rotated, scaled,
+    # Vector operations
+    addv, subv, sclv,
+    # Text utilities
+    text, text2,
     # Scene
     RogebraScene
 )
 
 # Class-based interface
-from robo_manim_add_ons import Exp, VectorUtils, ArrowUtil, GraphUtils, Style
+from robo_manim_add_ons import Exp, VectorUtils, PointUtils, TextUtils, ArrowUtil, GraphUtils, Style
 ```
 
 ---
@@ -235,6 +294,10 @@ from robo_manim_add_ons import Exp, VectorUtils, ArrowUtil, GraphUtils, Style
 **Annotation:** `dm` `label` `hatch`
 **Style:** `stroke` `fill` `sopacity` `fopacity` `sw` `style`
 **Transform:** `translated` `rotated` `scaled`
+**Vector Ops:** `addv` `subv` `sclv` `VectorUtils`
+**Point Ops:** `addp` `PointUtils`
+**Text Ops:** `text` `text2` `TextUtils`
+**Scene Utils:** `RogebraScene` (fadeIn, fadeOut, amo, tf, rtf, zoom, text, text2)
 
 ---
 

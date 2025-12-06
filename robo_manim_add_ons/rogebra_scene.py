@@ -2,11 +2,12 @@
 RogebraScene: A Scene subclass with utility methods for common animations.
 """
 
-from manim import Scene, FadeIn, FadeOut, Transform, ReplacementTransform
+from manim import MovingCameraScene, FadeIn, FadeOut, Transform, ReplacementTransform, Restore
+from .text_utils import TextUtils
 
 
-class RogebraScene(Scene):
-    """A Scene subclass with convenient animation methods."""
+class RogebraScene(MovingCameraScene):
+    """A MovingCameraScene subclass with convenient animation methods and camera utilities."""
 
     def fadeIn(self, *args):
         """
@@ -192,3 +193,71 @@ class RogebraScene(Scene):
 
         if animations:
             self.play(*animations, run_time=run_time)
+
+    def zoom(self, obj, wait_time=0.3, width_factor=1.2):
+        """
+        Zoom to an object, wait, then restore camera.
+
+        Args:
+            obj: The object to zoom to
+            wait_time: How long to wait while zoomed (default 0.3)
+            width_factor: Width multiplier for zoom level (default 1.2)
+
+        Examples:
+            self.zoom(text)              # Zoom with defaults
+            self.zoom(text, 1.0)         # Zoom for 1 second
+            self.zoom(text, 0.5, 1.5)    # Zoom for 0.5s with 1.5x width
+        """
+        self.camera.frame.save_state()
+        self.play(
+            self.camera.frame.animate
+            .set(width=obj.width * width_factor)
+            .move_to(obj)
+        )
+        self.wait(wait_time)
+        self.play(Restore(self.camera.frame))
+
+    def text(self, mathtext, *args):
+        """
+        Extract a part from MathTex or create MathTex from string with flexible indexing.
+
+        This is a pure extraction utility that doesn't modify colors or add to the scene.
+        Silently fails and returns empty VMobject if indices are invalid.
+
+        Args:
+            mathtext: Either a string (creates MathTex) or existing MathTex object
+            *args: Zero or more indices (int or "1:2" string slices) for extraction
+
+        Returns:
+            Extracted MathTex part or empty VMobject if extraction fails
+
+        Examples:
+            eq = self.text("x^2 + y^2")           # Create MathTex
+            part = self.text("x^2 + y^2", 0)      # Extract eq[0]
+            part2 = self.text("x^2 + y", 1, 2)    # Extract eq[1][2]
+            part3 = self.text(eq, "1:3")          # Extract eq[1:3]
+        """
+        return TextUtils.text(self, mathtext, *args)
+
+    def text2(self, mathtext, *args):
+        """
+        Debug utility: Extract MathTex part, color it BLUE, add to scene with ORANGE rectangle.
+
+        This method does everything text() does, plus:
+        - Colors the extracted part BLUE
+        - Adds the extracted part to the scene
+        - Creates an ORANGE rectangle around it
+        - Adds the rectangle to the scene
+
+        Args:
+            mathtext: Either a string (creates MathTex) or existing MathTex object
+            *args: Zero or more indices (int or "1:2" string slices) for extraction
+
+        Returns:
+            Extracted MathTex part or empty VMobject if extraction fails
+
+        Examples:
+            part = self.text2("x^2 + y^2", 0)     # Show eq[0] with BLUE + ORANGE box
+            part2 = self.text2(eq, 1, "2:5")      # Show eq[1][2:5] with highlight
+        """
+        return TextUtils.text2(self, mathtext, *args)

@@ -1,7 +1,7 @@
 """
 Demo: Vector Decomposition using VectorUtils
 
-Shows decompose_parallel() and decompose_perp() methods.
+Shows decompose() method with perp parameter.
 Demonstrates splitting a vector into components parallel and perpendicular to a reference.
 """
 
@@ -25,12 +25,12 @@ class BasicDecompositionDemo(Scene):
         self.wait(1)
 
         # Create and show parallel component
-        parallel = VectorUtils.decompose_parallel(vector_a, vector_b, color=GREEN)
+        parallel = VectorUtils.decompose(vector_a, vector_b, color=GREEN)
         self.play(Create(parallel))
         self.wait(0.5)
 
         # Create and show perpendicular component
-        perp = VectorUtils.decompose_perp(vector_a, vector_b, color=ORANGE)
+        perp = VectorUtils.decompose(vector_a, vector_b, perp=True, color=ORANGE)
         self.play(Create(perp))
         self.wait(0.5)
 
@@ -52,11 +52,11 @@ class RotatingVectorDecomposition(Scene):
 
         # Dynamic decomposition with always_redraw
         parallel = always_redraw(
-            lambda: VectorUtils.decompose_parallel(vector_a, vector_b, color=GREEN)
+            lambda: VectorUtils.decompose(vector_a, vector_b, color=GREEN)
         )
 
         perp = always_redraw(
-            lambda: VectorUtils.decompose_perp(vector_a, vector_b, color=ORANGE)
+            lambda: VectorUtils.decompose(vector_a, vector_b, perp=True, color=ORANGE)
         )
 
         dashed = always_redraw(

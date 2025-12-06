@@ -31,7 +31,12 @@ class VectorUtils:
             >>>
             >>> vec = VectorUtils.create_vector(ORIGIN, RIGHT * 2, color=BLUE)
         """
-        default_kwargs = {'buff': 0, 'fill_opacity': 0}
+        default_kwargs = {
+            'buff': 0,
+            'fill_opacity': 0,
+            'max_tip_length_to_length_ratio': 0.15,
+            'tip_length': 0.2
+        }
         default_kwargs.update(kwargs)
         return Arrow(start, end, **default_kwargs)
 
@@ -244,6 +249,8 @@ class VectorUtils:
         default_kwargs = {
             'buff': 0,
             'fill_opacity': 0,  # Open arrow tips (textbook style)
+            'max_tip_length_to_length_ratio': 0.15,
+            'tip_length': 0.2,
             'color': source.get_color() if not 'color' in arrow_kwargs else arrow_kwargs['color'],
             'stroke_width': source.get_stroke_width() if not 'stroke_width' in arrow_kwargs else arrow_kwargs['stroke_width'],
         }
@@ -301,6 +308,8 @@ class VectorUtils:
         default_kwargs = {
             'buff': 0,
             'fill_opacity': 0,  # Open arrow tips (textbook style)
+            'max_tip_length_to_length_ratio': 0.15,
+            'tip_length': 0.2,
             'color': source.get_color() if not 'color' in arrow_kwargs else arrow_kwargs['color'],
             'stroke_width': source.get_stroke_width() if not 'stroke_width' in arrow_kwargs else arrow_kwargs['stroke_width'],
         }
@@ -349,28 +358,36 @@ class VectorUtils:
         proj_endpoint = vector_target.get_start() + proj_length * target_unit
 
         # Create projection arrow
-        default_kwargs = {'buff': 0, 'fill_opacity': 0}
+        default_kwargs = {
+            'buff': 0,
+            'fill_opacity': 0,
+            'max_tip_length_to_length_ratio': 0.15,
+            'tip_length': 0.2
+        }
         default_kwargs.update(arrow_kwargs)
 
         return Arrow(vector_target.get_start(), proj_endpoint, **default_kwargs)
 
     @staticmethod
-    def decompose_parallel(source: Mobject, decompose_against: Mobject, **arrow_kwargs) -> Mobject:
+    def decompose(source: Mobject, decompose_against: Mobject, perp: bool = False, **arrow_kwargs) -> Mobject:
         """
-        Create an arrow representing the parallel component of source relative to decompose_against.
+        Decompose a vector into parallel or perpendicular components relative to a reference vector.
 
-        This method decomposes the source vector into its parallel component along the
-        decompose_against vector. The parallel component is the projection of source onto
-        decompose_against. Combined with decompose_perp, this provides a complete vector
+        This method decomposes the source vector into components relative to the decompose_against
+        vector. By default (perp=False), returns the parallel component (projection). When perp=True,
+        returns the perpendicular component (rejection). Together, these provide a complete
         decomposition: source = parallel + perpendicular.
 
         Args:
             source: The vector to decompose (typically an Arrow)
             decompose_against: The reference vector to decompose relative to (typically an Arrow)
+            perp: If False (default), return parallel component; if True, return perpendicular component
             **arrow_kwargs: Optional styling parameters (color, buff, tip_length, stroke_width, etc.)
 
         Returns:
-            An Arrow representing the parallel component (starts at source's start point)
+            An Arrow representing the requested component:
+            - Parallel: starts at source's start point, extends along decompose_against direction
+            - Perpendicular: starts at end of parallel component, ends at source's tip
 
         Example:
             >>> from manim import *
@@ -381,12 +398,11 @@ class VectorUtils:
             >>> # Vector B as reference
             >>> vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0)
             >>>
-            >>> # Get parallel component of A along B
-            >>> parallel = VectorUtils.decompose_parallel(vector_a, vector_b, color=GREEN)
-            >>> # Creates arrow showing component of vector_a parallel to vector_b
+            >>> # Get parallel component of A along B (default)
+            >>> parallel = VectorUtils.decompose(vector_a, vector_b, color=GREEN)
             >>>
-            >>> # Get perpendicular component to complete decomposition
-            >>> perp = VectorUtils.decompose_perp(vector_a, vector_b, color=ORANGE)
+            >>> # Get perpendicular component
+            >>> perp = VectorUtils.decompose(vector_a, vector_b, perp=True, color=ORANGE)
             >>> # Now: vector_a = parallel + perp (visually)
         """
         # Calculate vector directions
@@ -398,71 +414,24 @@ class VectorUtils:
         parallel_magnitude = np.dot(vec_source_direction, against_unit)
         parallel_component = parallel_magnitude * against_unit
 
-        # Create parallel component vector starting at source's start
-        parallel_endpoint = source.get_start() + parallel_component
-
         # Create arrow with styling
-        default_kwargs = {'buff': 0, 'fill_opacity': 0}
+        default_kwargs = {
+            'buff': 0,
+            'fill_opacity': 0,
+            'max_tip_length_to_length_ratio': 0.15,
+            'tip_length': 0.2
+        }
         default_kwargs.update(arrow_kwargs)
 
-        return Arrow(source.get_start(), parallel_endpoint, **default_kwargs)
-
-    @staticmethod
-    def decompose_perp(source: Mobject, decompose_against: Mobject, **arrow_kwargs) -> Mobject:
-        """
-        Create an arrow representing the perpendicular component of source relative to decompose_against.
-
-        This method decomposes the source vector into its perpendicular (rejection) component
-        relative to the decompose_against vector. This component is orthogonal to decompose_against.
-        Combined with decompose_parallel, this provides a complete vector decomposition:
-        source = parallel + perpendicular.
-
-        Args:
-            source: The vector to decompose (typically an Arrow)
-            decompose_against: The reference vector to decompose relative to (typically an Arrow)
-            **arrow_kwargs: Optional styling parameters (color, buff, tip_length, stroke_width, etc.)
-
-        Returns:
-            An Arrow representing the perpendicular component (starts at parallel component endpoint)
-
-        Example:
-            >>> from manim import *
-            >>> from robo_manim_add_ons.vector_utils import VectorUtils
-            >>>
-            >>> # Vector A to decompose
-            >>> vector_a = Arrow(ORIGIN, RIGHT * 2 + UP * 1, buff=0)
-            >>> # Vector B as reference
-            >>> vector_b = Arrow(ORIGIN, RIGHT * 3, buff=0)
-            >>>
-            >>> # Get parallel component first
-            >>> parallel = VectorUtils.decompose_parallel(vector_a, vector_b, color=GREEN)
-            >>>
-            >>> # Get perpendicular component
-            >>> perp = VectorUtils.decompose_perp(vector_a, vector_b, color=ORANGE)
-            >>> # Starts at end of parallel component, ends at tip of vector_a
-            >>>
-            >>> # Visualization shows: vector_a = parallel + perp
-        """
-        # Calculate vector directions
-        vec_source_direction = source.get_end() - source.get_start()
-        vec_against_direction = decompose_against.get_end() - decompose_against.get_start()
-
-        # Calculate parallel component
-        against_unit = normalize(vec_against_direction)
-        parallel_magnitude = np.dot(vec_source_direction, against_unit)
-        parallel_component = parallel_magnitude * against_unit
-
-        # Calculate perpendicular component starting point (end of parallel component)
-        perp_start_point = source.get_start() + parallel_component
-
-        # Perpendicular component ends at source's endpoint
-        perp_endpoint = source.get_end()
-
-        # Create arrow with styling
-        default_kwargs = {'buff': 0, 'fill_opacity': 0}
-        default_kwargs.update(arrow_kwargs)
-
-        return Arrow(perp_start_point, perp_endpoint, **default_kwargs)
+        if not perp:
+            # Return parallel component
+            parallel_endpoint = source.get_start() + parallel_component
+            return Arrow(source.get_start(), parallel_endpoint, **default_kwargs)
+        else:
+            # Return perpendicular component
+            perp_start_point = source.get_start() + parallel_component
+            perp_endpoint = source.get_end()
+            return Arrow(perp_start_point, perp_endpoint, **default_kwargs)
 
     @staticmethod
     def projection_line(vector_to_project: Mobject, vector_target: Mobject, **line_kwargs) -> Mobject:
@@ -586,7 +555,12 @@ class VectorUtils:
 
         result_end = start_point + vec_a_dir + vec_b_dir
 
-        default_kwargs = {'buff': 0, 'fill_opacity': 0}
+        default_kwargs = {
+            'buff': 0,
+            'fill_opacity': 0,
+            'max_tip_length_to_length_ratio': 0.15,
+            'tip_length': 0.2
+        }
         default_kwargs.update(arrow_kwargs)
 
         return Arrow(start_point, result_end, **default_kwargs)
@@ -640,7 +614,12 @@ class VectorUtils:
 
         result_end = start_point + vec_a_dir - vec_b_dir
 
-        default_kwargs = {'buff': 0, 'fill_opacity': 0}
+        default_kwargs = {
+            'buff': 0,
+            'fill_opacity': 0,
+            'max_tip_length_to_length_ratio': 0.15,
+            'tip_length': 0.2
+        }
         default_kwargs.update(arrow_kwargs)
 
         return Arrow(start_point, result_end, **default_kwargs)
@@ -689,7 +668,12 @@ class VectorUtils:
 
         end_point = start_point + scaled_dir
 
-        default_kwargs = {'buff': 0, 'fill_opacity': 0}
+        default_kwargs = {
+            'buff': 0,
+            'fill_opacity': 0,
+            'max_tip_length_to_length_ratio': 0.15,
+            'tip_length': 0.2
+        }
         default_kwargs.update(arrow_kwargs)
 
         return Arrow(start_point, end_point, **default_kwargs)
@@ -737,3 +721,60 @@ class VectorUtils:
     def po(vector_to_project: Mobject, vector_target: Mobject, **arrow_kwargs) -> Mobject:
         """Alias for project_onto(). See project_onto() for full documentation."""
         return VectorUtils.project_onto(vector_to_project, vector_target, **arrow_kwargs)
+
+    @staticmethod
+    def dc(source: Mobject, decompose_against: Mobject, perp: bool = False, **arrow_kwargs) -> Mobject:
+        """Alias for decompose(). See decompose() for full documentation."""
+        return VectorUtils.decompose(source, decompose_against, perp=perp, **arrow_kwargs)
+
+    @staticmethod
+    def addv(vector_a: Mobject, vector_b: Mobject, start_point: np.ndarray = None, **arrow_kwargs) -> Mobject:
+        """Alias for add(). See add() for full documentation."""
+        return VectorUtils.add(vector_a, vector_b, start_point=start_point, **arrow_kwargs)
+
+    @staticmethod
+    def subv(vector_a: Mobject, vector_b: Mobject, start_point: np.ndarray = None, **arrow_kwargs) -> Mobject:
+        """Alias for subtract(). See subtract() for full documentation."""
+        return VectorUtils.subtract(vector_a, vector_b, start_point=start_point, **arrow_kwargs)
+
+    @staticmethod
+    def sclv(vector: Mobject, scalar: float, start_point: np.ndarray = None, **arrow_kwargs) -> Mobject:
+        """Alias for scalar_multiply(). See scalar_multiply() for full documentation."""
+        return VectorUtils.scalar_multiply(vector, scalar, start_point=start_point, **arrow_kwargs)
+
+
+# ============================================================================
+# Standalone function aliases for convenient static imports
+# ============================================================================
+
+def addv(vector_a: Mobject, vector_b: Mobject, start_point: np.ndarray = None, **arrow_kwargs) -> Mobject:
+    """
+    Standalone function for vector addition. See VectorUtils.add() for full documentation.
+
+    Example:
+        >>> from robo_manim_add_ons import addv
+        >>> result = addv(vec_a, vec_b, color=GREEN)
+    """
+    return VectorUtils.add(vector_a, vector_b, start_point=start_point, **arrow_kwargs)
+
+
+def subv(vector_a: Mobject, vector_b: Mobject, start_point: np.ndarray = None, **arrow_kwargs) -> Mobject:
+    """
+    Standalone function for vector subtraction. See VectorUtils.subtract() for full documentation.
+
+    Example:
+        >>> from robo_manim_add_ons import subv
+        >>> result = subv(vec_a, vec_b, color=RED)
+    """
+    return VectorUtils.subtract(vector_a, vector_b, start_point=start_point, **arrow_kwargs)
+
+
+def sclv(vector: Mobject, scalar: float, start_point: np.ndarray = None, **arrow_kwargs) -> Mobject:
+    """
+    Standalone function for scalar multiplication. See VectorUtils.scalar_multiply() for full documentation.
+
+    Example:
+        >>> from robo_manim_add_ons import sclv
+        >>> result = sclv(vec_a, 2, color=BLUE)
+    """
+    return VectorUtils.scalar_multiply(vector, scalar, start_point=start_point, **arrow_kwargs)
