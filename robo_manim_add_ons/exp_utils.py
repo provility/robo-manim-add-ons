@@ -7,7 +7,7 @@ numpy arrays, or lists.
 
 import numpy as np
 from typing import Union
-from manim import Line, Arrow, Dot, Polygon, Arc, Angle, Circle, Rectangle, RED
+from manim import Line, Arrow, Dot, Polygon, Arc, Angle, Circle, Rectangle, RED, RightAngle
 from .graph_utils import GraphUtils
 from .shape_utils import rect as _rect, tri_sss as _sss, tri_sas as _sas, tri_ssa as _ssa
 
@@ -1338,6 +1338,55 @@ def aa2(*args, radius=0.5, **kwargs):
 
     else:
         raise ValueError(f"aa2() takes 2, 3, or 4 arguments, got {len(args)}")
+
+
+def rangle(line1: Line, line2: Line, length: float = 0.3, quadrant: tuple = (1, 1), **kwargs) -> RightAngle:
+    """
+    Create a right angle marker (L-shape) at the intersection of two lines.
+
+    The L-shape is drawn at the intersection point of the two lines to indicate
+    a 90-degree angle. The quadrant parameter controls which of the four possible
+    positions the marker appears in.
+
+    Args:
+        line1: First Line object
+        line2: Second Line object
+        length: Length of the L-shape arms (default: 0.3)
+        quadrant: Tuple (x, y) controlling placement:
+                  (1, 1) = upper-right quadrant (default)
+                  (1, -1) = lower-right quadrant
+                  (-1, 1) = upper-left quadrant
+                  (-1, -1) = lower-left quadrant
+        **kwargs: Additional styling (color, stroke_width, etc.)
+
+    Returns:
+        RightAngle object (L-shaped marker)
+
+    Example:
+        >>> from manim import Line, LEFT, RIGHT, UP, DOWN
+        >>> from robo_manim_add_ons import rangle
+        >>>
+        >>> line1 = Line(LEFT, RIGHT)
+        >>> line2 = Line(DOWN, UP)
+        >>>
+        >>> # Default: upper-right quadrant
+        >>> marker = rangle(line1, line2)
+        >>>
+        >>> # Lower-right quadrant
+        >>> marker = rangle(line1, line2, quadrant=(1, -1))
+        >>>
+        >>> # Upper-left quadrant with custom length and color
+        >>> marker = rangle(line1, line2, length=0.5, quadrant=(-1, 1), color=RED)
+        >>>
+        >>> # All four quadrants
+        >>> markers = [
+        ...     rangle(line1, line2, quadrant=(1, 1)),    # upper-right
+        ...     rangle(line1, line2, quadrant=(1, -1)),   # lower-right
+        ...     rangle(line1, line2, quadrant=(-1, 1)),   # upper-left
+        ...     rangle(line1, line2, quadrant=(-1, -1)),  # lower-left
+        ... ]
+    """
+    return RightAngle(line1, line2, length=length, quadrant=quadrant, **kwargs)
 
 
 def rect(*args, **kwargs) -> Rectangle:

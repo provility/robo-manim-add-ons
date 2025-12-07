@@ -56,6 +56,7 @@ rect(*args) -> Rectangle                     # Rectangle: (w,h) | (lb,tr) | (lb,
 cr(*args) -> Circle                          # Circle: (line) | (center,radius) | (pt,pt)
 aa(*args, radius=0.5, dash=True) -> ArcArrow         # Angle arc (dashed): (l1,l2) | (p1,vertex,p3)
 aa2(*args, radius=0.5) -> Angle              # Manim Angle: supports quadrant control
+rangle(line1, line2, length=0.3, quadrant=(1,1)) -> RightAngle  # Right angle L-shape marker
 ```
 
 ### Circle Utilities (angles in degrees)
@@ -281,7 +282,7 @@ from robo_manim_add_ons import (
     # Points
     pt, m2v, v2m, x2v, r2p, addp,
     # Lines & shapes
-    vl, hl, lra, vra, ln, vt, tri, sss, sas, ssa, rect, aa, aa2, cr,
+    vl, hl, lra, vra, ln, vt, tri, sss, sas, ssa, rect, aa, aa2, rangle, cr,
     # Circle utilities
     tangentc, chord, normal, sector,
     # Triangle utilities
@@ -315,7 +316,7 @@ from robo_manim_add_ons import Exp, VectorUtils, PointUtils, TextUtils, ArrowUti
 ## Quick Reference by Category
 
 **Getters:** `x` `y` `st` `ed` `mid` `mag` `uv` `vec` `ang` `slope` `val`
-**Creators:** `pt` `m2v` `v2m` `x2v` `r2p` `vl` `hl` `lra` `vra` `ln` `vt` `tri` `sss` `sas` `ssa` `rect` `cr` `aa` `aa2`
+**Creators:** `pt` `m2v` `v2m` `x2v` `r2p` `vl` `hl` `lra` `vra` `ln` `vt` `tri` `sss` `sas` `ssa` `rect` `cr` `aa` `aa2` `rangle`
 **Circle:** `tangentc` `chord` `normal` `sector`
 **Triangle:** `centroid` `circumcenter` `orthocenter` `incenter` `altitude`
 **Geometry:** `perp` `pll` `project` `reflect` `xl` `ill` `ilc` `icc` `ilp`
