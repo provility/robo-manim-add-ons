@@ -16,8 +16,10 @@ ed(obj) -> Dot
 # Get end point as Dot. obj can be: Manim object with get_end() (Line, Arc),
 # np.array [x,y,z], or list [x,y,z]
 
-mid(obj) -> Dot
-# Get midpoint as Dot. obj must be: Manim object with get_center() (Line, Circle, VMobject)
+mid(*args) -> Dot
+# Flexible function with two forms:
+#   mid(obj) - midpoint of obj (Line/Circle/VMobject with get_center())
+#   mid(pt1, pt2) - midpoint between two points (Dot/np.array/list)
 ```
 
 ### Vector Operations
@@ -249,14 +251,14 @@ addv(vec_a, vec_b, start_point=None, **kwargs) -> Arrow
 subv(vec_a, vec_b, start_point=None, **kwargs) -> Arrow
 # Vector subtraction a - b. vec_a, vec_b must be Arrows. Returns new Arrow for difference
 
-sclv(vector, scalar, start_point=None, **kwargs) -> Arrow
+scalev(vector, scalar, start_point=None, **kwargs) -> Arrow
 # Scalar multiplication. vector must be Arrow, scalar is numeric. Returns scaled Arrow
 
 # Vector decomposition & projection (use short aliases)
-VectorUtils.po(vec, target, **kwargs) -> Arrow
+VectorUtils.prov(vec, target, **kwargs) -> Arrow
 # Project onto: project Arrow 'vec' onto Arrow 'target'. Returns projection Arrow
 
-VectorUtils.dc(source, ref, perp=False, **kwargs) -> Arrow
+VectorUtils.dcv(source, ref, perp=False, **kwargs) -> Arrow
 # Decompose: get parallel (perp=False) or perpendicular (perp=True) component of 'source' to 'ref'
 
 VectorUtils.projection_line(vec, target, **kwargs) -> Line
@@ -418,7 +420,7 @@ from robo_manim_add_ons import (
     # Transform
     translated, rotated, scaled,
     # Vector operations
-    addv, subv, sclv,
+    addv, subv, scalev,
     # Text utilities
     text, text2,
     # Scene
@@ -439,7 +441,7 @@ from robo_manim_add_ons import Exp, VectorUtils, PointUtils, TextUtils, ArrowUti
 **Annotation:** `dm` `label` `hatch`
 **Style:** `stroke` `fill` `sopacity` `fopacity` `sw` `style`
 **Transform:** `translated` `rotated` `scaled`
-**Vector Ops:** `addv` `subv` `sclv` `VectorUtils`
+**Vector Ops:** `addv` `subv` `scalev` `VectorUtils`
 **Point Ops:** `addp` `PointUtils`
 **Text Ops:** `text` `text2` `TextUtils`
 **Scene Utils:** `RogebraScene` (fadeIn, fadeOut, amo, tf, rtf, zoom, text, text2)

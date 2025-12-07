@@ -194,35 +194,78 @@ def ed(obj: Union[object, np.ndarray, list]) -> Dot:
         )
 
 
-def mid(obj) -> Dot:
+def mid(*args) -> Dot:
     """
-    Get a Dot at the center of an object.
+    Get a Dot at the midpoint of an object or between two points.
 
-    Args:
-        obj: A Manim object with get_center() method (e.g., Line, Circle, VMobject, etc.)
+    Args can be:
+        - 1 arg: A Manim object with get_center() method (e.g., Line, Circle, VMobject, etc.)
+        - 2 args: Two points (Dot objects, np.arrays, or lists) - returns midpoint between them
 
     Returns:
-        A Dot at the center of the object
+        A Dot at the midpoint
 
     Raises:
-        TypeError: If the object doesn't have get_center() method
+        TypeError: If the object type is not supported
+        ValueError: If wrong number of arguments
 
     Example:
-        >>> from manim import Line, Circle, LEFT, RIGHT
+        >>> from manim import Line, Circle, Dot, LEFT, RIGHT, ORIGIN, UP
         >>> from robo_manim_add_ons import mid
         >>>
+        >>> # Single argument - midpoint of object
         >>> line = Line(LEFT, RIGHT)
         >>> dot = mid(line)  # Dot at center of line
         >>>
         >>> circle = Circle(radius=2)
         >>> dot = mid(circle)  # Dot at center of circle
+        >>>
+        >>> # Two arguments - midpoint between two points
+        >>> dot1 = Dot(ORIGIN)
+        >>> dot2 = Dot(UP * 2)
+        >>> midpoint = mid(dot1, dot2)  # Dot at (0, 1, 0)
+        >>>
+        >>> arr1 = np.array([0, 0, 0])
+        >>> arr2 = np.array([4, 0, 0])
+        >>> midpoint = mid(arr1, arr2)  # Dot at (2, 0, 0)
+        >>>
+        >>> # Mixed types
+        >>> midpoint = mid(Dot(LEFT), np.array([1, 1, 0]))  # Dot at (0, 0.5, 0)
     """
-    if hasattr(obj, 'get_center'):
-        return Dot(obj.get_center())
+    def _extract_position(obj):
+        """Extract position from Dot/object or np.array"""
+        if hasattr(obj, 'get_center'):
+            return obj.get_center()
+        elif isinstance(obj, np.ndarray):
+            return obj
+        elif isinstance(obj, (list, tuple)):
+            return np.array(obj)
+        else:
+            raise TypeError(f"Expected Dot, np.array, or list, got {type(obj).__name__}")
+
+    if len(args) == 1:
+        # Single argument - get center of object
+        obj = args[0]
+        if hasattr(obj, 'get_center'):
+            return Dot(obj.get_center())
+        else:
+            raise TypeError(
+                f"Unsupported type {type(obj).__name__}. "
+                "Expected object with get_center() method."
+            )
+
+    elif len(args) == 2:
+        # Two arguments - calculate midpoint between two points
+        pos1 = _extract_position(args[0])
+        pos2 = _extract_position(args[1])
+
+        # Calculate midpoint
+        midpoint = (pos1 + pos2) / 2
+        return Dot(midpoint)
+
     else:
-        raise TypeError(
-            f"Unsupported type {type(obj).__name__}. "
-            "Expected object with get_center() method."
+        raise ValueError(
+            f"mid() takes 1 or 2 arguments, got {len(args)}"
         )
 
 

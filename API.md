@@ -12,7 +12,8 @@ x(obj) -> float                              # Extract x-coordinate
 y(obj) -> float                              # Extract y-coordinate
 st(obj) -> Dot                               # Get start point as Dot
 ed(obj) -> Dot                               # Get end point as Dot
-mid(obj) -> Dot                              # Get midpoint as Dot
+mid(obj) -> Dot                              # Get midpoint of object
+mid(pt1, pt2) -> Dot                         # Midpoint between two points
 ```
 
 ### Vector Operations
@@ -128,11 +129,11 @@ VectorUtils.sa(vec_target, vec_source) -> np.ndarray   # Shift amount: calculate
 # Vector arithmetic (standalone functions)
 addv(vec_a, vec_b, start_point=None, **kwargs) -> Arrow          # Vector addition a + b
 subv(vec_a, vec_b, start_point=None, **kwargs) -> Arrow          # Vector subtraction a - b
-sclv(vector, scalar, start_point=None, **kwargs) -> Arrow        # Scalar multiplication
+scalev(vector, scalar, start_point=None, **kwargs) -> Arrow      # Scalar multiplication
 
 # Vector decomposition & projection (use short aliases)
-VectorUtils.po(vec, target, **kwargs) -> Arrow         # Project onto: project vec onto target
-VectorUtils.dc(source, ref, perp=False, **kwargs) -> Arrow    # Decompose: parallel/perp component
+VectorUtils.prov(vec, target, **kwargs) -> Arrow         # Project onto: project vec onto target
+VectorUtils.dcv(source, ref, perp=False, **kwargs) -> Arrow    # Decompose: parallel/perp component
 VectorUtils.projection_line(vec, target, **kwargs) -> Line    # Perpendicular line to projection
 VectorUtils.projection_region(vec, target, **kwargs) -> Polygon    # Triangle showing projection area
 ```
@@ -273,7 +274,7 @@ from robo_manim_add_ons import (
     # Transform
     translated, rotated, scaled,
     # Vector operations
-    addv, subv, sclv,
+    addv, subv, scalev,
     # Text utilities
     text, text2,
     # Scene
@@ -296,7 +297,7 @@ from robo_manim_add_ons import Exp, VectorUtils, PointUtils, TextUtils, ArrowUti
 **Annotation:** `dm` `label` `hatch`
 **Style:** `stroke` `fill` `sopacity` `fopacity` `sw` `style`
 **Transform:** `translated` `rotated` `scaled`
-**Vector Ops:** `addv` `subv` `sclv` `VectorUtils`
+**Vector Ops:** `addv` `subv` `scalev` `VectorUtils`
 **Point Ops:** `addp` `PointUtils`
 **Text Ops:** `text` `text2` `TextUtils`
 **Scene Utils:** `RogebraScene` (fadeIn, fadeOut, amo, tf, rtf, zoom, text, text2)

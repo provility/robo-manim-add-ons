@@ -718,12 +718,12 @@ class VectorUtils:
         return VectorUtils.shift_amount(vector_target, vector_source)
 
     @staticmethod
-    def po(vector_to_project: Mobject, vector_target: Mobject, **arrow_kwargs) -> Mobject:
+    def prov(vector_to_project: Mobject, vector_target: Mobject, **arrow_kwargs) -> Mobject:
         """Alias for project_onto(). See project_onto() for full documentation."""
         return VectorUtils.project_onto(vector_to_project, vector_target, **arrow_kwargs)
 
     @staticmethod
-    def dc(source: Mobject, decompose_against: Mobject, perp: bool = False, **arrow_kwargs) -> Mobject:
+    def dcv(source: Mobject, decompose_against: Mobject, perp: bool = False, **arrow_kwargs) -> Mobject:
         """Alias for decompose(). See decompose() for full documentation."""
         return VectorUtils.decompose(source, decompose_against, perp=perp, **arrow_kwargs)
 
@@ -738,7 +738,7 @@ class VectorUtils:
         return VectorUtils.subtract(vector_a, vector_b, start_point=start_point, **arrow_kwargs)
 
     @staticmethod
-    def sclv(vector: Mobject, scalar: float, start_point: np.ndarray = None, **arrow_kwargs) -> Mobject:
+    def scalev(vector: Mobject, scalar: float, start_point: np.ndarray = None, **arrow_kwargs) -> Mobject:
         """Alias for scalar_multiply(). See scalar_multiply() for full documentation."""
         return VectorUtils.scalar_multiply(vector, scalar, start_point=start_point, **arrow_kwargs)
 
@@ -769,12 +769,12 @@ def subv(vector_a: Mobject, vector_b: Mobject, start_point: np.ndarray = None, *
     return VectorUtils.subtract(vector_a, vector_b, start_point=start_point, **arrow_kwargs)
 
 
-def sclv(vector: Mobject, scalar: float, start_point: np.ndarray = None, **arrow_kwargs) -> Mobject:
+def scalev(vector: Mobject, scalar: float, start_point: np.ndarray = None, **arrow_kwargs) -> Mobject:
     """
     Standalone function for scalar multiplication. See VectorUtils.scalar_multiply() for full documentation.
 
     Example:
-        >>> from robo_manim_add_ons import sclv
-        >>> result = sclv(vec_a, 2, color=BLUE)
+        >>> from robo_manim_add_ons import scalev
+        >>> result = scalev(vec_a, 2, color=BLUE)
     """
     return VectorUtils.scalar_multiply(vector, scalar, start_point=start_point, **arrow_kwargs)
