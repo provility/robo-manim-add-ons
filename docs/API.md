@@ -123,6 +123,41 @@ aa2(*args, radius=0.5, **kwargs) -> Angle
 # (p1, vertex, p3) | (p1, vertex, p3, quadrant). quadrant: 1/-1 for CCW/CW, True/False for reflex
 ```
 
+### Circle Utilities (angles in degrees)
+```python
+tangentc(circle, angle, length=3) -> TangentLine
+# Tangent line at angle (degrees) or point. Wraps Manim's TangentLine with degree conversion
+# angle: degrees (0°=right, CCW) or Dot/np.array point on circle
+
+chord(circle, angle1, angle2) -> Line
+# Chord (line) between two angles on circle. When |angle2-angle1|=180, creates diameter
+
+normal(circle, angle, length=3, placement="mid") -> Line
+# Normal/radius line extended. placement: "start"|"mid"|"end" for point position on line
+
+sector(circle, start, end, **kwargs) -> Sector
+# Filled sector (pie slice) between start and end angles. Wraps Manim's Sector
+```
+
+### Triangle Centers & Altitude
+```python
+centroid(A, B, C) -> Dot
+# Centroid: intersection of medians, (A+B+C)/3. A,B,C: Dot/np.array/list
+
+circumcenter(A, B, C) -> Dot
+# Circumcenter: center of circumscribed circle (perpendicular bisector intersection)
+
+orthocenter(A, B, C) -> Dot
+# Orthocenter: intersection of altitudes
+
+incenter(A, B, C) -> Dot
+# Incenter: center of inscribed circle (angle bisector intersection)
+
+altitude(vertex, *args) -> Line
+# Altitude from vertex perpendicular to opposite side
+# Args: (vertex, line) | (vertex, p1, p2) where line or p1,p2 define the opposite side
+```
+
 ### Geometry Operations
 ```python
 perp(line, dot, length, placement="mid") -> Line
@@ -409,6 +444,10 @@ from robo_manim_add_ons import (
     pt, m2v, v2m, x2v, r2p, addp,
     # Lines & shapes
     vl, hl, lra, vra, ln, vt, tri, sss, sas, ssa, rect, aa, aa2, cr,
+    # Circle utilities
+    tangentc, chord, normal, sector,
+    # Triangle utilities
+    centroid, circumcenter, orthocenter, incenter, altitude,
     # Geometry
     perp, pll, project, reflect, xl,
     # Intersection
@@ -437,6 +476,8 @@ from robo_manim_add_ons import Exp, VectorUtils, PointUtils, TextUtils, ArrowUti
 
 **Getters:** `x` `y` `st` `ed` `mid` `mag` `uv` `vec` `ang` `slope` `val`
 **Creators:** `pt` `m2v` `v2m` `x2v` `r2p` `vl` `hl` `lra` `vra` `ln` `vt` `tri` `sss` `sas` `ssa` `rect` `cr` `aa` `aa2`
+**Circle:** `tangentc` `chord` `normal` `sector`
+**Triangle:** `centroid` `circumcenter` `orthocenter` `incenter` `altitude`
 **Geometry:** `perp` `pll` `project` `reflect` `xl` `ill` `ilc`
 **Annotation:** `dm` `label` `hatch`
 **Style:** `stroke` `fill` `sopacity` `fopacity` `sw` `style`

@@ -59,6 +59,43 @@ reflected_dot = reflect(line, point)
 
 **Note:** `point` parameter can be a Dot or numpy array
 
+## Circle Utilities (angles in degrees)
+
+```python
+from robo_manim_add_ons import tangentc, chord, normal, sector
+
+circle = Circle(radius=2)
+
+# Tangent at 45 degrees
+tan = tangentc(circle, 45)
+
+# Chord between two angles
+ch = chord(circle, 30, 150)
+
+# Normal/radius extended
+norm = normal(circle, 90, length=4)
+
+# Sector (pie slice)
+sec = sector(circle, 0, 90, fill_opacity=0.5)
+```
+
+## Triangle Utilities
+
+```python
+from robo_manim_add_ons import centroid, circumcenter, orthocenter, incenter, altitude
+
+A, B, C = [0, 0, 0], [4, 0, 0], [2, 3, 0]
+
+# Triangle centers (return Dot)
+G = centroid(A, B, C)         # Medians intersection
+O = circumcenter(A, B, C)     # Circumscribed circle center
+H = orthocenter(A, B, C)      # Altitudes intersection
+I = incenter(A, B, C)         # Inscribed circle center
+
+# Altitude from vertex to opposite side
+alt = altitude(A, B, C)       # From A perpendicular to BC
+```
+
 ## Full Documentation
 
 For complete API reference with examples, images, and demo videos, visit:
