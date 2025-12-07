@@ -88,6 +88,8 @@ xl(line, proportion, length) -> Line         # Extend line (alias: extended_line
 ```python
 ill(line1, line2) -> Union[Dot, VGroup]      # Line-line intersection (alias: intersect_lines)
 ilc(line, circle) -> VGroup                  # Line-circle intersection (alias: intersect_line_circle)
+icc(c1, c2) -> VGroup                        # Circle-circle intersection (0/1/2 Dots)
+ilp(line, polygon) -> VGroup                 # Line-polygon intersection (all edge crossings)
 ```
 
 ### Annotation
@@ -287,7 +289,7 @@ from robo_manim_add_ons import (
     # Geometry
     perp, pll, project, reflect, xl,
     # Intersection
-    ill, ilc,
+    ill, ilc, icc, ilp,
     # Annotation
     dm, label, hatch,
     # Style
@@ -316,7 +318,7 @@ from robo_manim_add_ons import Exp, VectorUtils, PointUtils, TextUtils, ArrowUti
 **Creators:** `pt` `m2v` `v2m` `x2v` `r2p` `vl` `hl` `lra` `vra` `ln` `vt` `tri` `sss` `sas` `ssa` `rect` `cr` `aa` `aa2`
 **Circle:** `tangentc` `chord` `normal` `sector`
 **Triangle:** `centroid` `circumcenter` `orthocenter` `incenter` `altitude`
-**Geometry:** `perp` `pll` `project` `reflect` `xl` `ill` `ilc`
+**Geometry:** `perp` `pll` `project` `reflect` `xl` `ill` `ilc` `icc` `ilp`
 **Annotation:** `dm` `label` `hatch`
 **Style:** `stroke` `fill` `sopacity` `fopacity` `sw` `style`
 **Transform:** `translated` `rotated` `scaled`

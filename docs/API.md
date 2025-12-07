@@ -186,6 +186,14 @@ ill(line1, line2) -> Union[Dot, VGroup]
 ilc(line, circle) -> VGroup
 # Line-circle intersection. Returns: VGroup of 0, 1, or 2 Dots depending on intersection
 # Alias: intersect_line_circle()
+
+icc(c1, c2) -> VGroup
+# Circle-circle intersection. c1, c2: Circle objects
+# Returns: VGroup of 0, 1, or 2 Dots (0=no intersection, 1=tangent, 2=intersecting)
+
+ilp(line, polygon) -> VGroup
+# Line-polygon intersection. line: Line (treated as infinite), polygon: Polygon
+# Returns: VGroup of Dots at all intersection points with polygon edges
 ```
 
 ### Annotation
@@ -451,7 +459,7 @@ from robo_manim_add_ons import (
     # Geometry
     perp, pll, project, reflect, xl,
     # Intersection
-    ill, ilc,
+    ill, ilc, icc, ilp,
     # Annotation
     dm, label, hatch,
     # Style
@@ -478,7 +486,7 @@ from robo_manim_add_ons import Exp, VectorUtils, PointUtils, TextUtils, ArrowUti
 **Creators:** `pt` `m2v` `v2m` `x2v` `r2p` `vl` `hl` `lra` `vra` `ln` `vt` `tri` `sss` `sas` `ssa` `rect` `cr` `aa` `aa2`
 **Circle:** `tangentc` `chord` `normal` `sector`
 **Triangle:** `centroid` `circumcenter` `orthocenter` `incenter` `altitude`
-**Geometry:** `perp` `pll` `project` `reflect` `xl` `ill` `ilc`
+**Geometry:** `perp` `pll` `project` `reflect` `xl` `ill` `ilc` `icc` `ilp`
 **Annotation:** `dm` `label` `hatch`
 **Style:** `stroke` `fill` `sopacity` `fopacity` `sw` `style`
 **Transform:** `translated` `rotated` `scaled`
