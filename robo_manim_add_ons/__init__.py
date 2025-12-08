@@ -2,7 +2,7 @@
 Robo Manim Add-ons: A collection of utilities and extensions for Manim Community Edition.
 """
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 from .geometry_utils import perp, parallel, project, reflect, extended_line, pll, xl
 from .label_utils import vertex_labels, edge_labels
