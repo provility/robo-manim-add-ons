@@ -58,3 +58,6 @@ dmypy.json
 # Distribution / packaging
 *.whl
 pip-wheel-metadata/
+
+# External/legacy code (not part of package)
+external/
