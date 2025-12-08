@@ -1,9 +1,9 @@
 """
-Demo of intersection_utils: intersect_lines and intersect_line_circle functions.
+Demo of intersection_utils: ill (intersect_lines) and ilc (intersect_line_circle) functions.
 """
 
 from manim import *
-from robo_manim_add_ons import intersect_lines, intersect_line_circle
+from robo_manim_add_ons import ill, ilc
 
 
 class BasicIntersectionDemo(Scene):
@@ -15,7 +15,7 @@ class BasicIntersectionDemo(Scene):
         line2 = Line(DOWN * 2, UP * 2, color=GREEN)
 
         # Find intersection
-        intersection_dot = intersect_lines(line1, line2)
+        intersection_dot = ill(line1, line2)
         intersection_dot.set_color(RED).scale(1.5)
 
         # Labels
@@ -41,7 +41,7 @@ class DiagonalIntersectionDemo(Scene):
         line2 = Line(LEFT * 2 + UP * 2, RIGHT * 2 + DOWN * 2, color=YELLOW)
 
         # Find intersection
-        intersection_dot = intersect_lines(line1, line2)
+        intersection_dot = ill(line1, line2)
         intersection_dot.set_color(RED).scale(1.5)
 
         title = Text("Diagonal Lines Intersection", font_size=28).to_edge(UP)
@@ -64,7 +64,7 @@ class ParallelLinesDemo(Scene):
         line2 = Line(LEFT * 3, RIGHT * 3, color=GREEN).shift(DOWN)
 
         # Try to find intersection
-        result = intersect_lines(line1, line2)
+        result = ill(line1, line2)
 
         # Labels
         line1_label = Text("Line 1", font_size=24, color=BLUE).next_to(line1, UP)
@@ -94,7 +94,7 @@ class ExtendedIntersectionDemo(Scene):
         line2 = Line(RIGHT + UP, RIGHT * 3 + UP * 2, color=GREEN)
 
         # Find intersection (lines extended infinitely)
-        intersection_dot = intersect_lines(line1, line2)
+        intersection_dot = ill(line1, line2)
         intersection_dot.set_color(RED).scale(1.5)
 
         # Create dashed extension lines to show the concept
@@ -137,7 +137,7 @@ class DynamicIntersectionDemo(Scene):
 
         # Dynamic intersection point using always_redraw
         intersection_dot = always_redraw(
-            lambda: intersect_lines(fixed_line, rotating_line).set_color(RED).scale(1.5)
+            lambda: ill(fixed_line, rotating_line).set_color(RED).scale(1.5)
         )
 
         # Labels
@@ -188,7 +188,7 @@ class MultipleIntersectionsDemo(Scene):
             intersecting_lines.append(line)
 
             # Find intersection with center line
-            dot = intersect_lines(center_line, line)
+            dot = ill(center_line, line)
             dot.set_color(color).scale(0.8)
             intersection_dots.append(dot)
 
@@ -232,7 +232,7 @@ class TriangleIntersectionDemo(Scene):
         perp2 = perp(side_ac, Dot(vertices[1]), length=5, placement="start").set_color(GREEN)
 
         # Find orthocenter (intersection of perpendiculars)
-        orthocenter = intersect_lines(perp1, perp2)
+        orthocenter = ill(perp1, perp2)
         orthocenter.set_color(YELLOW).scale(2)
 
         title = Text("Triangle Orthocenter", font_size=28).to_edge(UP)
@@ -259,7 +259,7 @@ class ConditionalIntersectionDemo(Scene):
 
         # Function to check and display intersection
         def show_intersection_status():
-            result = intersect_lines(line1, line2)
+            result = ill(line1, line2)
 
             if isinstance(result, Dot):
                 # Lines intersect
@@ -308,7 +308,7 @@ class BasicLineCircleIntersection(Scene):
         line = Line(LEFT * 3, RIGHT * 3, color=GREEN)
 
         # Find intersections
-        intersections = intersect_line_circle(line, circle)
+        intersections = ilc(line, circle)
         for dot in intersections:
             dot.set_color(RED).scale(1.5)
 
@@ -337,7 +337,7 @@ class TangentLineDemo(Scene):
         line = Line(LEFT * 3 + UP * 2, RIGHT * 3 + UP * 2, color=GREEN)
 
         # Find intersection (should be one point)
-        intersections = intersect_line_circle(line, circle)
+        intersections = ilc(line, circle)
         for dot in intersections:
             dot.set_color(YELLOW).scale(2)
 
@@ -366,7 +366,7 @@ class NoIntersectionDemo(Scene):
         line = Line(LEFT * 3 + UP * 3, RIGHT * 3 + UP * 3, color=GREEN)
 
         # Find intersections (should be empty)
-        intersections = intersect_line_circle(line, circle)
+        intersections = ilc(line, circle)
 
         # Labels
         title = Text("No Intersection", font_size=28).to_edge(UP)
@@ -398,7 +398,7 @@ class DynamicLineCircleIntersection(Scene):
         intersections = always_redraw(
             lambda: VGroup(*[
                 dot.set_color(RED).scale(1.5)
-                for dot in intersect_line_circle(line, circle)
+                for dot in ilc(line, circle)
             ])
         )
 
@@ -443,7 +443,7 @@ class MultipleCirclesIntersection(Scene):
         # Find all intersections
         all_intersections = VGroup()
         for circle in circles:
-            intersections = intersect_line_circle(line, circle)
+            intersections = ilc(line, circle)
             for dot in intersections:
                 dot.set_color(YELLOW).scale(0.8)
             all_intersections.add(intersections)
@@ -470,7 +470,7 @@ class ChordLengthDemo(Scene):
         line = Line(LEFT * 3 + UP * 1, RIGHT * 3 + UP * 1, color=GREEN)
 
         # Find intersections
-        intersections = intersect_line_circle(line, circle)
+        intersections = ilc(line, circle)
 
         if len(intersections) == 2:
             # Create chord line segment
@@ -516,8 +516,8 @@ class DiameterDemo(Scene):
         chord_line = Line(LEFT * 3 + UP * 1.5, RIGHT * 3 + UP * 1.5, color=ORANGE)
 
         # Find intersections
-        diameter_intersections = intersect_line_circle(diameter_line, circle)
-        chord_intersections = intersect_line_circle(chord_line, circle)
+        diameter_intersections = ilc(diameter_line, circle)
+        chord_intersections = ilc(chord_line, circle)
 
         # Calculate lengths
         if len(diameter_intersections) == 2:

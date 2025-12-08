@@ -1,9 +1,9 @@
 """
-Demo of geometry utilities: perp and parallel functions.
+Demo of geometry utilities: perp and pll (parallel) functions.
 """
 
 from manim import *
-from robo_manim_add_ons import perp, parallel
+from robo_manim_add_ons import perp, pll
 
 
 class PerpDemo(Scene):
@@ -43,7 +43,7 @@ class ParallelDemo(Scene):
     def construct(self):
         ref_line = Line(LEFT + DOWN, RIGHT + UP, color=BLUE)
         dot = Dot(UP * 2, color=RED)
-        parallel_line = parallel(ref_line, dot, length=3.0, placement="mid").set_color(YELLOW)
+        parallel_line = pll(ref_line, dot, length=3.0, placement="mid").set_color(YELLOW)
 
         self.play(Create(ref_line))
         self.play(Create(dot))

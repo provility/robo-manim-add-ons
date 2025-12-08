@@ -1,12 +1,12 @@
 """
-Annotation Examples using distance_marker
+Annotation Examples using dm (distance_marker)
 
-This demonstrates how to use the distance_marker function for
+This demonstrates how to use the dm function for
 annotating distances in geometric diagrams.
 """
 
 from manim import *
-from robo_manim_add_ons import distance_marker, dm
+from robo_manim_add_ons import dm
 
 
 class BasicDistanceMarker(Scene):
@@ -22,7 +22,7 @@ class BasicDistanceMarker(Scene):
         )
 
         # Add distance markers on each side
-        marker_a = distance_marker(
+        marker_a = dm(
             [-2, -1, 0],
             [2, -1, 0],
             text="a",
@@ -30,7 +30,7 @@ class BasicDistanceMarker(Scene):
             label_offset=0.4
         )
 
-        marker_b = distance_marker(
+        marker_b = dm(
             [2, -1, 0],
             [0, 2, 0],
             text="b",
@@ -38,7 +38,7 @@ class BasicDistanceMarker(Scene):
             label_offset=0.4
         )
 
-        marker_c = distance_marker(
+        marker_c = dm(
             [0, 2, 0],
             [-2, -1, 0],
             text="c",
@@ -70,7 +70,7 @@ class LabelOffsetComparison(Scene):
         line_y = 1
 
         # Positive offset (above)
-        marker_pos = distance_marker(
+        marker_pos = dm(
             [-3, line_y, 0],
             [3, line_y, 0],
             text=r"\text{offset=0.5}",
@@ -81,7 +81,7 @@ class LabelOffsetComparison(Scene):
 
         # Zero offset (on line)
         line_y = -0.5
-        marker_zero = distance_marker(
+        marker_zero = dm(
             [-3, line_y, 0],
             [3, line_y, 0],
             text=r"\text{offset=0}",
@@ -92,7 +92,7 @@ class LabelOffsetComparison(Scene):
 
         # Negative offset (below)
         line_y = -2
-        marker_neg = distance_marker(
+        marker_neg = dm(
             [-3, line_y, 0],
             [3, line_y, 0],
             text=r"\text{offset=-0.5}",
@@ -126,7 +126,7 @@ class DistanceMarkerOrientations(Scene):
         title = Text("Distance Markers at Various Angles", font_size=32).to_edge(UP)
 
         # Horizontal
-        h_marker = distance_marker(
+        h_marker = dm(
             [-3, 2, 0],
             [-1, 2, 0],
             text="h",
@@ -135,7 +135,7 @@ class DistanceMarkerOrientations(Scene):
         )
 
         # Vertical
-        v_marker = distance_marker(
+        v_marker = dm(
             [0, 1.5, 0],
             [0, -0.5, 0],
             text="v",
@@ -144,7 +144,7 @@ class DistanceMarkerOrientations(Scene):
         )
 
         # Diagonal (45 degrees)
-        d1_marker = distance_marker(
+        d1_marker = dm(
             [1.5, 2, 0],
             [3, 0.5, 0],
             text="d_1",
@@ -153,7 +153,7 @@ class DistanceMarkerOrientations(Scene):
         )
 
         # Diagonal (negative slope)
-        d2_marker = distance_marker(
+        d2_marker = dm(
             [-3, -1, 0],
             [-1.5, -2.5, 0],
             text="d_2",
@@ -191,7 +191,7 @@ class DistanceMarkerRectangle(Scene):
         bottom_right = corners[3]
 
         # Width marker (bottom)
-        width_marker = distance_marker(
+        width_marker = dm(
             bottom_left,
             bottom_right,
             text="4",
@@ -200,7 +200,7 @@ class DistanceMarkerRectangle(Scene):
         )
 
         # Height marker (right)
-        height_marker = distance_marker(
+        height_marker = dm(
             bottom_right,
             top_right,
             text="2.5",
@@ -236,7 +236,7 @@ class DistanceMarkerCustomization(Scene):
         title = Text("Customized Distance Markers", font_size=32).to_edge(UP)
 
         # Thin marker
-        thin_marker = distance_marker(
+        thin_marker = dm(
             [-3, 2, 0],
             [3, 2, 0],
             text=r"\text{thin}",
@@ -248,7 +248,7 @@ class DistanceMarkerCustomization(Scene):
         thin_label = Text("stroke_width=1, tick_size=0.15", font_size=18).next_to(thin_marker, DOWN, buff=0.3)
 
         # Normal marker
-        normal_marker = distance_marker(
+        normal_marker = dm(
             [-3, 0, 0],
             [3, 0, 0],
             text=r"\text{normal}",
@@ -260,7 +260,7 @@ class DistanceMarkerCustomization(Scene):
         normal_label = Text("stroke_width=2, tick_size=0.25 (default)", font_size=18).next_to(normal_marker, DOWN, buff=0.3)
 
         # Thick marker
-        thick_marker = distance_marker(
+        thick_marker = dm(
             [-3, -2, 0],
             [3, -2, 0],
             text=r"\text{thick}",
@@ -296,7 +296,7 @@ class PythagoreanTheorem(Scene):
         )
 
         # Add distance markers
-        a_marker = distance_marker(
+        a_marker = dm(
             [-2, -1.5, 0],
             [2, -1.5, 0],
             text="a = 4",
@@ -304,7 +304,7 @@ class PythagoreanTheorem(Scene):
             label_offset=-0.4
         )
 
-        b_marker = distance_marker(
+        b_marker = dm(
             [2, -1.5, 0],
             [2, 1.5, 0],
             text="b = 3",
@@ -312,7 +312,7 @@ class PythagoreanTheorem(Scene):
             label_offset=0.4
         )
 
-        c_marker = distance_marker(
+        c_marker = dm(
             [2, 1.5, 0],
             [-2, -1.5, 0],
             text="c = 5",
@@ -372,21 +372,21 @@ class DistanceMarkerWithDots(Scene):
         )
 
         # Create distance markers using Dot objects directly
-        marker_ab = distance_marker(
+        marker_ab = dm(
             dot_a, dot_b,
             text="d_{AB}",
             color=PURPLE,
             label_offset=-0.5
         )
 
-        marker_bc = distance_marker(
+        marker_bc = dm(
             dot_b, dot_c,
             text="d_{BC}",
             color=ORANGE,
             label_offset=0.4
         )
 
-        marker_ca = distance_marker(
+        marker_ca = dm(
             dot_c, dot_a,
             text="d_{CA}",
             color=TEAL,
@@ -438,7 +438,7 @@ class MarkerOffsetExample(Scene):
 
         # Markers at different offsets
         # On the line (marker_offset=0)
-        marker_on = distance_marker(
+        marker_on = dm(
             [-3, 0, 0],
             [3, 0, 0],
             text=r"\text{on line}",
@@ -448,7 +448,7 @@ class MarkerOffsetExample(Scene):
         )
 
         # Above the line (marker_offset=0.6)
-        marker_above = distance_marker(
+        marker_above = dm(
             [-3, 0, 0],
             [3, 0, 0],
             text=r"\text{offset=0.6}",
@@ -458,7 +458,7 @@ class MarkerOffsetExample(Scene):
         )
 
         # Below the line (marker_offset=-0.6)
-        marker_below = distance_marker(
+        marker_below = dm(
             [-3, 0, 0],
             [3, 0, 0],
             text=r"\text{offset=-0.6}",
@@ -502,7 +502,7 @@ class MarkerOffsetPractical(Scene):
         bottom_right = corners[3]
 
         # External dimension markers (outside rectangle)
-        width_outer = distance_marker(
+        width_outer = dm(
             bottom_left,
             bottom_right,
             text="4.0",
@@ -511,7 +511,7 @@ class MarkerOffsetPractical(Scene):
             label_offset=0
         )
 
-        height_outer = distance_marker(
+        height_outer = dm(
             bottom_right,
             top_right,
             text="2.5",
@@ -521,7 +521,7 @@ class MarkerOffsetPractical(Scene):
         )
 
         # Internal dimension markers (inside rectangle, for contrast)
-        width_inner = distance_marker(
+        width_inner = dm(
             bottom_left,
             bottom_right,
             text="width",
@@ -532,7 +532,7 @@ class MarkerOffsetPractical(Scene):
             tick_size=0.15
         )
 
-        height_inner = distance_marker(
+        height_inner = dm(
             bottom_right,
             top_right,
             text="height",
@@ -580,7 +580,7 @@ class LineObjectDemo(Scene):
         line3 = Line([-2.5, -1.5, 0], [2.5, -1.5, 0], color=GREEN)
 
         # Use line objects directly with distance_marker
-        marker1 = distance_marker(line1, text="Line", color=BLUE, marker_offset=0.5)
+        marker1 = dm(line1, text="Line", color=BLUE, marker_offset=0.5)
 
         # Use alias dm with Arrow object
         marker2 = dm(line2, text="Arrow", color=RED, marker_offset=0.5)
@@ -589,7 +589,7 @@ class LineObjectDemo(Scene):
         marker3 = dm(line3, text="dm alias", color=GREEN, marker_offset=-0.5)
 
         # Code examples
-        code1 = Text('distance_marker(line, text="Line")', font_size=14).next_to(line1, LEFT, buff=0.3)
+        code1 = Text('dm(line, text="Line")', font_size=14).next_to(line1, LEFT, buff=0.3)
         code2 = Text('dm(arrow, text="Arrow")', font_size=14).next_to(line2, LEFT, buff=0.3)
         code3 = Text('dm(line, marker_offset=-0.5)', font_size=14).next_to(line3, LEFT, buff=0.3)
 
@@ -619,7 +619,7 @@ class MarkerOffsetComparison(Scene):
         # Left side - without offset (overlaps)
         left_title = Text("Without offset", font_size=24).move_to([-3, 2.5, 0])
         left_line = Line([-4.5, 1, 0], [-1.5, 1, 0], color=WHITE, stroke_width=4)
-        left_marker = distance_marker(
+        left_marker = dm(
             [-4.5, 1, 0],
             [-1.5, 1, 0],
             text="L",
@@ -631,7 +631,7 @@ class MarkerOffsetComparison(Scene):
         # Right side - with offset (clear)
         right_title = Text("With offset=0.6", font_size=24).move_to([3, 2.5, 0])
         right_line = Line([1.5, 1, 0], [4.5, 1, 0], color=WHITE, stroke_width=4)
-        right_marker = distance_marker(
+        right_marker = dm(
             [1.5, 1, 0],
             [4.5, 1, 0],
             text="L",

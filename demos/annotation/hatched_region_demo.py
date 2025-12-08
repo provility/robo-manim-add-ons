@@ -1,7 +1,7 @@
-"""Demo of hatched_region() function for textbook-style shading."""
+"""Demo of hatch() function for textbook-style shading."""
 
 from manim import *
-from robo_manim_add_ons import hatched_region
+from robo_manim_add_ons import hatch
 
 
 class DiagonalHatchDemo(Scene):
@@ -21,7 +21,7 @@ class DiagonalHatchDemo(Scene):
         vertices = [(2, 2), (8, 2), (8, 6), (2, 6)]
 
         # Create hatched region with diagonal lines
-        hatched, boundary = hatched_region(
+        hatched, boundary = hatch(
             axes, vertices,
             spacing=0.2,
             direction="/",
@@ -56,7 +56,7 @@ class TriangleHatchDemo(Scene):
         vertices = [(2, 2), (8, 2), (5, 6)]
 
         # Create hatched region with backslash pattern
-        hatched, boundary = hatched_region(
+        hatched, boundary = hatch(
             axes, vertices,
             spacing=0.25,
             direction="\\",

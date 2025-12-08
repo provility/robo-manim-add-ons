@@ -1,11 +1,11 @@
 """
-Demo: extended_line() - Extending lines from specific proportions
+Demo: xl() - Extending lines from specific proportions
 
 Shows how to create lines that extend from points along an existing line.
 """
 
 from manim import *
-from robo_manim_add_ons import extended_line
+from robo_manim_add_ons import xl
 
 
 class ExtendedLineBasicDemo(Scene):
@@ -17,17 +17,17 @@ class ExtendedLineBasicDemo(Scene):
         self.wait(0.5)
 
         # Extend from start (proportion=0.0)
-        ext_start = extended_line(base_line, proportion=0.0, length=1.5).set_color(RED)
+        ext_start = xl(base_line, proportion=0.0, length=1.5).set_color(RED)
         self.play(Create(ext_start))
         self.wait(0.5)
 
         # Extend from midpoint (proportion=0.5)
-        ext_mid = extended_line(base_line, proportion=0.5, length=1.5).set_color(GREEN)
+        ext_mid = xl(base_line, proportion=0.5, length=1.5).set_color(GREEN)
         self.play(Create(ext_mid))
         self.wait(0.5)
 
         # Extend from end (proportion=1.0)
-        ext_end = extended_line(base_line, proportion=1.0, length=1.5).set_color(YELLOW)
+        ext_end = xl(base_line, proportion=1.0, length=1.5).set_color(YELLOW)
         self.play(Create(ext_end))
         self.wait(2)
 
@@ -53,14 +53,14 @@ class ExtendedLinePolygonDemo(Scene):
         side3 = Line(vertices[2], vertices[0], color=BLUE)
 
         # Extend each side outward from both ends
-        ext1_start = extended_line(side1, proportion=0.0, length=1.0).set_color(RED)
-        ext1_end = extended_line(side1, proportion=1.0, length=1.0).set_color(RED)
+        ext1_start = xl(side1, proportion=0.0, length=1.0).set_color(RED)
+        ext1_end = xl(side1, proportion=1.0, length=1.0).set_color(RED)
 
-        ext2_start = extended_line(side2, proportion=0.0, length=1.0).set_color(RED)
-        ext2_end = extended_line(side2, proportion=1.0, length=1.0).set_color(RED)
+        ext2_start = xl(side2, proportion=0.0, length=1.0).set_color(RED)
+        ext2_end = xl(side2, proportion=1.0, length=1.0).set_color(RED)
 
-        ext3_start = extended_line(side3, proportion=0.0, length=1.0).set_color(RED)
-        ext3_end = extended_line(side3, proportion=1.0, length=1.0).set_color(RED)
+        ext3_start = xl(side3, proportion=0.0, length=1.0).set_color(RED)
+        ext3_end = xl(side3, proportion=1.0, length=1.0).set_color(RED)
 
         extensions = VGroup(ext1_start, ext1_end, ext2_start, ext2_end, ext3_start, ext3_end)
 
@@ -76,7 +76,7 @@ class ExtendedLineDynamicDemo(Scene):
         t_tracker = ValueTracker(0.0)
 
         ext_line = always_redraw(
-            lambda: extended_line(
+            lambda: xl(
                 base_line,
                 proportion=t_tracker.get_value(),
                 length=1.5
@@ -104,7 +104,7 @@ class ExtendedLineRotatingDemo(Scene):
         base_line = Line(LEFT * 2, RIGHT * 2, color=BLUE)
 
         ext_line = always_redraw(
-            lambda: extended_line(base_line, proportion=1.0, length=1.5).set_color(GREEN)
+            lambda: xl(base_line, proportion=1.0, length=1.5).set_color(GREEN)
         )
 
         self.play(Create(base_line))
@@ -131,7 +131,7 @@ class ExtendedLineDiagonalDemo(Scene):
 
         ext_lines = VGroup()
         for prop, color in zip(proportions, colors):
-            ext = extended_line(base_line, proportion=prop, length=1.2).set_color(color)
+            ext = xl(base_line, proportion=prop, length=1.2).set_color(color)
             ext_lines.add(ext)
 
         self.play(LaggedStart(*[Create(line) for line in ext_lines], lag_ratio=0.4))
