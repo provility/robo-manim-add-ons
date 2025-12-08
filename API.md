@@ -127,9 +127,40 @@ scaled(obj, scale_factor, about=None) -> Mobject        # Copy and scale
 ### Graph Operations
 ```python
 graph(*args, x_range=[-5, 5], y_range=[-5, 5], axes=None, x_ticks=None, y_ticks=None, coords=True, **kwargs) -> Tuple[Axes, object]
-# Args: 1 string (explicit/implicit) or 2 strings (parametric)
-# Returns: (axes, plot) - axes and the plotted function
+# Returns: (axes, plot) - the Axes object and plotted function
+# x_ticks/y_ticks: None (auto), "pi", "pi/2", "2pi", or False (regular numbers)
+# coords: True adds coordinate numbers (default), False hides them
 GraphUtils.graph(...)    # Class method version (same signature)
+```
+
+**Examples:**
+```python
+# Explicit plot (1 string, no "=")
+axes, plot = graph("x**2")                      # Parabola
+axes, plot = graph("sin(x)")                    # Auto π ticks on x-axis
+axes, plot = graph("y = 2*x + 1")               # "y=" prefix stripped
+
+# Implicit plot (1 string with "=")
+axes, plot = graph("x**2 + y**2 = 4")           # Circle radius 2
+axes, plot = graph("x*y = 1")                   # Hyperbola
+
+# Parametric plot (2 strings)
+axes, plot = graph("cos(t)", "sin(t)")          # Unit circle
+axes, plot = graph("t*cos(t)", "t*sin(t)")      # Spiral
+
+# Custom ranges
+axes, plot = graph("sin(x)", x_range=[0, 2*PI], y_range=[-1.5, 1.5])
+
+# Manual π tick control
+axes, plot = graph("sin(x)", x_ticks="pi/2")    # Finer π/2 ticks
+axes, plot = graph("tan(x)", x_ticks="pi", y_range=[-10, 10])
+
+# Disable auto features
+axes, plot = graph("sin(x)", x_ticks=False)     # No π ticks, use numbers
+axes, plot = graph("x**2", coords=False)        # No coordinate numbers
+
+# Styling
+axes, plot = graph("x**2", color=RED, stroke_width=4)
 ```
 
 ---
