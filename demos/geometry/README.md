@@ -1,6 +1,6 @@
 # Geometry Demos
 
-Screenshots from geometry utility examples demonstrating `perp()` and `parallel()` functions.
+Screenshots from geometry utility examples demonstrating `perp()` and `pll()` functions.
 
 ## Static Demos (geometry_demo.py)
 

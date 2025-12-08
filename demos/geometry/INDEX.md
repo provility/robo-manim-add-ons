@@ -1,6 +1,8 @@
 # Geometry Utilities
 
-Demonstrations of `perp()` and `parallel()` functions.
+Demonstrations of `perp()` and `pll()` functions.
+
+**Short aliases:** `pll` (parallel), `xl` (extended_line)
 
 ---
 
@@ -29,11 +31,11 @@ self.play(Create(perp_line))
 **Basic parallel line construction**
 
 ```python
-from robo_manim_add_ons import parallel
+from robo_manim_add_ons import pll
 
 ref_line = Line(LEFT + DOWN, RIGHT + UP, color=BLUE)
 dot = Dot(UP * 2, color=RED)
-parallel_line = parallel(ref_line, dot, length=3.0, placement="mid").set_color(YELLOW)
+parallel_line = pll(ref_line, dot, length=3.0, placement="mid").set_color(YELLOW)
 
 self.play(Create(ref_line))
 self.play(Create(dot))
@@ -76,7 +78,7 @@ dot = Dot(ORIGIN, color=RED)
 perp_line = perp(ref_line, dot, 3.0, placement="mid").set_color(GREEN)
 
 dot2 = Dot(UP * 2 + LEFT, color=ORANGE)
-parallel_line = parallel(ref_line, dot2, 2.5, placement="mid").set_color(YELLOW)
+parallel_line = pll(ref_line, dot2, 2.5, placement="mid").set_color(YELLOW)
 ```
 
 ![GeometryComboDemo](https://github.com/provility/robo-manim-add-ons/raw/main/demos/geometry/GeometryComboDemo_ManimCE_v0.19.0.png)
@@ -118,7 +120,7 @@ base_line = Line(LEFT * 3, RIGHT * 3, color=BLUE)
 following_dot = Dot(UP * 1.5, color=YELLOW)
 
 parallel_line = always_redraw(
-    lambda: parallel(base_line, following_dot, length=4, placement="mid").set_color(GREEN)
+    lambda: pll(base_line, following_dot, length=4, placement="mid").set_color(GREEN)
 )
 
 self.play(Create(base_line))
@@ -201,7 +203,7 @@ grid_dots = VGroup(*[
 
 # Create parallel lines for each dot
 parallel_lines = VGroup(*[
-    always_redraw(lambda d=dot: parallel(ref_line, d, 4.0, placement="mid").set_color(GREEN))
+    always_redraw(lambda d=dot: pll(ref_line, d, 4.0, placement="mid").set_color(GREEN))
     for dot in grid_dots
 ])
 
@@ -227,7 +229,7 @@ side = always_redraw(
 )
 
 top = always_redraw(
-    lambda: parallel(
+    lambda: pll(
         base, top_left_dot,
         length=base.get_length(),
         placement="start"
@@ -237,7 +239,7 @@ top = always_redraw(
 top_right_dot = always_redraw(lambda: Dot(top.get_end(), color=YELLOW))
 
 right_side = always_redraw(
-    lambda: parallel(
+    lambda: pll(
         side, top_right_dot,
         length=side.get_length(),
         placement="end"

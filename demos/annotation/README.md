@@ -1,6 +1,6 @@
 # Annotation Demos
 
-Screenshots from distance marker annotation examples using `distance_marker()`.
+Screenshots from distance marker annotation examples using `dm()`.
 
 ## Demos (annotation_demo.py)
 

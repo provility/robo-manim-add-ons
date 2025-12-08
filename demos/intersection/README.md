@@ -1,6 +1,6 @@
 # Intersection Demos
 
-Screenshots from intersection examples using `intersect_lines()` and `intersect_line_circle()`.
+Screenshots from intersection examples using `ill()` and `ilc()`.
 
 ## Line-Line Intersection Demos
 

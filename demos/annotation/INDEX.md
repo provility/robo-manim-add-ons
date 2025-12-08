@@ -1,8 +1,8 @@
 # Annotation Utilities
 
-Demonstrations of `label()`, `hatched_region()`, `distance_marker()`, and their aliases for geometric annotations.
+Demonstrations of `label()`, `hatch()`, and `dm()` for geometric annotations.
 
-**Aliases:** `dm` (distance_marker), `hatch` (hatched_region)
+**Short aliases:** `dm` (distance_marker), `hatch` (hatched_region)
 
 ---
 
@@ -28,13 +28,13 @@ ab_label = label("AB", dot_a, dot_b, buff=0.5)
 **Diagonal hatching pattern on a rectangle**
 
 ```python
-from robo_manim_add_ons import hatched_region
+from robo_manim_add_ons import hatch
 
 axes = Axes(x_range=[0, 10, 1], y_range=[0, 8, 1])
 vertices = [(2, 2), (8, 2), (8, 6), (2, 6)]
 
 # Create hatched region with diagonal lines
-hatched, boundary = hatched_region(
+hatched, boundary = hatch(
     axes, vertices,
     spacing=0.2,
     direction="/",    # Diagonal hatching
@@ -55,13 +55,13 @@ self.add(axes, boundary, hatched)
 **Backslash hatching pattern on a triangle**
 
 ```python
-from robo_manim_add_ons import hatched_region
+from robo_manim_add_ons import hatch
 
 axes = Axes(x_range=[0, 10, 1], y_range=[0, 8, 1])
 vertices = [(2, 2), (8, 2), (5, 6)]  # Triangle
 
 # Create hatched region with backslash pattern
-hatched, boundary = hatched_region(
+hatched, boundary = hatch(
     axes, vertices,
     spacing=0.25,
     direction="\\",   # Backslash hatching
@@ -84,14 +84,14 @@ self.add(axes, boundary, hatched)
 **[▶️ Watch Video](https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/BasicDistanceMarker.mp4)**
 
 ```python
-from robo_manim_add_ons import distance_marker
+from robo_manim_add_ons import dm
 
 triangle = Polygon([-2, -1, 0], [2, -1, 0], [0, 2, 0], color=WHITE)
 
 # Add distance marker on each side (using two points)
-marker_a = distance_marker(
+marker_a = dm(
     [-2, -1, 0], [2, -1, 0],
-    label_text="a",
+    text="a",
     color=BLUE,
     label_offset=0.4  # Distance from line to label
 )
@@ -105,15 +105,15 @@ marker_a = distance_marker(
 **[▶️ Watch Video](https://github.com/provility/robo-manim-add-ons/raw/main/demos/annotation/LineObjectDemo.mp4)**
 
 ```python
-from robo_manim_add_ons import distance_marker, dm
+from robo_manim_add_ons import dm
 
 # Create line objects
 line1 = Line([-3, 1.5, 0], [3, 1.5, 0], color=BLUE)
 line2 = Arrow([-2, 0, 0], [2, 0, 0], color=RED, buff=0)
 
-# Pass line objects directly to distance_marker or dm alias
-marker1 = distance_marker(line1, label_text="Line", marker_offset=0.5)
-marker2 = dm(line2, label_text="Arrow", marker_offset=0.5)
+# Pass line objects directly to dm
+marker1 = dm(line1, text="Line", marker_offset=0.5)
+marker2 = dm(line2, text="Arrow", marker_offset=0.5)
 
 # Both signatures work:
 # dm(line_object, **kwargs)           # Line/Arrow object
@@ -132,14 +132,14 @@ rect = Rectangle(width=4, height=2.5, color=WHITE)
 corners = rect.get_vertices()  # [top_right, top_left, bottom_left, bottom_right]
 
 # Width marker
-width_marker = distance_marker(
+width_marker = dm(
     corners[2], corners[3],  # bottom_left to bottom_right
     label_text="4",
     label_offset=-0.5  # Place below
 )
 
 # Height marker
-height_marker = distance_marker(
+height_marker = dm(
     corners[3], corners[0],  # bottom_right to top_right
     label_text="2.5",
     label_offset=0.5   # Place to the right
@@ -160,15 +160,15 @@ dot_b = Dot([2, -1, 0], color=RED)
 dot_c = Dot([0, 2, 0], color=GREEN)
 
 # Markers automatically extract positions from Dots
-marker_ab = distance_marker(
+marker_ab = dm(
     dot_a, dot_b,  # Pass Dots directly
     label_text="d_{AB}",
     label_offset=-0.5,
     marker_offset=0  # Optional: offset entire marker perpendicular to line
 )
 
-marker_bc = distance_marker(dot_b, dot_c, label_text="d_{BC}")
-marker_ca = distance_marker(dot_c, dot_a, label_text="d_{CA}")
+marker_bc = dm(dot_b, dot_c, label_text="d_{BC}")
+marker_ca = dm(dot_c, dot_a, label_text="d_{CA}")
 ```
 
 ---
@@ -184,21 +184,21 @@ triangle = Polygon(
     color=WHITE
 )
 
-a_marker = distance_marker(
+a_marker = dm(
     [-2, -1.5, 0], [2, -1.5, 0],
     label_text="a = 4",
     color=BLUE,
     label_offset=-0.4
 )
 
-b_marker = distance_marker(
+b_marker = dm(
     [2, -1.5, 0], [2, 1.5, 0],
     label_text="b = 3",
     color=RED,
     label_offset=0.4
 )
 
-c_marker = distance_marker(
+c_marker = dm(
     [2, 1.5, 0], [-2, -1.5, 0],
     label_text="c = 5",
     color=GREEN,
