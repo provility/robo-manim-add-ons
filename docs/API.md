@@ -67,6 +67,9 @@ x2v(axes, graph, x) -> Dot
 r2p(obj, proportion) -> Dot
 # Point at proportion along object. obj must have point_from_proportion() (Line, Arc, VMobject).
 # proportion: 0=start, 1=end
+
+a2p(circle, angle_degrees) -> Dot
+# Point on circle at angle (degrees). 0=right, 90=top, 180=left, 270=bottom
 ```
 
 ### Line/Arrow Creation
@@ -355,16 +358,22 @@ addp(point, vector, **dot_kwargs) -> Dot
 ---
 
 ```python
-text(scene, mathtext, *indices) -> MathTex
+# These are methods on RogebraScene (no scene argument needed)
+
+text(mathtext, *indices) -> MathTex
 # Extract parts from MathTex. mathtext: string (creates MathTex) or MathTex object
 # indices: int or "1:2" slice strings. Chainable: eq[1][2] same as (eq, 1, 2)
 # Silently fails on invalid indices, returns empty VMobject
 
-text2(scene, mathtext, *indices) -> MathTex
+text2(mathtext, *indices) -> MathTex
 # Debug version: extracts parts + highlights with BLUE color and ORANGE box
 # Same params as text(). Use for visual debugging of MathTex structure
 
-# TextUtils.text(...), TextUtils.text2(...) - Class method versions with same signatures
+textdg(tex, scale=2, lscale=0.3, buff=0.05, color_tex=True) -> VGroup
+# Debug utility: show index labels below each MathTex character
+# tex: string (creates MathTex) or MathTex object
+# scale: scale factor for MathTex, lscale: scale for labels, buff: label spacing
+# Returns VGroup with MathTex and colored index labels (word,char format)
 ```
 
 ---
@@ -430,12 +439,15 @@ class RogebraScene(MovingCameraScene):
     zoom(obj, wait_time=0.3, width_factor=1.2)
     # Zoom camera to object, wait, then restore. obj: any Mobject
 
-    # MathTex utilities (same as TextUtils)
+    # MathTex utilities
     text(mathtext, *indices) -> MathTex
     # Extract MathTex parts. mathtext: string or MathTex, indices: int or slice strings
 
     text2(mathtext, *indices) -> MathTex
     # Debug version with BLUE + ORANGE highlight
+
+    textdg(tex, scale=2, lscale=0.3, buff=0.05, color_tex=True) -> VGroup
+    # Show index labels (word,char) below each character with cycling colors
 ```
 
 **Examples:**
@@ -454,6 +466,9 @@ self.zoom(text, 1.0, 1.5)                    # Zoom for 1s with 1.5x width
 eq = self.text("x^2 + y^2 = r^2")            # Create MathTex
 part = self.text(eq, 0)                      # Extract eq[0]
 self.text2(eq, 1, "2:4")                     # Show eq[1][2:4] with highlight
+
+# Debug MathTex indices
+self.textdg(r"\sin(x) = \frac{a}{b}")        # Show with colored index labels
 ```
 
 ---
@@ -464,7 +479,7 @@ All expression utilities available as static methods:
 Exp.x(obj)       Exp.y(obj)        Exp.st(obj)       Exp.ed(obj)       Exp.mid(obj)
 Exp.mag(obj)     Exp.uv(obj)       Exp.vec(obj)      Exp.ang(obj)      Exp.slope(obj)
 Exp.val(obj)     Exp.pt(x,y,z)     Exp.m2v(...)      Exp.v2m(...)      Exp.x2v(...)
-Exp.vl(...)      Exp.hl(...)       Exp.lra(...)      Exp.vra(...)      Exp.r2p(...)
+Exp.vl(...)      Exp.hl(...)       Exp.lra(...)      Exp.vra(...)      Exp.r2p(...)      Exp.a2p(...)
 Exp.ln(...)      Exp.vt(...)       Exp.tri(...)      Exp.sss(...)      Exp.sas(...)
 Exp.ssa(...)     Exp.rect(...)     Exp.aa(...)       Exp.aa2(...)      Exp.cr(...)
 Exp.graph(...)
@@ -481,7 +496,7 @@ from robo_manim_add_ons import (
     # Coords & vectors
     x, y, st, ed, mid, mag, uv, vec, ang, slope, val,
     # Points
-    pt, m2v, v2m, x2v, r2p, addp,
+    pt, m2v, v2m, x2v, r2p, a2p, addp,
     # Lines & shapes
     vl, hl, lra, vra, ln, vt, tri, sss, sas, ssa, rect, aa, aa2, rangle, cr,
     # Circle utilities
@@ -500,7 +515,7 @@ from robo_manim_add_ons import (
     translated, rotated, scaled,
     # Vector operations
     addv, subv, scalev,
-    # Text utilities
+    # Text utilities (standalone, require scene arg)
     text, text2,
     # Scene
     RogebraScene
@@ -515,7 +530,7 @@ from robo_manim_add_ons import Exp, VectorUtils, PointUtils, TextUtils, ArrowUti
 ---
 
 **Getters:** `x` `y` `st` `ed` `mid` `mag` `uv` `vec` `ang` `slope` `val`
-**Creators:** `pt` `m2v` `v2m` `x2v` `r2p` `vl` `hl` `lra` `vra` `ln` `vt` `tri` `sss` `sas` `ssa` `rect` `cr` `aa` `aa2` `rangle`
+**Creators:** `pt` `m2v` `v2m` `x2v` `r2p` `a2p` `vl` `hl` `lra` `vra` `ln` `vt` `tri` `sss` `sas` `ssa` `rect` `cr` `aa` `aa2` `rangle`
 **Circle:** `tangentc` `chord` `normal` `sector`
 **Triangle:** `centroid` `circumcenter` `orthocenter` `incenter` `altitude`
 **Geometry:** `perp` `pll` `project` `reflect` `xl` `ill` `ilc` `icc` `ilp`
@@ -524,8 +539,8 @@ from robo_manim_add_ons import Exp, VectorUtils, PointUtils, TextUtils, ArrowUti
 **Transform:** `translated` `rotated` `scaled`
 **Vector Ops:** `addv` `subv` `scalev` `VectorUtils`
 **Point Ops:** `addp` `PointUtils`
-**Text Ops:** `text` `text2` `TextUtils`
-**Scene Utils:** `RogebraScene` (fadeIn, fadeOut, amo, tf, rtf, zoom, text, text2)
+**Text Ops:** `text` `text2` `textdg`
+**Scene Utils:** `RogebraScene` (fadeIn, fadeOut, amo, tf, rtf, zoom, text, text2, textdg)
 
 ---
 

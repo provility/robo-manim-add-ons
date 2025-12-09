@@ -2,8 +2,8 @@
 RogebraScene: A Scene subclass with utility methods for common animations.
 """
 
-from manim import MovingCameraScene, FadeIn, FadeOut, Transform, ReplacementTransform, Restore
-from .text_utils import TextUtils
+from manim import MovingCameraScene, FadeIn, FadeOut, Transform, ReplacementTransform, Restore, VGroup, Text, MathTex, VMobject, SurroundingRectangle, RED, TEAL, GREEN, BLUE, PURPLE, ORANGE, DOWN
+from itertools import cycle
 
 
 class RogebraScene(MovingCameraScene):
@@ -217,6 +217,34 @@ class RogebraScene(MovingCameraScene):
         self.wait(wait_time)
         self.play(Restore(self.camera.frame))
 
+    def _parse_index(self, index_arg):
+        """Parse an index argument into a usable index or slice."""
+        if isinstance(index_arg, int):
+            return index_arg
+        elif isinstance(index_arg, str):
+            parts = index_arg.split(':')
+            if len(parts) == 2:
+                start = int(parts[0]) if parts[0] else None
+                end = int(parts[1]) if parts[1] else None
+                return slice(start, end)
+            else:
+                raise ValueError(f"Invalid slice format: {index_arg}")
+        else:
+            raise TypeError(f"Index must be int or string, got {type(index_arg)}")
+
+    def _extract_part(self, mathtext_obj, *indices):
+        """Extract a part from MathTex using chained indices with error reporting."""
+        try:
+            result = mathtext_obj
+            for i, index_arg in enumerate(indices):
+                parsed_index = self._parse_index(index_arg)
+                result = result[parsed_index]
+            return result
+        except (IndexError, TypeError, ValueError, KeyError) as e:
+            indices_str = ', '.join(str(i) for i in indices)
+            print(f"Invalid index [{indices_str}]: {e}")
+            return VMobject()
+
     def text(self, mathtext, *args):
         """
         Extract a part from MathTex or create MathTex from string with flexible indexing.
@@ -237,7 +265,18 @@ class RogebraScene(MovingCameraScene):
             part2 = self.text("x^2 + y", 1, 2)    # Extract eq[1][2]
             part3 = self.text(eq, "1:3")          # Extract eq[1:3]
         """
-        return TextUtils.text(self, mathtext, *args)
+        # Create MathTex if string is provided
+        if isinstance(mathtext, str):
+            mathtext_obj = MathTex(mathtext)
+        else:
+            mathtext_obj = mathtext
+
+        # If no indices provided, return the whole MathTex object
+        if len(args) == 0:
+            return mathtext_obj
+
+        # Extract part using indices
+        return self._extract_part(mathtext_obj, *args)
 
     def text2(self, mathtext, *args):
         """
@@ -260,4 +299,64 @@ class RogebraScene(MovingCameraScene):
             part = self.text2("x^2 + y^2", 0)     # Show eq[0] with BLUE + ORANGE box
             part2 = self.text2(eq, 1, "2:5")      # Show eq[1][2:5] with highlight
         """
-        return TextUtils.text2(self, mathtext, *args)
+        # Use text() to extract the part
+        extracted_part = self.text(mathtext, *args)
+
+        # If extraction failed (empty VMobject), return it
+        if isinstance(extracted_part, VMobject) and len(extracted_part.submobjects) == 0:
+            return extracted_part
+
+        # Color the extracted part BLUE
+        extracted_part.set_color(BLUE)
+
+        # Add to scene
+        self.add(extracted_part)
+
+        # Create and add ORANGE rectangle
+        rectangle = SurroundingRectangle(extracted_part, color=ORANGE)
+        self.add(rectangle)
+
+        return extracted_part
+
+    def textdg(self, tex, scale=2, lscale=0.3, buff=0.05, color_tex=True):
+        """
+        Debug utility: Show index labels below each character in a MathTex.
+
+        Creates colored index labels (word_index, char_index) below each submobject,
+        making it easy to identify which indices to use for extraction.
+
+        Args:
+            tex: Either a string (creates MathTex) or existing MathTex object
+            scale: Scale factor for the MathTex (default 2)
+            lscale: Scale factor for the index labels (default 0.3)
+            buff: Buffer between character and label (default 0.05)
+            color_tex: Whether to color the MathTex characters to match labels (default True)
+
+        Returns:
+            VGroup containing the MathTex and its index labels
+
+        Examples:
+            self.textdg(r"\\sin(x) = \\frac{a}{b}")  # Show with default scale
+            self.textdg(eq, scale=1.5)               # Use existing MathTex with custom scale
+        """
+        # Create MathTex if string is passed
+        if isinstance(tex, str):
+            tex = MathTex(tex)
+
+        tex.scale(scale)
+
+        subscripts = VGroup()
+        colors = cycle([RED, TEAL, GREEN, BLUE, PURPLE])
+
+        for j, word in enumerate(tex):
+            for i, subtex in enumerate(word):
+                color = next(colors)
+                sub = Text(f"{j},{i}", color=color).scale(lscale)
+                sub.next_to(subtex, DOWN, buff=buff)
+                subscripts.add(sub)
+                if color_tex:
+                    subtex.set_color(color)
+
+        result = VGroup(tex, subscripts)
+        self.add(result)
+        return result

@@ -805,6 +805,31 @@ def r2p(obj, proportion: float) -> Dot:
     return Dot(point)
 
 
+def a2p(circle, angle_degrees: float) -> Dot:
+    """
+    Get a point on a circle at a given angle and return it as a Dot.
+
+    Args:
+        circle: A Manim Circle object
+        angle_degrees: The angle in degrees (0 = right, 90 = top, 180 = left, 270 = bottom)
+
+    Returns:
+        A Dot at the point on the circle at the given angle
+
+    Example:
+        >>> from manim import Circle
+        >>> from robo_manim_add_ons import a2p
+        >>>
+        >>> circle = Circle()
+        >>> dot = a2p(circle, 0)    # Dot at right (3 o'clock)
+        >>> dot = a2p(circle, 90)   # Dot at top (12 o'clock)
+        >>> dot = a2p(circle, 180)  # Dot at left (9 o'clock)
+    """
+    angle_radians = angle_degrees * np.pi / 180
+    point = circle.point_at_angle(angle_radians)
+    return Dot(point)
+
+
 def ln(*args) -> Line:
     """
     Create a red Line with flexible arguments.
@@ -1627,6 +1652,7 @@ class Exp:
     lra = staticmethod(lra)
     vra = staticmethod(vra)
     r2p = staticmethod(r2p)
+    a2p = staticmethod(a2p)
     ln = staticmethod(ln)
     vt = staticmethod(vt)
     tri = staticmethod(tri)
