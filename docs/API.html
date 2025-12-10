@@ -367,26 +367,30 @@ VectorUtils.projection_region(vec, target, **kwargs) -&gt; Polygon
 
 <hr />
 
-<pre><code class="language-python">text(scene, mathtext, *indices) -&gt; MathTex
-# Extract parts from MathTex. mathtext: string (creates MathTex) or MathTex object
+<pre><code class="language-python">part(scene, mathtext, *indices) -&gt; MathTex
+# Extract parts from MathTex and color RED. mathtext: string (creates MathTex) or MathTex object
 # indices: int or &quot;1:2&quot; slice strings. Chainable: eq[1][2] same as (eq, 1, 2)
 # Silently fails on invalid indices, returns empty VMobject
 
-text2(scene, mathtext, *indices) -&gt; MathTex
-# Debug version: extracts parts + highlights with BLUE color and ORANGE box
-# Same params as text(). Use for visual debugging of MathTex structure
+part2(scene, mathtext, *indices) -&gt; MathTex
+# Debug version: extracts parts + highlights with RED color and ORANGE box
+# Same params as part(). Use for visual debugging of MathTex structure
 
-# TextUtils.text(...), TextUtils.text2(...) - Class method versions with same signatures</code></pre>
+# TextUtils.part(...), TextUtils.part2(...) - Class method versions with same signatures</code></pre>
 
 <hr />
 
-<pre><code class="language-python">vertex_labels(polygon, labels, scale=0.7, color=WHITE, buff=0.3) -&gt; list
+<pre><code class="language-python">vertex_labels(polygon, labels, scale=0.7, color=BLACK, buff=0.3) -&gt; list
 # Create labels at polygon vertices. labels: list of strings for each vertex
 # Returns list of MathTex objects positioned at vertices
 
-edge_labels(polygon, labels, scale=0.6, color=YELLOW, buff=0.2) -&gt; list
+edge_labels(polygon, labels, scale=0.6, color=BLACK, buff=0.2) -&gt; list
 # Create labels at polygon edge midpoints. labels: list of strings for each edge
-# Returns list of MathTex objects positioned at edge midpoints</code></pre>
+# Returns list of MathTex objects positioned at edge midpoints
+
+angle_labels(polygon, labels, radius=0.4, scale=0.5, color=BLUE, arc_color=None) -&gt; list
+# Create angle arcs with labels at each vertex. labels: list of strings for each angle
+# Returns list of VGroups (arc + label) positioned at vertices</code></pre>
 
 <hr />
 
@@ -436,12 +440,12 @@ ArrowUtil.marker(point, direction, tip_angle=20*DEGREES, tip_length=0.3, **kwarg
     zoom(obj, wait_time=0.3, width_factor=1.2)
     # Zoom camera to object, wait, then restore. obj: any Mobject
 
-    # MathTex utilities (same as TextUtils)
-    text(mathtext, *indices) -&gt; MathTex
-    # Extract MathTex parts. mathtext: string or MathTex, indices: int or slice strings
+    # MathTex utilities
+    part(mathtext, *indices) -&gt; MathTex
+    # Extract MathTex parts and color RED. mathtext: string or MathTex, indices: int or slice strings
 
-    text2(mathtext, *indices) -&gt; MathTex
-    # Debug version with BLUE + ORANGE highlight</code></pre>
+    part2(mathtext, *indices) -&gt; MathTex
+    # Debug version with RED + ORANGE highlight</code></pre>
 
 <p><strong>Examples:</strong></p>
 <pre><code class="language-python"># Animation shortcuts
@@ -455,9 +459,9 @@ self.zoom(equation)                          # Quick zoom to equation
 self.zoom(text, 1.0, 1.5)                    # Zoom for 1s with 1.5x width
 
 # MathTex extraction
-eq = self.text(&quot;x^2 + y^2 = r^2&quot;)            # Create MathTex
-part = self.text(eq, 0)                      # Extract eq[0]
-self.text2(eq, 1, &quot;2:4&quot;)                     # Show eq[1][2:4] with highlight</code></pre>
+eq = self.part(&quot;x^2 + y^2 = r^2&quot;)            # Create MathTex
+p = self.part(eq, 0)                         # Extract eq[0]
+self.part2(eq, 1, &quot;2:4&quot;)                     # Show eq[1][2:4] with highlight</code></pre>
 
 <hr />
 
