@@ -332,6 +332,21 @@ subv(vec_a, vec_b, start_point=None, **kwargs) -> Arrow
 scalev(vector, scalar, start_point=None, **kwargs) -> Arrow
 # Scalar multiplication. vector must be Arrow, scalar is numeric. Returns scaled Arrow
 
+fw(source, distance) -> Mobject
+# Move arrow forward along its direction by distance
+
+bw(source, distance) -> Mobject
+# Move arrow backward along its direction by distance
+
+pm(source, distance) -> Mobject
+# Move arrow perpendicular to its direction by distance
+
+cp(source, start_point, **kwargs) -> Mobject
+# Copy arrow to new start_point
+
+rv(source, start_point, **kwargs) -> Mobject
+# Reverse arrow at new start_point
+
 # Vector decomposition & projection (use short aliases)
 VectorUtils.prov(vec, target, **kwargs) -> Arrow
 # Project onto: project Arrow 'vec' onto Arrow 'target'. Returns projection Arrow
@@ -379,35 +394,17 @@ textdg(tex, scale=2, lscale=0.3, buff=0.05, color_tex=True) -> VGroup
 ---
 
 ```python
-vertex_labels(polygon, labels, scale=0.7, color=WHITE, buff=0.3) -> list
+vertex_labels(polygon, labels, scale=0.7, color=BLACK, buff=0.3) -> list
 # Create labels at polygon vertices. labels: list of strings for each vertex
 # Returns list of MathTex objects positioned at vertices
 
-edge_labels(polygon, labels, scale=0.6, color=YELLOW, buff=0.2) -> list
+edge_labels(polygon, labels, scale=0.6, color=BLACK, buff=0.2) -> list
 # Create labels at polygon edge midpoints. labels: list of strings for each edge
 # Returns list of MathTex objects positioned at edge midpoints
-```
 
----
-
-```python
-ArrowUtil.arrow(start, end, buff=0, dashed=False, bidirectional=False,
-                tip_angle=20*DEGREES, tip_length=0.3, **kwargs) -> VMobject
-# Advanced arrow. start, end: np.array or Dot. buff: perpendicular offset distance
-# dashed: dashed line, bidirectional: tips on both ends
-
-ArrowUtil.curved_arrow(start, end, angle=45*DEGREES, tip_angle=20*DEGREES,
-                      tip_length=0.3, **kwargs) -> VMobject
-# Curved arrow along circular arc. start, end: np.array or Dot, angle: arc curvature
-
-ArrowUtil.perpendicular_offset(start, end, distance) -> np.ndarray
-# Calculate perpendicular offset vector. start, end: np.array, distance: offset amount
-
-ArrowUtil.label(arrow, tex, buff=0.2) -> VMobject
-# Position MathTex label relative to arrow with perpendicular offset
-
-ArrowUtil.marker(point, direction, tip_angle=20*DEGREES, tip_length=0.3, **kwargs) -> VGroup
-# Directional marker (arrow tip only). point, direction: np.array
+angle_labels(polygon, labels, radius=0.4, scale=0.5, color=BLUE, arc_color=None) -> list
+# Create angle arcs with labels at each vertex. labels: list of strings for each angle
+# Returns list of VGroups (arc + label) positioned at vertices
 ```
 
 ---
@@ -514,7 +511,7 @@ from robo_manim_add_ons import (
     # Transform
     translated, rotated, scaled,
     # Vector operations
-    addv, subv, scalev,
+    addv, subv, scalev, fw, bw, pm, cp, rv,
     # MathTex utilities (standalone, require scene arg)
     part, part2,
     # Scene
@@ -522,9 +519,7 @@ from robo_manim_add_ons import (
 )
 
 # Class-based interface
-from robo_manim_add_ons import Exp, VectorUtils, PointUtils, TextUtils, ArrowUtil, GraphUtils, Style
-
-# Note: ArcArrow and ArcDashedVMobject are internal - use aa() and aa2() instead
+from robo_manim_add_ons import Exp, VectorUtils, PointUtils, TextUtils, GraphUtils, Style
 ```
 
 ---
@@ -537,7 +532,7 @@ from robo_manim_add_ons import Exp, VectorUtils, PointUtils, TextUtils, ArrowUti
 **Annotation:** `dm` `label` `hatch`
 **Style:** `stroke` `fill` `sopacity` `fopacity` `sw` `style`
 **Transform:** `translated` `rotated` `scaled`
-**Vector Ops:** `addv` `subv` `scalev` `VectorUtils`
+**Vector Ops:** `addv` `subv` `scalev` `fw` `bw` `pm` `cp` `rv` `VectorUtils`
 **Point Ops:** `addp` `PointUtils`
 **MathTex Ops:** `part` `part2` `textdg`
 **Scene Utils:** `RogebraScene` (fadeIn, fadeOut, amo, tf, rtf, zoom, part, part2, textdg)

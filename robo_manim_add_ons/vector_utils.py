@@ -778,3 +778,58 @@ def scalev(vector: Mobject, scalar: float, start_point: np.ndarray = None, **arr
         >>> result = scalev(vec_a, 2, color=BLUE)
     """
     return VectorUtils.scalar_multiply(vector, scalar, start_point=start_point, **arrow_kwargs)
+
+
+def fw(source: Mobject, distance: float) -> Mobject:
+    """
+    Standalone function for forward movement. See VectorUtils.forward() for full documentation.
+
+    Example:
+        >>> from robo_manim_add_ons import fw
+        >>> result = fw(arrow, 2)
+    """
+    return VectorUtils.forward(source, distance)
+
+
+def bw(source: Mobject, distance: float) -> Mobject:
+    """
+    Standalone function for backward movement. See VectorUtils.backward() for full documentation.
+
+    Example:
+        >>> from robo_manim_add_ons import bw
+        >>> result = bw(arrow, 2)
+    """
+    return VectorUtils.backward(source, distance)
+
+
+def pm(source: Mobject, distance: float) -> Mobject:
+    """
+    Standalone function for perpendicular movement. See VectorUtils.perp_move() for full documentation.
+
+    Example:
+        >>> from robo_manim_add_ons import pm
+        >>> result = pm(arrow, 1.5)
+    """
+    return VectorUtils.perp_move(source, distance)
+
+
+def cp(source: Mobject, start_point: np.ndarray, **arrow_kwargs) -> Mobject:
+    """
+    Standalone function for copy_at. See VectorUtils.copy_at() for full documentation.
+
+    Example:
+        >>> from robo_manim_add_ons import cp
+        >>> result = cp(arrow, ORIGIN)
+    """
+    return VectorUtils.copy_at(source, start_point, **arrow_kwargs)
+
+
+def rv(source: Mobject, start_point: np.ndarray, **arrow_kwargs) -> Mobject:
+    """
+    Standalone function for reverse_at. See VectorUtils.reverse_at() for full documentation.
+
+    Example:
+        >>> from robo_manim_add_ons import rv
+        >>> result = rv(arrow, ORIGIN)
+    """
+    return VectorUtils.reverse_at(source, start_point, **arrow_kwargs)
