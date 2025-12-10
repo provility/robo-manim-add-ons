@@ -245,25 +245,24 @@ class RogebraScene(MovingCameraScene):
             print(f"Invalid index [{indices_str}]: {e}")
             return VMobject()
 
-    def text(self, mathtext, *args):
+    def part(self, mathtext, *args):
         """
         Extract a part from MathTex or create MathTex from string with flexible indexing.
 
-        This is a pure extraction utility that doesn't modify colors or add to the scene.
-        Silently fails and returns empty VMobject if indices are invalid.
+        Colors the extracted part RED. Silently fails and returns empty VMobject if indices are invalid.
 
         Args:
             mathtext: Either a string (creates MathTex) or existing MathTex object
             *args: Zero or more indices (int or "1:2" string slices) for extraction
 
         Returns:
-            Extracted MathTex part or empty VMobject if extraction fails
+            Extracted MathTex part (colored RED) or empty VMobject if extraction fails
 
         Examples:
-            eq = self.text("x^2 + y^2")           # Create MathTex
-            part = self.text("x^2 + y^2", 0)      # Extract eq[0]
-            part2 = self.text("x^2 + y", 1, 2)    # Extract eq[1][2]
-            part3 = self.text(eq, "1:3")          # Extract eq[1:3]
+            eq = self.part("x^2 + y^2")           # Create MathTex (RED)
+            p = self.part("x^2 + y^2", 0)         # Extract eq[0] (RED)
+            p2 = self.part("x^2 + y", 1, 2)       # Extract eq[1][2] (RED)
+            p3 = self.part(eq, "1:3")             # Extract eq[1:3] (RED)
         """
         # Create MathTex if string is provided
         if isinstance(mathtext, str):
@@ -271,19 +270,21 @@ class RogebraScene(MovingCameraScene):
         else:
             mathtext_obj = mathtext
 
-        # If no indices provided, return the whole MathTex object
+        # If no indices provided, return the whole MathTex object colored RED
         if len(args) == 0:
+            mathtext_obj.set_color(RED)
             return mathtext_obj
 
-        # Extract part using indices
-        return self._extract_part(mathtext_obj, *args)
+        # Extract part using indices and color RED
+        extracted = self._extract_part(mathtext_obj, *args)
+        extracted.set_color(RED)
+        return extracted
 
-    def text2(self, mathtext, *args):
+    def part2(self, mathtext, *args):
         """
-        Debug utility: Extract MathTex part, color it BLUE, add to scene with ORANGE rectangle.
+        Debug utility: Extract MathTex part, color it RED, add to scene with ORANGE rectangle.
 
-        This method does everything text() does, plus:
-        - Colors the extracted part BLUE
+        This method does everything part() does, plus:
         - Adds the extracted part to the scene
         - Creates an ORANGE rectangle around it
         - Adds the rectangle to the scene
@@ -296,18 +297,15 @@ class RogebraScene(MovingCameraScene):
             Extracted MathTex part or empty VMobject if extraction fails
 
         Examples:
-            part = self.text2("x^2 + y^2", 0)     # Show eq[0] with BLUE + ORANGE box
-            part2 = self.text2(eq, 1, "2:5")      # Show eq[1][2:5] with highlight
+            p = self.part2("x^2 + y^2", 0)        # Show eq[0] with RED + ORANGE box
+            p2 = self.part2(eq, 1, "2:5")         # Show eq[1][2:5] with highlight
         """
-        # Use text() to extract the part
-        extracted_part = self.text(mathtext, *args)
+        # Use part() to extract the part (already colored RED)
+        extracted_part = self.part(mathtext, *args)
 
         # If extraction failed (empty VMobject), return it
         if isinstance(extracted_part, VMobject) and len(extracted_part.submobjects) == 0:
             return extracted_part
-
-        # Color the extracted part BLUE
-        extracted_part.set_color(BLUE)
 
         # Add to scene
         self.add(extracted_part)

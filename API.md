@@ -360,14 +360,14 @@ addp(point, vector, **dot_kwargs) -> Dot
 ```python
 # These are methods on RogebraScene (no scene argument needed)
 
-text(mathtext, *indices) -> MathTex
-# Extract parts from MathTex. mathtext: string (creates MathTex) or MathTex object
+part(mathtext, *indices) -> MathTex
+# Extract parts from MathTex and color RED. mathtext: string (creates MathTex) or MathTex object
 # indices: int or "1:2" slice strings. Chainable: eq[1][2] same as (eq, 1, 2)
 # Silently fails on invalid indices, returns empty VMobject
 
-text2(mathtext, *indices) -> MathTex
-# Debug version: extracts parts + highlights with BLUE color and ORANGE box
-# Same params as text(). Use for visual debugging of MathTex structure
+part2(mathtext, *indices) -> MathTex
+# Debug version: extracts parts + highlights with RED color and ORANGE box
+# Same params as part(). Use for visual debugging of MathTex structure
 
 textdg(tex, scale=2, lscale=0.3, buff=0.05, color_tex=True) -> VGroup
 # Debug utility: show index labels below each MathTex character
@@ -440,11 +440,11 @@ class RogebraScene(MovingCameraScene):
     # Zoom camera to object, wait, then restore. obj: any Mobject
 
     # MathTex utilities
-    text(mathtext, *indices) -> MathTex
-    # Extract MathTex parts. mathtext: string or MathTex, indices: int or slice strings
+    part(mathtext, *indices) -> MathTex
+    # Extract MathTex parts and color RED. mathtext: string or MathTex, indices: int or slice strings
 
-    text2(mathtext, *indices) -> MathTex
-    # Debug version with BLUE + ORANGE highlight
+    part2(mathtext, *indices) -> MathTex
+    # Debug version with RED + ORANGE highlight
 
     textdg(tex, scale=2, lscale=0.3, buff=0.05, color_tex=True) -> VGroup
     # Show index labels (word,char) below each character with cycling colors
@@ -463,9 +463,9 @@ self.zoom(equation)                          # Quick zoom to equation
 self.zoom(text, 1.0, 1.5)                    # Zoom for 1s with 1.5x width
 
 # MathTex extraction
-eq = self.text("x^2 + y^2 = r^2")            # Create MathTex
-part = self.text(eq, 0)                      # Extract eq[0]
-self.text2(eq, 1, "2:4")                     # Show eq[1][2:4] with highlight
+eq = self.part("x^2 + y^2 = r^2")            # Create MathTex
+p = self.part(eq, 0)                         # Extract eq[0]
+self.part2(eq, 1, "2:4")                     # Show eq[1][2:4] with highlight
 
 # Debug MathTex indices
 self.textdg(r"\sin(x) = \frac{a}{b}")        # Show with colored index labels
@@ -515,8 +515,8 @@ from robo_manim_add_ons import (
     translated, rotated, scaled,
     # Vector operations
     addv, subv, scalev,
-    # Text utilities (standalone, require scene arg)
-    text, text2,
+    # MathTex utilities (standalone, require scene arg)
+    part, part2,
     # Scene
     RogebraScene
 )
@@ -539,8 +539,8 @@ from robo_manim_add_ons import Exp, VectorUtils, PointUtils, TextUtils, ArrowUti
 **Transform:** `translated` `rotated` `scaled`
 **Vector Ops:** `addv` `subv` `scalev` `VectorUtils`
 **Point Ops:** `addp` `PointUtils`
-**Text Ops:** `text` `text2` `textdg`
-**Scene Utils:** `RogebraScene` (fadeIn, fadeOut, amo, tf, rtf, zoom, text, text2, textdg)
+**MathTex Ops:** `part` `part2` `textdg`
+**Scene Utils:** `RogebraScene` (fadeIn, fadeOut, amo, tf, rtf, zoom, part, part2, textdg)
 
 ---
 

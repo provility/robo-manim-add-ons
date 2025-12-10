@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "robo-manim-add-ons"
-version = "0.2.1"
+version = "0.2.2"
 description = "A collection of add-ons and utilities for Manim Community Edition"
 readme = "README.md"
 requires-python = ">=3.8"
